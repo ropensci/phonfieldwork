@@ -36,5 +36,5 @@ create_presentation <- function(stimuli,
                collapse = "")
   writeLines(rmd, paste0(filename, ".Rmd"))
   rmarkdown::render(paste0(filename, ".Rmd"))
-  file.remove("stimuli_prezi.Rmd")
+  file.remove(paste0(filename, ".Rmd"))
 }
