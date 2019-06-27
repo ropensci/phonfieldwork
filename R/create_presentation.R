@@ -1,0 +1,36 @@
+#' Create a presentation
+#'
+#' Create a html or powerpoint presentation from list of words and translations.
+#'
+#' @author George Moroz <agricolamz@gmail.com>
+#'
+#' @param stimuli vector of stimuli (obligatory)
+#' @param translations vector of translations (optional)
+#' @param output string that difine the output type: "html" (by default) or "pptx"
+#'
+#' @examples
+#' ## Not run:
+#' create_presentation("rzeka", "river")
+#'
+#' @export
+#' @importFrom rmarkdown render
+#'
+
+create_presentation <- function(stimuli, translations = "", output = "html") {
+  output <- ifelse(output == "pptx",
+                   "powerpoint_presentation",
+                   "ioslides_presentation")
+  rmd <- paste(c(paste("---\noutput: ",
+                       output,
+                       "\n---\n"),
+                       collapse = ""),
+                 paste("##",
+                       stimuli,
+                       "\n\n",
+                       translations,
+                       "\n\n"),
+               collapse = "")
+  writeLines(rmd, "stimuli_prezi.Rmd")
+  rmarkdown::render("stimuli_prezi.Rmd")
+  file.remove("stimuli_prezi.Rmd")
+}
