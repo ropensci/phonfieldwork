@@ -4,7 +4,8 @@
 \alias{create_presentation}
 \title{Create a presentation}
 \usage{
-create_presentation(stimuli, translations = "", output = "html")
+create_presentation(stimuli, translations = "", output = "html",
+  filename = "stimuli_presentation")
 }
 \arguments{
 \item{stimuli}{vector of stimuli (obligatory)}
@@ -12,6 +13,8 @@ create_presentation(stimuli, translations = "", output = "html")
 \item{translations}{vector of translations (optional)}
 
 \item{output}{string that difine the output type: "html" (by default) or "pptx"}
+
+\item{filename}{name of the result presentation file}
 }
 \description{
 Create a html or powerpoint presentation from list of words and translations.

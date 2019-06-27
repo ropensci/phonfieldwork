@@ -7,6 +7,7 @@
 #' @param stimuli vector of stimuli (obligatory)
 #' @param translations vector of translations (optional)
 #' @param output string that difine the output type: "html" (by default) or "pptx"
+#' @param filename name of the result presentation file
 #'
 #' @examples
 #' ## Not run:
@@ -16,7 +17,10 @@
 #' @importFrom rmarkdown render
 #'
 
-create_presentation <- function(stimuli, translations = "", output = "html") {
+create_presentation <- function(stimuli,
+                                translations = "",
+                                output = "html",
+                                filename = "stimuli_presentation") {
   output <- ifelse(output == "pptx",
                    "powerpoint_presentation",
                    "ioslides_presentation")
@@ -30,7 +34,7 @@ create_presentation <- function(stimuli, translations = "", output = "html") {
                        translations,
                        "\n\n"),
                collapse = "")
-  writeLines(rmd, "stimuli_prezi.Rmd")
-  rmarkdown::render("stimuli_prezi.Rmd")
-#  file.remove("stimuli_prezi.Rmd")
+  writeLines(rmd, paste0(filename, ".Rmd"))
+  rmarkdown::render(paste0(filename, ".Rmd"))
+  file.remove("stimuli_prezi.Rmd")
 }
