@@ -21,6 +21,19 @@ concatenate_soundfiles <- function(path = getwd(),
 # concatenate sounds ------------------------------------------------------
 
   files <- list.files()
+
+  unlist(
+    lapply(seq_along(files), function(i){
+      res <- unlist(strsplit(files[i], "\\."))
+      res[length(res)]
+    })) ->
+    extension
+
+  not_wav <- which(!(tolower(extension) %in% "wav"))
+  if(length(not_wav) > 0){
+    stop(paste0(c("There are some non-wav files:", files[not_wav]), collapse = "\n"))
+  }
+
   list <- lapply(files, tuneR::readWave)
   sound <- Reduce(tuneR::bind, list)
   tuneR::writeWave(sound, paste0(filename, ".wav"))

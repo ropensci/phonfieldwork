@@ -20,11 +20,11 @@ create_presentation <- function(stimuli, translations = "", output = "html") {
   output <- ifelse(output == "pptx",
                    "powerpoint_presentation",
                    "ioslides_presentation")
-  rmd <- paste(c(paste("---\noutput: ",
+  rmd <- paste0(c(paste0("---\noutput: ",
                        output,
-                       "\n---\n"),
+                       "\n---\n\n"),
                        collapse = ""),
-                 paste("##",
+                 paste0("## ",
                        stimuli,
                        "\n\n",
                        translations,
@@ -32,5 +32,5 @@ create_presentation <- function(stimuli, translations = "", output = "html") {
                collapse = "")
   writeLines(rmd, "stimuli_prezi.Rmd")
   rmarkdown::render("stimuli_prezi.Rmd")
-  file.remove("stimuli_prezi.Rmd")
+#  file.remove("stimuli_prezi.Rmd")
 }

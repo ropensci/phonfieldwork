@@ -31,8 +31,9 @@ rename_soundfiles <- function(stimuli,
       })) ->
     extension
 
-  if(length(unique(tolower(extension))) > 1){
-    stop(paste(c("It looks like there are several extension types in your files:", unique(tolower(extension))), collapse = "\n"))
+  not_wav <- which(!(tolower(extension) %in% "wav"))
+  if(length(not_wav) > 0){
+    stop(paste0(c("There are some non-wav files:", files[not_wav]), collapse = "\n"))
   }
 
   if(isTRUE(backup)){

@@ -19,3 +19,9 @@ library(lingfieldwork)
 ```
 
 For a detailed tutorial see [GitHub pages](https://agricolamz.github.io/lingfieldwork/).
+
+## To do:
+
+* import from ELAN, EXMARALDA files
+* annotate from csv
+* create a database html
