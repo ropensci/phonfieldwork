@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_presentation.R
 \name{create_presentation}
 \alias{create_presentation}
-\title{Create a presentation}
+\title{Creates a presentation}
 \usage{
 create_presentation(stimuli, translations = "", output = "html",
   filename = "stimuli_presentation")
@@ -17,7 +17,7 @@ create_presentation(stimuli, translations = "", output = "html",
 \item{filename}{name of the result presentation file}
 }
 \description{
-Create a html or powerpoint presentation from list of words and translations.
+Creates a html or powerpoint presentation from list of words and translations.
 }
 \examples{
 ## Not run:

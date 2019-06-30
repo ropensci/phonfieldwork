@@ -1,6 +1,6 @@
-#' Create a presentation
+#' Creates a presentation
 #'
-#' Create a html or powerpoint presentation from list of words and translations.
+#' Creates a html or powerpoint presentation from list of words and translations.
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
