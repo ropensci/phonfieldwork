@@ -17,7 +17,7 @@
 #' @export
 #'
 
-  annotate_textgrid <- function(annotation,
+annotate_textgrid <- function(annotation,
                               textgrid,
                               tier = 1,
                               each = 1,
@@ -67,11 +67,19 @@
   }
 
 # annotate ----------------------------------------------------------------
-  n_an <- length(w_tier[grep("text = ", w_tier)])
-  w_tier[grep("text = ", w_tier)][seq_along(1:n_an) %% each == 0] <- paste0(
-    '            text = "',
+  ifelse(grepl("IntervalTier", w_tier[2]),
+         anotation_prefix <- "text = ", # for intervaltiers
+         anotation_prefix <- "mark = ") # for pointtiers
+
+  n_an <- length(w_tier[grep(anotation_prefix, w_tier)])
+  w_tier[grep(anotation_prefix, w_tier)][1:n_an %% each == 0] <- paste0(
+    '            ',
+    anotation_prefix,
+    '"',
     annotation,
     '" ')
+
+  # merge annotation with TextGrid
   tg[starts[tier_number]:ends[tier_number]] <- w_tier
 
 # write the result TextGrid -----------------------------------------------
