@@ -20,8 +20,7 @@ create_presentation(stimuli, translations = "", output = "html",
 Creates a html or powerpoint presentation from list of words and translations.
 }
 \examples{
-## Not run:
-create_presentation("rzeka", "river")
+# create_presentation("rzeka", "river")
 
 }
 \author{

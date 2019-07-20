@@ -1,6 +1,6 @@
 #' Annotate textgrid
 #'
-#' Annotates textgrids. It is possible to difine step in the argument "each", so each second element will be annotated.
+#' Annotates textgrids. It is possible to difine step in the argument "each", so each second element of the tier will be annotated.
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
@@ -11,8 +11,7 @@
 #' @param backup logical. If TRUE (by default) it creates a backup tier.
 #'
 #' @examples
-#' ## Not run:
-#' annotate_textgrid(annotation = c("a", "b"), textgrid = "exampl.TextGrid")
+#' # annotate_textgrid(annotation = c("a", "b"), textgrid = "exampl.TextGrid")
 #'
 #' @export
 #'

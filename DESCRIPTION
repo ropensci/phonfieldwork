@@ -1,4 +1,4 @@
-Package: lingfieldwork
+Package: phonfieldwork
 Type: Package
 Title: Linguistic phonetic tools for fieldwork
 Version: 0.0.1
@@ -8,11 +8,10 @@ Imports:
     rmarkdown
 Author: George Moroz
 Maintainer: George Moroz <agricolamz@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Contains tools for the files and Praat TextGrid manipulation for phonetic research and experements.
 License: GPL (>= 2)
-URL: https://CRAN.R-project.org/package=lingfieldwork, https://github.com/agricolamz/lingfieldwork/
-BugReports: https://github.com/agricolamz/lingfieldwork/issues
+URL: https://CRAN.R-project.org/package=phonfieldwork, https://github.com/agricolamz/phonfieldwork/
+BugReports: https://github.com/agricolamz/phonfieldwork/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

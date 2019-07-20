@@ -10,8 +10,7 @@
 #' @param filename name of the result presentation file
 #'
 #' @examples
-#' ## Not run:
-#' create_presentation("rzeka", "river")
+#' # create_presentation("rzeka", "river")
 #'
 #' @export
 #' @importFrom rmarkdown render

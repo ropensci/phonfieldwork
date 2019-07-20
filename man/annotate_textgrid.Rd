@@ -19,11 +19,10 @@ annotate_textgrid(annotation, textgrid, tier = 1, each = 1,
 \item{backup}{logical. If TRUE (by default) it creates a backup tier.}
 }
 \description{
-Annotates textgrids. It is possible to difine step in the argument "each", so each second element will be annotated.
+Annotates textgrids. It is possible to difine step in the argument "each", so each second element of the tier will be annotated.
 }
 \examples{
-## Not run:
-annotate_textgrid(annotation = c("a", "b"), textgrid = "exampl.TextGrid")
+# annotate_textgrid(annotation = c("a", "b"), textgrid = "exampl.TextGrid")
 
 }
 \author{
