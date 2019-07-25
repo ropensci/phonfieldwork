@@ -4,12 +4,12 @@
 \alias{concatenate_soundfiles}
 \title{Concatenate sounds}
 \usage{
-concatenate_soundfiles(path = getwd(), filename, textgrid = TRUE)
+concatenate_soundfiles(filename, path = getwd(), textgrid = TRUE)
 }
 \arguments{
-\item{path}{path to the directory with soundfiles.}
-
 \item{filename}{name of the result files (and TextGrid, if this argument equal TRUE)}
+
+\item{path}{path to the directory with soundfiles.}
 
 \item{textgrid}{logic value, whether create Praat TextGrid whose interval labels are the original names of the sound}
 }

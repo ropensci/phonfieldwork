@@ -1,6 +1,6 @@
 Package: phonfieldwork
 Type: Package
-Title: Linguistic phonetic tools for fieldwork
+Title: Tools for Linguistic Phonetic Fieldwork
 Version: 0.0.1
 Depends: R (>= 3.5.0)
 Imports:
@@ -8,13 +8,10 @@ Imports:
     rmarkdown
 Author: George Moroz
 Maintainer: George Moroz <agricolamz@gmail.com>
-Description: Contains tools for the files and Praat TextGrid manipulation for phonetic research and experements.
+Description: Contains tools for the files and Praat TextGrid manipulation (see Paul Boersma, David Weenink 2018) for phonetic research and experiments.
 License: GPL (>= 2)
-URL: https://CRAN.R-project.org/package=phonfieldwork, https://github.com/agricolamz/phonfieldwork/
+URL: https://CRAN.R-project.org/package=phonfieldwork
 BugReports: https://github.com/agricolamz/phonfieldwork/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
-Suggests:
-    knitr
-VignetteBuilder: knitr

@@ -4,7 +4,7 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param annotation vector of stimuli (obligatory)
+#' @param annotation vector of stimuli
 #' @param textgrid character with a filename or path to the TextGrid
 #' @param tier value that could be either ordinal number of the tier either name of the tier
 #' @param each non-negative integer. Each element of x is repeated each times

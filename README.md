@@ -1,6 +1,6 @@
-# lingfieldwork
+# phonfieldwork
 
-`lingfieldwork` is a package for phonetic fieldwork. This package make it easier sound file manipilation:
+`phonfieldwork` is a package for phonetic fieldwork. This package make it easier sound file manipilation:
 
 * `create_presentation` -- creates a html/pptx presentation from stimuli-translation list
 * `rename_soundfiles` -- renames soundfiles according to the list of stimuli
@@ -11,17 +11,14 @@
 Get the development version from GitHub:
 ```R
 install.packages("devtools")
-devtools::install_github("agricolamz/lingfieldwork")
+devtools::install_github("agricolamz/phonfieldwork")
 ```
 Load a library:
 ```R
-library(lingfieldwork)
+library(phonfieldwork)
 ```
-
-For a detailed tutorial see [GitHub pages](https://agricolamz.github.io/lingfieldwork/).
 
 ## To do:
 
 * import from ELAN, EXMARALDA files
-* annotate from csv
 * create a database html

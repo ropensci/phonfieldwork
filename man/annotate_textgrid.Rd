@@ -8,7 +8,7 @@ annotate_textgrid(annotation, textgrid, tier = 1, each = 1,
   backup = TRUE)
 }
 \arguments{
-\item{annotation}{vector of stimuli (obligatory)}
+\item{annotation}{vector of stimuli}
 
 \item{textgrid}{character with a filename or path to the TextGrid}
 

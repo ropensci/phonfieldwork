@@ -14,8 +14,8 @@
 #' @importFrom tuneR writeWave
 #'
 
-concatenate_soundfiles <- function(path = getwd(),
-                                   filename,
+concatenate_soundfiles <- function(filename,
+                                   path = getwd(),
                                    textgrid = TRUE){
 
 # concatenate sounds ------------------------------------------------------

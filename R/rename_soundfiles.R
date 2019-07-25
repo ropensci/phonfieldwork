@@ -33,7 +33,8 @@ rename_soundfiles <- function(stimuli,
 
   not_wav <- which(!(tolower(extension) %in% "wav"))
   if(length(not_wav) > 0){
-    stop(paste0(c("There are some non-wav files:", files[not_wav]), collapse = "\n"))
+    stop(paste0(c("There are some non-wav files:", files[not_wav]),
+                collapse = "\n"))
   }
 
   if(isTRUE(backup)){
@@ -48,7 +49,7 @@ rename_soundfiles <- function(stimuli,
   if(is.null(order)){
     order <- seq_along(stimuli)
   } else if(length(stimuli) != length(order)){
-    stop("Stimuli and order vectors")
+    stop("Stimuli and order vectors have different length")
   }
 
   medial_part <- if(!is.null(translations)){
@@ -56,7 +57,6 @@ rename_soundfiles <- function(stimuli,
     } else {
       stimuli[order]
       }
-
 
   file.rename(paste0(path, "/", files),
               paste0(path, "/", prefix, medial_part, suffix, ".", extension[1]))
