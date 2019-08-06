@@ -9,7 +9,7 @@
 #' @param name vector that contain a name for a created tier
 #'
 #' @examples
-#' # tier_to_df("my.TextGrid")
+#' # df_to_tier()
 #'
 #' @export
 #'

@@ -5,7 +5,7 @@
 \title{Rename soundfiles}
 \usage{
 rename_soundfiles(stimuli, translations = NULL, prefix = NULL,
-  suffix = NULL, order = NULL, path = getwd(), backup = TRUE)
+  suffix = NULL, order = NULL, path, backup = TRUE)
 }
 \arguments{
 \item{stimuli}{character vector of stimuli}

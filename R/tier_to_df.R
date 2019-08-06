@@ -8,13 +8,17 @@
 #' @param tier value that could be either ordinal number of the tier either name of the tier. By default is '1'.
 #'
 #' @examples
-#' # tier_to_df("my.TextGrid")
+#' tier_to_df(example_textgrid)
 #'
 #' @export
 #'
 
 tier_to_df <- function(textgrid, tier = 1){
-  tg <- readLines(textgrid)
+  if(grepl("TextGrid", textgrid[2])){
+    tg <- textgrid
+  } else{
+    tg <- readLines(textgrid)
+  }
   # get start and end info about tiers --------------------------------------
   starts <- grep("item \\[\\d{1,}\\]:", tg)
   ends <- c(starts[-1]-1, length(tg))

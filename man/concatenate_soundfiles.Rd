@@ -4,17 +4,37 @@
 \alias{concatenate_soundfiles}
 \title{Concatenate sounds}
 \usage{
-concatenate_soundfiles(filename, path = getwd(), textgrid = TRUE)
+concatenate_soundfiles(filename, path, textgrid = TRUE)
 }
 \arguments{
-\item{filename}{name of the result files (and TextGrid, if this argument equal TRUE)}
+\item{filename}{name of the result files (and TextGrid, if this argument equal TRUE).}
 
 \item{path}{path to the directory with soundfiles.}
 
-\item{textgrid}{logic value, whether create Praat TextGrid whose interval labels are the original names of the sound}
+\item{textgrid}{logic value, whether create Praat TextGrid whose interval labels are the original names of the sound.}
 }
 \description{
 Creates a sound file and a Praat TextGrid whose interval labels are the original names of the sound
+}
+\examples{
+# create two files in a temprary folder "test_folder"
+s1 <-  system.file("extdata", "test.wav", package = "phonfieldwork")
+s2 <-  system.file("extdata", "post.wav", package = "phonfieldwork")
+tdir <- tempdir()
+file.copy(s1, tdir)
+file.copy(s2, tdir)
+
+# here are two .wav files in a folder
+list.files(tdir)
+# [1] "post.wav" "test.wav"
+
+# Concatenate all files from the folder into concatenated.wav and create corresponding TextGrid
+concatenate_soundfiles(filename = "concatenated", path = tdir)
+
+list.files(tdir)
+# [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
+
+
 }
 \author{
 George Moroz <agricolamz@gmail.com>

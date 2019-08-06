@@ -2,15 +2,15 @@
 % Please edit documentation in R/extract_intervals.R
 \name{extract_intervals}
 \alias{extract_intervals}
-\title{Concatenate sounds}
+\title{Extract intervals}
 \usage{
 extract_intervals(filename, textgrid, tier = 1, prefix = NULL,
-  suffix = NULL, autonumber = TRUE, path = getwd())
+  suffix = NULL, autonumber = TRUE, path)
 }
 \arguments{
-\item{filename}{name of the result files (and TextGrid, if this argument equal TRUE)}
+\item{filename}{path to the soundfile}
 
-\item{textgrid}{logic value, whether create Praat TextGrid whose interval labels are the original names of the sound}
+\item{textgrid}{path to the TextGrid}
 
 \item{tier}{tier number or name that should be used as base for extraction and names}
 
@@ -20,10 +20,25 @@ extract_intervals(filename, textgrid, tier = 1, prefix = NULL,
 
 \item{autonumber}{if TRUE automatically add number of extracted sound to the filename. Prevents from creating a duplicated files}
 
-\item{path}{path to the directory with soundfiles.}
+\item{path}{path to the directory where create extracted soundfiles.}
 }
 \description{
-Creates a sound file and a Praat TextGrid whose interval labels are the original names of the sound
+Extract sound according to non-empty annotated intervals from TextGrid and create soundfiles with correspondent names.
+}
+\examples{
+# create two files in a temprary folder "test_folder"
+s <-  system.file("extdata", "test.wav", package = "phonfieldwork")
+tdir <- tempdir()
+file.copy(s, tdir)
+
+# Extract intervals according the TextGrid into the path
+extract_intervals(filename = paste0(tdir, "/test.wav"),
+                  textgrid = example_textgrid,
+                  path = tdir)
+
+list.files(tdir)
+# [1] "e-2.wav" "s-3.wav" "t-1.wav" "t-4.wav" "test.TextGrid" "test.wav"
+
 }
 \author{
 George Moroz <agricolamz@gmail.com>

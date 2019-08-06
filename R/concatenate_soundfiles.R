@@ -5,8 +5,28 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param path path to the directory with soundfiles.
-#' @param filename name of the result files (and TextGrid, if this argument equal TRUE)
-#' @param textgrid logic value, whether create Praat TextGrid whose interval labels are the original names of the sound
+#' @param filename name of the result files (and TextGrid, if this argument equal TRUE).
+#' @param textgrid logic value, whether create Praat TextGrid whose interval labels are the original names of the sound.
+#'
+#' @examples
+#' # create two files in a temprary folder "test_folder"
+#' s1 <-  system.file("extdata", "test.wav", package = "phonfieldwork")
+#' s2 <-  system.file("extdata", "post.wav", package = "phonfieldwork")
+#' tdir <- tempdir()
+#' file.copy(s1, tdir)
+#' file.copy(s2, tdir)
+#'
+#'# here are two .wav files in a folder
+#'list.files(tdir)
+#'# [1] "post.wav" "test.wav"
+#'
+#'# Concatenate all files from the folder into concatenated.wav and create corresponding TextGrid
+#'concatenate_soundfiles(filename = "concatenated", path = tdir)
+#'
+#'list.files(tdir)
+#'# [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
+#'
+
 #'
 #' @export
 #' @importFrom tuneR readWave
@@ -15,12 +35,12 @@
 #'
 
 concatenate_soundfiles <- function(filename,
-                                   path = getwd(),
+                                   path,
                                    textgrid = TRUE){
 
 # concatenate sounds ------------------------------------------------------
 
-  files <- list.files()
+  files <- list.files(path = path)
 
   unlist(
     lapply(seq_along(files), function(i){
@@ -29,14 +49,14 @@ concatenate_soundfiles <- function(filename,
     })) ->
     extension
 
-  not_wav <- which(!(tolower(extension) %in% "wav"))
-  if(length(not_wav) > 0){
-    stop(paste0(c("There are some non-wav files:", files[not_wav]), collapse = "\n"))
+  files <- files[which(tolower(extension) %in% "wav")]
+  if(length(files) == 0){
+    stop("There is no any .wav files")
   }
 
-  list <- lapply(files, tuneR::readWave)
+  list <- lapply(paste0(path, "/", files), tuneR::readWave)
   sound <- Reduce(tuneR::bind, list)
-  tuneR::writeWave(sound, paste0(filename, ".wav"))
+  tuneR::writeWave(sound, paste0(path, "/", filename, ".wav"))
 # create a TextGrid -------------------------------------------------------
 
   if(isTRUE(textgrid)){
@@ -74,7 +94,7 @@ concatenate_soundfiles <- function(filename,
                         paste0('            text = "', my_textgrid$Label, '"'),
                         "\n",
                         collapse = "")),
-               paste0(filename, ".TextGrid"))
+               paste0(path, "/", filename, ".TextGrid"))
   }
 }
 

@@ -17,7 +17,7 @@ df_to_tier(df, textgrid, name = "")
 Convert a dataframe to a Praat TextGrid.
 }
 \examples{
-# tier_to_df("my.TextGrid")
+# df_to_tier()
 
 }
 \author{

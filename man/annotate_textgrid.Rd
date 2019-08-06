@@ -5,7 +5,7 @@
 \title{Annotate textgrid}
 \usage{
 annotate_textgrid(annotation, textgrid, tier = 1, each = 1,
-  backup = TRUE)
+  backup = TRUE, write = TRUE)
 }
 \arguments{
 \item{annotation}{vector of stimuli}
@@ -17,12 +17,15 @@ annotate_textgrid(annotation, textgrid, tier = 1, each = 1,
 \item{each}{non-negative integer. Each element of x is repeated each times}
 
 \item{backup}{logical. If TRUE (by default) it creates a backup tier.}
+
+\item{write}{logical. If TRUE (by dafault) it overwrites an existing tier.}
 }
 \description{
 Annotates textgrids. It is possible to difine step in the argument "each", so each second element of the tier will be annotated.
 }
 \examples{
-# annotate_textgrid(annotation = c("a", "b"), textgrid = "exampl.TextGrid")
+annotate_textgrid(annotation = c("", "t", "e", "s", "t"),
+                  textgrid = example_textgrid, tier = 2, write = FALSE)
 
 }
 \author{

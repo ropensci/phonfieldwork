@@ -20,9 +20,9 @@ rename_soundfiles <- function(stimuli,
                               prefix = NULL,
                               suffix = NULL,
                               order = NULL,
-                              path = getwd(),
+                              path,
                               backup = TRUE) {
-  files <- list.files()
+  files <- list.files(path)
 
   unlist(
     lapply(seq_along(files), function(x){

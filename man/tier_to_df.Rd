@@ -15,7 +15,7 @@ tier_to_df(textgrid, tier = 1)
 Convert selected tier from a Praat TextGrid to a dataframe.
 }
 \examples{
-# tier_to_df("my.TextGrid")
+tier_to_df(example_textgrid)
 
 }
 \author{
