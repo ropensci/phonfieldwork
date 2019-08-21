@@ -16,17 +16,15 @@
 #' file.copy(s1, tdir)
 #' file.copy(s2, tdir)
 #'
-#'# here are two .wav files in a folder
-#'list.files(tdir)
-#'# [1] "post.wav" "test.wav"
+#' # here are two .wav files in a folder
+#' list.files(tdir)
+#' # [1] "post.wav" "test.wav"
 #'
-#'# Concatenate all files from the folder into concatenated.wav and create corresponding TextGrid
-#'concatenate_soundfiles(filename = "concatenated", path = tdir)
+#' # Concatenate all files from the folder into concatenated.wav and create corresponding TextGrid
+#' concatenate_soundfiles(filename = "concatenated", path = tdir)
 #'
-#'list.files(tdir)
-#'# [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
-#'
-
+#' list.files(tdir)
+#' # [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
 #'
 #' @export
 #' @importFrom tuneR readWave

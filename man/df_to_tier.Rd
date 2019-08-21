@@ -4,20 +4,26 @@
 \alias{df_to_tier}
 \title{Dataframe to TextGrid's tier}
 \usage{
-df_to_tier(df, textgrid, name = "")
+df_to_tier(df, textgrid, tier_name = "", overwrite = TRUE)
 }
 \arguments{
 \item{df}{an R dataframe object that contains columns named "annotation", "start" and "end" (if you want an interval tier)}
 
-\item{textgrid}{character with a filename or path to the TextGrid}
+\item{textgrid}{a character with a filename or path to the TextGrid}
 
-\item{name}{vector that contain a name for a created tier}
+\item{tier_name}{a vector that contain a name for a created tier}
+
+\item{overwrite}{a logic argument, if \code{TRUE} overwrites the existing TextGrid file}
 }
 \description{
 Convert a dataframe to a Praat TextGrid.
 }
 \examples{
-# df_to_tier()
+my_df <- data.frame(id = 1:5,
+          start = c(0.00000000,0.01246583,0.24781914,0.39552363,0.51157715),
+          end = c(0.01246583,0.24781914,0.39552363,0.51157715,0.65267574),
+          annotation = c("", "T", "E", "S", "T"))
+df_to_tier(my_df, textgrid = example_textgrid, overwrite = FALSE)
 
 }
 \author{

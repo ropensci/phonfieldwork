@@ -63,7 +63,10 @@ extract_intervals <- function(filename,
                         auto)
 
   lapply(seq_along(starts), function(i){
-    s_fragment <- tuneR::extractWave(s, from = starts[i], to = ends[i], xunit = "time")
+    s_fragment <- tuneR::extractWave(s,
+                                     from = starts[i],
+                                     to = ends[i],
+                                     xunit = "time")
     tuneR::writeWave(s_fragment, paste0(path, "/", annotations[i], ".wav")) ->
       results
   }

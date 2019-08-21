@@ -4,7 +4,7 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param path path to the directory with soundfiles. By default getwd() is used.
+#' @param path path to the directory with soundfiles.
 #' @param stimuli character vector of stimuli
 #' @param translations character vector of translations (optonal)
 #' @param prefix character vector of length one containing prefix for file names
@@ -22,6 +22,7 @@ rename_soundfiles <- function(stimuli,
                               order = NULL,
                               path,
                               backup = TRUE) {
+  path <- normalizePath(path)
   files <- list.files(path)
 
   unlist(

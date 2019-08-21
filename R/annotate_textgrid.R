@@ -29,7 +29,7 @@ annotate_textgrid <- function(annotation,
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{
-    tg <- readLines(textgrid)
+    tg <- readLines(normalizePath(textgrid))
   }
 
 
@@ -91,7 +91,7 @@ annotate_textgrid <- function(annotation,
 
 # write the result TextGrid -----------------------------------------------
   if (isTRUE(write)) {
-    writeLines(tg, textgrid)
+    writeLines(tg, normalizePath(textgrid))
   } else {
     return(tg)
   }

@@ -34,7 +34,6 @@ concatenate_soundfiles(filename = "concatenated", path = tdir)
 list.files(tdir)
 # [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
 
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

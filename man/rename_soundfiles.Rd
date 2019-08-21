@@ -18,7 +18,7 @@ rename_soundfiles(stimuli, translations = NULL, prefix = NULL,
 
 \item{order}{numeric vector that define the order of stimuli. By default the order of the stimuli is taken.}
 
-\item{path}{path to the directory with soundfiles. By default getwd() is used.}
+\item{path}{path to the directory with soundfiles.}
 
 \item{backup}{logical. If TRUE, function creates backup folder with all files. By default is TRUE.}
 }

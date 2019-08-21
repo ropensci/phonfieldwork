@@ -4,23 +4,30 @@
 \alias{create_presentation}
 \title{Creates a presentation}
 \usage{
-create_presentation(stimuli, translations = "", output = "html",
-  filename = "stimuli_presentation")
+create_presentation(stimuli, translations = "", output_dir,
+  output_format = "html", output_file = "stimuli_presentation",
+  render = TRUE)
 }
 \arguments{
-\item{stimuli}{vector of stimuli (obligatory)}
+\item{stimuli}{the vector of stimuli (obligatory)}
 
-\item{translations}{vector of translations (optional)}
+\item{translations}{the vector of translations (optional)}
 
-\item{output}{string that difine the output type: "html" (by default) or "pptx"}
+\item{output_dir}{the output directory for the rendered file}
 
-\item{filename}{name of the result presentation file}
+\item{output_format}{the string that difine the R Markdown output format: "html" (by default) or "pptx"}
+
+\item{output_file}{the name of the result presentation file (by default stimuli_presentation)}
+
+\item{render}{the logical argument, if \code{TRUE} render the created R Markdown presentation to the \code{output_dir} folder, otherwise returns the path to the temporary file with a Rmd file.}
 }
 \description{
-Creates a html or powerpoint presentation from list of words and translations.
+Creates a html or powerpoint presentation in a working directory from list of words and translations.
 }
 \examples{
-# create_presentation("rzeka", "river")
+create_presentation(stimuli = c("rzeka", "drzewo"),
+                    translations = c("river", "tree"),
+                    render = FALSE)
 
 }
 \author{
