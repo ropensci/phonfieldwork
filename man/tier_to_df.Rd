@@ -11,6 +11,9 @@ tier_to_df(textgrid, tier = 1)
 
 \item{tier}{value that could be either ordinal number of the tier either name of the tier. By default is '1'.}
 }
+\value{
+a dataframe with columns:  \code{id}, \code{start} and \code{end annotation} (if it is an interval tier)
+}
 \description{
 Convert selected tier from a Praat TextGrid to a dataframe.
 }

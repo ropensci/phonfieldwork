@@ -15,6 +15,9 @@ df_to_tier(df, textgrid, tier_name = "", overwrite = TRUE)
 
 \item{overwrite}{a logic argument, if \code{TRUE} overwrites the existing TextGrid file}
 }
+\value{
+If \code{overwrite} is \code{FALSE}, then the function returns a vector of strings with a TextGrid. If \code{overwrite} is \code{TRUE}, then no output.
+}
 \description{
 Convert a dataframe to a Praat TextGrid.
 }

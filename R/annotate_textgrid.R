@@ -11,6 +11,8 @@
 #' @param backup logical. If TRUE (by default) it creates a backup tier.
 #' @param write logical. If TRUE (by dafault) it overwrites an existing tier.
 #'
+#' @return a string that contain TextGrid. If argument write is \code{TRUE}, then no output.
+#'
 #' @examples
 #' annotate_textgrid(annotation = c("", "t", "e", "s", "t"),
 #'                   textgrid = example_textgrid, tier = 2, write = FALSE)

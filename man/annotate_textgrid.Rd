@@ -20,6 +20,9 @@ annotate_textgrid(annotation, textgrid, tier = 1, each = 1,
 
 \item{write}{logical. If TRUE (by dafault) it overwrites an existing tier.}
 }
+\value{
+a string that contain TextGrid. If argument write is \code{TRUE}, then no output.
+}
 \description{
 Annotates textgrids. It is possible to difine step in the argument "each", so each second element of the tier will be annotated.
 }

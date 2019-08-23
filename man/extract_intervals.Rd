@@ -22,6 +22,9 @@ extract_intervals(filename, textgrid, tier = 1, prefix = NULL,
 
 \item{path}{path to the directory where create extracted soundfiles.}
 }
+\value{
+no output
+}
 \description{
 Extract sound according to non-empty annotated intervals from TextGrid and create soundfiles with correspondent names.
 }

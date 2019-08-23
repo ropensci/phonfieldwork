@@ -13,6 +13,11 @@ concatenate_soundfiles(filename, path, textgrid = TRUE)
 
 \item{textgrid}{logic value, whether create Praat TextGrid whose interval labels are the original names of the sound.}
 }
+\value{
+
+
+no output
+}
 \description{
 Creates a sound file and a Praat TextGrid whose interval labels are the original names of the sound
 }
@@ -33,7 +38,6 @@ concatenate_soundfiles(filename = "concatenated", path = tdir)
 
 list.files(tdir)
 # [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

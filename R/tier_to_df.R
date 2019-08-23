@@ -6,6 +6,7 @@
 #'
 #' @param textgrid character with a filename or path to the TextGrid
 #' @param tier value that could be either ordinal number of the tier either name of the tier. By default is '1'.
+#' @return a dataframe with columns:  \code{id}, \code{start} and \code{end annotation} (if it is an interval tier)
 #'
 #' @examples
 #' tier_to_df(example_textgrid)

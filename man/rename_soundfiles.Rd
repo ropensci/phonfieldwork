@@ -22,6 +22,9 @@ rename_soundfiles(stimuli, translations = NULL, prefix = NULL,
 
 \item{backup}{logical. If TRUE, function creates backup folder with all files. By default is TRUE.}
 }
+\value{
+no output
+}
 \description{
 Rename soundfiles using the template from user.
 }

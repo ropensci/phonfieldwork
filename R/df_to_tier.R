@@ -8,7 +8,7 @@
 #' @param textgrid a character with a filename or path to the TextGrid
 #' @param tier_name a vector that contain a name for a created tier
 #' @param overwrite a logic argument, if \code{TRUE} overwrites the existing TextGrid file
-#'
+#' @return If \code{overwrite} is \code{FALSE}, then the function returns a vector of strings with a TextGrid. If \code{overwrite} is \code{TRUE}, then no output.
 #' @examples
 #' my_df <- data.frame(id = 1:5,
 #'           start = c(0.00000000,0.01246583,0.24781914,0.39552363,0.51157715),

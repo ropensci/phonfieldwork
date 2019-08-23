@@ -7,6 +7,7 @@
 #' @param path path to the directory with soundfiles.
 #' @param filename name of the result files (and TextGrid, if this argument equal TRUE).
 #' @param textgrid logic value, whether create Praat TextGrid whose interval labels are the original names of the sound.
+#' @return
 #'
 #' @examples
 #' # create two files in a temprary folder "test_folder"
@@ -25,7 +26,7 @@
 #'
 #' list.files(tdir)
 #' # [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
-#'
+#' @return no output
 #' @export
 #' @importFrom tuneR readWave
 #' @importFrom tuneR bind

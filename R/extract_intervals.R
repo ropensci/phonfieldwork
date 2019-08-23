@@ -11,7 +11,7 @@
 #' @param suffix character vector containing suffix(es) for file names
 #' @param autonumber if TRUE automatically add number of extracted sound to the filename. Prevents from creating a duplicated files
 #' @param path path to the directory where create extracted soundfiles.
-#'
+#' @return no output
 #' @examples
 #' # create two files in a temprary folder "test_folder"
 #' s <-  system.file("extdata", "test.wav", package = "phonfieldwork")
