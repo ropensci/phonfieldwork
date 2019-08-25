@@ -1,0 +1,82 @@
+---
+title: "Phonetic fieldwork or experiments with `phonfieldwork`"
+author: "G. Moroz"
+output: 
+  html_document:
+    smooth_scroll: false
+    number_sections: true
+    self_contained: yes
+    df_print: paged
+editor_options: 
+  chunk_output_type: console
+---
+
+# Introduction
+
+There are a lot of different books about fieldwork and experimenting (e. g. C. Bowern 2009). This tutorial covers only data organization part, so I still recommend to read them. In this tutorial I will focuse on such cases when fieldworker or experimenter clearly knows what he want to analyse and already created a list of stimuli that he wants to record. For know `phonfieldwork` works only with `.wav` files, but I have a plans to extend its functionality to other types of data (e. g. Sign language video). In the following sections I will discribe my workflow of phonetic fieldwork or experimenting.
+
+# Install a package
+
+Before you start make sure, that you installed a package. This could be done with the following command:
+
+```{r, eval = FALSE}
+install.packages("phonfieldwork")
+```
+
+This command will install the last stable version of `phonfieldwork` package from CRAN. Since CRAN run multiple package checks before make it available, this variant the most safe way. It is also possible to download the development version from GitHub:
+
+```{r, eval = FALSE}
+install.packages("devtools")
+devtools::install_github("agricolamz/lingtypology")
+```
+
+If you have any trouble installing the package, you won't be able to use its functionality. In that case you can write [an issue on Github](https://github.com/agricolamz/phonfieldwork/issues) or an email. Since this package could completely destroy your data, **please don't use it until you are sure that you have made a backup**.
+
+It is impossible to use a package without importanting it. Use the `library()` command fir loading the package:
+```{r}
+library("phonfieldwork")
+```
+
+# Make a list of your stimuli
+
+Imagine that I want to collect and annotate the following English words: *tip*, *tap*, *top*. There could be different stratagies: 
+
+* it is possible to show stimulus by stimulus to a native speaker and ask her or him to pronounce them;
+* it is possible not to show stimuli to speaker and elicite them just pronouncing stimuli or its translation.
+
+In order to collect all stimuli in the particular order and without any missings I use presentations. There are several ways of providing infromation about our stumuli list into R:
+
+* using `c()` function you could create a **vector** of all words and store it in a variable `my_stimuli` (if you like can choose any other name):
+
+```{r}
+my_stimuli <- c("tip", "tap", "top")
+```
+
+* it is also possible to store your list as a column in a `.csv` file and read it to R using `read.csv()` function:
+
+```{r}
+my_stimuli_df <- read.csv("my_stimuli_df.csv")
+my_stimuli_df
+```
+
+* it is also possible to store your list as a column in an `.xls` or `xlsx` file and read it to R using `read_xls` or `read_xlsx` functions from the package `readxl`. If the package `readxl` is not installed on your computer install it using `install.packages("readxl")`
+
+```{r}
+library("readxl")
+my_stimuli_df <- read_xlsx("my_stimuli_df.xlsx")
+my_stimuli_df
+```
+
+When the stimuli list is loaded to R, it is possible to create a presentation for elicitation. It is important to define an output directory, so in the following example I use `getwd()` function that returns a path to the current working directory (you coud set any directory as a current one using `setwd()` function), but it is possible to provide a whole path (e. g. "/home/user_name/...").
+
+```{r, message=FALSE}
+create_presentation(stimuli = my_stimuli_df$stimuli,
+                    output_file = "first_example",
+                    output_dir = getwd()) 
+```
+
+As a result in an output folder were created a file "first_example.html" that looks like the following:
+
+<iframe src="https://agricolamz.github.io/phonfieldwork/first_example.html" width = 700 height = 450>
+  <p>Your browser does not support iframes :(</p>
+</iframe>

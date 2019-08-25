@@ -44,7 +44,8 @@ create_presentation <- function(stimuli,
   if(isTRUE(render)){
     rmarkdown::render(input = tmp,
                       output_file = output_file,
-                      output_dir = normalizePath(output_dir))
+                      output_dir = normalizePath(output_dir),
+                      quiet = TRUE)
   } else {
     tmp
   }
