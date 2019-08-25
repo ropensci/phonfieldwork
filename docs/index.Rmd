@@ -77,6 +77,6 @@ create_presentation(stimuli = my_stimuli_df$stimuli,
 
 As a result in an output folder were created a file "first_example.html" that looks like the following:
 
-<iframe src="https://agricolamz.github.io/phonfieldwork/first_example.html" width = 700 height = 450>
+<iframe src="https://agricolamz.github.io/phonfieldwork/first_example.html" width = 900 height = 700>
   <p>Your browser does not support iframes :(</p>
 </iframe>

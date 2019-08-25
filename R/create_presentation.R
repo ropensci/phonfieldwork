@@ -29,7 +29,7 @@ create_presentation <- function(stimuli,
   output_format <- ifelse(output_format == "pptx",
                    "powerpoint_presentation",
                    "ioslides_presentation")
-  rmd <- paste0(c(paste0("---\noutput: ",
+  rmd <- paste0(c(paste0("---\ntitle: 'Use arrows for scrolling'\noutput: ",
                          output_format,
                          "\n---\n\n"),
                   collapse = ""),
