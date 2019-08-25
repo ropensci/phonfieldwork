@@ -15,7 +15,7 @@ editor_options:
 
 There are a lot of different books about fieldwork and experimenting (e. g. C. Bowern 2009). This tutorial covers only data organization part, so I still recommend to read them. In this tutorial I will focuse on such cases when fieldworker or experimenter clearly knows what he want to analyse and already created a list of stimuli that he wants to record. For know `phonfieldwork` works only with `.wav` files, but I have a plans to extend its functionality to other types of data (e. g. Sign language video). In the following sections I will discribe my workflow of phonetic fieldwork or experimenting.
 
-# Install a package
+# Install the package
 
 Before you start make sure, that you installed a package. This could be done with the following command:
 
