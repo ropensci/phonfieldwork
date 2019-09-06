@@ -1541,7 +1541,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1642,7 +1641,7 @@ summary {
 
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There are a lot of different books about fieldwork and experimenting (e. g. C. Bowern 2009). This tutorial covers only data organization part, so I still recommend to read them. In this tutorial I will focuse on such cases when fieldworker or experimenter clearly knows what he want to analyse and already created a list of stimuli that he wants to record. For know <code>phonfieldwork</code> works only with <code>.wav</code> files, but I have a plans to extend its functionality to other types of data (e. g. Sign language video). In the following sections I will discribe my workflow of phonetic fieldwork or experimenting.</p>
+<p>There are a lot of different books about fieldwork and experimenting (e. g. C. Bowern 2009). This tutorial covers only data organization part, so I still recommend to read them. In this tutorial I will focuse on such cases when fieldworker or experimenter clearly knows what she or he wants to analyse and already created a list of stimuli that she or he wants to record. For know <code>phonfieldwork</code> works only with <code>.wav</code> files, but I have a plans to extend its functionality to other types of data (e. g. Sign language video). In the following sections I will discribe my workflow of phonetic fieldwork or experimenting.</p>
 </div>
 <div id="install-the-package" class="section level1">
 <h1><span class="header-section-number">2</span> Install the package</h1>
@@ -1650,21 +1649,41 @@ summary {
 <pre class="r"><code>install.packages(&quot;phonfieldwork&quot;)</code></pre>
 <p>This command will install the last stable version of <code>phonfieldwork</code> package from CRAN. Since CRAN run multiple package checks before make it available, this variant the most safe way. It is also possible to download the development version from GitHub:</p>
 <pre class="r"><code>install.packages(&quot;devtools&quot;)
-devtools::install_github(&quot;agricolamz/lingtypology&quot;)</code></pre>
+devtools::install_github(&quot;agricolamz/phonfieldwork&quot;)</code></pre>
 <p>If you have any trouble installing the package, you won’t be able to use its functionality. In that case you can write <a href="https://github.com/agricolamz/phonfieldwork/issues">an issue on Github</a> or an email. Since this package could completely destroy your data, <strong>please don’t use it until you are sure that you have made a backup</strong>.</p>
-<p>It is impossible to use a package without importanting it. Use the <code>library()</code> command fir loading the package:</p>
+<p>It is impossible to use a package without importanting it. Use the <code>library()</code> command for loading the package:</p>
 <pre class="r"><code>library(&quot;phonfieldwork&quot;)</code></pre>
 </div>
-<div id="make-a-list-of-your-stimuli" class="section level1">
-<h1><span class="header-section-number">3</span> Make a list of your stimuli</h1>
-<p>Imagine that I want to collect and annotate the following English words: <em>tip</em>, <em>tap</em>, <em>top</em>. There could be different stratagies:</p>
+<div id="philosophy-of-the-phonfieldwork-package" class="section level1">
+<h1><span class="header-section-number">3</span> Philosophy of the <code>phonfieldwork</code> package</h1>
+<p>There are following steps in most phonetic research:</p>
+<ol style="list-style-type: decimal">
+<li>Formulate a research question. Think in advance what kind of data will answer to this question, what apropriate amount of data will you need, what kind of annotation will you use, what kind of visualisations and statistical tests will you use etc.</li>
+<li>Create a list of stimuli.</li>
+<li>Elicite a list of stimuli from speakers who signed an <em>Informed Consent</em> statement agreeing to participate in the experiment and record it on audio or/and video.</li>
+<li>Annotate gathered data.</li>
+<li>Extract annotated data.</li>
+<li>Create visualisations and run statistical tests.</li>
+<li>Report your results.</li>
+<li>Publish your data.</li>
+</ol>
+<p>The <code>phonfieldwork</code> package is created for helping with items 3., partially with 4., 5. and 8.</p>
+<p>In order to make it easear to automatically annotate gathered data, usualy I collect each stimulus in a separate audiofile. While recording, I carefully listen to my informants to make sure they are giving the kind of speech I want: three repetitions separated by a pause and within an ad-hoc carrier phrase. Since I’m not afraid to ask my informants to repeat anything that is not done correctly, so as a result of my fieldwork session I will get:</p>
 <ul>
-<li>it is possible to show stimulus by stimulus to a native speaker and ask her or him to pronounce them;</li>
-<li>it is possible not to show stimuli to speaker and elicite them just pronouncing stimuli or its translation.</li>
+<li>a collection of small soundfiles;</li>
+<li>a list of correct and wrong attempts to produce a stimulus (usually I do it in a regular notebook with a regular pen).</li>
 </ul>
-<p>In order to collect all stimuli in the particular order and without any missings I use presentations. There are several ways of providing infromation about our stumuli list into R:</p>
+<p>There are some phoneticians who will insist on the total recording, since you need to document everything, particularly during the fieldwork. I think that this is actually splitting your tasks: you can’t have your cake and eat it too. But even if you want to have a recording of everything, it is possible to run two recorders: one could work during the whole time of the phonetic session, and another could be used to produce small audio files.</p>
+<p>It is possible to show stimulus by stimulus to a native speaker and ask her or him to pronounce them or <strong>not</strong> to show stimuli to speaker and elicite them just pronouncing stimuli or its translation. In order to collect all stimuli in the particular order and without any missings I use presentations.</p>
+<p>Since each stimuli recoreded in a separate audiofile, it is possible automatically merge them into one file and make a stimuli annotation in Praat TextGrid (the same result could be achieved by <code>Concatenate recoverably</code> command in Praat). After this step user need to do some annotation by her/his own (for now, the <code>phonfieldwork</code> package only works with Praat TextGrids). When the annotation part is finished, it is possible to extract annotated parts to some table, where each annotated object is a row characterised by some features (stimulus, repetition, speaker etc…) could be played and could be seen through oscilogramm and spectrogram. Here is <a href="https://agricolamz.github.io/from_sound_to_html_viewer/create_html.html">an example of such a database</a> and <a href="https://github.com/agricolamz/from_sound_to_html_viewer">instruction for doing it</a>.</p>
+</div>
+<div id="the-phonfieldwork-package-in-use" class="section level1">
+<h1><span class="header-section-number">4</span> The <code>phonfieldwork</code> package in use</h1>
+<div id="make-a-list-of-your-stimuli" class="section level2">
+<h2><span class="header-section-number">4.1</span> Make a list of your stimuli</h2>
+<p>There are several ways of providing infromation about a stumuli list into R:</p>
 <ul>
-<li>using <code>c()</code> function you could create a <strong>vector</strong> of all words and store it in a variable <code>my_stimuli</code> (if you like can choose any other name):</li>
+<li>using <code>c()</code> function you could create a <strong>vector</strong> of all words and store it in a variable <code>my_stimuli</code> (you can choose any other name):</li>
 </ul>
 <pre class="r"><code>my_stimuli &lt;- c(&quot;tip&quot;, &quot;tap&quot;, &quot;top&quot;)</code></pre>
 <ul>
@@ -1688,6 +1707,9 @@ my_stimuli_df</code></pre>
 {"columns":[{"label":["stimuli"],"name":[1],"type":["chr"],"align":["left"]},{"label":["vowel"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"tip","2":"ı"},{"1":"tap","2":"æ"},{"1":"top","2":"ɒ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+</div>
+<div id="create-a-presentation-based-on-a-list-of-stimuli" class="section level2">
+<h2><span class="header-section-number">4.2</span> Create a presentation based on a list of stimuli</h2>
 <p>When the stimuli list is loaded to R, it is possible to create a presentation for elicitation. It is important to define an output directory, so in the following example I use <code>getwd()</code> function that returns a path to the current working directory (you coud set any directory as a current one using <code>setwd()</code> function), but it is possible to provide a whole path (e. g. “/home/user_name/…”).</p>
 <pre class="r"><code>create_presentation(stimuli = my_stimuli_df$stimuli,
                     output_file = &quot;first_example&quot;,
@@ -1698,6 +1720,7 @@ my_stimuli_df</code></pre>
 Your browser does not support iframes :(
 </p>
 </iframe>
+</div>
 </div>
 
 
