@@ -59,7 +59,8 @@ rename_soundfiles <- function(stimuli,
       stimuli[order]
       }
 
-  file.rename(paste0(path, "/", files),
-              paste0(path, "/", prefix, medial_part, suffix, ".", extension[1]))
+  result <- file.rename(
+    paste0(path, "/", files),
+    paste0(path, "/", prefix, medial_part, suffix, ".", extension[1]))
 }
 

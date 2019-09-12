@@ -1658,22 +1658,22 @@ devtools::install_github(&quot;agricolamz/phonfieldwork&quot;)</code></pre>
 <h1><span class="header-section-number">3</span> Philosophy of the <code>phonfieldwork</code> package</h1>
 <p>There are following steps in most phonetic research:</p>
 <ol style="list-style-type: decimal">
-<li>Formulate a research question. Think in advance what kind of data will answer to this question, what apropriate amount of data will you need, what kind of annotation will you use, what kind of visualisations and statistical tests will you use etc.</li>
+<li>Formulate a research question. Think in advance what kind of data will answer to this question, what apropriate amount of data will you need, what kind of annotation will you make, what kind of visualisations and statistical models will you use etc.</li>
 <li>Create a list of stimuli.</li>
 <li>Elicite a list of stimuli from speakers who signed an <em>Informed Consent</em> statement agreeing to participate in the experiment and record it on audio or/and video.</li>
 <li>Annotate gathered data.</li>
 <li>Extract annotated data.</li>
-<li>Create visualisations and run statistical tests.</li>
+<li>Create visualisations and evaluate your statistical models.</li>
 <li>Report your results.</li>
 <li>Publish your data.</li>
 </ol>
 <p>The <code>phonfieldwork</code> package is created for helping with items 3., partially with 4., 5. and 8.</p>
-<p>In order to make it easear to automatically annotate gathered data, usualy I collect each stimulus in a separate audiofile. While recording, I carefully listen to my informants to make sure they are giving the kind of speech I want: three repetitions separated by a pause and within an ad-hoc carrier phrase. Since I’m not afraid to ask my informants to repeat anything that is not done correctly, so as a result of my fieldwork session I will get:</p>
+<p>In order to make it easear to automatically annotate gathered data, usualy I collect each stimulus in a separate audiofile. While recording, I carefully listen to my informants to make sure they are giving the kind of speech I want: three isolated repetitions separated by a pause and within a carrier phrase. Since I’m not afraid to ask my informants to repeat anything that is not done correctly, so as a result of my fieldwork session I will get:</p>
 <ul>
 <li>a collection of small soundfiles;</li>
 <li>a list of correct and wrong attempts to produce a stimulus (usually I do it in a regular notebook with a regular pen).</li>
 </ul>
-<p>There are some phoneticians who will insist on the total recording, since you need to document everything, particularly during the fieldwork. I think that this is actually splitting your tasks: you can’t have your cake and eat it too. But even if you want to have a recording of everything, it is possible to run two recorders: one could work during the whole time of the phonetic session, and another could be used to produce small audio files.</p>
+<p>There are some phoneticians who will insist on the total recording, since you need to document everything, particularly during the fieldwork. I think that this is actually splitting your tasks: you can’t have your cake and eat it too. But even if you want to have a recording of everything, it is possible to run two recorders: one could work during the whole time of the phonetic session, and another could be used to produce small audio files. There are some phoneticians who will use some software for automatic recording your stimuli (e. g. …) on a computer.</p>
 <p>It is possible to show stimulus by stimulus to a native speaker and ask her or him to pronounce them or <strong>not</strong> to show stimuli to speaker and elicite them just pronouncing stimuli or its translation. In order to collect all stimuli in the particular order and without any missings I use presentations.</p>
 <p>Since each stimuli recoreded in a separate audiofile, it is possible automatically merge them into one file and make a stimuli annotation in Praat TextGrid (the same result could be achieved by <code>Concatenate recoverably</code> command in Praat). After this step user need to do some annotation by her/his own (for now, the <code>phonfieldwork</code> package only works with Praat TextGrids). When the annotation part is finished, it is possible to extract annotated parts to some table, where each annotated object is a row characterised by some features (stimulus, repetition, speaker etc…) could be played and could be seen through oscilogramm and spectrogram. Here is <a href="https://agricolamz.github.io/from_sound_to_html_viewer/create_html.html">an example of such a database</a> and <a href="https://github.com/agricolamz/from_sound_to_html_viewer">instruction for doing it</a>.</p>
 </div>
@@ -1700,6 +1700,7 @@ my_stimuli_df</code></pre>
 <li>it is also possible to store your list as a column in an <code>.xls</code> or <code>xlsx</code> file and read it to R using <code>read_xls</code> or <code>read_xlsx</code> functions from the package <code>readxl</code>. If the package <code>readxl</code> is not installed on your computer install it using <code>install.packages(&quot;readxl&quot;)</code></li>
 </ul>
 <pre class="r"><code>library(&quot;readxl&quot;)
+# run install.packages(&quot;readxl&quot;) in case you don&#39;t have it installed
 my_stimuli_df &lt;- read_xlsx(&quot;my_stimuli_df.xlsx&quot;)
 my_stimuli_df</code></pre>
 <div data-pagedtable="false">
@@ -1714,12 +1715,81 @@ my_stimuli_df</code></pre>
 <pre class="r"><code>create_presentation(stimuli = my_stimuli_df$stimuli,
                     output_file = &quot;first_example&quot;,
                     output_dir = getwd()) </code></pre>
-<p>As a result in an output folder were created a file “first_example.html” that looks like the following:</p>
+<p>As a result in an output folder were created a file “first_example.html” (you can change this name chaning <code>output_file</code> argument) that looks like the following:</p>
 <iframe src="https://agricolamz.github.io/phonfieldwork/first_example.html" width="900" height="700">
 <p>
 Your browser does not support iframes :(
 </p>
 </iframe>
+<p>It is possible to change an output format in the <code>output_format</code> argument: by dafault it is “html”, but you can use “pptx” (it is a new feature of <code>rmarkdown</code>, so update the package in case you get errors).</p>
+</div>
+<div id="rename-collected-data" class="section level2">
+<h2><span class="header-section-number">4.3</span> Rename collected data</h2>
+<p>After collecting data and removing wrong soundfiles one could end up with the following structure:</p>
+<pre><code>## ├── s1
+## │   ├── 01.wav
+## │   ├── 02.wav
+## │   └── 03.wav
+## └── s2
+##     ├── 01.wav
+##     ├── 02.wav
+##     └── 03.wav</code></pre>
+<p>For each speaker <code>s1</code> and <code>s2</code> there is a folder that containes three audiofiles. Lets rename the files.</p>
+<pre class="r"><code>rename_soundfiles(stimuli = my_stimuli_df$stimuli,
+                  prefix = &quot;s1_&quot;,
+                  path = &quot;s1/&quot;)</code></pre>
+<p>As a result one can obtain the following structure:</p>
+<pre><code>## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── 01.wav
+##     ├── 02.wav
+##     └── 03.wav</code></pre>
+<p>So the <code>rename_soundfiles()</code> function created a backup folder with all files and renamed all files using <code>prefix</code> from <code>prefix</code> argument. There is an additional argument <code>backup</code> that could be set to <code>FALSE</code> (it is <code>TRUE</code> by default), in case you are sure that renaming function works properly with your files and stimuli.</p>
+<pre class="r"><code>rename_soundfiles(stimuli = my_stimuli_df$stimuli,
+                  prefix = &quot;s2_&quot;,
+                  suffix = paste0(&quot;_&quot;, 1:3),
+                  path = &quot;s2/&quot;,
+                  backup = FALSE)</code></pre>
+<pre><code>## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav</code></pre>
+<p>The last command renamed soundfiles in <code>s2</code> folder adding prefix <code>s2</code> as in previous example, and adding suffix <code>1</code>-<code>3</code>. On most operational systems it is impossible to create two files with the same name, so sometimes it could be useful to add some kind of index at the end of the files.</p>
+<p>For now <code>phonfieldwork</code> can work only with <code>.wav</code> files, but I will try to implement more possibilities in the future.</p>
+</div>
+<div id="merge-all-data-together" class="section level2">
+<h2><span class="header-section-number">4.4</span> Merge all data together</h2>
+<pre class="r"><code>concatenate_soundfiles(filename = &quot;s1_all&quot;,
+                       path = &quot;s1/&quot;)</code></pre>
+<pre><code>## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav</code></pre>
 </div>
 </div>
 
