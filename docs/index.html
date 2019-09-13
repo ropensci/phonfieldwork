@@ -1641,7 +1641,7 @@ summary {
 
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There are a lot of different books about fieldwork and experimenting (e. g. C. Bowern 2009). This tutorial covers only data organization part, so I still recommend to read them. In this tutorial I will focuse on such cases when fieldworker or experimenter clearly knows what she or he wants to analyse and already created a list of stimuli that she or he wants to record. For know <code>phonfieldwork</code> works only with <code>.wav</code> files, but I have a plans to extend its functionality to other types of data (e. g. Sign language video). In the following sections I will discribe my workflow of phonetic fieldwork or experimenting.</p>
+<p>There are a lot of different books about fieldwork and experimenting (e. g. <span class="citation">Gordon (2003)</span>, <span class="citation">Bowern (2015)</span>). This tutorial covers only data organization part, so I still recommend to read them. In this tutorial I will focuse on such cases when fieldworker or experimenter clearly knows what she or he wants to analyse and already created a list of stimuli that she or he wants to record. For know <code>phonfieldwork</code> works only with <code>.wav</code> files, but I have a plans to extend its functionality to other types of data (e. g. Sign language video). In the following sections I will discribe my workflow of phonetic fieldwork or experimenting.</p>
 </div>
 <div id="install-the-package" class="section level1">
 <h1><span class="header-section-number">2</span> Install the package</h1>
@@ -1774,8 +1774,10 @@ Your browser does not support iframes :(
 </div>
 <div id="merge-all-data-together" class="section level2">
 <h2><span class="header-section-number">4.4</span> Merge all data together</h2>
+<p>After all files are renamed, it is possible to merge into one:</p>
 <pre class="r"><code>concatenate_soundfiles(filename = &quot;s1_all&quot;,
                        path = &quot;s1/&quot;)</code></pre>
+<p>This comand creates a new soundfile and an asociated Praat TextGrid:</p>
 <pre><code>## ├── s1
 ## │   ├── backup
 ## │   │   ├── 01.wav
@@ -1790,6 +1792,17 @@ Your browser does not support iframes :(
 ##     ├── s2_tap_2.wav
 ##     ├── s2_tip_1.wav
 ##     └── s2_top_3.wav</code></pre>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-bowern15">
+<p>Bowern, Claire. 2015. <em>Linguistic Fieldwork: A Practical Guide</em>. Springer.</p>
+</div>
+<div id="ref-gordon03">
+<p>Gordon, Matthew. 2003. “Collecting Phonetic Data on Endangered Languages.” In <em>15th International Congress of Phonetic Sciences</em>, 207–10.</p>
+</div>
 </div>
 </div>
 

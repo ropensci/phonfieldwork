@@ -1,6 +1,7 @@
 ---
 title: "Phonetic fieldwork or experiments with `phonfieldwork`"
 author: "G. Moroz"
+bibliography: bibliography.bib
 output: 
   html_document:
     smooth_scroll: false
@@ -13,7 +14,7 @@ editor_options:
 
 # Introduction
 
-There are a lot of different books about fieldwork and experimenting (e. g. C. Bowern 2009). This tutorial covers only data organization part, so I still recommend to read them. In this tutorial I will focuse on such cases when fieldworker or experimenter clearly knows what she or he wants to analyse and already created a list of stimuli that she or he wants to record. For know `phonfieldwork` works only with `.wav` files, but I have a plans to extend its functionality to other types of data (e. g. Sign language video). In the following sections I will discribe my workflow of phonetic fieldwork or experimenting.
+There are a lot of different books about fieldwork and experimenting (e. g. @gordon03, @bowern15). This tutorial covers only data organization part, so I still recommend to read them. In this tutorial I will focuse on such cases when fieldworker or experimenter clearly knows what she or he wants to analyse and already created a list of stimuli that she or he wants to record. For know `phonfieldwork` works only with `.wav` files, but I have a plans to extend its functionality to other types of data (e. g. Sign language video). In the following sections I will discribe my workflow of phonetic fieldwork or experimenting.
 
 # Install the package
 
@@ -149,10 +150,14 @@ For now `phonfieldwork` can work only with `.wav` files, but I will try to imple
 
 ## Merge all data together
 
+After all files are renamed, it is possible to merge into one:
+
 ```{r}
 concatenate_soundfiles(filename = "s1_all",
                        path = "s1/")
 ```
+
+This comand creates a new soundfile and an asociated Praat TextGrid:
 
 ```{bash, echo = FALSE}
 tree | tail -n 16 | head -n 14
@@ -173,3 +178,4 @@ rename_soundfiles(stimuli = c("02", "01", "03"),
                   backup = FALSE)
 ```
 
+# References
