@@ -150,19 +150,60 @@ For now `phonfieldwork` can work only with `.wav` files, but I will try to imple
 
 ## Merge all data together
 
-After all files are renamed, it is possible to merge into one:
+After all files are renamed, it is possible to merge them into one:
 
 ```{r}
 concatenate_soundfiles(filename = "s1_all",
                        path = "s1/")
 ```
 
-This comand creates a new soundfile and an asociated Praat TextGrid:
+This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid `s1_all.TextGrid`:
 
 ```{bash, echo = FALSE}
 tree | tail -n 16 | head -n 14
 ```
 
+The result file could be parsed with Praat:
+
+![](images/01_concatenate_soundfiles_result.png)
+
+## Annotate your data
+
+It is possible to create an annotation of words using existing annotation:
+
+```{r}
+my_stimuli_df$stimuli
+annotate_textgrid(annotation = my_stimuli_df$stimuli,
+                  textgrid = "s1/s1_all.TextGrid")
+```
+
+![](images/02_annotate_textgrid_result.png)
+
+As it could be seen from the example the `annotate_textgrid()` function creates a backup of the tier, and add a new tier on top of the previous one. It is possible to prevent this function of doing so, by setting a `backup` argument to `FALSE`.
+
+It is possible to annotate every second (third, fourth etc.) interval. Imagine that somebody annotated each vowel in the recording, so the TextGrid will looks like the following:
+
+```{r, include=FALSE}
+annotation <- read.csv("annotation_of_s1.csv")
+annotation$annotation <- ""
+df_to_tier(df = annotation, textgrid = "s1/s1_all.TextGrid") 
+```
+
+![](images/03_annotate_textgrid_result.png)
+
+So it is possible to use the second column in `my_stimuli_df` that contain vowels:
+
+```{r}
+my_stimuli_df$vowel
+annotate_textgrid(annotation = my_stimuli_df$vowel,
+                  textgrid = "s1/s1_all.TextGrid",
+                  each = 2,
+                  tier = 3, 
+                  backup = FALSE)
+```
+
+![](images/04_annotate_textgrid_result.png)
+From the last figure one can see that no backup tier was created (`backup = FALSE`), exactly the third tier was annotated (`tier = 3`), and annotation were performed in every second interval (`each = 2`).
 
 ```{r, include=FALSE}
 # return file structure to the previous one
@@ -177,5 +218,7 @@ rename_soundfiles(stimuli = c("02", "01", "03"),
                   path = "s1/",
                   backup = FALSE)
 ```
+
+
 
 # References
