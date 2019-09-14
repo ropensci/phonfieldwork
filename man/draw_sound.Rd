@@ -4,16 +4,19 @@
 \alias{draw_sound}
 \title{Draw Oscilogram and Spectrogram}
 \usage{
-draw_sound(path, colores = FALSE, maxfreq = 5000, dynamicrange = 50)
+draw_sound(path, title = NULL, colores = FALSE,
+  maximum_frequency = 5000, dynamic_range = 50, window_length = 5)
 }
 \arguments{
 \item{path}{a path to the soundfile}
 
 \item{colores}{If TRUE, a color spectrogram will be displayed. If FALSE, greyscale is used. If a vector of colors is provided, these colors are used to create the spectrogram.}
 
-\item{maxfreq}{he maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default}
+\item{maximum_frequency}{he maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default}
 
-\item{dynamicrange}{Values greater than this many dB below the maximum will be displayed in the same color}
+\item{dynamic_range}{Values greater than this many dB below the maximum will be displayed in the same color}
+
+\item{window_length}{The desired analysis window length in milliseconds.}
 }
 \value{
 Oscilogram and Spectrogram plot.
