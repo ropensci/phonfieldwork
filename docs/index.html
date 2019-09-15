@@ -1818,6 +1818,36 @@ Your browser does not support iframes :(
 </div>
 <div id="extracting-your-data" class="section level2">
 <h2><span class="header-section-number">4.6</span> Extracting your data</h2>
+<p>It is possible extract all annotated files according some annotation tier:</p>
+<pre class="r"><code>extract_intervals(file_name = &quot;s1/s1_all.wav&quot;, 
+                  textgrid = &quot;s1/s1_all.TextGrid&quot;,
+                  tier = 3,
+                  path = &quot;s1&quot;)</code></pre>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL</code></pre>
+<pre><code>## ├── s1
+## │   ├── ɒ-3.wav
+## │   ├── æ-2.wav
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── ı-1.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav</code></pre>
 </div>
 <div id="visualising-your-data" class="section level2">
 <h2><span class="header-section-number">4.7</span> Visualising your data</h2>
@@ -1841,10 +1871,13 @@ Your browser does not support iframes :(
 <pre><code>## png 
 ##   2</code></pre>
 <pre><code>## ├── s1
+## │   ├── ɒ-3.wav
+## │   ├── æ-2.wav
 ## │   ├── backup
 ## │   │   ├── 01.wav
 ## │   │   ├── 02.wav
 ## │   │   └── 03.wav
+## │   ├── ı-1.wav
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_tap.png
@@ -1855,7 +1888,7 @@ Your browser does not support iframes :(
 ##     ├── s2_tap_2.wav
 ##     ├── s2_tip_1.wav
 ##     └── s2_top_3.wav</code></pre>
-<p>It is also possible to create pictures from all .wav files in a folder:</p>
+<p>It is also possible to create pictures from all .wav files in a folder. For this purposes one need to specify a folder with sound files (argument <code>sounds_from_folder</code>) and folder name for pictures (argument <code>pic_folder_name</code>). The new picture folder alwayes created in the folder of the upper level, so sound and picture folders are on the same level in the folder tree structure:</p>
 <pre class="r"><code>draw_sound(sounds_from_folder = &quot;s2&quot;, pic_folder_name = &quot;s2_pics&quot;)</code></pre>
 <pre><code>## [[1]]
 ## png 
@@ -1869,10 +1902,13 @@ Your browser does not support iframes :(
 ## png 
 ##   2</code></pre>
 <pre><code>## ├── s1
+## │   ├── ɒ-3.wav
+## │   ├── æ-2.wav
 ## │   ├── backup
 ## │   │   ├── 01.wav
 ## │   │   ├── 02.wav
 ## │   │   └── 03.wav
+## │   ├── ı-1.wav
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_tap.png

@@ -45,7 +45,7 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE){
   if ("end" %in% names(df)) {
     all_annotations <- lapply(1:nrow(df), function(i) {
       c(
-        paste0(tier_type, "[", i, "]:"),
+        paste0(tier_type, " [", i, "]:"),
         paste0("            xmin = ", df$start[i]),
         paste0("            xmax = ", df$end[i]),
         paste0('            text = "', df$annotation[i], '" ')
@@ -67,7 +67,7 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE){
     paste0('        name = "', tier_name, '" '),
     tg[grep("item", tg)[2]+3],
     tg[grep("item", tg)[2]+4],
-    paste0(tier_type, ": ", nrow(df), " "),
+    paste0(tier_type, ": size = ", nrow(df), " "),
     unlist(all_annotations)
   )
   if(isTRUE(overwrite)){

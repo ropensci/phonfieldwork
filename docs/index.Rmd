@@ -207,6 +207,20 @@ From the last figure one can see that no backup tier was created (`backup = FALS
 
 ## Extracting your data
 
+It is possible extract all annotated files according some annotation tier:
+
+```{r}
+extract_intervals(file_name = "s1/s1_all.wav", 
+                  textgrid = "s1/s1_all.TextGrid",
+                  tier = 3,
+                  path = "s1")
+```
+
+```{bash, echo = FALSE}
+tree | tail -n 19 | head -n 17
+```
+
+
 ## Visualising your data
 It is possible to visualise an oscilogram and spetrogram of any sound file:
 
@@ -233,7 +247,7 @@ draw_sound(file_name = "s1/s1_tap.wav", output_file = "s1/s1_tap")
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 17 | head -n 15
+tree | tail -n 20 | head -n 18
 ```
 
 It is also possible to create pictures from all .wav files in a folder. For this purposes one need to specify a folder with sound files (argument `sounds_from_folder`) and folder name for pictures (argument `pic_folder_name`). The new picture folder alwayes created in the folder of the upper level, so sound and picture folders are on the same level in the folder tree structure:
@@ -243,7 +257,7 @@ draw_sound(sounds_from_folder = "s2", pic_folder_name = "s2_pics")
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 21 | head -n 19
+tree | tail -n 24 | head -n 22
 ```
 ```{r, include=FALSE}
 # return file structure to the previous one
@@ -252,6 +266,9 @@ file.remove(c(paste0("s1/backup/", list.files("s1/backup/")),
               "s1/s1_all.wav",
               "s1/s1_all.TextGrid",
               "s1/s1_tap.png",
+              "s1/æ-2.wav",
+              "s1/ɒ-3.wav",
+              "s1/ı-1.wav",
               paste0("s2_pics/", list.files("s2_pics/")),
               "s2_pics/"))
 rename_soundfiles(stimuli = c("02", "01", "03"),
@@ -261,7 +278,5 @@ rename_soundfiles(stimuli = c("02", "01", "03"),
                   path = "s1/",
                   backup = FALSE)
 ```
-
-
 
 # References
