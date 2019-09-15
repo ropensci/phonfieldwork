@@ -5,7 +5,9 @@
 \title{Draw Oscilogram and Spectrogram}
 \usage{
 draw_sound(path, title = NULL, colores = FALSE,
-  maximum_frequency = 5000, dynamic_range = 50, window_length = 5)
+  maximum_frequency = 5000, dynamic_range = 50, window_length = 5,
+  output_file = NULL, output_width = 750, output_height = 500,
+  output_units = "px")
 }
 \arguments{
 \item{path}{a path to the soundfile}
@@ -14,9 +16,17 @@ draw_sound(path, title = NULL, colores = FALSE,
 
 \item{maximum_frequency}{he maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default}
 
-\item{dynamic_range}{Values greater than this many dB below the maximum will be displayed in the same color}
+\item{dynamic_range}{values greater than this many dB below the maximum will be displayed in the same color}
 
-\item{window_length}{The desired analysis window length in milliseconds.}
+\item{window_length}{the desired analysis window length in milliseconds.}
+
+\item{output_file}{the name of the output file}
+
+\item{output_width}{the width of the device}
+
+\item{output_height}{the height of the device}
+
+\item{output_units}{the units in which height and width are given. Can be "px" (pixels, the default), "in" (inches), "cm" or "mm".}
 }
 \value{
 Oscilogram and Spectrogram plot.
