@@ -4,11 +4,11 @@
 \alias{extract_intervals}
 \title{Extract intervals}
 \usage{
-extract_intervals(filename, textgrid, tier = 1, prefix = NULL,
+extract_intervals(file_name, textgrid, tier = 1, prefix = NULL,
   suffix = NULL, autonumber = TRUE, path)
 }
 \arguments{
-\item{filename}{path to the soundfile}
+\item{file_name}{path to the soundfile}
 
 \item{textgrid}{path to the TextGrid}
 
@@ -18,7 +18,7 @@ extract_intervals(filename, textgrid, tier = 1, prefix = NULL,
 
 \item{suffix}{character vector containing suffix(es) for file names}
 
-\item{autonumber}{if TRUE automatically add number of extracted sound to the filename. Prevents from creating a duplicated files}
+\item{autonumber}{if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files}
 
 \item{path}{path to the directory where create extracted soundfiles.}
 }
@@ -35,7 +35,7 @@ tdir <- tempdir()
 file.copy(s, tdir)
 
 # Extract intervals according the TextGrid into the path
-extract_intervals(filename = paste0(tdir, "/test.wav"),
+extract_intervals(file_name = paste0(tdir, "/test.wav"),
                   textgrid = example_textgrid,
                   path = tdir)
 

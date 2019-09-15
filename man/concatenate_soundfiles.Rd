@@ -4,10 +4,10 @@
 \alias{concatenate_soundfiles}
 \title{Concatenate sounds}
 \usage{
-concatenate_soundfiles(filename, path, textgrid = TRUE)
+concatenate_soundfiles(file_name, path, textgrid = TRUE)
 }
 \arguments{
-\item{filename}{name of the result files (and TextGrid, if this argument equal TRUE).}
+\item{file_name}{name of the result files (and TextGrid, if this argument equal TRUE).}
 
 \item{path}{path to the directory with soundfiles.}
 
@@ -34,7 +34,7 @@ list.files(tdir)
 # [1] "post.wav" "test.wav"
 
 # Concatenate all files from the folder into concatenated.wav and create corresponding TextGrid
-concatenate_soundfiles(filename = "concatenated", path = tdir)
+concatenate_soundfiles(file_name = "concatenated", path = tdir)
 
 list.files(tdir)
 # [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...

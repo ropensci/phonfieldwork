@@ -4,23 +4,25 @@
 \alias{draw_sound}
 \title{Draw Oscilogram and Spectrogram}
 \usage{
-draw_sound(path, title = NULL, colores = FALSE,
-  maximum_frequency = 5000, dynamic_range = 50, window_length = 5,
-  output_file = NULL, output_width = 750, output_height = 500,
-  output_units = "px")
+draw_sound(file_name, output_file = NULL, title = NULL,
+  spectrum_colors = FALSE, maximum_frequency = 5000,
+  dynamic_range = 50, window_length = 5, output_width = 750,
+  output_height = 500, output_units = "px")
 }
 \arguments{
-\item{path}{a path to the soundfile}
+\item{file_name}{a soundfile}
 
-\item{colores}{If TRUE, a color spectrogram will be displayed. If FALSE, greyscale is used. If a vector of colors is provided, these colors are used to create the spectrogram.}
+\item{output_file}{the name of the output file}
 
-\item{maximum_frequency}{he maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default}
+\item{title}{the title for the plot}
+
+\item{spectrum_colors}{if TRUE, a color spectrogram will be displayed. If FALSE, greyscale is used. If a vector of colors is provided, these colors are used to create the spectrogram.}
+
+\item{maximum_frequency}{the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default}
 
 \item{dynamic_range}{values greater than this many dB below the maximum will be displayed in the same color}
 
 \item{window_length}{the desired analysis window length in milliseconds.}
-
-\item{output_file}{the name of the output file}
 
 \item{output_width}{the width of the device}
 

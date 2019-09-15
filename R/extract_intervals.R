@@ -4,12 +4,12 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param filename path to the soundfile
+#' @param file_name path to the soundfile
 #' @param textgrid path to the TextGrid
 #' @param tier tier number or name that should be used as base for extraction and names
 #' @param prefix character vector containing prefix(es) for file names
 #' @param suffix character vector containing suffix(es) for file names
-#' @param autonumber if TRUE automatically add number of extracted sound to the filename. Prevents from creating a duplicated files
+#' @param autonumber if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files
 #' @param path path to the directory where create extracted soundfiles.
 #' @return no output
 #' @examples
@@ -19,7 +19,7 @@
 #' file.copy(s, tdir)
 #'
 #' # Extract intervals according the TextGrid into the path
-#' extract_intervals(filename = paste0(tdir, "/test.wav"),
+#' extract_intervals(file_name = paste0(tdir, "/test.wav"),
 #'                   textgrid = example_textgrid,
 #'                   path = tdir)
 #'
@@ -32,14 +32,14 @@
 #' @importFrom tuneR writeWave
 #'
 
-extract_intervals <- function(filename,
+extract_intervals <- function(file_name,
                               textgrid,
                               tier = 1,
                               prefix = NULL,
                               suffix = NULL,
                               autonumber = TRUE,
                               path){
-  s <- tuneR::readWave(filename)
+  s <- tuneR::readWave(file_name)
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{

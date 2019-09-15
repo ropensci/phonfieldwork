@@ -153,7 +153,7 @@ For now `phonfieldwork` can work only with `.wav` files, but I will try to imple
 After all files are renamed, it is possible to merge them into one:
 
 ```{r}
-concatenate_soundfiles(filename = "s1_all",
+concatenate_soundfiles(file_name = "s1_all",
                        path = "s1/")
 ```
 
@@ -205,20 +205,50 @@ annotate_textgrid(annotation = my_stimuli_df$vowel,
 ![](images/04_annotate_textgrid_result.png)
 From the last figure one can see that no backup tier was created (`backup = FALSE`), exactly the third tier was annotated (`tier = 3`), and annotation were performed in every second interval (`each = 2`).
 
+## Extracting your data
+
+## Visualising your data
+It is possible to visualise an oscilogram and spetrogram of any sound file:
+
+```{r, fig.width=12, fig.height=6}
+draw_sound(file_name = "s1/s1_tip.wav")
+```
+  
+There are additional parametres:
+
+* `title` -- the title for the plot.
+* `colores` -- for color spectrogram (`TRUE`), for greyscale (`FALSE`). It is also possible to provide a vector of colors for creating the spectrogram.
+* `maximum_frequency` -- the maximum frequency to be displayed for the spectrogram.
+* `dynamic_range` -- values greater than this many dB below the maximum will be displayed in the same color.
+* `window_length` -- the desired analysis window length in milliseconds.
+* `output_file` -- the name of the output file
+* `output_width` -- the width of the device
+* `output_height` -- the height of the device
+* `output_units` -- the units in which height and width are given. Can be "px" (pixels, the default), "in" (inches), "cm" or "mm".
+
+If the `output_file` argument is provided, then instead of creating plot in R it will be saved on the users disk:
+
+```{r}
+draw_sound(file_name = "s2/s2_tap_2.wav", output_file = "s2/s2_tap_2")
+```
+
+```{bash, echo = FALSE}
+tree | tail -n 17 | head -n 15
+```
+
 ```{r, include=FALSE}
 # return file structure to the previous one
-rename_soundfiles(stimuli = c("02", "01", "03"),
-                  path = "s2/",
-                  backup = FALSE)
 file.remove(c(paste0("s1/backup/", list.files("s1/backup/")),
               "s1/backup/",
               "s1/s1_all.wav",
-              "s1/s1_all.TextGrid"))
+              "s1/s1_all.TextGrid",
+              "s2/s2_tap_2.png"))
+rename_soundfiles(stimuli = c("02", "01", "03"),
+                  path = "s2/",
+                  backup = FALSE)
 rename_soundfiles(stimuli = c("02", "01", "03"),
                   path = "s1/",
                   backup = FALSE)
 ```
-
-
 
 # References
