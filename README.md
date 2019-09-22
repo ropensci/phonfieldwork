@@ -21,4 +21,4 @@ library(phonfieldwork)
 ## To do:
 
 * import from ELAN, EXMARALDA files
-* create a database html
+* add textgrid visualisation
