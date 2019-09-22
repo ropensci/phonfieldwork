@@ -71,6 +71,9 @@ This tutorial could be cited in the following way:
 citation("phonfieldwork")
 ```
 
+If you have any trubles using a package, don't hesitate to write [an issue in github](https://github.com/agricolamz/phonfieldwork/issues/new).
+
+
 # Philosophy of the `phonfieldwork` package
 
 There are following steps in most phonetic research:
