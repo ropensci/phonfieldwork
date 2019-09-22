@@ -1,0 +1,80 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 1.39421768707483
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier"
+        name = "labels"
+        xmin = 0
+        xmax = 1.39421768707483
+        intervals: size = 3
+        intervals [1]:
+            xmin = 0
+            xmax = 0.482154195011338
+            text = "tip" 
+        intervals [2]:
+            xmin = 0.482154195011338
+            xmax = 0.912063492063492
+            text = "tap" 
+        intervals [3]:
+            xmin = 0.912063492063492
+            xmax = 1.39421768707483
+            text = "top" 
+
+    item [2]:
+        class = "IntervalTier"
+        name = "backup labels" 
+        xmin = 0
+        xmax = 1.39421768707483
+        intervals: size = 3
+        intervals [1]:
+            xmin = 0
+            xmax = 0.482154195011338
+            text = "s1_tap.wav"
+        intervals [2]:
+            xmin = 0.482154195011338
+            xmax = 0.912063492063492
+            text = "s1_tip.wav"
+        intervals [3]:
+            xmin = 0.912063492063492
+            xmax = 1.39421768707483
+            text = "s1_top.wav"
+
+    item [3]:
+        class = "IntervalTier" 
+        name = "" 
+        xmin = 0
+        xmax = 1.39421768707483
+        intervals: size = 7 
+        intervals [1]:
+            xmin = 0
+            xmax = 0.108702066839713
+            text = "" 
+        intervals [2]:
+            xmin = 0.108702066839713
+            xmax = 0.184762881187424
+            text = "ı" 
+        intervals [3]:
+            xmin = 0.184762881187424
+            xmax = 0.577955857574024
+            text = "" 
+        intervals [4]:
+            xmin = 0.577955857574024
+            xmax = 0.689276652082925
+            text = "æ" 
+        intervals [5]:
+            xmin = 0.689276652082925
+            xmax = 1.03734416788977
+            text = "" 
+        intervals [6]:
+            xmin = 1.03734416788977
+            xmax = 1.13213917296352
+            text = "ɒ" 
+        intervals [7]:
+            xmin = 1.13213917296352
+            xmax = 1.39421768707483
+            text = "" 

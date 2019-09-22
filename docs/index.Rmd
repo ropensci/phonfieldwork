@@ -12,6 +12,28 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r, include=FALSE}
+library(phonfieldwork)
+# return file structure to the previous one
+file.remove(c(paste0("s1/backup/", list.files("s1/backup/")),
+              "s1/backup/",
+              "s1/s1_all.wav",
+              "s1/s1_all.TextGrid",
+              "s1/s1_all.wav",
+              "s1/s1_tip.png",
+              paste0("s1/s1_pics/", list.files("s1/s1_pics/")),
+              paste0("s1/s1_sounds/", list.files("s1/s1_sounds/")),
+              "s1/s1_pics/",
+              "s1/s1_sounds/",
+              "s1/stimuli_viewer.html"))
+rename_soundfiles(stimuli = c("02", "01", "03"),
+                  path = "s2/",
+                  backup = FALSE)
+rename_soundfiles(stimuli = c("02", "01", "03"),
+                  path = "s1/",
+                  backup = FALSE)
+```
+
 # Introduction
 
 There are a lot of different books about fieldwork and experimenting (e. g. @gordon03, @bowern15). This tutorial covers only data organization part, so I still recommend to read them. In this tutorial I will focuse on such cases when fieldworker or experimenter clearly knows what she or he wants to analyse and already created a list of stimuli that she or he wants to record. For know `phonfieldwork` works only with `.wav` files, but I have a plans to extend its functionality to other types of data (e. g. Sign language video). In the following sections I will discribe my workflow of phonetic fieldwork or experimenting.
@@ -297,25 +319,6 @@ As a result in `s1` folder appeared an `stimuli_viewer.html` file.
 tree | tail -n 26 | head -n 24
 ```
 
-```{r, include=FALSE}
-# return file structure to the previous one
-file.remove(c(paste0("s1/backup/", list.files("s1/backup/")),
-              "s1/backup/",
-              "s1/s1_all.wav",
-              "s1/s1_all.TextGrid",
-              "s1/s1_all.wav",
-              "s1/s1_tip.png",
-              paste0("s1/s1_pics/", list.files("s1/s1_pics/")),
-              paste0("s1/s1_sounds/", list.files("s1/s1_sounds/")),
-              "s1/s1_pics/",
-              "s1/s1_sounds/",
-              "s1/stimuli_viewer.html"))
-rename_soundfiles(stimuli = c("02", "01", "03"),
-                  path = "s2/",
-                  backup = FALSE)
-rename_soundfiles(stimuli = c("02", "01", "03"),
-                  path = "s1/",
-                  backup = FALSE)
-```
+You can find the created example [here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html).
 
 # References
