@@ -25,7 +25,7 @@ create_presentation(stimuli, translations = "", output_dir,
 If \code{render} is \code{FALSE}, the function returns a path to the temporary file. If \code{render} is \code{TRUE}, there is no output in a function.
 }
 \description{
-Creates a html or powerpoint presentation in a working directory from list of words and translations.
+Creates an html or powerpoint presentation in a working directory from list of words and translations.
 }
 \examples{
 create_presentation(stimuli = c("rzeka", "drzewo"),

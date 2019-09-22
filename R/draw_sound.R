@@ -35,7 +35,10 @@ draw_sound <- function(file_name,
                        output_height = 500,
                        output_units = "px",
                        sounds_from_folder = NULL,
-                       pic_folder_name = "pics"){
+                       pic_folder_name = "pics",
+                       prefix = NULL,
+                       suffix = NULL,
+                       autonumber = FALSE){
   if(is.null(sounds_from_folder)){
     if(is.null(output_file)){
 # read file and convert to phonTools format -------------------------------
@@ -49,9 +52,11 @@ draw_sound <- function(file_name,
       par(oma=c(0,0,title_space,0), mai=c(0, 0, 0, 0), fig=c(0.05,1,0.8,1))
 
 # plot oscilogram ---------------------------------------------------------
-      tuneR::plot(s, xlab = "", las=0, ann = FALSE, xaxt = "n", main = title)
+      tuneR::plot(s, xlab = "", las=0, ann = FALSE, xaxt = "n")
       title(title, outer = TRUE)
-      axis(1, at=1:round(sound$duration/100)/10,labels=1:round(sound$duration/100)*100,
+      step <- ifelse(sound$duration > 150, 0.1, 0.01)
+      axis(1, at=seq(from = 0, to = sound$duration/1000, by = step),
+           labels=seq(from = 0, to = sound$duration/1000, by = step)*1000,
            las=1)
 
 # plot spectrogram --------------------------------------------------------
@@ -61,7 +66,8 @@ draw_sound <- function(file_name,
                              colors = spectrum_colors,
                              maxfreq = maximum_frequency,
                              dynamicrange = dynamic_range)
-      axis(1, at=1:round(sound$duration/100)*100,labels=1:round(sound$duration/100)*100,
+      axis(1, at=0:round(sound$duration/100)*100,
+           labels=0:round(sound$duration/100)*100,
            las=1)
 
 # reset graphical parameters to default -----------------------------------
@@ -111,14 +117,21 @@ draw_sound <- function(file_name,
 
     sounds <- sounds[files_from_list]
 
+    if(isTRUE(autonumber)){
+      prefix <- paste0(add_leading_symbols(1:length(sounds)), "_", prefix)
+    }
+
+
     pics <- paste0(pic_path, "/",
+                   prefix,
                    list.files(sounds_from_folder)[files_from_list])
     pics <- substr(pics, 1, nchar(pics)-4)
 
 # loop over the draw_sound function ---------------------------------------
+
     lapply(seq_along(sounds), function(i){
       draw_sound(sounds[i],
-                 output_file = pics[i],
+                 output_file = paste0(pics[i], suffix[i]),
                  title = list.files(sounds_from_folder)[files_from_list][i],
                  spectrum_colors = spectrum_colors,
                  maximum_frequency = maximum_frequency,

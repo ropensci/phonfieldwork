@@ -1,11 +1,11 @@
 ---
-title: "Phonetic fieldwork or experiments with `phonfieldwork`"
+title: "Phonetic fieldwork and experiments with phonfieldwork package"
 author: "G. Moroz"
 bibliography: bibliography.bib
 output: 
   html_document:
     smooth_scroll: false
-    number_sections: true
+    number_sections: true 
     self_contained: yes
     df_print: paged
 editor_options: 
@@ -38,6 +38,17 @@ It is impossible to use a package without importanting it. Use the `library()` c
 library("phonfieldwork")
 ```
 
+This tutorial was made with the following version of `phonfieldworks`:
+```{r}
+packageVersion("phonfieldwork")
+```
+
+This tutorial could be cited in the following way:
+
+```{r}
+citation("phonfieldwork")
+```
+
 # Philosophy of the `phonfieldwork` package
 
 There are following steps in most phonetic research:
@@ -58,7 +69,7 @@ In order to make it easear to automatically annotate gathered data, usualy I col
 * a collection of small soundfiles;
 * a list of correct and wrong attempts to produce a stimulus (usually I do it in a regular notebook with a regular pen).
 
-There are some phoneticians who will insist on the total recording, since you need to document everything, particularly during the fieldwork. I think that this is actually splitting your tasks: you can’t have your cake and eat it too. But even if you want to have a recording of everything, it is possible to run two recorders: one could work during the whole time of the phonetic session, and another could be used to produce small audio files. There are some phoneticians who will use some software for automatic recording your stimuli (e. g. ...) on a computer.
+There are some phoneticians who will insist on the total recording, since you need to document everything, particularly during the fieldwork. I think that this is actually splitting your tasks: you can’t have your cake and eat it too. But even if you want to have a recording of everything, it is possible to run two recorders: one could work during the whole time of the phonetic session, and another could be used to produce small audio files. There are some phoneticians who will use some software for automatic recording your stimuli (e. g. [PsychoPy](https://www.psychopy.org/)) on a computer.
 
 It is possible to show stimulus by stimulus to a native speaker and ask her or him to pronounce them or **not** to show stimuli to speaker and elicite them just pronouncing stimuli or its translation. In order to collect all stimuli in the particular order and without any missings I use presentations.
 
@@ -207,13 +218,19 @@ From the last figure one can see that no backup tier was created (`backup = FALS
 
 ## Extracting your data
 
+First it is important to create a folder, where all extracted files will be stored:
+```{r}
+dir.create("s1/s1_sounds")
+```
+
 It is possible extract all annotated files according some annotation tier:
 
 ```{r}
 extract_intervals(file_name = "s1/s1_all.wav", 
                   textgrid = "s1/s1_all.TextGrid",
                   tier = 3,
-                  path = "s1")
+                  path = "s1/s1_sounds/",
+                  prefix = "s1_")
 ```
 
 ```{bash, echo = FALSE}
@@ -225,7 +242,7 @@ tree | tail -n 19 | head -n 17
 It is possible to visualise an oscilogram and spetrogram of any sound file:
 
 ```{r, fig.width=12, fig.height=6}
-draw_sound(file_name = "s1/s1_tip.wav")
+draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav")
 ```
   
 There are additional parametres:
@@ -243,34 +260,56 @@ There are additional parametres:
 If the `output_file` argument is provided, then instead of creating plot in R it will be saved on the users disk:
 
 ```{r}
-draw_sound(file_name = "s1/s1_tap.wav", output_file = "s1/s1_tap")
+draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav", output_file = "s1/s1_tip", title = "s1 tip")
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 20 | head -n 18
+tree | tail -n 21 | head -n 19
 ```
 
 It is also possible to create pictures from all .wav files in a folder. For this purposes one need to specify a folder with sound files (argument `sounds_from_folder`) and folder name for pictures (argument `pic_folder_name`). The new picture folder alwayes created in the folder of the upper level, so sound and picture folders are on the same level in the folder tree structure:
 
 ```{r}
-draw_sound(sounds_from_folder = "s2", pic_folder_name = "s2_pics")
+draw_sound(sounds_from_folder = "s1/s1_sounds/", 
+           pic_folder_name = "s1_pics")
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 24 | head -n 22
+tree | tail -n 25 | head -n 23
 ```
+
+## Create a viewer
+
+It is possible to create an annotation viewer.
+
+```{r, message= FALSE, warning=FALSE}
+create_viewer(audio_dir = "s1/s1_sounds/",
+              picture_dir = "s1/s1_pics/", 
+              textgrid = "s1/s1_all.TextGrid",
+              tiers = c(1, 3),
+              output_dir = "s1/",
+              output_file = "stimuli_viewer")
+```
+
+As a result in `s1` folder appeared an `stimuli_viewer.html` file.
+
+```{bash, echo = FALSE}
+tree | tail -n 26 | head -n 24
+```
+
 ```{r, include=FALSE}
 # return file structure to the previous one
 file.remove(c(paste0("s1/backup/", list.files("s1/backup/")),
               "s1/backup/",
               "s1/s1_all.wav",
               "s1/s1_all.TextGrid",
-              "s1/s1_tap.png",
-              "s1/æ-2.wav",
-              "s1/ɒ-3.wav",
-              "s1/ı-1.wav",
-              paste0("s2_pics/", list.files("s2_pics/")),
-              "s2_pics/"))
+              "s1/s1_all.wav",
+              "s1/s1_tip.png",
+              paste0("s1/s1_pics/", list.files("s1/s1_pics/")),
+              paste0("s1/s1_sounds/", list.files("s1/s1_sounds/")),
+              "s1/s1_pics/",
+              "s1/s1_sounds/",
+              "s1/stimuli_viewer.html"))
 rename_soundfiles(stimuli = c("02", "01", "03"),
                   path = "s2/",
                   backup = FALSE)

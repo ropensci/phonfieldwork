@@ -7,7 +7,7 @@
 tier_to_df(textgrid, tier = 1)
 }
 \arguments{
-\item{textgrid}{character with a filename or path to the TextGrid}
+\item{textgrid}{string with a filename or path to the TextGrid}
 
 \item{tier}{value that could be either ordinal number of the tier either name of the tier. By default is '1'.}
 }

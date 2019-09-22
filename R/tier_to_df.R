@@ -4,7 +4,7 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param textgrid character with a filename or path to the TextGrid
+#' @param textgrid string with a filename or path to the TextGrid
 #' @param tier value that could be either ordinal number of the tier either name of the tier. By default is '1'.
 #' @return a dataframe with columns:  \code{id}, \code{start} and \code{end annotation} (if it is an interval tier)
 #'

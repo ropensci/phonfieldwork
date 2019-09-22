@@ -18,7 +18,7 @@ extract_intervals(file_name, textgrid, tier = 1, prefix = NULL,
 
 \item{suffix}{character vector containing suffix(es) for file names}
 
-\item{autonumber}{if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files}
+\item{autonumber}{if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.}
 
 \item{path}{path to the directory where create extracted soundfiles.}
 }

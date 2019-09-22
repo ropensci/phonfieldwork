@@ -1,0 +1,42 @@
+---
+output: html_document
+params:
+  data: your_file.csv
+---
+<style>
+.main-container {
+  margin-left: 0;
+  margin-right: 0;
+}
+</style>
+
+<img id="expandedImg" style="position: fixed; top: 0; left: 900px; width:50%">
+
+```{r make_viewer, echo=FALSE, message=FALSE, warning=FALSE}
+df <- read.csv(params$data, stringsAsFactors = FALSE)
+df$audio <-
+  paste0('<audio controls> <source src="',
+           if(Sys.info()[1] == "Windows") "file:///",
+           df$audio,
+           '" type="audio/wav"></audio>')
+df$pictures <-
+    paste0('<img src="',
+           if(Sys.info()[1] == "Windows") "file:///",
+           df$pictures,
+           '" style="width:10%" onclick="myFunction(this);">')
+DT::datatable(data = df, 
+              filter = 'top', 
+              rownames = FALSE, 
+              options = list(pageLength = 50, dom = 'tip'), 
+              escape = FALSE)
+```
+
+<script>
+function myFunction(imgs) {
+  var expandImg = document.getElementById("expandedImg");
+  var imgText = document.getElementById("imgtext");
+  expandImg.src = imgs.src;
+  imgText.innerHTML = imgs.alt;
+  expandImg.parentElement.style.display = "block";
+}
+</script>

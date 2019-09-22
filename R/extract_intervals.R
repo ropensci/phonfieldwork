@@ -9,7 +9,7 @@
 #' @param tier tier number or name that should be used as base for extraction and names
 #' @param prefix character vector containing prefix(es) for file names
 #' @param suffix character vector containing suffix(es) for file names
-#' @param autonumber if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files
+#' @param autonumber if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.
 #' @param path path to the directory where create extracted soundfiles.
 #' @return no output
 #' @examples
@@ -52,15 +52,11 @@ extract_intervals <- function(file_name,
   starts <- tg_df[tg_df$annotation != "", "start"]
   ends <- tg_df[tg_df$annotation != "", "end"]
   if(isTRUE(autonumber)){
-    auto <- 1:nrow(tg_df)
-  } else {
-    auto <- NULL
+    prefix <- paste0(add_leading_symbols(1:nrow(tg_df)), "_", prefix)
   }
   annotations <- paste0(prefix,
                         tg_df[tg_df$annotation != "", "annotation"],
-                        suffix,
-                        "-",
-                        auto)
+                        suffix)
 
   lapply(seq_along(starts), function(i){
     s_fragment <- tuneR::extractWave(s,
@@ -69,6 +65,7 @@ extract_intervals <- function(file_name,
                                      xunit = "time")
     tuneR::writeWave(s_fragment, paste0(path, "/", annotations[i], ".wav")) ->
       results
+    Sys.sleep(0.1)
   }
   )
 }
