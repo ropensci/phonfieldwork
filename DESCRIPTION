@@ -5,6 +5,11 @@ Version: 0.0.2
 Depends: R (>= 3.5.0)
 Imports:
     tuneR,
+    phonTools,
+    grDevices,
+    DT,
+    utils,
+    graphics,
     rmarkdown
 Author: George Moroz
 Maintainer: George Moroz <agricolamz@gmail.com>

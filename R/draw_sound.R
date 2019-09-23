@@ -14,6 +14,11 @@
 #' @param output_width the width of the device
 #' @param output_height the height of the device
 #' @param output_units the units in which height and width are given. Can be "px" (pixels, the default), "in" (inches), "cm" or "mm".
+#' @param sounds_from_folder path to a folder with multiple .wav files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.
+#' @param pic_folder_name name for a folder, where all pictures will be stored in case \code{sounds_from_folder} argument is not \code{NULL}
+#' @param prefix prefix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}
+#' @param suffix suffix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}
+#' @param autonumber if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.
 #' @return Oscilogram and Spectrogram plot.
 #'
 #' @export
@@ -23,6 +28,8 @@
 #' @importFrom phonTools spectrogram
 #' @importFrom grDevices png
 #' @importFrom grDevices dev.off
+#' @importFrom graphics par
+#' @importFrom graphics axis
 
 draw_sound <- function(file_name,
                        output_file = NULL,
@@ -49,29 +56,31 @@ draw_sound <- function(file_name,
       title_space <- ifelse(is.null(title), 0, 2)
 
 # set viewer parameters ---------------------------------------------------
-      par(oma=c(0,0,title_space,0), mai=c(0, 0, 0, 0), fig=c(0.05,1,0.8,1))
+      graphics::par(oma=c(0,0,title_space,0),
+                    mai=c(0, 0, 0, 0),
+                    fig=c(0.05,1,0.8,1))
 
 # plot oscilogram ---------------------------------------------------------
       tuneR::plot(s, xlab = "", las=0, ann = FALSE, xaxt = "n")
       title(title, outer = TRUE)
       step <- ifelse(sound$duration > 150, 0.1, 0.01)
-      axis(1, at=seq(from = 0, to = sound$duration/1000, by = step),
+      graphics::axis(1, at=seq(from = 0, to = sound$duration/1000, by = step),
            labels=seq(from = 0, to = sound$duration/1000, by = step)*1000,
            las=1)
 
 # plot spectrogram --------------------------------------------------------
-      par(fig=c(0.05,1,0.08,0.72), new=TRUE, las=0)
+      graphics::par(fig=c(0.05,1,0.08,0.72), new=TRUE, las=0)
       phonTools::spectrogram(sound,
                              windowlength = window_length,
                              colors = spectrum_colors,
                              maxfreq = maximum_frequency,
                              dynamicrange = dynamic_range)
-      axis(1, at=0:round(sound$duration/100)*100,
+      graphics::axis(1, at=0:round(sound$duration/100)*100,
            labels=0:round(sound$duration/100)*100,
            las=1)
 
 # reset graphical parameters to default -----------------------------------
-      par(oma=c(0,0,0,0), mai=c(1.02, 0.82, 0.82, 0.42), fig=c(0,1,0,1))
+      graphics::par(oma=c(0,0,0,0), mai=c(1.02, 0.82, 0.82, 0.42), fig=c(0,1,0,1))
 
     } else {
 
@@ -120,7 +129,6 @@ draw_sound <- function(file_name,
     if(isTRUE(autonumber)){
       prefix <- paste0(add_leading_symbols(1:length(sounds)), "_", prefix)
     }
-
 
     pics <- paste0(pic_path, "/",
                    prefix,

@@ -31,6 +31,16 @@ draw_sound(file_name, output_file = NULL, title = NULL,
 \item{output_height}{the height of the device}
 
 \item{output_units}{the units in which height and width are given. Can be "px" (pixels, the default), "in" (inches), "cm" or "mm".}
+
+\item{sounds_from_folder}{path to a folder with multiple .wav files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.}
+
+\item{pic_folder_name}{name for a folder, where all pictures will be stored in case \code{sounds_from_folder} argument is not \code{NULL}}
+
+\item{prefix}{prefix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}}
+
+\item{suffix}{suffix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}}
+
+\item{autonumber}{if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.}
 }
 \value{
 Oscilogram and Spectrogram plot.

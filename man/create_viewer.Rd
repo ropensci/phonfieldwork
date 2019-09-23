@@ -20,9 +20,7 @@ create_viewer(audio_dir, picture_dir, textgrid, tiers = 1, output_dir,
 
 \item{output_file}{the name of the result .html file (by default stimuli_viewer)}
 
-\item{render}{the logical argument, if \code{TRUE} render the created R Markdown presentation to the \code{output_dir} folder, otherwise returns the path to the temporary file with a Rmd file.}
-
-\item{keep_rmd}{logical. If \code{TRUE} copy a source .Rmd file in output_dir.}
+\item{render}{the logical argument, if \code{TRUE} render the created R Markdown presentation to the \code{output_dir} folder, otherwise returns the path to the temporary file with a .csv file.}
 }
 \value{
 If \code{render} is \code{FALSE}, the function returns a path to the temporary file with .csv file. If \code{render} is \code{TRUE}, there is no output in a function.

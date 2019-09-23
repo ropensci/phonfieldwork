@@ -10,14 +10,14 @@
 #' @param tiers vecors of numbers or names of TextGrid tiers. They merged into a table and used in the created viewer.
 #' @param output_file the name of the result .html file (by default stimuli_viewer)
 #' @param output_dir the output directory for the rendered file
-#' @param render the logical argument, if \code{TRUE} render the created R Markdown presentation to the \code{output_dir} folder, otherwise returns the path to the temporary file with a Rmd file.
-#' @param keep_rmd logical. If \code{TRUE} copy a source .Rmd file in output_dir.
+#' @param render the logical argument, if \code{TRUE} render the created R Markdown presentation to the \code{output_dir} folder, otherwise returns the path to the temporary file with a .csv file.
 #'
 #' @return If \code{render} is \code{FALSE}, the function returns a path to the temporary file with .csv file. If \code{render} is \code{TRUE}, there is no output in a function.
 #'
 #' @export
 #' @importFrom rmarkdown render
-#'
+#' @importFrom utils installed.packages
+#' @importFrom utils write.csv
 
 
 create_viewer <- function(audio_dir,
@@ -27,6 +27,9 @@ create_viewer <- function(audio_dir,
                           output_dir,
                           output_file = "stimuli_viewer",
                           render = TRUE){
+  if(!("DT" %in% utils::installed.packages()[,"Package"])){
+    stop('For this function you need to install DT package with a command install.packages("DT").')
+  }
   audio <- list.files(normalizePath(audio_dir))
   pictures <- list.files(normalizePath(picture_dir))
   if(length(audio) > length(pictures)){
@@ -66,7 +69,7 @@ create_viewer <- function(audio_dir,
 
 # create a .csv file ------------------------------------------------------
   tmp <- tempfile(fileext = ".csv")
-  write.csv(result_df, tmp)
+  utils::write.csv(result_df, tmp)
 
 # render .Rmd -------------------------------------------------------------
   if(render == TRUE){
