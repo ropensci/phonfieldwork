@@ -1,6 +1,6 @@
 ---
 title: "Phonetic fieldwork and experiments with phonfieldwork package"
-author: "G. Moroz"
+author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
 output: 
   html_document:
