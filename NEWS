@@ -1,5 +1,10 @@
-phonfieldwork 0.0.2 (26.08.2019)
-  - make the "create_presentation" function render silently
+phonfieldwork 0.0.2 (23.09.2019)
+  - make the "create_presentation()" function render silently
+  - add a new function "draw_sound()" for creating spectrogram and oscilogram
+  - add a new function "create_viewer()" for creating an html viewer with sound and spectrograms
+  - correct work of "autonumbering" function in "extract_intervals()" function
+  - add new functions  "get_textgrid_names()" and "set_textgrid_names()"
+  - finish tutorial <https://agricolamz.github.io/phonfieldwork/>
 
 phonfieldwork 0.0.1 (26.08.2019)
   - initial release
