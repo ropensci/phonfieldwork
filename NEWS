@@ -1,3 +1,5 @@
+phonfieldwork 0.0.3 (...2019)
+
 phonfieldwork 0.0.2 (23.09.2019)
   - make the "create_presentation()" function render silently
   - add a new function "draw_sound()" for creating spectrogram and oscilogram
