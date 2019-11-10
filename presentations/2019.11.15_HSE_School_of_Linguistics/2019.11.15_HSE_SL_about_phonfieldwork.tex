@@ -1,0 +1,66 @@
+\documentclass[13pt, t]{beamer}
+% Presento style file
+\usepackage{config/presento}
+
+% custom command and packages
+\input{config/custom-command}
+
+\usepackage{color, colortbl}
+\setlength{\columnseprule}{0.4pt} 
+
+\title{\Large \hspace{-0.5cm} Phonetic fieldwork and experiments with \texttt{phonfieldwork} package for R}
+\author[shortname]{George Moroz}
+\institute[shortinst]{Linguistic Convergence Laboratory, NRU HSE, Moscow, Russia}
+\date{\begin{center} {\large 15 November 2019} \bigskip \\ {Science seminar, \\ NRU HSE, School of linguistics, Moscow}\\ \vfill Presentation is available here: {\large \href{https://tinyurl.com/y5xoks3l}{https://tinyurl.com/y5xoks3l} \hfill \includegraphics[height = 2.5cm]{images/01_qrcode}} \end{center}}
+
+\begin{document}
+
+\begin{frame}[plain]
+\maketitle
+\end{frame}
+
+\begin{frame}{Most phonetic research consists of the following steps:}
+\begin{enumerate}
+\item Formulate a research question. Think of what kind of data is necessary to answer this question, what is the appropriate amount of data, what kind of annotation you will do, what kind of statistical models and visualizations you will use, etc.
+\item Create a list of stimuli.
+\item Elicite list of stimuli from speakers who signed an Informed Consent statement, agreeing to participate in the experiment to be recorded on audio and/or video.
+\item Annotate the collected data.
+\item Extract the information from annotated data.
+\item Create visualizations and evaluate your statistical models.
+\item Report your results.
+\item Publish your data. \pause
+\end{enumerate}
+The \texttt{phonfieldwork} package is created for helping with items 3, partially with 4, and 5 and 8.
+\end{frame}
+
+\begin{frame}{Why/when do you need the \texttt{phonfieldwork} package?}
+These ideal plan hides some technical subtasks:
+\begin{itemize}
+\item creating a presentation for elicitation task
+\item renaming and concatenating multiple sound files recorded during a session
+\item automatic annotation in Praat TextGrids {\small \citep{boersma19}}
+\item creating a searchable \texttt{.html} table with annotations, spectrograms and ability to hear sound
+\item converting multiple formats (Praat, EXMARaLDA and ELAN) \pause
+\end{itemize}
+\vfill
+All of these tasks can be solved by a mixture of different tools:
+\begin{itemize}
+\item any programming language can handle automatic  file renaming
+\item Praat contains scripts for concatenating and renaming files
+\end{itemize}
+\pause
+\vfill
+\texttt{phonfieldwork} provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other R packages: \texttt{rPraat}, \texttt{textgRid} \citep{reidy16}.
+\end{frame}
+\framecard[colorblue]{{\color{colorwhite} \Large Send me a letter!\\
+agricolamz@gmail.com\\ 
+\vfill Presentation is available here: \\tinyurl.com/y3wtkcbq\\
+\vfill \includegraphics[height = 4cm]{images/02_qrcode}}}
+
+\begin{frame}{References}
+\footnotesize
+\bibliographystyle{config/chicago}
+\bibliography{bibliography}
+\end{frame}
+
+\end{document}

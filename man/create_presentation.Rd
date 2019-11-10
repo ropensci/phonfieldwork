@@ -4,14 +4,16 @@
 \alias{create_presentation}
 \title{Creates a presentation}
 \usage{
-create_presentation(stimuli, translations = "", output_dir,
-  output_format = "html", output_file = "stimuli_presentation",
-  render = TRUE)
+create_presentation(stimuli, translations = "", font_size = 50,
+  output_dir, output_format = "html",
+  output_file = "stimuli_presentation", render = TRUE)
 }
 \arguments{
 \item{stimuli}{the vector of stimuli (obligatory)}
 
 \item{translations}{the vector of translations (optional)}
+
+\item{font_size}{font size in px (50, by default)}
 
 \item{output_dir}{the output directory for the rendered file}
 
@@ -25,7 +27,7 @@ create_presentation(stimuli, translations = "", output_dir,
 If \code{render} is \code{FALSE}, the function returns a path to the temporary file. If \code{render} is \code{TRUE}, there is no output in a function.
 }
 \description{
-Creates an html or powerpoint presentation in a working directory from list of words and translations.
+Creates an html or powerpoint presentation in a working directory from list of words and translations. \href{https://agricolamz.github.io/phonfieldwork/first_example.html}{Here} is an example of such presentation.
 }
 \examples{
 create_presentation(stimuli = c("rzeka", "drzewo"),

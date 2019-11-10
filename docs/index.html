@@ -1790,7 +1790,7 @@ Your browser does not support iframes :(
 ##     ├── s2_tip_1.wav
 ##     └── s2_top_3.wav</code></pre>
 <p>The last command renamed the soundfiles in the <code>s2</code> folder, adding the prefix <code>s2</code> as in the previous example, and the suffix <code>1</code>-<code>3</code>. On most operating systems it is impossible to create two files with the same name, so sometimes it can be useful to add some kind of index at the end of the files.</p>
-<p>For now <code>phonfieldwork</code> works only with <code>.wav</code> files, but I will try to implement more possibilities in the future (such as ELAN .eaf and EXMARaLDA.exb).</p>
+<p>For now <code>phonfieldwork</code> works only with <code>.wav</code> files, but I will try to implement more possibilities in the future (such as <code>.mp4</code> for Sign language videos).</p>
 </div>
 <div id="merge-all-data-together" class="section level2">
 <h2><span class="header-section-number">4.4</span> Merge all data together</h2>
@@ -1981,7 +1981,7 @@ Your browser does not support iframes :(
 ##   ordinary text without R code
 ## 
 ## 
-## /usr/bin/pandoc +RTS -K512m -RTS skeleton.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash+smart --output /home/agricolamz/work/packages/phonfieldwork/docs/s1/stimuli_viewer.html --email-obfuscation none --self-contained --standalone --section-divs --template /home/agricolamz/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable &#39;theme:bootstrap&#39; --include-in-header /tmp/RtmpTfAXv8/rmarkdown-str5bf229b96c08.html --mathjax --variable &#39;mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#39; --metadata pagetitle=skeleton.utf8.md</code></pre>
+## /usr/bin/pandoc +RTS -K512m -RTS skeleton.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output /home/agricolamz/work/packages/phonfieldwork/docs/s1/stimuli_viewer.html --email-obfuscation none --self-contained --standalone --section-divs --template /home/agricolamz/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable &#39;theme:bootstrap&#39; --include-in-header /tmp/RtmpFDAPgN/rmarkdown-str1bf77cd00b6b.html --mathjax --variable &#39;mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#39; --metadata pagetitle=skeleton.utf8.md --lua-filter /home/agricolamz/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/lua/pagebreak.lua --lua-filter /home/agricolamz/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/lua/latex-div.lua</code></pre>
 <p>As a result, a <code>stimuli_viewer.html</code> was created in the <code>s1</code> folder.</p>
 <pre><code>## ├── s1
 ## │   ├── backup

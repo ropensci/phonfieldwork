@@ -1,11 +1,12 @@
 #' Creates a presentation
 #'
-#' Creates an html or powerpoint presentation in a working directory from list of words and translations.
+#' Creates an html or powerpoint presentation in a working directory from list of words and translations. \href{https://agricolamz.github.io/phonfieldwork/first_example.html}{Here} is an example of such presentation.
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param stimuli the vector of stimuli (obligatory)
 #' @param translations the vector of translations (optional)
+#' @param font_size font size in px (50, by default)
 #' @param output_format the string that difine the R Markdown output format: "html" (by default) or "pptx"
 #' @param output_file the name of the result presentation file (by default stimuli_presentation)
 #' @param output_dir the output directory for the rendered file
@@ -22,22 +23,38 @@
 
 create_presentation <- function(stimuli,
                                 translations = "",
+                                font_size = 50,
                                 output_dir,
                                 output_format = "html",
                                 output_file = "stimuli_presentation",
                                 render = TRUE) {
   output_format <- ifelse(output_format == "pptx",
-                   "powerpoint_presentation",
-                   "ioslides_presentation")
-  rmd <- paste0(c(paste0("---\ntitle: 'Use arrows for scrolling'\noutput: ",
+                   "  powerpoint_presentation",
+                   "  ioslides_presentation:\n    transition: faster")
+  rmd <- paste0(c(paste0("---\ntitle: 'Use arrows for scrolling'\noutput:\n",
                          output_format,
                          "\n---\n\n"),
                   collapse = ""),
-                 paste0("## ",
+                 paste0('##\n<div class="container">\n**',
                        stimuli,
-                       "\n\n",
+                       "**\n\n",
                        translations,
-                       "\n\n"),
+                       "</div>",
+                       collapse = ""),
+                paste0("<style>\n",
+                '.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;',
+    'font-size: ',
+    font_size,
+    'px;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+                }
+<\\\\style>
+'),
                collapse = "")
   tmp <- tempfile(pattern = output_file, fileext = ".Rmd")
   writeLines(rmd, tmp)
