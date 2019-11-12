@@ -52,6 +52,129 @@ All of these tasks can be solved by a mixture of different tools:
 \vfill
 \texttt{phonfieldwork} provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other R packages:\\ \texttt{rPraat} \citep{borzil16} and \texttt{textgRid} \citep{reidy16}.
 \end{frame}
+
+\begin{frame}{Philosophy of the \texttt{phonfieldwork} package}
+\begin{itemize}
+\item each stimulus as a separate file
+\item researcher carefully listens to consultants to make sure that they are producing the kind of speech they wanted
+\item in case a speaker does not produce three clear repetitions, researcher ask them to repeat the task
+\end{itemize}
+
+There are some phoneticians who prefer to record everything, for language documentation purposes. I think that should be a separate task. If you insist on recording everything, it is possible to run two recorders at the same time: one could run during the whole session, while the other is used to produce small audio files. You can also use special software to record your stimuli automatically on a computer (e.g. \texttt{PsychoPy} \citep{peirce19}).
+\end{frame}
+
+
+\framecard[colorblue]{{\color{colorwhite} \Large Let's go through \textbf{phonfieldwork} functionality\pause :\\
+\begin{itemize}
+\item[\color{colorwhite} $\bullet$] \color{colorwhite} install the package
+\item[\color{colorwhite} $\bullet$] \color{colorwhite} create a presentation based on a list of stimuli
+\item[\color{colorwhite} $\bullet$] \color{colorwhite} rename collected data
+\item[\color{colorwhite} $\bullet$] \color{colorwhite} merge all data together
+\item[\color{colorwhite} $\bullet$] \color{colorwhite} automatically annotate your data
+\item[\color{colorwhite} $\bullet$] \color{colorwhite} extract data from annotation
+\item[\color{colorwhite} $\bullet$] \color{colorwhite} visualize your data
+\item[\color{colorwhite} $\bullet$] \color{colorwhite} create an \textbf{.html} viewer
+\item[\color{colorwhite} $\bullet$] \color{colorwhite} cite the package
+\end{itemize}
+
+}}
+
+\begin{frame}[fragile]{Install the package}
+\begin{itemize}
+\item Install the package from CRAN:
+\begin{verbatim}
+install.packages("phonfieldwork")
+\end{verbatim}
+\vfill
+\item \dots or install it from Github:
+\begin{verbatim}
+install.packages("devtools")
+devtools::install_github("agricolamz/phonfieldwork") 
+\end{verbatim} 
+\pause \vfill
+\item Load the package:
+\begin{verbatim}
+library("phonfieldwork")
+packageVersion("phonfieldwork")
+
+## [1] '0.0.3'
+\end{verbatim}
+
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Create a presentation based on a list of stimuli}
+There are several ways to enter information about a list of stimuli into R:
+\begin{itemize}
+\item listing stimuli with the \texttt{c()}  function inside R
+\begin{verbatim}
+c("tip", "tap", "top")
+[1] "tip" "tap" "top"
+\end{verbatim}
+\item importing \texttt{.csv} file inside R using the \texttt{read.csv()} function:
+\begin{verbatim}
+read.csv("my_stimuli_df.csv")
+  stimuli vowel
+1     tip     ı
+2     tap     æ
+3     top     ɒ
+\end{verbatim}
+\item importing data from \texttt{.xls} or \texttt{.xlsx} file inside R using the \texttt{read.csv()} function:
+\begin{verbatim}
+read.csv("my_stimuli_df.csv")
+  stimuli vowel
+1     tip     ı
+2     tap     æ
+3     top     ɒ
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Create a presentation based on a list of stimuli}
+\begin{itemize}
+\item Now we are ready for creating a presentation for elicitation:
+\begin{verbatim}
+create_presentation(stimuli = my_stimuli$stimuli,
+                    output_file = "first_example",
+                    output_dir = getwd()) 
+\end{verbatim}
+\href{https://agricolamz.github.io/phonfieldwork/first_example.html}{Here} is the result.
+\item Here is another example with translations:
+\begin{verbatim}
+create_presentation(stimuli = my_stimuli$stimuli,
+                    translation = my_stimuli$translation,
+                    output_file = "first_example",
+                    output_dir = getwd()) 
+\end{verbatim}
+\href{https://agricolamz.github.io/phonfieldwork/second_example.html}{Here} is the result.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Rename collected data}
+
+\end{frame}
+
+\begin{frame}{Merge all data together}
+
+\end{frame}
+
+\begin{frame}{Automatically annotate your data}
+
+\end{frame}
+
+\begin{frame}{Extract data from annotation}
+
+\end{frame}
+
+\begin{frame}{Create an \texttt{.html} viewer}
+
+\end{frame}
+
+\begin{frame}{Cite the package}
+
+\end{frame}
+
 \framecard[colorblue]{{\color{colorwhite} \Large Send me a letter!\\
 agricolamz@gmail.com\\ 
 \vfill Presentation is available here: \\tinyurl.com/y3wtkcbq\\

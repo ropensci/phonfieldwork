@@ -14,6 +14,7 @@
 
 % colors
 \definecolor{colorblack}{HTML}{000000} % for note
+\definecolor{colorgreen}{HTML}{009933} % for code
 \definecolor{colorwhite}{HTML}{FFFFFF} % background
 \definecolor{colorblue}{HTML}{0099CC} % blue
 \definecolor{colorbig}{HTML}{1f77b4} % for note
@@ -49,9 +50,14 @@
 						ItalicFont=brilli,
 						BoldItalicFont=brillbi,
 						SmallCapsFont=brill]{brill}
+\setmonofont[Color=colorgreen,
+						   Scale=0.7,
+  						   Path=fonts/]{iosevka-regular}
+  
 \usepackage[english,russian]{babel}
 						
 \newfontfamily\tgtermes{TeX Gyre Termes}
+
 \makeatletter
   \begingroup
     \tgtermes
@@ -156,4 +162,3 @@
     citecolor=colorblue,
     urlcolor=colorblue
 }
-\usepackage{cancel}
