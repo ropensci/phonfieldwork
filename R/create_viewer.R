@@ -11,6 +11,7 @@
 #' @param output_file the name of the result .html file (by default stimuli_viewer)
 #' @param output_dir the output directory for the rendered file
 #' @param render the logical argument, if \code{TRUE} renders the created R Markdown viewer to the \code{output_dir} folder, otherwise returns the path to the temporary file with a .csv file.
+#' @param keep_rmd the logical argument, if \code{TRUE} keeps the created R Markdown file in the \code{output_dir} folder, otherwise removes it.
 #'
 #' @return If \code{render} is \code{FALSE}, the function returns a path to the temporary file with .csv file. If \code{render} is \code{TRUE}, there is no output in a function.
 #'
