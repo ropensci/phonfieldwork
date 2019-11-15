@@ -10,7 +10,7 @@
 #' @param tiers vecors of numbers or names of TextGrid tiers. They merged into a table and used in the created viewer.
 #' @param output_file the name of the result .html file (by default stimuli_viewer)
 #' @param output_dir the output directory for the rendered file
-#' @param render the logical argument, if \code{TRUE} render the created R Markdown presentation to the \code{output_dir} folder, otherwise returns the path to the temporary file with a .csv file.
+#' @param render the logical argument, if \code{TRUE} renders the created R Markdown viewer to the \code{output_dir} folder, otherwise returns the path to the temporary file with a .csv file.
 #'
 #' @return If \code{render} is \code{FALSE}, the function returns a path to the temporary file with .csv file. If \code{render} is \code{TRUE}, there is no output in a function.
 #'
@@ -77,6 +77,7 @@ create_viewer <- function(audio_dir,
 "/phonfieldwork/rmarkdown/templates/annotation_viewer/skeleton/skeleton.Rmd"),
                     params = list(data = tmp),
                     output_dir = output_dir,
+                    quiet = TRUE,
                     output_file = output_file)
   } else {
     return(tmp)

@@ -8,10 +8,10 @@
 \usepackage{color, colortbl}
 \setlength{\columnseprule}{0.4pt} 
 
-\title{\Large \hspace{-0.5cm} Phonetic fieldwork and experiments with \texttt{phonfieldwork} package for R}
+\title{\Large \hspace{-0.5cm} Phonetic fieldwork and experiments with the \texttt{phonfieldwork} package for R}
 \author[shortname]{George Moroz}
 \institute[shortinst]{Linguistic Convergence Laboratory, NRU HSE, Moscow, Russia}
-\date{\begin{center} {\large 15 November 2019} \bigskip \\ {Science seminar, \\ NRU HSE, School of linguistics, Moscow}\\ \vfill Presentation is available here: {\large \href{https://tinyurl.com/yzd2yjr5}{tinyurl.com/yzd2yjr5} \hfill \includegraphics[height = 2.5cm]{images/01_qrcode}} \end{center}}
+\date{\begin{center} {\large 15 November 2019} \bigskip \\ {NRU HSE, School of linguistics, Moscow}\\ \vfill Presentation is available here: {\large \href{https://tinyurl.com/yzd2yjr5}{tinyurl.com/yzd2yjr5} \hfill \includegraphics[height = 2.5cm]{images/01_qrcode}} \end{center}}
 
 \begin{document}
 
@@ -50,7 +50,7 @@ All of these tasks can be solved by a mixture of different tools:
 \end{itemize}
 \pause
 \vfill
-\texttt{phonfieldwork} provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other R packages:\\ \texttt{rPraat} \citep{borzil16} and \texttt{textgRid} \citep{reidy16}.
+\texttt{phonfieldwork} provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other R packages:\\ \texttt{rPraat} \citep{borzil16} and \texttt{textgRid} \citep{reidy16}, \texttt{pympi} \citep{lubbers13}
 \end{frame}
 
 \begin{frame}{Philosophy of the \texttt{phonfieldwork} package}
@@ -71,7 +71,7 @@ There are some phoneticians who prefer to record everything, for language docume
 \item[\color{colorwhite} $\bullet$] \color{colorwhite} rename collected data
 \item[\color{colorwhite} $\bullet$] \color{colorwhite} merge all data together
 \item[\color{colorwhite} $\bullet$] \color{colorwhite} automatically annotate your data
-\item[\color{colorwhite} $\bullet$] \color{colorwhite} extract data from annotation
+\item[\color{colorwhite} $\bullet$] \color{colorwhite} extract annotated fragments
 \item[\color{colorwhite} $\bullet$] \color{colorwhite} visualize your data
 \item[\color{colorwhite} $\bullet$] \color{colorwhite} create an \textbf{.html} viewer
 \item[\color{colorwhite} $\bullet$] \color{colorwhite} cite the package
@@ -143,7 +143,7 @@ create_presentation(stimuli = my_stimuli$stimuli,
 \item Here is another example with translations:
 \begin{verbatim}
 create_presentation(stimuli = my_stimuli$stimuli,
-                    translation = my_stimuli$translation,
+                    translation = c("чаевые", "кран", "верхушка"),
                     output_file = "first_example",
                     output_dir = getwd()) 
 \end{verbatim}
@@ -151,28 +151,259 @@ create_presentation(stimuli = my_stimuli$stimuli,
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Rename collected data}
-
+\begin{frame}[fragile]{Rename collected data}
+After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure:
+\begin{verbatim}
+## ├── s1
+## │   ├── 01.wav
+## │   ├── 02.wav
+## │   └── 03.wav
+## └── s2
+##     ├── 01.wav
+##     ├── 02.wav
+##     └── 03.wav
+\end{verbatim}
 \end{frame}
 
-\begin{frame}{Merge all data together}
-
+\begin{frame}[fragile]{Rename collected data}
+Let's rename the files:
+\begin{verbatim}
+rename_soundfiles(stimuli = my_stimuli$stimuli,
+                  prefix = "s1_",
+                  path = "s1/")
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── 01.wav
+##     ├── 02.wav
+##     └── 03.wav
+\end{verbatim}
 \end{frame}
 
-\begin{frame}{Automatically annotate your data}
-
+\begin{frame}[fragile]{Rename collected data}
+\begin{verbatim}
+rename_soundfiles(stimuli = my_stimuli$stimuli,
+                  prefix = "s2_",
+                  suffix = paste0("_", 1:3),
+                  path = "s2/",
+                  backup = FALSE)
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav                  
+\end{verbatim}
 \end{frame}
 
-\begin{frame}{Extract data from annotation}
-
+\begin{frame}[fragile]{Merge all data together}
+\begin{verbatim}
+concatenate_soundfiles(file_name = "s1_all",
+                       path = "s1/")
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav                       
+\end{verbatim}
 \end{frame}
 
-\begin{frame}{Create an \texttt{.html} viewer}
-
+\begin{frame}[fragile]{Merge all data together}
+Here is how \texttt{s1\_all.TextGrid} and \texttt{s1\_all.wav} look like:
+\includegraphics[width=\linewidth]{images/03_concatenate.png}
 \end{frame}
 
-\begin{frame}{Cite the package}
+\begin{frame}[fragile]{Automatically annotate your data}
+\begin{verbatim}
+annotate_textgrid(annotation = my_stimuli$stimuli,
+                  textgrid = "s1/s1_all.TextGrid")
+\end{verbatim}
+\includegraphics[width=\linewidth]{images/04_annotate.png}
+\end{frame}
 
+\begin{frame}[fragile]{Automatically annotate your data}
+Imagine that someone manually annotated each vowel in the recording, so the \texttt{.TextGrid} will look as follows:
+\includegraphics[width=0.92\linewidth]{images/05_annotate.png}
+\end{frame}
+
+\begin{frame}[fragile]{Automatically annotate your data}
+\begin{verbatim}
+annotate_textgrid(annotation = my_stimuli$vowel,
+                  textgrid = "s1/s1_all.TextGrid",
+                  each = 2,
+                  tier = 3, 
+                  backup = FALSE)
+\end{verbatim}
+\includegraphics[width=0.7\linewidth]{images/06_annotate.png}
+\end{frame}
+
+\begin{frame}[fragile]{Automatically annotate your data}
+Why should anybody separately annotate borders and fill gathered annotations with text?
+
+I've participated in several projects with human annotations: there are a lot of typos. So this approach allow
+
+\begin{itemize}
+\item to avoid typographical problems; \pause
+\item even if you don't like it, it is possible to automatically annotate words, translations, utterances etc.
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]{Extract annotated fragments}
+Let's create a folder where all of the extracted files will be stored:
+\begin{verbatim}
+dir.create("s1/s1_sounds")
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_sounds     ←     we created this folder!
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├──,,,
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Extract annotated fragments}
+Let's create a folder where all of the extracted files will be stored:
+\begin{verbatim}
+extract_intervals(file_name = "s1/s1_all.wav", 
+                  textgrid = "s1/s1_all.TextGrid",
+                  tier = 3,
+                  path = "s1/s1_sounds/",
+                  prefix = "s1_")
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_ı.wav
+## │   │   ├── 2_s1_æ.wav
+## │   │   └── 3_s1_ɒ.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├──,,,
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Visualizing your data}
+\begin{verbatim}
+draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav")
+\end{verbatim}
+\includegraphics[width=\linewidth]{images/07_draw_sound.png}
+\end{frame}
+
+\begin{frame}[fragile]{Visualizing your data}
+\begin{verbatim}
+draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav")
+\end{verbatim}
+\begin{itemize}
+\item \texttt{title} --- the title for the plot
+\item \texttt{colores} --- set to (\texttt{TRUE}) for a colored spectogram, or (\texttt{FALSE}) for greyscale. It is also possible to provide a vector of custom colors for the spectrogram
+\item \texttt{maximum\_frequency} --- the maximum frequency to be displayed for the spectrogram
+\item \texttt{dynamic\_range} --- values greater than this many dB below the maximum will be displayed in the same color
+\item \texttt{window\_length } --- the desired length in milliseconds for the analysis window
+\item \texttt{output\_file} --- the name of the output file
+\item \texttt{output\_width} --- the width of the device
+\item \texttt{output\_height} --- the height of the device
+\item \texttt{output\_units} --- the units in which height and width are given. This can be \texttt{"px"} (pixels, default), \texttt{"in"} (inches), \texttt{"cm"} or \texttt{"mm"}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Visualizing your data}
+\begin{verbatim}
+draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav", output_file = "s1/s1_tip", title = "s1 tip")
+## ├── s1
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_ı.wav
+## │   │   ├── 2_s1_æ.wav
+## │   │   └── 3_s1_ɒ.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.png
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+## ...
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Visualizing your data}
+\begin{verbatim}
+draw_sound(sounds_from_folder = "s1/s1_sounds/", pic_folder_name = "s1_pics")
+## ├── s1
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_pics
+## │   │   ├── 1_s1_ı.png
+## │   │   ├── 2_s1_æ.png
+## │   │   └── 3_s1_ɒ.png
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_ı.wav
+## │   │   ├── 2_s1_æ.wav
+## │   │   └── 3_s1_ɒ.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.png
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── ...
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Create an \texttt{.html} viewer}
+\begin{verbatim}
+create_viewer(audio_dir = "s1/s1_sounds/",
+              picture_dir = "s1/s1_pics/", 
+              textgrid = "s1/s1_all.TextGrid",
+              tiers = c(1, 3),
+              output_dir = "s1/",
+              output_file = "stimuli_viewer")
+\end{verbatim}
+\begin{itemize}
+\item \href{https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html}{example 1}
+\item \href{https://lingconlab.github.io/soqotri_emphatics/create_html.html}{example 2: Soqotri emphatics (Vasilisa Zhigulskaya's data)}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Cite the package}
+\begin{verbatim}
+citation("phonfieldwork")
+## 
+## Moroz G (2019). _Phonetic fieldwork and experiments with
+## phonfieldwork package_. <URL:
+## https://CRAN.R-project.org/package=phonfieldwork>.
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Manual{,
+##     title = {Phonetic fieldwork and experiments with phonfieldwork package},
+##     author = {George Moroz},
+##     year = {2019},
+##     url = {https://CRAN.R-project.org/package=phonfieldwork},
+##   }
+\end{verbatim}
 \end{frame}
 
 \framecard[colorblue]{{\color{colorwhite} \Large Send me a letter!\\
