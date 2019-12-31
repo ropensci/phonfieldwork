@@ -25,9 +25,13 @@ create_viewer <- function(audio_dir,
                           picture_dir,
                           textgrid,
                           tiers = 1,
+                          merge_column,
+                          caption_column = NULL,
+                          about = "This page were created with the [phonfieldworks](https://github.com/agricolamz/phonfieldwork) package for R",
                           output_dir,
                           output_file = "stimuli_viewer",
                           render = TRUE){
+  if(is.null(caption_column)){caption_column =  merge_column}
   if(!("DT" %in% utils::installed.packages()[,"Package"])){
     stop('For this function you need to install DT package with a command install.packages("DT").')
   }
@@ -69,17 +73,29 @@ create_viewer <- function(audio_dir,
   result_df$pictures <- paste0(picture_dir, "/", pictures)
 
 # create a .csv file ------------------------------------------------------
-  tmp <- tempfile(fileext = ".csv")
-  utils::write.csv(result_df, tmp)
+  tmp1 <- tempfile(fileext = ".csv")
+  utils::write.csv(result_df, tmp1, row.names = FALSE)
+
+# create about file -------------------------------------------------------
+  if(substr(about, nchar(about)-3, nchar(about)) == ".Rmd"){
+    tmp2 <- about
+  } else {
+    tmp2 <- tempfile(fileext = ".Rmd")
+    writeLines(about, tmp2)
+  }
 
 # render .Rmd -------------------------------------------------------------
   if(render == TRUE){
   rmarkdown::render(paste0(.libPaths()[1],
 "/phonfieldwork/rmarkdown/templates/annotation_viewer/skeleton/skeleton.Rmd"),
-                    params = list(data = tmp),
+                    params = list(data = tmp1,
+                                  about = tmp2,
+                                  merge_column = merge_column,
+                                  caption_column = caption_column),
                     output_dir = output_dir,
                     quiet = TRUE,
                     output_file = output_file)
+  message(paste0("Output created: ", output_dir, output_file, ".html"))
   } else {
     return(tmp)
   }

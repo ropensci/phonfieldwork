@@ -4,8 +4,14 @@
 \alias{annotate_textgrid}
 \title{Annotate textgrid}
 \usage{
-annotate_textgrid(annotation, textgrid, tier = 1, each = 1,
-  backup = TRUE, write = TRUE)
+annotate_textgrid(
+  annotation,
+  textgrid,
+  tier = 1,
+  each = 1,
+  backup = TRUE,
+  write = TRUE
+)
 }
 \arguments{
 \item{annotation}{vector of stimuli}

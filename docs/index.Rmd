@@ -314,6 +314,7 @@ create_viewer(audio_dir = "s1/s1_sounds/",
               picture_dir = "s1/s1_pics/", 
               textgrid = "s1/s1_all.TextGrid",
               tiers = c(1, 3),
+              merge_column = "labels",
               output_dir = "s1/",
               output_file = "stimuli_viewer")
 ```

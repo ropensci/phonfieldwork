@@ -4,8 +4,15 @@
 \alias{extract_intervals}
 \title{Extract intervals}
 \usage{
-extract_intervals(file_name, textgrid, tier = 1, prefix = NULL,
-  suffix = NULL, autonumber = TRUE, path)
+extract_intervals(
+  file_name,
+  textgrid,
+  tier = 1,
+  prefix = NULL,
+  suffix = NULL,
+  autonumber = TRUE,
+  path
+)
 }
 \arguments{
 \item{file_name}{path to the soundfile}

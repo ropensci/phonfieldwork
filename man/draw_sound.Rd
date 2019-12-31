@@ -4,12 +4,23 @@
 \alias{draw_sound}
 \title{Draw Oscilogram and Spectrogram}
 \usage{
-draw_sound(file_name, output_file = NULL, title = NULL,
-  spectrum_colors = FALSE, maximum_frequency = 5000,
-  dynamic_range = 50, window_length = 5, output_width = 750,
-  output_height = 500, output_units = "px",
-  sounds_from_folder = NULL, pic_folder_name = "pics", prefix = NULL,
-  suffix = NULL, autonumber = FALSE)
+draw_sound(
+  file_name,
+  output_file = NULL,
+  title = NULL,
+  spectrum_colors = FALSE,
+  maximum_frequency = 5000,
+  dynamic_range = 50,
+  window_length = 5,
+  output_width = 750,
+  output_height = 500,
+  output_units = "px",
+  sounds_from_folder = NULL,
+  pic_folder_name = "pics",
+  prefix = NULL,
+  suffix = NULL,
+  autonumber = FALSE
+)
 }
 \arguments{
 \item{file_name}{a soundfile}

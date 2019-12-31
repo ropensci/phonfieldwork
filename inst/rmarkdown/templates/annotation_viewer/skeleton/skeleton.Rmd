@@ -1,29 +1,61 @@
 ---
+title: "Sound Viewer"
 output: html_document
 params:
   data: your_file.csv
+  merge_column: "merge_column"
+  caption_column: "caption_column"
+  about: about.Rmd
+editor_options: 
+  chunk_output_type: console
 ---
+
 <style>
-.main-container {
-  margin-left: 0;
-  margin-right: 0;
+#my_block {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0,0,0, 0.1);
+}
+#my_img {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  padding: 10px 0;
+  height: 150px;
 }
 </style>
 
-<img id="expandedImg" style="position: fixed; top: 0; left: 900px; width:50%">
+# {.tabset .tabset-fade .tabset-pills}
+## data
 
 ```{r make_viewer, echo=FALSE, message=FALSE, warning=FALSE}
 df <- read.csv(params$data, stringsAsFactors = FALSE)
-df$audio <-
-  paste0('<audio controls> <source src="',
-           if(Sys.info()[1] == "Windows") "file:///",
-           df$audio,
-           '" type="audio/wav"></audio>')
-df$pictures <-
-    paste0('<img src="',
-           if(Sys.info()[1] == "Windows") "file:///",
-           df$pictures,
-           '" style="width:10%" onclick="myFunction(this);">')
+merge <- which(colnames(df) %in% params$merge_column)
+captions <- which(colnames(df) %in% params$caption_column)
+
+df[,merge] <- 
+  paste(df[,merge],
+         phonfieldwork::create_image_look_up(img_src = df$pictures,
+                                             img_caption = df[,captions]),
+         phonfieldwork::create_sound_play(snd_src = df$audio))
+
+df <- df[, -which(colnames(df) %in% c("audio", "pictures"))]
+
 DT::datatable(data = df, 
               filter = 'top', 
               rownames = FALSE, 
@@ -31,12 +63,40 @@ DT::datatable(data = df,
               escape = FALSE)
 ```
 
+<div class = "my_block" id="my_block" onclick = "pic_disappear()">
+  <span class="close">&times;</span>
+  <img class = "my_img" id="my_img">
+  <div class = "caption" id="caption">
+  </div>
+</div>
+
+
+## about
+
+```{r, child = params$about}
+```
+
+
 <script>
-function myFunction(imgs) {
-  var expandImg = document.getElementById("expandedImg");
-  var imgText = document.getElementById("imgtext");
-  expandImg.src = imgs.src;
-  imgText.innerHTML = imgs.alt;
-  expandImg.parentElement.style.display = "block";
-}
+  function pic_appear(path, caption) {
+    var path, caption;
+    var block = document.getElementById("my_block");
+    var block_img = document.getElementById("my_img");
+    var caption_text = document.getElementById("caption");
+    block.style.display = "block";
+    block_img.src = path;
+    caption_text.innerHTML = caption;
+  }
+  function pic_disappear() {
+    var block = document.getElementById("my_block");
+    block.style.display = "none";
+  }
+  function sound_play(x) {
+    var audio = new Audio();
+    audio.src = x;
+    audio.play();
+  }
+  function resize(elem, percent) { 
+  elem.style.fontSize = percent; 
+  }
 </script>

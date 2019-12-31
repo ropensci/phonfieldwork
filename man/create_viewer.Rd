@@ -4,8 +4,19 @@
 \alias{create_viewer}
 \title{Create an annotation viewer}
 \usage{
-create_viewer(audio_dir, picture_dir, textgrid, tiers = 1, output_dir,
-  output_file = "stimuli_viewer", render = TRUE)
+create_viewer(
+  audio_dir,
+  picture_dir,
+  textgrid,
+  tiers = 1,
+  merge_column,
+  caption_column = NULL,
+ 
+    about = "This page were created with the [phonfieldworks](https://github.com/agricolamz/phonfieldwork) package for R",
+  output_dir,
+  output_file = "stimuli_viewer",
+  render = TRUE
+)
 }
 \arguments{
 \item{audio_dir}{path to the directory with sounds}
@@ -20,7 +31,9 @@ create_viewer(audio_dir, picture_dir, textgrid, tiers = 1, output_dir,
 
 \item{output_file}{the name of the result .html file (by default stimuli_viewer)}
 
-\item{render}{the logical argument, if \code{TRUE} render the created R Markdown presentation to the \code{output_dir} folder, otherwise returns the path to the temporary file with a .csv file.}
+\item{render}{the logical argument, if \code{TRUE} renders the created R Markdown viewer to the \code{output_dir} folder, otherwise returns the path to the temporary file with a .csv file.}
+
+\item{keep_rmd}{the logical argument, if \code{TRUE} keeps the created R Markdown file in the \code{output_dir} folder, otherwise removes it.}
 }
 \value{
 If \code{render} is \code{FALSE}, the function returns a path to the temporary file with .csv file. If \code{render} is \code{TRUE}, there is no output in a function.

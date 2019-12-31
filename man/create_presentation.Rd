@@ -4,9 +4,15 @@
 \alias{create_presentation}
 \title{Creates a presentation}
 \usage{
-create_presentation(stimuli, translations = "", font_size = 50,
-  output_dir, output_format = "html",
-  output_file = "stimuli_presentation", render = TRUE)
+create_presentation(
+  stimuli,
+  translations = "",
+  font_size = 50,
+  output_dir,
+  output_format = "html",
+  output_file = "stimuli_presentation",
+  render = TRUE
+)
 }
 \arguments{
 \item{stimuli}{the vector of stimuli (obligatory)}

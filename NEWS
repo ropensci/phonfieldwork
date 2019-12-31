@@ -1,7 +1,8 @@
-phonfieldwork 0.0.3 (...2019)
+phonfieldwork 0.0.3 (24.09.2019)
   - vertically and horisontally center text in presentations created by "create_presentation()"; thx @Pandaklez #1
   - add the "font_size" argument to the "create_presentation()" function
   - add "rename_videofiles()" function
+  - rebuild html viewer for sounds with JavaScript with the help of new functions "create_image_look_up()" and "create_sound_play()".
 
 phonfieldwork 0.0.2 (23.09.2019)
   - make the "create_presentation()" function render silently

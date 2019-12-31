@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -1602,6 +1601,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -1660,9 +1660,8 @@ devtools::install_github(&quot;agricolamz/phonfieldwork&quot;)</code></pre>
 <p>This tutorial can be cited as follows:</p>
 <pre class="r"><code>citation(&quot;phonfieldwork&quot;)</code></pre>
 <pre><code>## 
-## Moroz G (2019). _Phonetic fieldwork and experiments with
-## phonfieldwork package_. &lt;URL:
-## https://CRAN.R-project.org/package=phonfieldwork&gt;.
+## Moroz G (2019). _Phonetic fieldwork and experiments with phonfieldwork
+## package_. &lt;URL: https://CRAN.R-project.org/package=phonfieldwork&gt;.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -1957,31 +1956,9 @@ Your browser does not support iframes :(
               picture_dir = &quot;s1/s1_pics/&quot;, 
               textgrid = &quot;s1/s1_all.TextGrid&quot;,
               tiers = c(1, 3),
+              merge_column = &quot;labels&quot;,
               output_dir = &quot;s1/&quot;,
               output_file = &quot;stimuli_viewer&quot;)</code></pre>
-<pre><code>## 
-  |                                                                       
-  |                                                                 |   0%
-  |                                                                       
-  |......................                                           |  33%
-##   ordinary text without R code
-## 
-## 
-  |                                                                       
-  |...........................................                      |  67%
-## label: make_viewer (with options) 
-## List of 3
-##  $ echo   : logi FALSE
-##  $ message: logi FALSE
-##  $ warning: logi FALSE
-## 
-## 
-  |                                                                       
-  |.................................................................| 100%
-##   ordinary text without R code
-## 
-## 
-## /usr/bin/pandoc +RTS -K512m -RTS skeleton.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output /home/agricolamz/work/packages/phonfieldwork/docs/s1/stimuli_viewer.html --email-obfuscation none --self-contained --standalone --section-divs --template /home/agricolamz/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable &#39;theme:bootstrap&#39; --include-in-header /tmp/RtmpG7A8W8/rmarkdown-str15f138259130.html --mathjax --variable &#39;mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#39; --metadata pagetitle=skeleton.utf8.md --lua-filter /home/agricolamz/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/lua/pagebreak.lua --lua-filter /home/agricolamz/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/lua/latex-div.lua</code></pre>
 <p>As a result, a <code>stimuli_viewer.html</code> was created in the <code>s1</code> folder.</p>
 <pre><code>## │   │   ├── 01.wav
 ## │   │   ├── 02.wav
