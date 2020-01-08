@@ -18,7 +18,7 @@ a string or vector of strings
 Create audio play objects for html viewer
 }
 \examples{
-create_image_look_up("path/to/your/file")
+create_sound_play("path/to/your/file")
 
 }
 \author{

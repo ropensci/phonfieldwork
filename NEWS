@@ -1,4 +1,6 @@
-phonfieldwork 0.0.3 (24.09.2019)
+phonfieldwork 0.0.4 (...2020)
+
+phonfieldwork 0.0.3 (07.01.2020)
   - vertically and horisontally center text in presentations created by "create_presentation()"; thx @Pandaklez #1
   - add the "font_size" argument to the "create_presentation()" function
   - add "rename_videofiles()" function

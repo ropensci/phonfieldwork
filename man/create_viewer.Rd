@@ -11,8 +11,7 @@ create_viewer(
   tiers = 1,
   merge_column,
   caption_column = NULL,
- 
-    about = "This page were created with the [phonfieldworks](https://github.com/agricolamz/phonfieldwork) package for R",
+  about = "This page were created with the phonfieldworks package for R",
   output_dir,
   output_file = "stimuli_viewer",
   render = TRUE
@@ -27,13 +26,17 @@ create_viewer(
 
 \item{tiers}{vecors of numbers or names of TextGrid tiers. They merged into a table and used in the created viewer.}
 
+\item{merge_column}{string with a column name that will be used for merging stimuli and video and audio viewer.}
+
+\item{caption_column}{string with a column name that will be used for captions for a picture (by defaul is the same as merge_column).}
+
+\item{about}{it is either .Rmd file or string with the text for about}
+
 \item{output_dir}{the output directory for the rendered file}
 
 \item{output_file}{the name of the result .html file (by default stimuli_viewer)}
 
 \item{render}{the logical argument, if \code{TRUE} renders the created R Markdown viewer to the \code{output_dir} folder, otherwise returns the path to the temporary file with a .csv file.}
-
-\item{keep_rmd}{the logical argument, if \code{TRUE} keeps the created R Markdown file in the \code{output_dir} folder, otherwise removes it.}
 }
 \value{
 If \code{render} is \code{FALSE}, the function returns a path to the temporary file with .csv file. If \code{render} is \code{TRUE}, there is no output in a function.

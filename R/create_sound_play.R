@@ -7,7 +7,7 @@
 #' @return a string or vector of strings
 #'
 #' @examples
-#' create_image_look_up("path/to/your/file")
+#' create_sound_play("path/to/your/file")
 #'
 #' @export
 #'
