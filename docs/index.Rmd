@@ -219,28 +219,38 @@ annotate_textgrid(annotation = my_stimuli_df$stimuli,
 
 As you can see in the example, the `annotate_textgrid()` function creates a backup of the tier and adds a new tier on top of the previous one. It is possible to prevent the function from doing so by setting the `backup` argument to `FALSE`.
 
-It is possible to annotate every second (third, fourth, etc.) interval. Imagine that someone annotated each vowel in the recording, so the TextGrid will look as follows:
+Imagine that we are interested in annotation of vowels. The most common solution will be open Praat and create new annotations. But it is also possible to create them in advance using subannotations. The idea that you choose some baseline tier that later will be automatically cutted into smaller pieces on the other tier.
 
-```{r, include=FALSE}
-annotation <- read.csv("annotation_of_s1.csv")
-annotation$annotation <- ""
-df_to_tier(df = annotation, textgrid = "s1/s1_all.TextGrid") 
+```{r}
+create_subannotation(textgrid = "s1/s1_all.TextGrid", 
+                     tier = 1, # this is a baseline tier
+                     n_of_annotations = 3) # how many empty annotations per unit?
 ```
 
 ![](images/03_annotate_textgrid_result.png)
 
-Now you can use the second column in `my_stimuli_df`, which contains vowels.
+Now we can annotate created tier:
 
 ```{r}
-my_stimuli_df$vowel
-annotate_textgrid(annotation = my_stimuli_df$vowel,
+annotate_textgrid(annotation = c("", "ı", "", "", "æ", "", "", "ɒ", ""),
                   textgrid = "s1/s1_all.TextGrid",
-                  each = 2,
                   tier = 3, 
                   backup = FALSE)
 ```
 
 ![](images/04_annotate_textgrid_result.png)
+
+You can see that we created a third tier with annotation. The only thing left is to move annotation boundaries in Praat (this can not be automated):
+
+```{r, include=FALSE}
+writeLines(readLines("s1/s1_all.TextGrid")[1:44], "s1/s1_all.TextGrid")
+df_to_tier(df = read.csv("annotation_of_s1.csv"), 
+           textgrid = "s1/s1_all.TextGrid", 
+           overwrite = TRUE) 
+```
+
+![](images/05_annotate_textgrid_result.png)
+
 You can see from the last figure that no backup tier was created (`backup = FALSE`), that the third tier was annotated (`tier = 3`), and that an annotation was performed in every second interval (`each = 2`).
 
 ## Extracting your data

@@ -70,7 +70,7 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE){
     paste0(tier_type, ": size = ", nrow(df), " "),
     unlist(all_annotations)
   )
-  if(isTRUE(overwrite)){
+  if(overwrite){
     writeLines(append(tg, add_tier), textgrid)
   } else {
     append(tg, add_tier)

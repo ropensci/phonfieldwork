@@ -4,7 +4,7 @@ Object class = "TextGrid"
 xmin = 0 
 xmax = 1.39421768707483
 tiers? <exists> 
-size = 3 
+size = 4 
 item []: 
     item [1]:
         class = "IntervalTier"
@@ -42,39 +42,45 @@ item []:
         intervals [3]:
             xmin = 0.912063492063492
             xmax = 1.39421768707483
-            text = "s1_top.wav"
-
-    item [3]:
+    item [4]:
         class = "IntervalTier" 
         name = "" 
         xmin = 0
         xmax = 1.39421768707483
-        intervals: size = 7 
+        intervals: size = 9 
         intervals [1]:
             xmin = 0
-            xmax = 0.108702066839713
+            xmax = 0.0981938873393881
             text = "" 
         intervals [2]:
-            xmin = 0.108702066839713
-            xmax = 0.184762881187424
+            xmin = 0.0981938873393881
+            xmax = 0.180033198124212
             text = "ı" 
         intervals [3]:
-            xmin = 0.184762881187424
-            xmax = 0.577955857574024
+            xmin = 0.180033198124212
+            xmax = 0.482154195011338
             text = "" 
         intervals [4]:
-            xmin = 0.577955857574024
-            xmax = 0.689276652082925
-            text = "æ" 
-        intervals [5]:
-            xmin = 0.689276652082925
-            xmax = 1.03734416788977
+            xmin = 0.482154195011338
+            xmax = 0.578069846032217
             text = "" 
+        intervals [5]:
+            xmin = 0.578069846032217
+            xmax = 0.691528890529359
+            text = "æ" 
         intervals [6]:
-            xmin = 1.03734416788977
-            xmax = 1.13213917296352
-            text = "ɒ" 
+            xmin = 0.691528890529359
+            xmax = 0.912063492063492
+            text = "" 
         intervals [7]:
-            xmin = 1.13213917296352
+            xmin = 0.912063492063492
+            xmax = 1.03562599269282
+            text = "" 
+        intervals [8]:
+            xmin = 1.03562599269282
+            xmax = 1.13048519382978
+            text = "ɒ" 
+        intervals [9]:
+            xmin = 1.13048519382978
             xmax = 1.39421768707483
             text = "" 

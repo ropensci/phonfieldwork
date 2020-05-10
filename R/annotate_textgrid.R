@@ -19,6 +19,8 @@
 #'
 #' @export
 #'
+#' @importFrom tuneR readWave
+#'
 
 annotate_textgrid <- function(annotation,
                               textgrid,
@@ -33,7 +35,6 @@ annotate_textgrid <- function(annotation,
   } else{
     tg <- readLines(normalizePath(textgrid))
   }
-
 
 # get start and end info about tiers --------------------------------------
   starts <- grep("item \\[\\d{1,}\\]:", tg)
@@ -92,7 +93,7 @@ annotate_textgrid <- function(annotation,
   tg[starts[tier_number]:ends[tier_number]] <- w_tier
 
 # write the result TextGrid -----------------------------------------------
-  if (isTRUE(write)) {
+  if (write) {
     writeLines(tg, normalizePath(textgrid))
   } else {
     return(tg)

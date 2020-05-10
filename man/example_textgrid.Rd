@@ -4,7 +4,9 @@
 \name{example_textgrid}
 \alias{example_textgrid}
 \title{Praat TextGrid example file}
-\format{A character vector of the length 52}
+\format{
+A character vector of the length 52
+}
 \usage{
 example_textgrid
 }
