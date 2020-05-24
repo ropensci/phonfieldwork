@@ -29,7 +29,7 @@ create_viewer <- function(audio_dir,
                           tiers = 1,
                           merge_column,
                           caption_column = NULL,
-                          about = "This page were created with the `phonfieldworks` package (Moroz 2019) for R (R Core Team 2020).",
+                          about = "Created with the `phonfieldworks` package (Moroz 2019).",
                           output_dir,
                           output_file = "stimuli_viewer",
                           render = TRUE){
