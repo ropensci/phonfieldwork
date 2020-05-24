@@ -16,7 +16,7 @@ a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_na
 Convert .eaf file from ELAN to a dataframe.
 }
 \examples{
-# eaf_to_df(example_eaf)
+eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 
 }
 \author{

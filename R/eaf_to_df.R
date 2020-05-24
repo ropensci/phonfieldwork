@@ -8,7 +8,7 @@
 #' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{ts_start}, \code{ts_end}, \code{a_id}, \code{ar}).
 #'
 #' @examples
-#' # eaf_to_df(example_eaf)
+#' eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 #'
 #' @export
 #' @importFrom xml2 read_xml
@@ -55,10 +55,38 @@ eaf_to_df <- function(eaf){
   r <- Reduce(rbind, r)
 
   # extract info about time
-  ts <- data.frame(ts_id = xml_attr(xml_find_all(l, "TIME_ORDER/TIME_SLOT"),
-                                    "TIME_SLOT_ID"),
-                   time_value = as.numeric(xml_attr(xml_find_all(l, "TIME_ORDER/TIME_SLOT"),
-                                                    "TIME_VALUE")),
+  ts <- data.frame(
+    ts_id = xml2::xml_attr(
+      xml2::xml_find_all(l, "TIME_ORDER/TIME_SLOT"), "TIME_SLOT_ID"),
+    time_value = as.numeric(xml2::xml_attr(
+      xml2::xml_find_all(l, "TIME_ORDER/TIME_SLOT"), "TIME_VALUE"))/1000,
                    stringsAsFactors = FALSE)
+
+
+  # df with time markers
+  tm <- r[is.na(r$ar), c("ts_start", "ts_end", "a_id")]
+  # df without time markers
+  wtm <- r[!is.na(r$ar), c("a_id", "ar")]
+
+  # create df with all time stamp
+  while(nrow(tm) < nrow(r)){
+    df <- unique(merge(x = wtm,
+                       y = tm,
+                       by.x = "ar",
+                       by.y = "a_id")[, c("ts_start", "ts_end", "a_id")])
+    tm <- unique(rbind(tm, df))
+  }
+
+  # result df with time stamps
+  r <- merge(r[,-c(6:7)], tm)
+  # merge with time stamp df ts_start column
+  r <- merge(r, ts, by.x = "ts_start", by.y = "ts_id")
+  names(r)[names(r) == "time_value"] <- "time_start"
+  # merge with time stamp df ts_end column
+  r <- merge(r, ts, by.x = "ts_end", by.y = "ts_id")
+  names(r)[names(r) == "time_value"] <- "time_end"
+
+  # make sorting and remove some columns
+  r <- r[order(r$tier, r$id), -c(1:3, 9)]
   return(r)
 }
