@@ -14,6 +14,8 @@
 - creating an oscilogram and a spectrogram from a sound
 - creating an html viewer [like this](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html)
 
+For more ditails see [tutorial](https://agricolamz.github.io/phonfieldwork/).
+
 ## Installation
 
 Install from CRAN:
