@@ -37,6 +37,5 @@ library(phonfieldwork)
 
 ## To do:
 
-* import EXMARALDA files
 * export to ELAN, EXMARALDA files
 * add textgrid visualisation
