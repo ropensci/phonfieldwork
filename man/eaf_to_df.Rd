@@ -7,7 +7,7 @@
 eaf_to_df(eaf)
 }
 \arguments{
-\item{eaf}{string with a filename or path to the TextGrid}
+\item{eaf}{string with a filename or path to the .eaf file}
 }
 \value{
 a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{ts_start}, \code{ts_end}, \code{a_id}, \code{ar}).

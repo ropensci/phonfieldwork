@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- (c) http://www.rrz.uni-hamburg.de/exmaralda -->
+<basic-transcription>
+<head>
+<meta-information><project-name></project-name><transcription-name></transcription-name><referenced-file url="../work/packages/phonfieldwork/inst/extdata/test.wav"/><ud-meta-information></ud-meta-information><comment></comment><transcription-convention></transcription-convention></meta-information><speakertable><speaker id="SPK0">
+<abbreviation>X</abbreviation>
+<sex value="m"/>
+<languages-used></languages-used>
+<l1></l1>
+<l2></l2>
+<ud-speaker-information>
+</ud-speaker-information>
+<comment></comment>
+</speaker>
+</speakertable></head>
+<basic-body>
+<common-timeline>
+<tli id="T0" time="0.0"/>
+<tli id="T2" time="0.06908954695967941"/>
+<tli id="T3" time="0.24989836134352122"/>
+<tli id="T1" time="0.38072750345865886"/>
+<tli id="T4" time="0.40424734923216676"/>
+<tli id="T6" time="0.652675747"/>
+</common-timeline>
+<tier id="TIE0" speaker="SPK0" category="v" type="t" display-name="X [v]"><event start="T2" end="T3">t</event>
+<event start="T3" end="T1">e</event>
+<event start="T1" end="T4">s</event>
+<event start="T4" end="T6">t</event>
+</tier><tier id="TIE1" speaker="SPK0" category="v" type="a" display-name="X [v]"><event start="T2" end="T3">C</event>
+<event start="T3" end="T1">V</event>
+<event start="T1" end="T4">C</event>
+<event start="T4" end="T6">C</event>
+</tier></basic-body>
+</basic-transcription>
