@@ -4,14 +4,14 @@
 \alias{concatenate_soundfiles}
 \title{Concatenate sounds}
 \usage{
-concatenate_soundfiles(file_name, path, textgrid = TRUE)
+concatenate_soundfiles(file_name, path, annotation = "TextGrid")
 }
 \arguments{
-\item{file_name}{name of the result files (and TextGrid, if this argument equal TRUE).}
+\item{file_name}{name of the result and annotation files.}
 
 \item{path}{path to the directory with soundfiles.}
 
-\item{textgrid}{logic value, whether create Praat TextGrid whose interval labels are the original names of the sound.}
+\item{annotation}{there are several variants: "textgrid" for Praat TextGrid, "eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file}
 }
 \value{
 

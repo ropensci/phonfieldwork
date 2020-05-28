@@ -1,6 +1,7 @@
 phonfieldwork 0.0.5 (24.05.2020)
   - add "eaf_to_df()" function for reading ELAN files
   - add "exb_to_df()" function for reading EXMARaLDA files
+  - rename "textgrid" argument into "annotation" argument in "concatenate_soundfiles()" function adding new possible values
 
 phonfieldwork 0.0.4 (10.05.2020)
   - add "create_subannotation()" function

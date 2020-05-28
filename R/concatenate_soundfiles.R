@@ -5,8 +5,8 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param path path to the directory with soundfiles.
-#' @param file_name name of the result files (and TextGrid, if this argument equal TRUE).
-#' @param textgrid logic value, whether create Praat TextGrid whose interval labels are the original names of the sound.
+#' @param file_name name of the result and annotation files.
+#' @param annotation there are several variants: "textgrid" for Praat TextGrid, "eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file
 #' @return
 #'
 #' @examples
@@ -35,7 +35,7 @@
 
 concatenate_soundfiles <- function(file_name,
                                    path,
-                                   textgrid = TRUE){
+                                   annotation = "TextGrid"){
 
 # concatenate sounds ------------------------------------------------------
 
@@ -58,7 +58,7 @@ concatenate_soundfiles <- function(file_name,
   tuneR::writeWave(sound, paste0(path, "/", file_name, ".wav"))
 # create a TextGrid -------------------------------------------------------
 
-  if(isTRUE(textgrid)){
+  if(annotation == "textgrid"){
     duration <- unlist(lapply(list, function(i){length(i@left)/i@samp.rate}))
     start_time <- c(0, cumsum(duration[-length(duration)]))
     end_time <- cumsum(duration)
@@ -94,6 +94,15 @@ concatenate_soundfiles <- function(file_name,
                         "\n",
                         collapse = "")),
                paste0(path, "/", file_name, ".TextGrid"))
+  } else if(annotation == "eaf"){
+    print("Will be done in the future")
+  } else if(annotation == "exb"){
+    print("Will be done in the future")
+  } else if(annotation != "exb" &
+            annotation != "eaf" &
+            annotation != "TextGrid" &
+            !is.null(annotation)){
+    warning('Annotation was not created. The only variant for annotation argument are: "textgrid", "eaf", "exb" or NULL')
   }
 }
 
