@@ -35,7 +35,8 @@
 
 concatenate_soundfiles <- function(file_name,
                                    path,
-                                   annotation = "TextGrid"){
+                                   annotation = "TextGrid",
+                                   options = NULL){
 
 # concatenate sounds ------------------------------------------------------
 
@@ -97,6 +98,14 @@ concatenate_soundfiles <- function(file_name,
   } else if(annotation == "eaf"){
     print("Will be done in the future")
   } else if(annotation == "exb"){
+      # options = list(sp_id = c(),
+      #              sp_abbreviation = c(),
+      #              sp_sex = c(),
+      #              sp_language_used = c(),
+      #              sp_l1 = c(),
+      #              sp_l2 = c(),
+      #              sp_atr = list(list(attr_names = c(),
+      #                                 attr_values = c())))
     print("Will be done in the future")
   } else if(annotation != "exb" &
             annotation != "eaf" &
