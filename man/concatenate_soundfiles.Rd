@@ -4,7 +4,12 @@
 \alias{concatenate_soundfiles}
 \title{Concatenate sounds}
 \usage{
-concatenate_soundfiles(file_name, path, annotation = "TextGrid")
+concatenate_soundfiles(
+  file_name,
+  path,
+  annotation = "TextGrid",
+  options = NULL
+)
 }
 \arguments{
 \item{file_name}{name of the result and annotation files.}

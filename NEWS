@@ -1,4 +1,5 @@
 phonfieldwork 0.0.5 (24.05.2020)
+  - add "flextext_to_df()" function for reading FLEx files
   - add "eaf_to_df()" function for reading ELAN files
   - add "exb_to_df()" function for reading EXMARaLDA files
   - rename "textgrid" argument into "annotation" argument in "concatenate_soundfiles()" function adding new possible values
