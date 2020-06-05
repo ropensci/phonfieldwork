@@ -1656,7 +1656,7 @@ devtools::install_github(&quot;agricolamz/phonfieldwork&quot;)</code></pre>
 <pre class="r"><code>library(&quot;phonfieldwork&quot;)</code></pre>
 <p>This tutorial was made using the following version of <code>phonfieldwork</code>:</p>
 <pre class="r"><code>packageVersion(&quot;phonfieldwork&quot;)</code></pre>
-<pre><code>## [1] &#39;0.0.4&#39;</code></pre>
+<pre><code>## [1] &#39;0.0.5&#39;</code></pre>
 <p>This tutorial can be cited as follows:</p>
 <pre class="r"><code>citation(&quot;phonfieldwork&quot;)</code></pre>
 <pre><code>## 
@@ -1988,6 +1988,32 @@ Your browser does not support iframes :(
 ## ├── second_example_files
 ## └── second_example.html</code></pre>
 <p>You can find the created example <a href="https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html">here</a>.</p>
+</div>
+<div id="read-files-to-r" class="section level2">
+<h2><span class="header-section-number">4.9</span> Read files to R</h2>
+<p>The <code>phonfieldwork</code> package provides also several methods for reading several file types into R (just change the <code>system.file()</code> function to path to the file):</p>
+<ul>
+<li>file <code>.eaf</code> from ELAN</li>
+</ul>
+<pre class="r"><code>eaf_to_df(system.file(&quot;extdata&quot;, &quot;test.eaf&quot;, package = &quot;phonfieldwork&quot;))</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["tier"],"name":[1],"type":["int"],"align":["right"]},{"label":["id"],"name":[2],"type":["int"],"align":["right"]},{"label":["content"],"name":[3],"type":["chr"],"align":["left"]},{"label":["tier_name"],"name":[4],"type":["chr"],"align":["left"]},{"label":["tier_type"],"name":[5],"type":["chr"],"align":["left"]},{"label":["time_start"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["time_end"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"1","3":"","4":"intervals","5":"praat","6":"0.000","7":"0.012","_rn_":"9"},{"1":"1","2":"2","3":"t","4":"intervals","5":"praat","6":"0.012","7":"0.248","_rn_":"11"},{"1":"1","2":"3","3":"e","4":"intervals","5":"praat","6":"0.248","7":"0.396","_rn_":"1"},{"1":"1","2":"4","3":"s","4":"intervals","5":"praat","6":"0.396","7":"0.512","_rn_":"3"},{"1":"1","2":"5","3":"t","4":"intervals","5":"praat","6":"0.512","7":"0.653","_rn_":"5"},{"1":"1","2":"6","3":"","4":"intervals","5":"praat","6":"0.653","7":"300.000","_rn_":"7"},{"1":"2","2":"1","3":"","4":"empty_intervals","5":"praat","6":"0.000","7":"0.012","_rn_":"10"},{"1":"2","2":"2","3":"C","4":"empty_intervals","5":"praat","6":"0.012","7":"0.248","_rn_":"12"},{"1":"2","2":"3","3":"V","4":"empty_intervals","5":"praat","6":"0.248","7":"0.396","_rn_":"2"},{"1":"2","2":"4","3":"C","4":"empty_intervals","5":"praat","6":"0.396","7":"0.512","_rn_":"4"},{"1":"2","2":"5","3":"C","4":"empty_intervals","5":"praat","6":"0.512","7":"0.653","_rn_":"6"},{"1":"2","2":"6","3":"","4":"empty_intervals","5":"praat","6":"0.653","7":"300.000","_rn_":"8"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ul>
+<li>file <code>.exb</code> from EXMARaLDA</li>
+</ul>
+<pre class="r"><code>exb_to_df(system.file(&quot;extdata&quot;, &quot;test.exb&quot;, package = &quot;phonfieldwork&quot;))</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["tier"],"name":[1],"type":["int"],"align":["right"]},{"label":["id"],"name":[2],"type":["int"],"align":["right"]},{"label":["content"],"name":[3],"type":["chr"],"align":["left"]},{"label":["tier_name"],"name":[4],"type":["chr"],"align":["left"]},{"label":["tier_type"],"name":[5],"type":["chr"],"align":["left"]},{"label":["tier_category"],"name":[6],"type":["chr"],"align":["left"]},{"label":["tier_speaker"],"name":[7],"type":["chr"],"align":["left"]},{"label":["time_start"],"name":[8],"type":["chr"],"align":["left"]},{"label":["time_end"],"name":[9],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"1","3":"t","4":"X [v]","5":"t","6":"v","7":"SPK0","8":"0.06908954695967941","9":"0.24989836134352122","_rn_":"3"},{"1":"1","2":"2","3":"e","4":"X [v]","5":"t","6":"v","7":"SPK0","8":"0.24989836134352122","9":"0.38072750345865886","_rn_":"1"},{"1":"1","2":"3","3":"s","4":"X [v]","5":"t","6":"v","7":"SPK0","8":"0.38072750345865886","9":"0.40424734923216676","_rn_":"5"},{"1":"1","2":"4","3":"t","4":"X [v]","5":"t","6":"v","7":"SPK0","8":"0.40424734923216676","9":"0.652675747","_rn_":"7"},{"1":"2","2":"1","3":"C","4":"X [v]","5":"a","6":"v","7":"SPK0","8":"0.06908954695967941","9":"0.24989836134352122","_rn_":"4"},{"1":"2","2":"2","3":"V","4":"X [v]","5":"a","6":"v","7":"SPK0","8":"0.24989836134352122","9":"0.38072750345865886","_rn_":"2"},{"1":"2","2":"3","3":"C","4":"X [v]","5":"a","6":"v","7":"SPK0","8":"0.38072750345865886","9":"0.40424734923216676","_rn_":"6"},{"1":"2","2":"4","3":"C","4":"X [v]","5":"a","6":"v","7":"SPK0","8":"0.40424734923216676","9":"0.652675747","_rn_":"8"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ul>
+<li>file <code>.flextext</code> from FLEx</li>
+</ul>
+<pre class="r"><code>flextext_to_df(&quot;your_file.flextext&quot;)</code></pre>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">

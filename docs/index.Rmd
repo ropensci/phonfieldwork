@@ -337,4 +337,24 @@ tree | tail -n 26 | head -n 24
 
 You can find the created example [here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html).
 
+## Read files to R
+
+The `phonfieldwork` package provides also several methods for reading several file types into R (just change the `system.file()` function to path to the file):
+
+* file `.eaf` from ELAN
+```{r}
+eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
+```
+
+* file `.exb` from EXMARaLDA
+```{r}
+exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
+```
+
+* file `.flextext` from FLEx
+
+```{r, eval=FALSE}
+flextext_to_df("your_file.flextext")
+```
+
 # References
