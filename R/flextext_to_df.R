@@ -5,7 +5,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param flextext string with a filename or path to the .flextext file
-#' @return a dataframe with columns: \code{txt}, \code{cf}, \code{hn}, \code{gls}, \code{msa}, \code{morph}, \code{word}, \code{phrase}, \code{paragraph}, \code{text}, \code{text_title}
+#' @return a dataframe with columns: \code{s_id} (that has structure paragraph_id.phrase_id), \code{txt}, \code{cf}, \code{hn}, \code{gls}, \code{msa}, \code{morph}, \code{word}, \code{phrase}, \code{paragraph}, \code{free_trans}, \code{text}, \code{text_title}
 #'
 #' @export
 #' @importFrom xml2 read_xml
@@ -13,28 +13,31 @@
 #' @importFrom xml2 xml_attr
 #' @importFrom xml2 xml_text
 #' @importFrom xml2 xml_children
+#' @importFrom xml2 xml_child
 
 flextext_to_df <- function(flextext){
   l <- xml2::read_xml(flextext)
-  l <- xml_find_all(l, 'interlinear-text')
+  l <- xml2::xml_find_all(l, 'interlinear-text')
   lapply(seq_along(l), function(i){
     t <- xml2::xml_find_all(l[[i]], "paragraphs/paragraph/phrases/phrase/words/word/morphemes/morph")
     lapply(seq_along(t), function(j){
       morph <- xml2::xml_attr(t[[j]], "guid")
       other <- unlist(xml2::xml_attrs(xml2::xml_parents(t[[j]]), "guid"))
       values <- xml2::xml_text(xml2::xml_children(t[[j]]))
-      title <- xml2::xml_text(xml_child(xml2::xml_parents(t[[j]])[[8]]))
+      title <- xml2::xml_text(xml2::xml_child(xml2::xml_parents(t[[j]])[[8]]))
+      free_trans <- xml2::xml_text(xml2::xml_child(xml2::xml_parents(t[[j]])[[4]], 3))
       data.frame(txt = values[1],
                  cf = values[2],
                  hn = values[3],
                  gls = values[4],
                  msa = values[5],
+                 free_trans = free_trans,
+                 text_title = title,
                  morph = morph,
                  word = other[1],
                  phrase = other[2],
                  paragraph = other[3],
-                 text = other[4],
-                 text_title = title)
+                 text = other[4])
     }) ->
       result_df
     Reduce(rbind, result_df)
@@ -42,7 +45,11 @@ flextext_to_df <- function(flextext){
     text_df
   text_df <- Reduce(rbind, text_df)
   rownames(text_df) <- seq_along(text_df$text)
+  text_df <- as.data.frame(apply(text_df, 2, function(x){ifelse(is.na(x), "", x)}))
+  index <- data.frame(s_id = as.numeric(factor(text_df$phrase,
+                                               levels = unique(text_df$phrase))),
+                      p_id = as.numeric(factor(text_df$paragraph,
+                                               levels = unique(text_df$paragraph))))
+  text_df <- cbind(index, text_df)
   return(text_df)
 }
-
-
