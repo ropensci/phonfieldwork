@@ -3,6 +3,7 @@
 export(add_leading_symbols)
 export(annotate_textgrid)
 export(concatenate_soundfiles)
+export(create_glossed_document)
 export(create_image_look_up)
 export(create_presentation)
 export(create_sound_play)

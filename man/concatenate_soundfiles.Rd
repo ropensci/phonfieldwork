@@ -7,7 +7,7 @@
 concatenate_soundfiles(
   file_name,
   path,
-  annotation = "TextGrid",
+  annotation = "textgrid",
   options = NULL
 )
 }

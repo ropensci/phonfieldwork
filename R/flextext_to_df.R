@@ -51,5 +51,7 @@ flextext_to_df <- function(flextext){
   text_df <- Reduce(rbind, text_df)
   rownames(text_df) <- seq_along(text_df$text)
   text_df <- as.data.frame(apply(text_df, 2, function(x){ifelse(is.na(x), "", x)}))
+  text_df$s_id <- as.numeric(text_df$s_id)
+  text_df$p_id <- as.numeric(text_df$p_id)
   return(text_df)
 }

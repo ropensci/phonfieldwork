@@ -1660,7 +1660,7 @@ devtools::install_github(&quot;agricolamz/phonfieldwork&quot;)</code></pre>
 <p>This tutorial can be cited as follows:</p>
 <pre class="r"><code>citation(&quot;phonfieldwork&quot;)</code></pre>
 <pre><code>## 
-## Moroz G (2019). _Phonetic fieldwork and experiments with phonfieldwork
+## Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork
 ## package_. &lt;URL: https://CRAN.R-project.org/package=phonfieldwork&gt;.
 ## 
 ## A BibTeX entry for LaTeX users is
@@ -1668,7 +1668,7 @@ devtools::install_github(&quot;agricolamz/phonfieldwork&quot;)</code></pre>
 ##   @Manual{,
 ##     title = {Phonetic fieldwork and experiments with phonfieldwork package},
 ##     author = {George Moroz},
-##     year = {2019},
+##     year = {2020},
 ##     url = {https://CRAN.R-project.org/package=phonfieldwork},
 ##   }</code></pre>
 <p>If you have any trouble using the package, do not hesitate to create <a href="https://github.com/agricolamz/phonfieldwork/issues/new">an issue on Github</a>.</p>
@@ -2014,6 +2014,8 @@ Your browser does not support iframes :(
 <li>file <code>.flextext</code> from FLEx</li>
 </ul>
 <pre class="r"><code>flextext_to_df(&quot;your_file.flextext&quot;)</code></pre>
+<p>There is also an additional function for working with the <code>.flextext</code> format that convert it to a plain <code>.html</code> or <code>docx</code> format:</p>
+<pre class="r"><code>create_glossed_text(flextext = &quot;your_file.flextext&quot;, output_dir = getwd())</code></pre>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">

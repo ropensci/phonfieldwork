@@ -357,4 +357,11 @@ exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 flextext_to_df("your_file.flextext")
 ```
 
+There is also an additional function for working with the `.flextext` format that convert it to a plain `.html` or `docx` format:
+
+```{r, eval = FALSE}
+create_glossed_text(flextext = "your_file.flextext", output_dir = getwd())
+```
+
+
 # References
