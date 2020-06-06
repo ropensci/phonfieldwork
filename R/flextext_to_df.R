@@ -40,16 +40,16 @@ flextext_to_df <- function(flextext){
                  text = other[4])
     }) ->
       result_df
-    Reduce(rbind, result_df)
+    df <- Reduce(rbind, result_df)
+    index <- data.frame(s_id = as.numeric(factor(df$phrase,
+                                                 levels = unique(df$phrase))),
+                        p_id = as.numeric(factor(df$paragraph,
+                                                 levels = unique(df$paragraph))))
+    cbind(index, df)
   }) ->
     text_df
   text_df <- Reduce(rbind, text_df)
   rownames(text_df) <- seq_along(text_df$text)
   text_df <- as.data.frame(apply(text_df, 2, function(x){ifelse(is.na(x), "", x)}))
-  index <- data.frame(s_id = as.numeric(factor(text_df$phrase,
-                                               levels = unique(text_df$phrase))),
-                      p_id = as.numeric(factor(text_df$paragraph,
-                                               levels = unique(text_df$paragraph))))
-  text_df <- cbind(index, text_df)
   return(text_df)
 }
