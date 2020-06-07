@@ -1993,6 +1993,15 @@ Your browser does not support iframes :(
 <h2><span class="header-section-number">4.9</span> Read files to R</h2>
 <p>The <code>phonfieldwork</code> package provides also several methods for reading several file types into R (just change the <code>system.file()</code> function to path to the file):</p>
 <ul>
+<li>file <code>.TextGrid</code> from Praat</li>
+</ul>
+<pre class="r"><code>textgrid_to_df(example_textgrid)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["start"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["end"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["annotation"],"name":[4],"type":["chr"],"align":["left"]},{"label":["tier"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"0.00000000","3":"0.01246583","4":"","5":"1","_rn_":"1"},{"1":"1","2":"0.00000000","3":"0.01246583","4":"","5":"2","_rn_":"6"},{"1":"2","2":"0.01246583","3":"0.24781914","4":"t","5":"1","_rn_":"2"},{"1":"2","2":"0.01246583","3":"0.24781914","4":"","5":"2","_rn_":"7"},{"1":"1","2":"0.01246583","3":"0.01246583","4":"t","5":"3","_rn_":"11"},{"1":"3","2":"0.24781914","3":"0.39552363","4":"e","5":"1","_rn_":"3"},{"1":"3","2":"0.24781914","3":"0.39552363","4":"","5":"2","_rn_":"8"},{"1":"2","2":"0.24781914","3":"0.24781914","4":"e","5":"3","_rn_":"12"},{"1":"4","2":"0.39552363","3":"0.51157715","4":"s","5":"1","_rn_":"4"},{"1":"4","2":"0.39552363","3":"0.51157715","4":"","5":"2","_rn_":"9"},{"1":"3","2":"0.39552363","3":"0.39552363","4":"s","5":"3","_rn_":"13"},{"1":"5","2":"0.51157715","3":"0.65267574","4":"t","5":"1","_rn_":"5"},{"1":"5","2":"0.51157715","3":"0.65267574","4":"","5":"2","_rn_":"10"},{"1":"4","2":"0.51157715","3":"0.51157715","4":"t","5":"3","_rn_":"14"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ul>
 <li>file <code>.eaf</code> from ELAN</li>
 </ul>
 <pre class="r"><code>eaf_to_df(system.file(&quot;extdata&quot;, &quot;test.eaf&quot;, package = &quot;phonfieldwork&quot;))</code></pre>

@@ -341,6 +341,12 @@ You can find the created example [here](https://agricolamz.github.io/phonfieldwo
 
 The `phonfieldwork` package provides also several methods for reading several file types into R (just change the `system.file()` function to path to the file):
 
+* file `.TextGrid` from Praat
+```{r}
+textgrid_to_df(example_textgrid)
+```
+
+
 * file `.eaf` from ELAN
 ```{r}
 eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))

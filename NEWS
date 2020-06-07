@@ -1,4 +1,5 @@
 phonfieldwork 0.0.5 (07.06.2020)
+  - add "textgrid_to_df()" function for reading Praat files
   - add "create_glossed_document()" function for converting .flextext files into a glossed document
   - add "flextext_to_df()" function for reading FLEx files
   - add "eaf_to_df()" function for reading ELAN files
