@@ -6,13 +6,16 @@
 \usage{
 create_glossed_document(
   flextext = NULL,
+  rows = c("gls"),
   output_dir,
   output_file = "glossed_document",
-  output_format = "html"
+  output_format = "docx"
 )
 }
 \arguments{
 \item{flextext}{path to a .flextext file.}
+
+\item{rows}{vector of row names from the flextext that should appear in the final document. Possible values are: "cf", "hn", "gls", "msa". "gls" is default.}
 
 \item{output_dir}{the output directory for the rendered file}
 

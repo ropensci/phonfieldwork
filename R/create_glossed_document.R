@@ -5,7 +5,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param flextext path to a .flextext file.
-#' @param rows vetcor of rows from the flextext should be appear in the final document. Possible values are: "cf", "hn", "gls", "msa". "gls" is default.
+#' @param rows vector of row names from the flextext that should appear in the final document. Possible values are: "cf", "hn", "gls", "msa". "gls" is default.
 #' @param output_file the name of the result .html file (by default stimuli_viewer)
 #' @param output_dir the output directory for the rendered file
 #' @param output_format The option can be "html" or "docx"
