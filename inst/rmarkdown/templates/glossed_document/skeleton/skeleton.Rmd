@@ -2,6 +2,7 @@
 title: "Glossed document by phonfieldwork [Moroz 2020]"
 params:
   data: your_file.csv
+  rows: rows
 editor_options: 
   chunk_output_type: console
 ---
@@ -9,28 +10,43 @@ editor_options:
 ```{r make_viewer, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 df <- read.csv(params$data, stringsAsFactors = FALSE)
 
+all_rows <- c("cf", "hn", "gls", "msa")
+
 library(dplyr)
 library(tidyr)
 df %>%
   group_by(text_title, p_id, s_id, free_trans, word) %>%
-  summarise(words = paste0(txt, collapse = ""),
+  summarise(txt = paste0(txt, collapse = ""),
+            cf = paste0(cf, collapse = "-"),
+            hn = paste0(hn, collapse = "-"),
+            msa = paste0(msa, collapse = "-"),
             gls = paste0(gls, collapse = "-")) %>%
   group_by(text_title, p_id, s_id, free_trans) %>%
-  summarise(words = paste0(words, collapse = "&#x09;"),
+  summarise(txt = paste0(txt, collapse = "&#x09;"),
+            cf = paste0(cf, collapse = "&#x09;"),
+            hn = paste0(hn, collapse = "&#x09;"),
+            msa = paste0(msa, collapse = "&#x09;"),
             gls = paste0(gls, collapse = "&#x09;")) %>% 
-  mutate(words = paste0(s_id, "\\.&#x09;", words, "\n\n&#x09;"),
+  mutate(txt = paste0(s_id, "\\.&#x09;", txt, "\n\n&#x09;"),
+         cf = paste0(cf, "\n\n&#x09;"),
+         hn = paste0(hn, "\n\n&#x09;"),
+         msa = paste0(msa, "\n\n&#x09;"),
          gls = paste0(gls, "\n\n&#x09;"),
          free_trans = paste0(free_trans, "\n\n")) %>% 
-  select(text_title, p_id, s_id, words, gls, free_trans) %>% 
+  select(text_title, p_id, s_id, txt, cf, hn, msa, gls, free_trans) %>% 
   ungroup() %>% 
   add_row(tibble(text_title = unique(.$text_title),
-                   p_id = 0,
-                   s_id = 0,
-                   words = paste0("\n\n## ", unique(.$text_title), "\n\n"),
-                   gls = NA,
-                   free_trans = NA), .before = 1) %>% 
+                 p_id = 0,
+                 s_id = 0,
+                 txt = paste0("\n\n## ", unique(.$text_title), "\n\n"),
+                 cf = NA,
+                 hn = NA,
+                 msa = NA,
+                 gls = NA,
+                 free_trans = NA), .before = 1)  %>% 
   arrange(text_title, p_id, s_id) %>% 
-  pivot_longer(names_to = "type", values_to = "value", words:free_trans) %>% 
+  select(-c(all_rows[!(all_rows %in% params$rows)])) %>% 
+  pivot_longer(names_to = "type", values_to = "value", cols = c("txt", params$rows, "free_trans")) %>% 
   na.omit() %>% 
   ungroup() %>% 
   select(value) %>% 
