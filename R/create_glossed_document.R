@@ -47,11 +47,5 @@ create_glossed_document <- function(flextext = NULL,
                       output_file = output_file)
     message(paste0("Output created: ", output_dir, output_file, ".", output_format[1]))
 # non-flextext input ------------------------------------------------------
-  } else if(!is.null(word_level) &
-            !is.null(gloss_level) &
-            !is.null(translation_level)){
-    print("will be done soon")
-  } else {
-    stop('You need to specify either flextext or word_level, gloss_level, and translation_level arguments.')
   }
 }

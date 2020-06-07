@@ -12,7 +12,7 @@
 #'
 #' @export
 
-textgrid_to_df <- function(textgrid, tier = 1){
+textgrid_to_df <- function(textgrid){
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{

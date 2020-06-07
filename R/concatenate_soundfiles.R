@@ -35,8 +35,7 @@
 
 concatenate_soundfiles <- function(file_name,
                                    path,
-                                   annotation = "textgrid",
-                                   options = NULL){
+                                   annotation = "textgrid"){
 
 # concatenate sounds ------------------------------------------------------
 

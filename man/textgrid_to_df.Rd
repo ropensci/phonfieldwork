@@ -4,7 +4,7 @@
 \alias{textgrid_to_df}
 \title{TextGrid to dataframe}
 \usage{
-textgrid_to_df(textgrid, tier = 1)
+textgrid_to_df(textgrid)
 }
 \arguments{
 \item{textgrid}{string with a filename or path to the TextGrid}
