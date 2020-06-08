@@ -1,3 +1,5 @@
+phonfieldwork 0.0.6 (08.06.2020)
+  - add "encoding" argument to "textgrid_to_df()" and "tier_to_df()" functions
 phonfieldwork 0.0.5 (07.06.2020)
   - add "textgrid_to_df()" function for reading Praat files
   - add "create_glossed_document()" function for converting .flextext files into a glossed document

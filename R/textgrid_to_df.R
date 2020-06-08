@@ -12,11 +12,11 @@
 #'
 #' @export
 
-textgrid_to_df <- function(textgrid){
+textgrid_to_df <- function(textgrid, encoding = "unknown"){
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{
-    tg <- readLines(textgrid)
+    tg <- readLines(textgrid, encoding = encoding)
   }
   n_tiers <- as.double(regmatches(tg[7], regexpr("\\d", tg[7])))
   lapply(1:n_tiers, function(x){

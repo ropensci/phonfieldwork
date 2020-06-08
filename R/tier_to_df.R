@@ -14,11 +14,11 @@
 #' @export
 #'
 
-tier_to_df <- function(textgrid, tier = 1){
+tier_to_df <- function(textgrid, tier = 1, encoding = "unknown"){
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{
-    tg <- readLines(textgrid)
+    tg <- readLines(textgrid, encoding = encoding)
   }
   # get start and end info about tiers --------------------------------------
   starts <- grep("item \\[\\d{1,}\\]:", tg)
