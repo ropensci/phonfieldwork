@@ -337,9 +337,9 @@ tree | tail -n 26 | head -n 24
 
 You can find the created example [here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html).
 
-## Read files to R
+## Read linguistic file types into R
 
-The `phonfieldwork` package provides also several methods for reading different file types into R. This makes it possible to analyze them and convert into `.csv` files.
+The `phonfieldwork` package provides also several methods for reading different file types into R. This makes it possible to analyze them and convert into `.csv` files (e. g. using the `write.csv()` function):
 
 * file `.TextGrid` from Praat
 ```{r}
@@ -369,5 +369,7 @@ There is also an additional function for working with the `.flextext` format tha
 create_glossed_text(flextext = "your_file.flextext", 
                     output_dir = getwd()) # you need to specify the path to the output folder
 ```
+
+Here are some examples of the result files: [`.docx`](https://github.com/agricolamz/phonfieldwork/raw/master/docs/glossed_document.docx), [`.html`](https://agricolamz.github.io/phonfieldwork/glossed_document.html).
 
 # References
