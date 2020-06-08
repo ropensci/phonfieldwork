@@ -1991,7 +1991,7 @@ Your browser does not support iframes :(
 </div>
 <div id="read-files-to-r" class="section level2">
 <h2><span class="header-section-number">4.9</span> Read files to R</h2>
-<p>The <code>phonfieldwork</code> package provides also several methods for reading several file types into R (just change the <code>system.file()</code> function to path to the file):</p>
+<p>The <code>phonfieldwork</code> package provides also several methods for reading different file types into R. This makes it possible to analyze them and convert into <code>.csv</code> files.</p>
 <ul>
 <li>file <code>.TextGrid</code> from Praat</li>
 </ul>
@@ -2002,7 +2002,7 @@ Your browser does not support iframes :(
   </script>
 </div>
 <ul>
-<li>file <code>.eaf</code> from ELAN</li>
+<li>file <code>.eaf</code> from ELAN (just change the <code>system.file()</code> function to path to the file)</li>
 </ul>
 <pre class="r"><code>eaf_to_df(system.file(&quot;extdata&quot;, &quot;test.eaf&quot;, package = &quot;phonfieldwork&quot;))</code></pre>
 <div data-pagedtable="false">
@@ -2011,7 +2011,7 @@ Your browser does not support iframes :(
   </script>
 </div>
 <ul>
-<li>file <code>.exb</code> from EXMARaLDA</li>
+<li>file <code>.exb</code> from EXMARaLDA (just change the <code>system.file()</code> function to path to the file)</li>
 </ul>
 <pre class="r"><code>exb_to_df(system.file(&quot;extdata&quot;, &quot;test.exb&quot;, package = &quot;phonfieldwork&quot;))</code></pre>
 <div data-pagedtable="false">
@@ -2023,8 +2023,9 @@ Your browser does not support iframes :(
 <li>file <code>.flextext</code> from FLEx</li>
 </ul>
 <pre class="r"><code>flextext_to_df(&quot;your_file.flextext&quot;)</code></pre>
-<p>There is also an additional function for working with the <code>.flextext</code> format that convert it to a plain <code>.html</code> or <code>docx</code> format:</p>
-<pre class="r"><code>create_glossed_text(flextext = &quot;your_file.flextext&quot;, output_dir = getwd())</code></pre>
+<p>There is also an additional function for working with the <code>.flextext</code> format that convert it to a plain <code>docx</code> or <code>.html</code> format:</p>
+<pre class="r"><code>create_glossed_text(flextext = &quot;your_file.flextext&quot;, 
+                    output_dir = getwd()) # you need to specify the path to the output folder</code></pre>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">

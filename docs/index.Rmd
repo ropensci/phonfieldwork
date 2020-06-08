@@ -339,7 +339,7 @@ You can find the created example [here](https://agricolamz.github.io/phonfieldwo
 
 ## Read files to R
 
-The `phonfieldwork` package provides also several methods for reading several file types into R (just change the `system.file()` function to path to the file):
+The `phonfieldwork` package provides also several methods for reading different file types into R. This makes it possible to analyze them and convert into `.csv` files.
 
 * file `.TextGrid` from Praat
 ```{r}
@@ -347,12 +347,12 @@ textgrid_to_df(example_textgrid)
 ```
 
 
-* file `.eaf` from ELAN
+* file `.eaf` from ELAN  (just change the `system.file()` function to path to the file)
 ```{r}
 eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 ```
 
-* file `.exb` from EXMARaLDA
+* file `.exb` from EXMARaLDA  (just change the `system.file()` function to path to the file)
 ```{r}
 exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 ```
@@ -363,11 +363,11 @@ exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 flextext_to_df("your_file.flextext")
 ```
 
-There is also an additional function for working with the `.flextext` format that convert it to a plain `.html` or `docx` format:
+There is also an additional function for working with the `.flextext` format that convert it to a plain `docx` or `.html` format:
 
 ```{r, eval = FALSE}
-create_glossed_text(flextext = "your_file.flextext", output_dir = getwd())
+create_glossed_text(flextext = "your_file.flextext", 
+                    output_dir = getwd()) # you need to specify the path to the output folder
 ```
-
 
 # References
