@@ -362,7 +362,7 @@ flextext_to_df("zilo_test.flextext")
 
 There is also an additional function for working with the `.flextext` format that convert it to a glossed document in a `docx` or `.html` format (see examples: [`.docx`](https://github.com/agricolamz/phonfieldwork/raw/master/docs/glossed_document.docx), [`.html`](https://agricolamz.github.io/phonfieldwork/glossed_document.html)):
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 create_glossed_document(flextext = "zilo_test.flextext", 
                         output_dir = ".") # you need to specify the path to the output folder
 ```
