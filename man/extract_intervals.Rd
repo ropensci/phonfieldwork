@@ -11,7 +11,8 @@ extract_intervals(
   prefix = NULL,
   suffix = NULL,
   autonumber = TRUE,
-  path
+  path,
+  encoding = "unknown"
 )
 }
 \arguments{

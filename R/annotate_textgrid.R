@@ -27,13 +27,14 @@ annotate_textgrid <- function(annotation,
                               tier = 1,
                               each = 1,
                               backup = TRUE,
-                              write = TRUE) {
+                              write = TRUE,
+                              encoding = "unknown") {
 
 # read TextGrid -----------------------------------------------------------
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{
-    tg <- readLines(normalizePath(textgrid))
+    tg <- readLines(normalizePath(textgrid), encoding = encoding)
   }
 
 # get start and end info about tiers --------------------------------------

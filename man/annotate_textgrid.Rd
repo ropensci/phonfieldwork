@@ -10,7 +10,8 @@ annotate_textgrid(
   tier = 1,
   each = 1,
   backup = TRUE,
-  write = TRUE
+  write = TRUE,
+  encoding = "unknown"
 )
 }
 \arguments{

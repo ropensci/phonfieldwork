@@ -12,12 +12,12 @@
 #' @export
 #'
 
-get_textgrid_names <- function(textgrid){
+get_textgrid_names <- function(textgrid, encoding = "unknown"){
 # read TextGrid -----------------------------------------------------------
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{
-    tg <- readLines(normalizePath(textgrid))
+    tg <- readLines(normalizePath(textgrid), encoding = encoding)
   }
 
 # extract names of tiers --------------------------------------------------

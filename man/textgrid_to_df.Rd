@@ -4,7 +4,7 @@
 \alias{textgrid_to_df}
 \title{TextGrid to dataframe}
 \usage{
-textgrid_to_df(textgrid)
+textgrid_to_df(textgrid, encoding = "unknown")
 }
 \arguments{
 \item{textgrid}{string with a filename or path to the TextGrid}

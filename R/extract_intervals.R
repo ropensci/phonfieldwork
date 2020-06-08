@@ -38,12 +38,13 @@ extract_intervals <- function(file_name,
                               prefix = NULL,
                               suffix = NULL,
                               autonumber = TRUE,
-                              path){
+                              path,
+                              encoding = "unknown"){
   s <- tuneR::readWave(file_name)
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{
-    tg <- readLines(textgrid)
+    tg <- readLines(textgrid, encoding = encoding)
   }
 
 # get start, end and annotation -------------------------------------------

@@ -25,13 +25,14 @@ create_subannotation <- function(textgrid,
                                  n_of_annotations = 4,
                                  each = 1,
                                  omit_blank = TRUE,
-                                 overwrite = TRUE){
+                                 overwrite = TRUE,
+                                 encoding = "unknown"){
 
 # read TextGrid -----------------------------------------------------------
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{
-    tg <- readLines(normalizePath(textgrid))
+    tg <- readLines(normalizePath(textgrid), encoding = encoding)
   }
 
   df <- phonfieldwork::tier_to_df(tg, tier = tier)

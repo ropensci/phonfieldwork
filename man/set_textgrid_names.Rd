@@ -4,7 +4,7 @@
 \alias{set_textgrid_names}
 \title{Rewrite TextGrid names}
 \usage{
-set_textgrid_names(textgrid, tiers, names, write = TRUE)
+set_textgrid_names(textgrid, tiers, names, write = TRUE, encoding = "unknown")
 }
 \arguments{
 \item{textgrid}{path to the TextGrid}

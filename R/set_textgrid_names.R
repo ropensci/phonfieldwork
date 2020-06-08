@@ -15,12 +15,16 @@
 #' @export
 #'
 
-set_textgrid_names <- function(textgrid, tiers, names, write = TRUE){
+set_textgrid_names <- function(textgrid,
+                               tiers,
+                               names,
+                               write = TRUE,
+                               encoding = "unknown"){
   # read TextGrid -----------------------------------------------------------
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{
-    tg <- readLines(normalizePath(textgrid))
+    tg <- readLines(normalizePath(textgrid), encoding = encoding)
   }
 
 # rewrite names in TextGrid -----------------------------------------------

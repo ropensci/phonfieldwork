@@ -11,7 +11,8 @@ create_subannotation(
   n_of_annotations = 4,
   each = 1,
   omit_blank = TRUE,
-  overwrite = TRUE
+  overwrite = TRUE,
+  encoding = "unknown"
 )
 }
 \arguments{
