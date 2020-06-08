@@ -8,6 +8,8 @@ output:
     number_sections: true 
     self_contained: yes
     df_print: paged
+    toc: yes
+    toc_float: yes
 editor_options: 
   chunk_output_type: console
 ---
@@ -334,7 +336,7 @@ tree | tail -n 26 | head -n 24
 
 You can find the created example [here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html).
 
-# Read linguistic file types into R
+# Read linguistic files into R
 
 The `phonfieldwork` package provides also several methods for reading different file types into R. This makes it possible to analyze them and convert into `.csv` files (e. g. using the `write.csv()` function):
 
