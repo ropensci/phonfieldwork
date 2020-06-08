@@ -207,11 +207,11 @@ The resulting file can be parsed with Praat:
 
 ## Annotate your data
 
-It is possible to annotate words using an existing annotation:
+It is possible to annotate words using an existing annotation (since file concatination is made according to files sorted on the comuter I use the `sort()` function in order to make correct annotation):
 
 ```{r}
 my_stimuli_df$stimuli
-annotate_textgrid(annotation = my_stimuli_df$stimuli,
+annotate_textgrid(annotation =  sort(my_stimuli_df$stimuli),
                   textgrid = "s1/s1_all.TextGrid")
 ```
 
@@ -232,7 +232,7 @@ create_subannotation(textgrid = "s1/s1_all.TextGrid",
 Now we can annotate created tier:
 
 ```{r}
-annotate_textgrid(annotation = c("", "ı", "", "", "æ", "", "", "ɒ", ""),
+annotate_textgrid(annotation = c("", "æ", "", "", "ı", "", "", "ɒ", ""),
                   textgrid = "s1/s1_all.TextGrid",
                   tier = 3, 
                   backup = FALSE)
@@ -243,10 +243,7 @@ annotate_textgrid(annotation = c("", "ı", "", "", "æ", "", "", "ɒ", ""),
 You can see that we created a third tier with annotation. The only thing left is to move annotation boundaries in Praat (this can not be automated):
 
 ```{r, include=FALSE}
-writeLines(readLines("s1/s1_all.TextGrid")[1:44], "s1/s1_all.TextGrid")
-df_to_tier(df = read.csv("annotation_of_s1.csv"), 
-           textgrid = "s1/s1_all.TextGrid", 
-           overwrite = TRUE) 
+file.copy("s1_all.TextGrid", to = "s1/s1_all.TextGrid", overwrite = TRUE)
 ```
 
 ![](images/05_annotate_textgrid_result.png)
@@ -279,7 +276,7 @@ tree | tail -n 19 | head -n 17
 It is possible to view an oscilogram and spetrogram of any soundfile:
 
 ```{r, fig.width=12, fig.height=6}
-draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav")
+draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav")
 ```
   
 There are additional parameters:
@@ -297,7 +294,7 @@ There are additional parameters:
 If the `output_file` argument is provided, R will save the plot in your directory instead of displaying it.
 
 ```{r}
-draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav", output_file = "s1/s1_tip", title = "s1 tip")
+draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav", output_file = "s1/s1_tip", title = "s1 tip")
 ```
 
 ```{bash, echo = FALSE}
@@ -337,7 +334,7 @@ tree | tail -n 26 | head -n 24
 
 You can find the created example [here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html).
 
-## Read linguistic file types into R
+# Read linguistic file types into R
 
 The `phonfieldwork` package provides also several methods for reading different file types into R. This makes it possible to analyze them and convert into `.csv` files (e. g. using the `write.csv()` function):
 

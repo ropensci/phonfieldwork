@@ -39,16 +39,8 @@ concatenate_soundfiles <- function(file_name,
 
 # concatenate sounds ------------------------------------------------------
 
-  files <- list.files(path = path)
+  files <- list.files(path = path, pattern = ".wav$")
 
-  unlist(
-    lapply(seq_along(files), function(i){
-      res <- unlist(strsplit(files[i], "\\."))
-      res[length(res)]
-    })) ->
-    extension
-
-  files <- files[which(tolower(extension) %in% "wav")]
   if(length(files) == 0){
     stop("There is no any .wav files")
   }
@@ -68,7 +60,7 @@ concatenate_soundfiles <- function(file_name,
                               Index = seq_along(files),
                               StartTime = start_time,
                               EndTime = end_time,
-                              Label = files,
+                              Label = sort(files),
                               stringsAsFactors = FALSE)
     writeLines(c('File type = "ooTextFile"',
                  'Object class = "TextGrid"',
