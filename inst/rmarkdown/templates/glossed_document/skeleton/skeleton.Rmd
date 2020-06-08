@@ -12,8 +12,8 @@ df <- read.csv(params$data, stringsAsFactors = FALSE)
 
 all_rows <- c("cf", "hn", "gls", "msa")
 
-library(dplyr)
-library(tidyr)
+library(dplyr, warn.conflicts = FALSE)
+library(tidyr, warn.conflicts = FALSE)
 df %>%
   group_by(text_title, p_id, s_id, free_trans, word) %>%
   summarise(txt = paste0(txt, collapse = ""),

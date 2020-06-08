@@ -45,7 +45,7 @@ create_glossed_document <- function(flextext = NULL,
                       output_format = paste0(output_format2[1], "_document"),
                       quiet = TRUE,
                       output_file = output_file)
-    message(paste0("Output created: ", output_dir, output_file, ".", output_format[1]))
+    message(paste0("Output created: ", normalizePath(output_dir), "/", output_file, ".", output_format[1]))
 # non-flextext input ------------------------------------------------------
   }
 }
