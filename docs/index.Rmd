@@ -359,14 +359,14 @@ exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 
 * file `.flextext` from FLEx
 
-```{r, eval=FALSE}
-flextext_to_df("your_file.flextext")
+```{r}
+flextext_to_df("zilo_test.flextext")
 ```
 
 There is also an additional function for working with the `.flextext` format that convert it to a plain `docx` or `.html` format:
 
 ```{r, eval = FALSE}
-create_glossed_text(flextext = "your_file.flextext", 
+create_glossed_text(flextext = "zilo_test.flextext", 
                     output_dir = getwd()) # you need to specify the path to the output folder
 ```
 
