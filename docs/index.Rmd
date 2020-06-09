@@ -34,6 +34,7 @@ rename_soundfiles(stimuli = c("02", "01", "03"),
 rename_soundfiles(stimuli = c("02", "01", "03"),
                   path = "s1/",
                   backup = FALSE)
+knitr::opts_chunk$set(fig.height = 6)
 ```
 
 # Introduction
@@ -203,9 +204,11 @@ This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid
 tree | tail -n 16 | head -n 14
 ```
 
-The resulting file can be parsed with Praat:
+The resulting file can be parsed with Praat (subscripted *t* is the result of Praat's conversion):
 
-![](images/01_concatenate_soundfiles_result.png)
+```{r, echo=FALSE}
+draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
+```
 
 ## Annotate your data
 
@@ -217,7 +220,9 @@ annotate_textgrid(annotation =  sort(my_stimuli_df$stimuli),
                   textgrid = "s1/s1_all.TextGrid")
 ```
 
-![](images/02_annotate_textgrid_result.png)
+```{r, echo=FALSE}
+draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
+```
 
 As you can see in the example, the `annotate_textgrid()` function creates a backup of the tier and adds a new tier on top of the previous one. It is possible to prevent the function from doing so by setting the `backup` argument to `FALSE`.
 
@@ -229,7 +234,9 @@ create_subannotation(textgrid = "s1/s1_all.TextGrid",
                      n_of_annotations = 3) # how many empty annotations per unit?
 ```
 
-![](images/03_annotate_textgrid_result.png)
+```{r, echo=FALSE}
+draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
+```
 
 Now we can annotate created tier:
 
@@ -240,7 +247,9 @@ annotate_textgrid(annotation = c("", "æ", "", "", "ı", "", "", "ɒ", ""),
                   backup = FALSE)
 ```
 
-![](images/04_annotate_textgrid_result.png)
+```{r, echo=FALSE}
+draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
+```
 
 You can see that we created a third tier with annotation. The only thing left is to move annotation boundaries in Praat (this can not be automated):
 
@@ -248,7 +257,9 @@ You can see that we created a third tier with annotation. The only thing left is
 file.copy("s1_all.TextGrid", to = "s1/s1_all.TextGrid", overwrite = TRUE)
 ```
 
-![](images/05_annotate_textgrid_result.png)
+```{r, echo=FALSE}
+draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
+```
 
 You can see from the last figure that no backup tier was created (`backup = FALSE`), that the third tier was annotated (`tier = 3`), and that an annotation was performed in every second interval (`each = 2`).
 
@@ -284,6 +295,7 @@ draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav")
 There are additional parameters:
 
 * `title` -- the title for the plot
+* `textgrid` -- the optional file with the TextGrid's file path
 * `colores` -- set to (`TRUE`) for a colored spectogram, or (`FALSE`) for greyscale. It is also possible to provide a vector of custom colors for the spectrogram.
 * `maximum_frequency` -- the maximum frequency to be displayed for the spectrogram
 * `dynamic_range` -- values greater than this many dB below the maximum will be displayed in the same color

@@ -1,5 +1,8 @@
 phonfieldwork 0.0.6 (08.06.2020)
   - add "encoding" arguments to functions for working with TextGrids
+  - add "textgrid" argument to the "draw_sound()" function
+  - change subgraphs alignment in "draw_sound()" function
+
 phonfieldwork 0.0.5 (07.06.2020)
   - add "textgrid_to_df()" function for reading Praat files
   - add "create_glossed_document()" function for converting .flextext files into a glossed document

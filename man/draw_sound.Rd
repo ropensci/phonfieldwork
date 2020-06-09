@@ -2,10 +2,12 @@
 % Please edit documentation in R/draw_sound.R
 \name{draw_sound}
 \alias{draw_sound}
-\title{Draw Oscilogram and Spectrogram}
+\title{Draw Oscilogram, Spectrogram and annotation
+Create oscilogram and spectrogram plot. Based on \code{phonTools::spectrogram}.}
 \usage{
 draw_sound(
   file_name,
+  textgrid = NULL,
   output_file = NULL,
   title = NULL,
   spectrum_colors = FALSE,
@@ -16,6 +18,7 @@ draw_sound(
   output_height = 500,
   output_units = "px",
   sounds_from_folder = NULL,
+  textgrids_from_folder = NULL,
   pic_folder_name = "pics",
   prefix = NULL,
   suffix = NULL,
@@ -24,6 +27,8 @@ draw_sound(
 }
 \arguments{
 \item{file_name}{a soundfile}
+
+\item{textgrid}{a source for TextGrid annotation plot}
 
 \item{output_file}{the name of the output file}
 
@@ -45,6 +50,8 @@ draw_sound(
 
 \item{sounds_from_folder}{path to a folder with multiple .wav files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.}
 
+\item{textgrids_from_folder}{path to a folder with multiple .TextGrid files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.}
+
 \item{pic_folder_name}{name for a folder, where all pictures will be stored in case \code{sounds_from_folder} argument is not \code{NULL}}
 
 \item{prefix}{prefix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}}
@@ -54,9 +61,10 @@ draw_sound(
 \item{autonumber}{if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.}
 }
 \value{
-Oscilogram and Spectrogram plot.
+Oscilogram and spectrogram plot (and possibly TextGrid annotation).
 }
 \description{
+Draw Oscilogram, Spectrogram and annotation
 Create oscilogram and spectrogram plot. Based on \code{phonTools::spectrogram}.
 }
 \author{

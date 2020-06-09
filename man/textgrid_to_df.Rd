@@ -8,6 +8,8 @@ textgrid_to_df(textgrid, encoding = "unknown")
 }
 \arguments{
 \item{textgrid}{string with a filename or path to the TextGrid}
+
+\item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
 a dataframe with columns:  \code{id}, \code{start}, \code{end} (if it is an interval tier -- the same as the start value), \code{annotation}, and \code{tier}

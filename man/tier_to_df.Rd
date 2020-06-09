@@ -10,6 +10,8 @@ tier_to_df(textgrid, tier = 1, encoding = "unknown")
 \item{textgrid}{string with a filename or path to the TextGrid}
 
 \item{tier}{value that could be either ordinal number of the tier either name of the tier. By default is '1'.}
+
+\item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
 a dataframe with columns:  \code{id}, \code{start} and \code{end annotation} (if it is an interval tier)

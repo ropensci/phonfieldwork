@@ -5,6 +5,8 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param textgrid string with a filename or path to the TextGrid
+#' @param encoding TextGrid encoding. Import from \code{readLines()} function.
+#'
 #' @return a dataframe with columns:  \code{id}, \code{start}, \code{end} (if it is an interval tier -- the same as the start value), \code{annotation}, and \code{tier}
 #'
 #' @examples

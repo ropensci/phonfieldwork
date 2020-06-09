@@ -10,6 +10,7 @@
 #' @param each non-negative integer. Each element of x is repeated each times
 #' @param backup logical. If TRUE (by default) it creates a backup tier.
 #' @param write logical. If TRUE (by dafault) it overwrites an existing tier.
+#' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
 #' @return a string that contain TextGrid. If argument write is \code{TRUE}, then no output.
 #'

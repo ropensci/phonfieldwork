@@ -11,7 +11,7 @@ create_viewer(
   tiers = 1,
   merge_column,
   caption_column = NULL,
-  about = "Created with the `phonfieldworks` package (Moroz 2019).",
+  about = "Created with the `phonfieldworks` package (Moroz 2020).",
   output_dir,
   output_file = "stimuli_viewer",
   render = TRUE

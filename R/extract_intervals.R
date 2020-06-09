@@ -11,6 +11,8 @@
 #' @param suffix character vector containing suffix(es) for file names
 #' @param autonumber if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.
 #' @param path path to the directory where create extracted soundfiles.
+#' @param encoding TextGrid encoding. Import from \code{readLines()} function.
+#'
 #' @return no output
 #' @examples
 #' # create two files in a temprary folder "test_folder"

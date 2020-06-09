@@ -6,6 +6,8 @@
 #'
 #' @param textgrid string with a filename or path to the TextGrid
 #' @param tier value that could be either ordinal number of the tier either name of the tier. By default is '1'.
+#' @param encoding TextGrid encoding. Import from \code{readLines()} function.
+#'
 #' @return a dataframe with columns:  \code{id}, \code{start} and \code{end annotation} (if it is an interval tier)
 #'
 #' @examples

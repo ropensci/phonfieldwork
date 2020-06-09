@@ -5,6 +5,8 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param textgrid path to the TextGrid
+#' @param encoding TextGrid encoding. Import from \code{readLines()} function.
+#'
 #' @return return a vector of tier names from given TextGrid
 #' @examples
 #' get_textgrid_names(example_textgrid)

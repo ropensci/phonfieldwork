@@ -26,6 +26,8 @@ annotate_textgrid(
 \item{backup}{logical. If TRUE (by default) it creates a backup tier.}
 
 \item{write}{logical. If TRUE (by dafault) it overwrites an existing tier.}
+
+\item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
 a string that contain TextGrid. If argument write is \code{TRUE}, then no output.
