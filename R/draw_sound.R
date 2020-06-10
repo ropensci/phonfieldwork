@@ -63,7 +63,7 @@ draw_sound <- function(file_name,
       # plot oscilogram ---------------------------------------------------------
       graphics::par(oma=c(0,0,title_space,0),
                     mai=c(0, 0, 0, 0),
-                    fig=c(0.1,0.98,0.8,1))
+                    fig=c(0.1,0.98,0.75,1))
 
       n <- max(abs(range(s@left)))
       s_range <- floor(n/10^(nchar(n)-1))*10^(nchar(n)-1)
@@ -77,21 +77,21 @@ draw_sound <- function(file_name,
            ylab = "",
            xlab = "",
            xaxs = "i")
-      graphics::axis(side = 2, at=c(-s_range, 0, s_range), las = 1)
       title(as.character(title), outer = TRUE)
       # plot spectrogram --------------------------------------------------------
       low_boundary <- ifelse(!is.null(textgrid), 0.27, 0.08)
-      graphics::par(fig=c(0.1,0.98,low_boundary,0.79), new=TRUE, las=0)
-      spectrogram(s@left,
-                  fs = s@samp.rate,
-                  windowlength = window_length,
-                  colors = spectrum_colors,
-                  maxfreq = maximum_frequency,
-                  dynamicrange = dynamic_range)
+      graphics::par(fig=c(0.1,0.98,low_boundary,0.75), new=TRUE)
+      draw_spectrogram(s@left,
+                       fs = s@samp.rate,
+                       windowlength = window_length,
+                       colors = spectrum_colors,
+                       maxfreq = maximum_frequency,
+                       dynamicrange = dynamic_range,
+                       x_axis = is.null(textgrid))
       # plot textgrid -----------------------------------------------------------
       if(!is.null(textgrid)){
-        graphics::par(fig=c(0.1, 0.98, 0.01, 0.2), new=TRUE, las=0)
-        df <- textgrid_to_df("s1/s1_all.TextGrid")
+        graphics::par(fig=c(0.1, 0.98, 0.07, 0.27), new=TRUE)
+        df <- textgrid_to_df(textgrid)
         df$start <- df$start*1000
         df$end <- df$end*1000
         df$mid_point <- df$start + (df$end - df$start)/2
@@ -103,8 +103,8 @@ draw_sound <- function(file_name,
              ylim = range(df$tier)+c(-0.4, 0.4),
              cex = 0,
              yaxt='n',
-             xaxt='n',
-             ann=FALSE,
+             xlab = "time(ms)",
+             ylab = "",
              xaxs="i")
         graphics::text(x = df$mid_point, y = df$tier, labels = df$annotation, cex = 1)
         graphics::abline(h = unique(df$tier)[-length(unique(df$tier))]-0.5)

@@ -19,24 +19,28 @@
 #' @param window the window to be applied to the signal, applied by the windowfunc function in this package.
 #' @param windowparameter the parameter for the window to be applied to the signal, if appropriate.
 #' @param quality If TRUE, a contour plot is created, which results in a high-quality image that may be slow to plot. If FALSE, a lower-quality image is created that plots much faster.
+#' @param x_axis If TRUE then draw x axis.
 #'
 #' @export
 #'
 #' @importFrom stats fft
 #'
 
-spectrogram <- function (sound,
-                         fs = 22050,
-                         windowlength = 5,
-                         timestep = -1000,
-                         padding = 10,
-                         preemphasisf = 50,
-                         maxfreq = 5000,
-                         colors = TRUE,
-                         dynamicrange = 50,
-                         nlevels = dynamicrange,
-                         maintitle = "",
-                         show = TRUE, window = "kaiser", windowparameter = 3, quality = FALSE){
+draw_spectrogram <- function (sound,
+                              fs = 22050,
+                              windowlength = 5,
+                              timestep = -1000,
+                              padding = 10,
+                              preemphasisf = 50,
+                              maxfreq = 5000,
+                              colors = TRUE,
+                              dynamicrange = 50,
+                              nlevels = dynamicrange,
+                              maintitle = "",
+                              show = TRUE, window = "kaiser", windowparameter = 3, quality = FALSE, x_axis){
+
+  # This function is slightly modification of phonTools::spectrogram() by Santiago Barreda <sbarreda@ucdavis.edu>
+
   n = ceiling((fs/1000) * windowlength)
   if (n%%2)
     n = n + 1
@@ -75,9 +79,11 @@ spectrogram <- function (sound,
                     timestep = timestep, dynamicrange = dynamicrange, colors = colors,
                     maxfreq = maxfreq)
   class(specobject) = "spectrogram"
+
   plot(specobject,
        xlim = c(0, length(sound)/fs*1000),
        ylim = c(0, maxfreq),
        quality = quality,
+       xaxt= ifelse(x_axis, 's', 'n'),
        las=1)
 }
