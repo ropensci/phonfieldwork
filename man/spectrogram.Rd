@@ -2,7 +2,7 @@
 % Please edit documentation in R/spectrogram.R
 \name{spectrogram}
 \alias{spectrogram}
-\title{Draw spectrogram (slitly changed from phonTools::spectrogram)}
+\title{Draw spectrograms}
 \usage{
 spectrogram(
   sound,
@@ -54,7 +54,7 @@ spectrogram(
 \item{quality}{If TRUE, a contour plot is created, which results in a high-quality image that may be slow to plot. If FALSE, a lower-quality image is created that plots much faster.}
 }
 \description{
-This function was slightly changed but is originated from phonTools::spectrogram. Argument description is copied from phonTools::spectrogram.
+This function was slightly changed from \code{phonTools::spectrogram()}. Argument description is copied from \code{phonTools::spectrogram()}.
 }
 \author{
 Santiago Barreda <sbarreda@ucdavis.edu>

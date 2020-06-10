@@ -39,4 +39,3 @@ library(phonfieldwork)
 
 * export to ELAN and EXMARALDA files
 * use ELAN and EXMARALDA files in the whole pipline discribed in docs
-* add textgrid visualisation

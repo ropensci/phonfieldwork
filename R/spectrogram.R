@@ -1,6 +1,6 @@
-#' Draw spectrogram (slitly changed from phonTools::spectrogram)
+#' Draw spectrograms
 #'
-#' This function was slightly changed but is originated from phonTools::spectrogram. Argument description is copied from phonTools::spectrogram.
+#' This function was slightly changed from \code{phonTools::spectrogram()}. Argument description is copied from \code{phonTools::spectrogram()}.
 #'
 #' @author Santiago Barreda <sbarreda@ucdavis.edu>
 #'
@@ -52,8 +52,9 @@ spectrogram <- function (sound,
     padding = padding + 1
   N = n + padding
   spect = sapply(spots, function(x) {
-    tmp = sound[x:(x + n - 1)] * phonTools::windowfunc(sound[x:(x +
-                                                                  n - 1)], window, windowparameter)
+    tmp = sound[x:(x + n - 1)] * phonTools::windowfunc(sound[x:(x + n - 1)],
+                                                       window,
+                                                       windowparameter)
     tmp = c(tmp, rep(0, padding))
     tmp = tmp - mean(tmp)
     tmp = stats::fft(tmp)[1:(N/2 + 1)]
