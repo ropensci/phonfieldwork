@@ -261,7 +261,7 @@ file.copy("s1_all.TextGrid", to = "s1/s1_all.TextGrid", overwrite = TRUE)
 draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
 ```
 
-You can see from the last figure that no backup tier was created (`backup = FALSE`), that the third tier was annotated (`tier = 3`), and that an annotation was performed in every second interval (`each = 2`).
+You can see from the last figure that no backup tier was created (`backup = FALSE`), that the third tier was annotated (`tier = 3`).
 
 ## Extracting your data
 
