@@ -98,6 +98,8 @@ create_viewer <- function(audio_dir,
                     quiet = TRUE,
                     output_file = output_file)
   message(paste0("Output created: ", output_dir, output_file, ".html"))
+  file.remove(tmp1)
+  file.remove(tmp2)
   } else {
     return(tmp1)
   }

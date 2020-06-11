@@ -12,7 +12,7 @@ draw_spectrogram(
   padding = 10,
   preemphasisf = 50,
   maxfreq = 5000,
-  colors = TRUE,
+  colors = FALSE,
   dynamicrange = 50,
   nlevels = dynamicrange,
   maintitle = "",
@@ -20,7 +20,8 @@ draw_spectrogram(
   window = "kaiser",
   windowparameter = 3,
   quality = FALSE,
-  x_axis
+  x_axis = TRUE,
+  title = NULL
 )
 }
 \arguments{
@@ -55,6 +56,8 @@ draw_spectrogram(
 \item{quality}{If TRUE, a contour plot is created, which results in a high-quality image that may be slow to plot. If FALSE, a lower-quality image is created that plots much faster.}
 
 \item{x_axis}{If TRUE then draw x axis.}
+
+\item{title}{Character with the title.}
 }
 \description{
 This function was slightly changed from \code{phonTools::spectrogram()}. Argument description is copied from \code{phonTools::spectrogram()}.

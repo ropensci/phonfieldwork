@@ -20,10 +20,12 @@
 #' @param windowparameter the parameter for the window to be applied to the signal, if appropriate.
 #' @param quality If TRUE, a contour plot is created, which results in a high-quality image that may be slow to plot. If FALSE, a lower-quality image is created that plots much faster.
 #' @param x_axis If TRUE then draw x axis.
+#' @param title Character with the title.
 #'
 #' @export
 #'
 #' @importFrom stats fft
+#' @importFrom tuneR readWave
 #'
 
 draw_spectrogram <- function (sound,
@@ -33,14 +35,23 @@ draw_spectrogram <- function (sound,
                               padding = 10,
                               preemphasisf = 50,
                               maxfreq = 5000,
-                              colors = TRUE,
+                              colors = FALSE,
                               dynamicrange = 50,
                               nlevels = dynamicrange,
                               maintitle = "",
-                              show = TRUE, window = "kaiser", windowparameter = 3, quality = FALSE, x_axis){
+                              show = TRUE,
+                              window = "kaiser",
+                              windowparameter = 3,
+                              quality = FALSE,
+                              x_axis = TRUE,
+                              title = NULL){
 
   # This function is slightly modification of phonTools::spectrogram() by Santiago Barreda <sbarreda@ucdavis.edu>
-
+  if(class(sound) != "integer"){
+    s <- tuneR::readWave(sound)
+    fs <- s@samp.rate
+    sound <- s@left
+  }
   n = ceiling((fs/1000) * windowlength)
   if (n%%2)
     n = n + 1
@@ -85,5 +96,6 @@ draw_spectrogram <- function (sound,
        ylim = c(0, maxfreq),
        quality = quality,
        xaxt= ifelse(x_axis, 's', 'n'),
-       las=1)
+       las=1,
+       main = as.character(title)[1])
 }
