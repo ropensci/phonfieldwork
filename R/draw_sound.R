@@ -5,6 +5,8 @@
 #'
 #' @param file_name a soundfile
 #' @param textgrid a source for TextGrid annotation plot
+#' @param from Time in seconds at which to start extraction.
+#' @param to Time in seconds at which to stop extraction.
 #' @param spectrum_colors if TRUE, a color spectrogram will be displayed. If FALSE, greyscale is used. If a vector of colors is provided, these colors are used to create the spectrogram.
 #' @param title the title for the plot
 #' @param maximum_frequency the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default
@@ -26,6 +28,7 @@
 #' @export
 #'
 #' @importFrom tuneR readWave
+#' @importFrom tuneR extractWave
 #' @importFrom grDevices png
 #' @importFrom grDevices dev.off
 #' @importFrom graphics par
@@ -37,6 +40,8 @@
 
 draw_sound <- function(file_name,
                        textgrid = NULL,
+                       from = NULL,
+                       to = NULL,
                        output_file = NULL,
                        title = NULL,
                        spectrum_colors = FALSE,
@@ -56,6 +61,21 @@ draw_sound <- function(file_name,
     if(is.null(output_file)){
       # read file and convert to phonTools format -------------------------------
       s <- tuneR::readWave(file_name)
+
+      if(!is.null(from)&!is.null(to)){
+        if(from >= to){
+          stop("Argument from should be smaler then argument to.")
+        }
+      } else if(!is.null(from)&is.null(to)){
+        to <-  length(s@left)/s@samp.rate
+      } else if(is.null(from)&!is.null(to)){
+        from <- 0
+      } else if(is.null(from)&is.null(to)){
+        from <- 0
+        to <-  length(s@left)/s@samp.rate
+      }
+
+      s <- tuneR::extractWave(s, from = from, to = to, xunit = "time")
 
       # if there is no title no need to have a space for it ---------------------
       title_space <- ifelse(is.null(title), 0, 2)
@@ -92,8 +112,27 @@ draw_sound <- function(file_name,
       if(!is.null(textgrid)){
         graphics::par(fig=c(0.1, 0.98, 0.07, 0.27), new=TRUE)
         df <- textgrid_to_df(textgrid)
-        df$start <- df$start*1000
-        df$end <- df$end*1000
+        df <- df[df$start >= from,]
+        df <- df[df$end <= to,]
+        if(nrow(df) < 1){
+          graphics::par(oma=c(0,0,0,0),
+                        mai=c(1.02, 0.82, 0.82, 0.42),
+                        fig=c(0,1,0,1))
+          stop("There is no annotion in selected time interval.")
+        }
+        df$start <- (df$start-from)*1000
+        df$end <- (df$end-from)*1000
+        if(from != 0){
+          lapply(unique(df$tier), function(i){
+            extended <- data.frame(id = NA,
+                                   start = 0,
+                                   end = min(df[df$tier == i,]$start),
+                                   annotation = "",
+                                   tier = i)
+            df <<- rbind(extended, df)
+          })
+        }
+        df <- df[order(df$tier),]
         df$mid_point <- df$start + (df$end - df$start)/2
         df$fake_y <- max(df$tier) - min(df$tier)
         df$tier <- -df$tier

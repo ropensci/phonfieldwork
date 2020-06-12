@@ -8,6 +8,8 @@ Create oscilogram and spectrogram plot. Based on \code{phonTools::spectrogram}.}
 draw_sound(
   file_name,
   textgrid = NULL,
+  from = NULL,
+  to = NULL,
   output_file = NULL,
   title = NULL,
   spectrum_colors = FALSE,
@@ -29,6 +31,10 @@ draw_sound(
 \item{file_name}{a soundfile}
 
 \item{textgrid}{a source for TextGrid annotation plot}
+
+\item{from}{Time in seconds at which to start extraction.}
+
+\item{to}{Time in seconds at which to stop extraction.}
 
 \item{output_file}{the name of the output file}
 

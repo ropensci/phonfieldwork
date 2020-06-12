@@ -25,7 +25,7 @@ draw_spectrogram(
 )
 }
 \arguments{
-\item{sound}{Either a numeric vector representing a sequence of samples taken from a sound wave or a sound object created with the loadsound() or makesound() functions.}
+\item{sound}{Either a numeric vector representing a sequence of samples or path to the sound file.}
 
 \item{fs}{The sampling frequency in Hz. If a sound object is passed this does not need to be specified.}
 

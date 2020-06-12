@@ -4,7 +4,7 @@
 #'
 #' @author Santiago Barreda <sbarreda@ucdavis.edu>
 #'
-#' @param sound Either a numeric vector representing a sequence of samples taken from a sound wave or a sound object created with the loadsound() or makesound() functions.
+#' @param sound Either a numeric vector representing a sequence of samples or path to the sound file.
 #' @param fs 	The sampling frequency in Hz. If a sound object is passed this does not need to be specified.
 #' @param windowlength The desired analysis window length in milliseconds.
 #' @param timestep If a negative value is given, -N, then N equally-spaced time steps are calculated. If a positive number is given, this is the spacing between adjacent analyses, in milliseconds.
