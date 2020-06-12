@@ -87,7 +87,6 @@ draw_sound <- function(file_name,
 
       n <- max(abs(range(s@left)))
       s_range <- floor(n/10^(nchar(n)-1))*10^(nchar(n)-1)
-
       plot(y = s@left,
            x = seq(0, length(s@left)/s@samp.rate*1000,
                    length.out = length(s@left)),
@@ -162,6 +161,8 @@ draw_sound <- function(file_name,
                      units = output_units)
       draw_sound(file_name,
                  textgrid,
+                 from,
+                 to,
                  title,
                  spectrum_colors,
                  maximum_frequency,

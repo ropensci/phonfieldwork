@@ -295,6 +295,8 @@ draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav")
 There are additional parameters:
 
 * `title` -- the title for the plot
+* `from` -- time in seconds at which to start extraction
+* `to` -- time in seconds at which to stop extraction
 * `textgrid` -- the optional file with the TextGrid's file path
 * `colores` -- set to (`TRUE`) for a colored spectogram, or (`FALSE`) for greyscale. It is also possible to provide a vector of custom colors for the spectrogram.
 * `maximum_frequency` -- the maximum frequency to be displayed for the spectrogram
@@ -305,10 +307,21 @@ There are additional parameters:
 * `output_height` -- the height of the device
 * `output_units` -- the units in which height and width are given. This can be "px" (pixels, which is the default value), "in" (inches), "cm" or "mm".
 
+It is really important in case you have a long file not to draw the whole file, since it won't fit into the RAM of your computer. So you can use `from` and `to` arguments in order to plot the fragment of the sound and annotation:
+
+```{r}
+draw_sound("s1/s1_all.wav",
+           "s1/s1_all.TextGrid",
+           from = 0.4,
+           to = 0.95)
+```
+
 If the `output_file` argument is provided, R will save the plot in your directory instead of displaying it.
 
 ```{r}
-draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav", output_file = "s1/s1_tip", title = "s1 tip")
+draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav", 
+           output_file = "s1/s1_tip", 
+           title = "s1 tip")
 ```
 
 ```{bash, echo = FALSE}
