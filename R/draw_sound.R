@@ -28,6 +28,7 @@
 #' @export
 #'
 #' @importFrom tuneR readWave
+#' @importFrom tuneR readMP3
 #' @importFrom tuneR extractWave
 #' @importFrom grDevices png
 #' @importFrom grDevices dev.off
@@ -60,16 +61,31 @@ draw_sound <- function(file_name,
   if(is.null(sounds_from_folder)){
     if(is.null(output_file)){
       # read file and convert to phonTools format -------------------------------
-      s <- tuneR::readWave(file_name)
+
+      ext <- tolower(substring(file_name, regexpr("\\..*$", file_name) + 1))
+
+      if(ext == "wave"|ext == "wav"){
+        s <- tuneR::readWave(file_name)
+      } else if(ext == "mp3"){
+        s <- tuneR::readMP3(file_name)
+      } else{
+        stop("The draw_sound() functions works only with .wav(e) or .mp3 formats")
+      }
 
       if(!is.null(from)&!is.null(to)){
         if(from >= to){
           stop("Argument from should be smaler then argument to.")
         }
+        if(to > length(s@left)/s@samp.rate){
+          to <- length(s@left)/s@samp.rate
+        }
       } else if(!is.null(from)&is.null(to)){
         to <-  length(s@left)/s@samp.rate
       } else if(is.null(from)&!is.null(to)){
         from <- 0
+        if(to > length(s@left)/s@samp.rate){
+          to <- length(s@left)/s@samp.rate
+        }
       } else if(is.null(from)&is.null(to)){
         from <- 0
         to <-  length(s@left)/s@samp.rate
