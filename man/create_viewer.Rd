@@ -28,7 +28,7 @@ create_viewer(
 
 \item{merge_column}{string with a column name that will be used for merging stimuli and video and audio viewer.}
 
-\item{caption_column}{string with a column name that will be used for captions for a picture (by defaul is the same as merge_column).}
+\item{caption_column}{string with a column name that will be used for captions for a picture (by default is the same as merge_column).}
 
 \item{about}{it is either .Rmd file or string with the text for about}
 

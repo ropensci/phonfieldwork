@@ -9,7 +9,7 @@
 #' @param textgrid string with a filename or path to the TextGrid
 #' @param tiers vecors of numbers or names of TextGrid tiers. They merged into a table and used in the created viewer.
 #' @param merge_column string with a column name that will be used for merging stimuli and video and audio viewer.
-#' @param caption_column string with a column name that will be used for captions for a picture (by defaul is the same as merge_column).
+#' @param caption_column string with a column name that will be used for captions for a picture (by default is the same as merge_column).
 #' @param output_file the name of the result .html file (by default stimuli_viewer)
 #' @param output_dir the output directory for the rendered file
 #' @param render the logical argument, if \code{TRUE} renders the created R Markdown viewer to the \code{output_dir} folder, otherwise returns the path to the temporary file with a .csv file.
@@ -60,7 +60,7 @@ create_viewer <- function(audio_dir,
   })
   tier_names <- unlist(tier_names)
 
-# make a coumn names ------------------------------------------------------
+# make a column names ------------------------------------------------------
   colnames(result_df) <- tier_names
 
 # create correct relative paths -------------------------------------------
