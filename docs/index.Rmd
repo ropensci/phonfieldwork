@@ -298,6 +298,7 @@ There are additional parameters:
 * `title` -- the title for the plot
 * `from` -- time in seconds at which to start extraction
 * `to` -- time in seconds at which to stop extraction
+* `text_size` -- size of the text on the plot
 * `textgrid` -- the optional file with the TextGrid's file path
 * `colores` -- set to (`TRUE`) for a colored spectogram, or (`FALSE`) for greyscale. It is also possible to provide a vector of custom colors for the spectrogram.
 * `maximum_frequency` -- the maximum frequency to be displayed for the spectrogram

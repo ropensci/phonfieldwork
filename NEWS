@@ -1,9 +1,10 @@
-phonfieldwork 0.0.6 (08.06.2020)
+phonfieldwork 0.0.6 (14.06.2020)
   - add "encoding" arguments to functions for working with TextGrids
   - add "textgrid" argument to the "draw_sound()" function
   - change subgraphs alignment in the "draw_sound()" function including textgrid annotation
   - add "from" and "to" arguments to the "draw_sound()" function
   - add mp3 format reading options to all functions that work with sounds
+  - add text_size argument to the "draw_sound()" function
 
 phonfieldwork 0.0.5 (07.06.2020)
   - add "textgrid_to_df()" function for reading Praat files

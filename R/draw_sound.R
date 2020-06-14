@@ -7,6 +7,7 @@
 #' @param textgrid a source for TextGrid annotation plot
 #' @param from Time in seconds at which to start extraction.
 #' @param to Time in seconds at which to stop extraction.
+#' @param text_size numeric, text size (default = 1).
 #' @param spectrum_colors if TRUE, a color spectrogram will be displayed. If FALSE, greyscale is used. If a vector of colors is provided, these colors are used to create the spectrogram.
 #' @param title the title for the plot
 #' @param maximum_frequency the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default
@@ -43,6 +44,7 @@ draw_sound <- function(file_name,
                        textgrid = NULL,
                        from = NULL,
                        to = NULL,
+                       text_size = 1,
                        output_file = NULL,
                        title = NULL,
                        spectrum_colors = FALSE,
@@ -112,12 +114,13 @@ draw_sound <- function(file_name,
            ylab = "",
            xlab = "",
            xaxs = "i")
-      title(as.character(title), outer = TRUE)
+      title(as.character(title), outer = TRUE, cex.main = text_size+0.2)
       # plot spectrogram --------------------------------------------------------
       low_boundary <- ifelse(!is.null(textgrid), 0.27, 0.08)
       graphics::par(fig=c(0.1,0.98,low_boundary,0.75), new=TRUE)
       draw_spectrogram(s@left,
                        fs = s@samp.rate,
+                       text_size = text_size,
                        windowlength = window_length,
                        colors = spectrum_colors,
                        maxfreq = maximum_frequency,
@@ -157,13 +160,15 @@ draw_sound <- function(file_name,
              ylim = range(df$tier)+c(-0.4, 0.4),
              cex = 0,
              yaxt='n',
+             xaxt='n',
              xlab = "time(ms)",
              ylab = "",
              xaxs="i")
-        graphics::text(x = df$mid_point, y = df$tier, labels = df$annotation, cex = 1)
+        graphics::text(x = df$mid_point, y = df$tier, labels = df$annotation, cex = text_size)
         graphics::abline(h = unique(df$tier)[-length(unique(df$tier))]-0.5)
         graphics::segments(x0 = df$start, x1 = df$start, y0 = df$tier-0.5, y1 = df$tier+0.5)
         graphics::segments(x0 = df$end, x1 = df$end, y0 = df$tier-0.5, y1 = df$tier+0.5)
+        graphics::axis(1, cex.axis=text_size)
       }
       # reset graphical parameters to default -----------------------------------
       graphics::par(oma=c(0,0,0,0),
@@ -179,6 +184,7 @@ draw_sound <- function(file_name,
                  textgrid,
                  from,
                  to,
+                 text_size,
                  title,
                  spectrum_colors,
                  maximum_frequency,
@@ -219,6 +225,7 @@ draw_sound <- function(file_name,
       draw_sound(sounds[i],
                  output_file = paste0(pics[i], suffix[i]),
                  title = list.files(sounds_from_folder)[i],
+                 text_size = text_size,
                  spectrum_colors = spectrum_colors,
                  maximum_frequency = maximum_frequency,
                  dynamic_range = dynamic_range,

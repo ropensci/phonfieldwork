@@ -31,6 +31,7 @@
 
 draw_spectrogram <- function (sound,
                               fs = 22050,
+                              text_size = 1,
                               windowlength = 5,
                               timestep = -1000,
                               padding = 10,
@@ -105,7 +106,11 @@ draw_spectrogram <- function (sound,
        xlim = c(0, length(sound)/fs*1000),
        ylim = c(0, maxfreq),
        quality = quality,
-       xaxt= ifelse(x_axis, 's', 'n'),
-       las=1,
-       main = as.character(title)[1])
+       main = as.character(title)[1],
+       yaxt='n',
+       xaxt='n')
+  graphics::axis(2, cex.axis=text_size, las=1)
+  if(x_axis){
+    graphics::axis(1, cex.axis=text_size, las=1)
+  }
 }

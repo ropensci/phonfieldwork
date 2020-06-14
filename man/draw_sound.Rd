@@ -10,6 +10,7 @@ draw_sound(
   textgrid = NULL,
   from = NULL,
   to = NULL,
+  text_size = 1,
   output_file = NULL,
   title = NULL,
   spectrum_colors = FALSE,
@@ -35,6 +36,8 @@ draw_sound(
 \item{from}{Time in seconds at which to start extraction.}
 
 \item{to}{Time in seconds at which to stop extraction.}
+
+\item{text_size}{numeric, text size (default = 1).}
 
 \item{output_file}{the name of the output file}
 
