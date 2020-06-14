@@ -27,7 +27,9 @@ file.remove(c(paste0("s1/backup/", list.files("s1/backup/")),
               paste0("s1/s1_sounds/", list.files("s1/s1_sounds/")),
               "s1/s1_pics/",
               "s1/s1_sounds/",
-              "s1/stimuli_viewer.html"))
+              "s1/stimuli_viewer.html",
+              "glossed_document.docx",
+              "glossed_document.html"))
 rename_soundfiles(stimuli = c("02", "01", "03"),
                   path = "s2/",
                   backup = FALSE)
@@ -142,13 +144,13 @@ create_presentation(stimuli = my_stimuli_df$stimuli,
                     output_dir = getwd()) 
 ```
 
-As a result, a file "first_example.html" was created in the output folder. You can change the name of this file by changing  the `output_file` argument. The html file now looks as follows:
+As a result, a file "first_example.html" was created in the output folder. You can change the name of this file by changing  the `output_file` argument. The `.html` file now looks as follows:
 
 <iframe src="https://agricolamz.github.io/phonfieldwork/first_example.html" width = 900 height = 700>
   <p>Your browser does not support iframes :(</p>
 </iframe>
 
-It is also possible to change the output format, using the `output_format` argument. By dafault it is "html", but you can also use "pptx" (this is a relatively new feature of `rmarkdown`, so update the package in case you get errors).
+It is also possible to change the output format, using the `output_format` argument. By dafault it is "html", but you can also use "pptx" (this is a relatively new feature of `rmarkdown`, so update the package in case you get errors). There is also an additional argument `translations`, where you can provide translations for stimuli in order that they appeared near the stimuli on the slide.
 
 ## Rename collected data
 After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure:
@@ -254,7 +256,7 @@ draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
 You can see that we created a third tier with annotation. The only thing left is to move annotation boundaries in Praat (this can not be automated):
 
 ```{r, include=FALSE}
-file.copy("s1_all.TextGrid", to = "s1/s1_all.TextGrid", overwrite = TRUE)
+file.copy("files/s1_all.TextGrid", to = "s1/s1_all.TextGrid", overwrite = TRUE)
 ```
 
 ```{r, echo=FALSE}
@@ -384,13 +386,13 @@ exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 * file `.flextext` from FLEx
 
 ```{r}
-flextext_to_df("zilo_test.flextext")
+flextext_to_df("files/zilo_test.flextext")
 ```
 
-There is also an additional function for working with the `.flextext` format that convert it to a glossed document in a `docx` or `.html` format (see examples: [`.docx`](https://github.com/agricolamz/phonfieldwork/raw/master/docs/glossed_document.docx), [`.html`](https://agricolamz.github.io/phonfieldwork/glossed_document.html)):
+There is also an additional function for working with the `.flextext` format that convert it to a glossed document in a `docx` or `.html` format (see examples: [`.docx`](https://github.com/agricolamz/phonfieldwork/raw/master/docs/glossed_document.docx), [`.html`](https://agricolamz.github.io/phonfieldwork/files/glossed_document.html)):
 
 ```{r}
-create_glossed_document(flextext = "zilo_test.flextext", 
+create_glossed_document(flextext = "files/zilo_test.flextext", 
                         output_dir = ".") # you need to specify the path to the output folder
 ```
 

@@ -30,6 +30,7 @@
 #'
 #' @export
 #' @importFrom tuneR readWave
+#' @importFrom tuneR readMP3
 #' @importFrom tuneR bind
 #' @importFrom tuneR writeWave
 #'
@@ -42,7 +43,17 @@ extract_intervals <- function(file_name,
                               autonumber = TRUE,
                               path,
                               encoding = "unknown"){
-  s <- tuneR::readWave(file_name)
+
+  ext <- tolower(substring(file_name, regexpr("\\..*$", file_name) + 1))
+
+  if(ext == "wave"|ext == "wav"){
+    s <- tuneR::readWave(file_name)
+  } else if(ext == "mp3"){
+    s <- tuneR::readMP3(file_name)
+  } else{
+    stop("The draw_sound() functions works only with .wav(e) or .mp3 formats")
+  }
+
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{

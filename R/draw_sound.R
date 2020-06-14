@@ -204,23 +204,13 @@ draw_sound <- function(file_name,
     # get list of sounds and future pictures ----------------------------------
     sounds <- paste0(sounds_from_folder, "/", list.files(sounds_from_folder))
 
-    unlist(
-      lapply(seq_along(sounds), function(i){
-        res <- unlist(strsplit(sounds[i], "\\."))
-        res[length(res)]
-      })) ->
-      extension
-    files_from_list <- which(tolower(extension) %in% "wav")
-
-    sounds <- sounds[files_from_list]
-
     if(isTRUE(autonumber)){
       prefix <- paste0(add_leading_symbols(1:length(sounds)), "_", prefix)
     }
 
     pics <- paste0(pic_path, "/",
                    prefix,
-                   list.files(sounds_from_folder)[files_from_list])
+                   list.files(sounds_from_folder))
     pics <- substr(pics, 1, nchar(pics)-4)
 
     # loop over the draw_sound function ---------------------------------------
@@ -228,7 +218,7 @@ draw_sound <- function(file_name,
     lapply(seq_along(sounds), function(i){
       draw_sound(sounds[i],
                  output_file = paste0(pics[i], suffix[i]),
-                 title = list.files(sounds_from_folder)[files_from_list][i],
+                 title = list.files(sounds_from_folder)[i],
                  spectrum_colors = spectrum_colors,
                  maximum_frequency = maximum_frequency,
                  dynamic_range = dynamic_range,

@@ -20,8 +20,6 @@
 #'
 #' @export
 #'
-#' @importFrom tuneR readWave
-#'
 
 annotate_textgrid <- function(annotation,
                               textgrid,

@@ -26,6 +26,7 @@
 #'
 #' @importFrom stats fft
 #' @importFrom tuneR readWave
+#' @importFrom tuneR readMP3
 #'
 
 draw_spectrogram <- function (sound,
@@ -48,7 +49,16 @@ draw_spectrogram <- function (sound,
 
   # This function is slightly modification of phonTools::spectrogram() by Santiago Barreda <sbarreda@ucdavis.edu>
   if(class(sound) != "integer"){
-    s <- tuneR::readWave(sound)
+    ext <- tolower(substring(sound, regexpr("\\..*$", sound) + 1))
+
+    if(ext == "wave"|ext == "wav"){
+      s <- tuneR::readWave(sound)
+    } else if(ext == "mp3"){
+      s <- tuneR::readMP3(sound)
+    } else{
+      stop("The draw_spectrogram() functions works only with .wav(e) or .mp3 formats")
+    }
+
     fs <- s@samp.rate
     sound <- s@left
   }
