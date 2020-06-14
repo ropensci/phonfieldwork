@@ -185,7 +185,7 @@ draw_sound <- function(file_name,
                  dynamic_range,
                  window_length,
                  output_file = NULL)
-      grDevices::dev.off()
+      supress_message <- grDevices::dev.off()
     }
     # in case of multuple files -----------------------------------------------
   } else {
@@ -225,7 +225,8 @@ draw_sound <- function(file_name,
                  window_length = window_length,
                  output_width = output_width,
                  output_height = output_height,
-                 output_units = output_units)
+                 output_units = output_units) ->
+        supress_message
     })
   }
 }

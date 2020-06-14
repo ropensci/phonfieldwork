@@ -79,7 +79,7 @@ extract_intervals <- function(file_name,
                                      xunit = "time")
     tuneR::writeWave(s_fragment, paste0(path, "/", annotations[i], ".wav")) ->
       results
-    Sys.sleep(0.1)
-  }
+    Sys.sleep(0.05)
+  } -> supress_message
   )
 }

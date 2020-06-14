@@ -389,11 +389,15 @@ exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 flextext_to_df("files/zilo_test.flextext")
 ```
 
-There is also an additional function for working with the `.flextext` format that convert it to a glossed document in a `docx` or `.html` format (see examples: [`.docx`](https://github.com/agricolamz/phonfieldwork/raw/master/docs/glossed_document.docx), [`.html`](https://agricolamz.github.io/phonfieldwork/files/glossed_document.html)):
+There is also an additional function for working with the `.flextext` format that convert it to a glossed document in a `docx` or `.html` format (see examples: [`.docx`](https://github.com/agricolamz/phonfieldwork/raw/master/docs/glossed_document.docx), [`.html`](https://agricolamz.github.io/phonfieldwork/glossed_document.html)):
 
 ```{r}
 create_glossed_document(flextext = "files/zilo_test.flextext", 
                         output_dir = ".") # you need to specify the path to the output folder
+```
+
+```{r, include=FALSE}
+file.copy("files/glossed_document.html", to = "glossed_document.html", overwrite = TRUE)
 ```
 
 # References
