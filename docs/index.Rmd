@@ -36,7 +36,6 @@ rename_soundfiles(stimuli = c("02", "01", "03"),
 rename_soundfiles(stimuli = c("02", "01", "03"),
                   path = "s1/",
                   backup = FALSE)
-knitr::opts_chunk$set(fig.height = 6)
 ```
 
 # Introduction

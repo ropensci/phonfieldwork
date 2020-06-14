@@ -125,7 +125,7 @@ draw_sound <- function(file_name,
                        x_axis = is.null(textgrid))
       # plot textgrid -----------------------------------------------------------
       if(!is.null(textgrid)){
-        graphics::par(fig=c(0.1, 0.98, 0.07, 0.27), new=TRUE)
+        graphics::par(fig=c(0.1, 0.98, 0.09, 0.27), new=TRUE)
         df <- textgrid_to_df(textgrid)
         df <- df[df$start >= from,]
         df <- df[df$end <= to,]
@@ -225,9 +225,8 @@ draw_sound <- function(file_name,
                  window_length = window_length,
                  output_width = output_width,
                  output_height = output_height,
-                 output_units = output_units) ->
-        supress_message
-    })
+                 output_units = output_units)
+    }) -> supress_message
   }
 }
 

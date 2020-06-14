@@ -63,6 +63,7 @@ create_presentation <- function(stimuli,
                       output_file = output_file,
                       output_dir = normalizePath(output_dir),
                       quiet = TRUE)
+    suppress_messages <- file.remove(tmp)
   } else {
     tmp
   }
