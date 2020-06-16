@@ -6,6 +6,7 @@ phonfieldwork 0.0.6 (16.06.2020)
   - add mp3 format reading options to all functions that work with sounds
   - add text_size argument to the "draw_sound()" function
   - add zoom argument to the "draw_sound()" function
+  - add the "get_sound_duration()" function
 
 phonfieldwork 0.0.5 (07.06.2020)
   - add "textgrid_to_df()" function for reading Praat files

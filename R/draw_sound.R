@@ -1,9 +1,10 @@
 #' Draw Oscilogram, Spectrogram and annotation
-#' Create oscilogram and spectrogram plot. Based on \code{phonTools::spectrogram}.
+#'
+#' Create oscilogram and spectrogram plot.
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param file_name a soundfile
+#' @param file_name a sound file
 #' @param textgrid a source for TextGrid annotation plot
 #' @param from Time in seconds at which to start extraction.
 #' @param to Time in seconds at which to stop extraction.
@@ -18,7 +19,7 @@
 #' @param output_width the width of the device
 #' @param output_height the height of the device
 #' @param output_units the units in which height and width are given. Can be "px" (pixels, the default), "in" (inches), "cm" or "mm".
-#' @param sounds_from_folder path to a folder with multiple .wav files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.
+#' @param sounds_from_folder path to a folder with multiple sound files. If this argument is not \code{NULL}, then the function goes through all files and creates picture for all of them.
 #' @param textgrids_from_folder path to a folder with multiple .TextGrid files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.
 #' @param pic_folder_name name for a folder, where all pictures will be stored in case \code{sounds_from_folder} argument is not \code{NULL}
 #' @param prefix prefix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}
@@ -231,7 +232,6 @@ draw_sound <- function(file_name,
   } else {
     # get a correct picture folder path ---------------------------------------
     sounds_from_folder <- normalizePath(sounds_from_folder)
-    list.files(sounds_from_folder)
     slashes <- unlist(gregexpr("/", sounds_from_folder))
     cut <- unlist(gregexpr("/", sounds_from_folder))[length(slashes)]
     pic_path <- paste0(substr(sounds_from_folder, 1, cut), pic_folder_name)

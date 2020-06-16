@@ -2,8 +2,7 @@
 % Please edit documentation in R/draw_sound.R
 \name{draw_sound}
 \alias{draw_sound}
-\title{Draw Oscilogram, Spectrogram and annotation
-Create oscilogram and spectrogram plot. Based on \code{phonTools::spectrogram}.}
+\title{Draw Oscilogram, Spectrogram and annotation}
 \usage{
 draw_sound(
   file_name,
@@ -30,7 +29,7 @@ draw_sound(
 )
 }
 \arguments{
-\item{file_name}{a soundfile}
+\item{file_name}{a sound file}
 
 \item{textgrid}{a source for TextGrid annotation plot}
 
@@ -60,7 +59,7 @@ draw_sound(
 
 \item{output_units}{the units in which height and width are given. Can be "px" (pixels, the default), "in" (inches), "cm" or "mm".}
 
-\item{sounds_from_folder}{path to a folder with multiple .wav files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.}
+\item{sounds_from_folder}{path to a folder with multiple sound files. If this argument is not \code{NULL}, then the function goes through all files and creates picture for all of them.}
 
 \item{textgrids_from_folder}{path to a folder with multiple .TextGrid files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.}
 
@@ -76,8 +75,7 @@ draw_sound(
 Oscilogram and spectrogram plot (and possibly TextGrid annotation).
 }
 \description{
-Draw Oscilogram, Spectrogram and annotation
-Create oscilogram and spectrogram plot. Based on \code{phonTools::spectrogram}.
+Create oscilogram and spectrogram plot.
 }
 \author{
 George Moroz <agricolamz@gmail.com>

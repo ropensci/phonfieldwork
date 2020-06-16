@@ -2936,7 +2936,21 @@ Your browser does not support iframes :(
 ##     ├── s2_tip_1.wav
 ##     └── s2_top_3.wav</code></pre>
 <p>The last command renamed the soundfiles in the <code>s2</code> folder, adding the prefix <code>s2</code> as in the previous example, and the suffix <code>1</code>-<code>3</code>. On most operating systems it is impossible to create two files with the same name, so sometimes it can be useful to add some kind of index at the end of the files.</p>
-<p>For now <code>phonfieldwork</code> works only with <code>.wav(e)</code> and <code>.mp3</code> files and several video formats (<code>.mp4</code>, <code>.avi</code> and <code>.mov</code>).</p>
+<p>Sometimes it is useful to get information about sound duration:</p>
+<pre class="r"><code>get_sound_duration(&quot;s1/s1_tap.wav&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["file"],"name":[1],"type":["chr"],"align":["left"]},{"label":["duration"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"s1_tap.wav","2":"0.4821542"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>It is also possible to analyze the whole folder:</p>
+<pre class="r"><code>get_sound_duration(sounds_from_folder = &quot;s2/&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["file"],"name":[1],"type":["chr"],"align":["left"]},{"label":["duration"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"s2_tap_2.wav","2":"0.5343991"},{"1":"s2_tip_1.wav","2":"0.5866440"},{"1":"s2_top_3.wav","2":"0.6650113"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>For now <code>phonfieldwork</code> works only with <code>.wav(e)</code> and <code>.mp3</code> sound files and several video formats (<code>.mp4</code>, <code>.avi</code> and <code>.mov</code>).</p>
 </div>
 <div id="merge-all-data-together" class="section level2">
 <h2><span class="header-section-number">4.4</span> Merge all data together</h2>
