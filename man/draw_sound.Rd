@@ -10,6 +10,7 @@ draw_sound(
   textgrid = NULL,
   from = NULL,
   to = NULL,
+  zoom = NULL,
   text_size = 1,
   output_file = NULL,
   title = NULL,
@@ -36,6 +37,8 @@ draw_sound(
 \item{from}{Time in seconds at which to start extraction.}
 
 \item{to}{Time in seconds at which to stop extraction.}
+
+\item{zoom}{numeric vector of zoom window time (in seconds). It will draw the whole oscilogram and part of the spectrogram.}
 
 \item{text_size}{numeric, text size (default = 1).}
 

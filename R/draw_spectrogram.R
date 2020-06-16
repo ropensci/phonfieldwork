@@ -6,6 +6,7 @@
 #'
 #' @param sound Either a numeric vector representing a sequence of samples taken from a sound wave or a sound object created with the loadsound() or makesound() functions.
 #' @param fs 	The sampling frequency in Hz. If a sound object is passed this does not need to be specified.
+#' @param text_size numeric, text size (default = 1).
 #' @param windowlength The desired analysis window length in milliseconds.
 #' @param timestep If a negative value is given, -N, then N equally-spaced time steps are calculated. If a positive number is given, this is the spacing between adjacent analyses, in milliseconds.
 #' @param padding The amount of zero padding for each window, measured in units of window length. For example, if the window is 50 points, and padding = 10, 500 zeros will be appended to each window.
@@ -14,7 +15,6 @@
 #' @param colors If TRUE, a color spectrogram will be displayed. If FALSE, greyscale is used. If a vector of colors is provided, these colors are used to create the spectrogram.
 #' @param dynamicrange Values greater than this many dB below the maximum will be displayed in the same color.
 #' @param nlevels The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.
-#' @param maintitle A string indicating the spectrogram title if one is desired.
 #' @param show If FALSE, no spectrogram is plotted. This is useful if the user would like to perform an action on an existing spectrogram plot without having to redraw it.
 #' @param window the window to be applied to the signal, applied by the windowfunc function in this package.
 #' @param windowparameter the parameter for the window to be applied to the signal, if appropriate.
@@ -40,7 +40,6 @@ draw_spectrogram <- function (sound,
                               colors = FALSE,
                               dynamicrange = 50,
                               nlevels = dynamicrange,
-                              maintitle = "",
                               show = TRUE,
                               window = "kaiser",
                               windowparameter = 3,
@@ -64,14 +63,12 @@ draw_spectrogram <- function (sound,
     sound <- s@left
   }
   n = ceiling((fs/1000) * windowlength)
-  if (n%%2)
-    n = n + 1
-  if (timestep > 0)
-    timestep = floor(timestep/1000 * fs)
-  if (timestep <= 0)
-    timestep = floor(length(sound)/-timestep)
-  if (preemphasisf > 0)
+  if (n%%2) {n = n + 1}
+  if (timestep > 0) {timestep = floor(timestep/1000 * fs)}
+  if (timestep <= 0) {timestep = floor(length(sound)/-timestep)}
+  if (preemphasisf > 0){
     sound = phonTools::preemphasis(sound, preemphasisf, fs)
+    }
   spots = seq(floor(n/2), length(sound) - n, timestep)
   padding = n * padding
   if ((n + padding)%%2)

@@ -7,6 +7,7 @@
 #' @param textgrid a source for TextGrid annotation plot
 #' @param from Time in seconds at which to start extraction.
 #' @param to Time in seconds at which to stop extraction.
+#' @param zoom numeric vector of zoom window time (in seconds). It will draw the whole oscilogram and part of the spectrogram.
 #' @param text_size numeric, text size (default = 1).
 #' @param spectrum_colors if TRUE, a color spectrogram will be displayed. If FALSE, greyscale is used. If a vector of colors is provided, these colors are used to create the spectrogram.
 #' @param title the title for the plot
@@ -31,19 +32,23 @@
 #' @importFrom tuneR readWave
 #' @importFrom tuneR readMP3
 #' @importFrom tuneR extractWave
+#' @importFrom stats sd
 #' @importFrom grDevices png
 #' @importFrom grDevices dev.off
+#' @importFrom grDevices rgb
 #' @importFrom graphics par
 #' @importFrom graphics axis
 #' @importFrom graphics text
 #' @importFrom graphics abline
 #' @importFrom graphics segments
+#' @importFrom graphics rect
 #'
 
 draw_sound <- function(file_name,
                        textgrid = NULL,
                        from = NULL,
                        to = NULL,
+                       zoom = NULL,
                        text_size = 1,
                        output_file = NULL,
                        title = NULL,
@@ -63,15 +68,18 @@ draw_sound <- function(file_name,
   if(is.null(sounds_from_folder)){
     if(is.null(output_file)){
       # read file and convert to phonTools format -------------------------------
-
-      ext <- tolower(substring(file_name, regexpr("\\..*$", file_name) + 1))
-
-      if(ext == "wave"|ext == "wav"){
-        s <- tuneR::readWave(file_name)
-      } else if(ext == "mp3"){
-        s <- tuneR::readMP3(file_name)
+      if(class(file_name) == "Wave"){
+        s <- file_name
       } else{
-        stop("The draw_sound() functions works only with .wav(e) or .mp3 formats")
+        ext <- tolower(substring(file_name, regexpr("\\..*$", file_name) + 1))
+
+        if(ext == "wave"|ext == "wav"){
+          s <- tuneR::readWave(file_name)
+        } else if(ext == "mp3"){
+          s <- tuneR::readMP3(file_name)
+        } else{
+          stop("The draw_sound() functions works only with .wav(e) or .mp3 formats")
+        }
       }
 
       if(!is.null(from)&!is.null(to)){
@@ -99,9 +107,11 @@ draw_sound <- function(file_name,
       title_space <- ifelse(is.null(title), 0, 2)
 
       # plot oscilogram ---------------------------------------------------------
+      low_boundary <- ifelse(is.null(zoom), 0.75, 0.83)
+
       graphics::par(oma=c(0,0,title_space,0),
                     mai=c(0, 0, 0, 0),
-                    fig=c(0.1,0.98,0.75,1))
+                    fig=c(0.1, 0.98, low_boundary, 1))
 
       n <- max(abs(range(s@left)))
       s_range <- floor(n/10^(nchar(n)-1))*10^(nchar(n)-1)
@@ -115,11 +125,28 @@ draw_sound <- function(file_name,
            xlab = "",
            xaxs = "i")
       title(as.character(title), outer = TRUE, cex.main = text_size+0.2)
+      if(!is.null(zoom)){
+        graphics::rect(xleft = zoom[1]*1000,
+                       xright = zoom[2]*1000,
+                       ybottom = min(s@left)-stats::sd(s@left),
+                       ytop = max(s@left)+stats::sd(s@left),
+                       border = "darkgrey",
+                       col= grDevices::rgb(0,0,0.5,alpha=0.05))
+        graphics::axis(1, las=1)
+      }
       # plot spectrogram --------------------------------------------------------
-      low_boundary <- ifelse(!is.null(textgrid), 0.27, 0.08)
-      graphics::par(fig=c(0.1,0.98,low_boundary,0.75), new=TRUE)
-      draw_spectrogram(s@left,
-                       fs = s@samp.rate,
+      low_boundary <- ifelse(is.null(textgrid), 0.08, 0.27)
+      graphics::par(fig=c(0.1, 0.98, low_boundary, 0.75), new=TRUE)
+      if(!is.null(zoom)){
+        for_spectrum <- tuneR::extractWave(s,
+                                           from = zoom[1],
+                                           to = zoom[2],
+                                           xunit = "time")
+      } else{
+        for_spectrum <- s
+      }
+      draw_spectrogram(for_spectrum@left,
+                       fs = for_spectrum@samp.rate,
                        text_size = text_size,
                        windowlength = window_length,
                        colors = spectrum_colors,
@@ -130,6 +157,12 @@ draw_sound <- function(file_name,
       if(!is.null(textgrid)){
         graphics::par(fig=c(0.1, 0.98, 0.09, 0.27), new=TRUE)
         df <- textgrid_to_df(textgrid)
+
+        if(!is.null(zoom)){
+          from <- zoom[1]
+          to <- zoom[2]
+        }
+
         df <- df[df$start >= from,]
         df <- df[df$end <= to,]
         if(nrow(df) < 1){
@@ -156,7 +189,7 @@ draw_sound <- function(file_name,
         df$tier <- -df$tier
         plot(x = df$mid_point,
              y = df$fake_y,
-             xlim = c(df$start[1], length(s@left)/s@samp.rate*1000),
+             xlim = c(df$start[1], length(for_spectrum@left)/for_spectrum@samp.rate*1000),
              ylim = range(df$tier)+c(-0.4, 0.4),
              cex = 0,
              yaxt='n',
@@ -180,16 +213,17 @@ draw_sound <- function(file_name,
                      width = output_width,
                      height = output_height,
                      units = output_units)
-      draw_sound(file_name,
-                 textgrid,
-                 from,
-                 to,
-                 text_size,
-                 title,
-                 spectrum_colors,
-                 maximum_frequency,
-                 dynamic_range,
-                 window_length,
+      draw_sound(file_name = file_name,
+                 textgrid = textgrid,
+                 from = from,
+                 to = to,
+                 zoom = zoom,
+                 text_size = text_size,
+                 title = title,
+                 spectrum_colors = spectrum_colors,
+                 maximum_frequency = maximum_frequency,
+                 dynamic_range = dynamic_range,
+                 window_length = window_length,
                  output_file = NULL)
       supress_message <- grDevices::dev.off()
     }

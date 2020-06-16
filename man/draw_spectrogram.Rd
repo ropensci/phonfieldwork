@@ -7,6 +7,7 @@
 draw_spectrogram(
   sound,
   fs = 22050,
+  text_size = 1,
   windowlength = 5,
   timestep = -1000,
   padding = 10,
@@ -15,7 +16,6 @@ draw_spectrogram(
   colors = FALSE,
   dynamicrange = 50,
   nlevels = dynamicrange,
-  maintitle = "",
   show = TRUE,
   window = "kaiser",
   windowparameter = 3,
@@ -28,6 +28,8 @@ draw_spectrogram(
 \item{sound}{Either a numeric vector representing a sequence of samples taken from a sound wave or a sound object created with the loadsound() or makesound() functions.}
 
 \item{fs}{The sampling frequency in Hz. If a sound object is passed this does not need to be specified.}
+
+\item{text_size}{numeric, text size (default = 1).}
 
 \item{windowlength}{The desired analysis window length in milliseconds.}
 
@@ -44,8 +46,6 @@ draw_spectrogram(
 \item{dynamicrange}{Values greater than this many dB below the maximum will be displayed in the same color.}
 
 \item{nlevels}{The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.}
-
-\item{maintitle}{A string indicating the spectrogram title if one is desired.}
 
 \item{show}{If FALSE, no spectrogram is plotted. This is useful if the user would like to perform an action on an existing spectrogram plot without having to redraw it.}
 

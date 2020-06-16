@@ -289,7 +289,7 @@ tree | tail -n 19 | head -n 17
 ## Visualizing your data
 It is possible to view an oscilogram and spetrogram of any soundfile:
 
-```{r, fig.width=12, fig.height=6}
+```{r}
 draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav")
 ```
   
@@ -298,6 +298,7 @@ There are additional parameters:
 * `title` -- the title for the plot
 * `from` -- time in seconds at which to start extraction
 * `to` -- time in seconds at which to stop extraction
+* `zoom` -- time in seconds for zooming spectrogram
 * `text_size` -- size of the text on the plot
 * `textgrid` -- the optional file with the TextGrid's file path
 * `colores` -- set to (`TRUE`) for a colored spectogram, or (`FALSE`) for greyscale. It is also possible to provide a vector of custom colors for the spectrogram.
@@ -316,6 +317,14 @@ draw_sound("s1/s1_all.wav",
            "s1/s1_all.TextGrid",
            from = 0.4,
            to = 0.95)
+```
+
+It is also possible using the `zoom` argument to show the part of the spectrogram keeping the broader oscilogram context:
+
+```{r}
+draw_sound("s1/s1_all.wav",
+           "s1/s1_all.TextGrid",
+           zoom = c(0.4, 0.95))
 ```
 
 If the `output_file` argument is provided, R will save the plot in your directory instead of displaying it.
