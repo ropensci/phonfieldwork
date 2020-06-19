@@ -351,7 +351,7 @@ draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav",
 tree | tail -n 21 | head -n 19
 ```
 
-It is also possible to create visualizations of all .wav files in a folder. For this purpose you need to specify a source folder with the argument `sounds_from_folder` and a target folder for the images (`pic_folder_name`). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.
+It is also possible to create visualizations of all sound files in a folder. For this purpose you need to specify a source folder with the argument `sounds_from_folder` and a target folder for the images (`pic_folder_name`). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.
 
 ```{r}
 draw_sound(sounds_from_folder = "s1/s1_sounds/", 
@@ -361,6 +361,8 @@ draw_sound(sounds_from_folder = "s1/s1_sounds/",
 ```{bash, echo = FALSE}
 tree | tail -n 25 | head -n 23
 ```
+
+It is also possible to use the argument `textgrid_from_folder` in order to specify the folder where .TextGrids for annotation are (could be the same folder as the sound one). By default the `draw_sound()` function with the `sounds_from_folder` argument adds a title with the file name to each pictures' title, but it is possible to turn it off using the argument `title_as_filename = FALSE`.
 
 ## Create a viewer
 

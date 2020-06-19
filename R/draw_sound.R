@@ -22,6 +22,7 @@
 #' @param sounds_from_folder path to a folder with multiple sound files. If this argument is not \code{NULL}, then the function goes through all files and creates picture for all of them.
 #' @param textgrids_from_folder path to a folder with multiple .TextGrid files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.
 #' @param pic_folder_name name for a folder, where all pictures will be stored in case \code{sounds_from_folder} argument is not \code{NULL}
+#' @param title_as_filename logical. If true adds filename title to each picture
 #' @param prefix prefix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}
 #' @param suffix suffix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}
 #' @param autonumber if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.
@@ -63,6 +64,7 @@ draw_sound <- function(file_name,
                        sounds_from_folder = NULL,
                        textgrids_from_folder = NULL,
                        pic_folder_name = "pics",
+                       title_as_filename = TRUE,
                        prefix = NULL,
                        suffix = NULL,
                        autonumber = FALSE){
@@ -232,6 +234,9 @@ draw_sound <- function(file_name,
   } else {
     # get a correct picture folder path ---------------------------------------
     sounds_from_folder <- normalizePath(sounds_from_folder)
+    if(!is.null(textgrids_from_folder)){
+      textgrids_from_folder <- normalizePath(textgrids_from_folder)
+    }
     slashes <- unlist(gregexpr("/", sounds_from_folder))
     cut <- unlist(gregexpr("/", sounds_from_folder))[length(slashes)]
     pic_path <- paste0(substr(sounds_from_folder, 1, cut), pic_folder_name)
@@ -242,23 +247,42 @@ draw_sound <- function(file_name,
     }
 
     # get list of sounds and future pictures ----------------------------------
-    sounds <- paste0(sounds_from_folder, "/", list.files(sounds_from_folder))
+    sounds <- paste0(sounds_from_folder,
+                     "/",
+                     list.files(
+                       sounds_from_folder,
+                       pattern = "(\\.WAVE?$)|(\\.wave?$)|(\\.MP3?$)|(\\.mp3?$)"))
+
+    if(!is.null(textgrids_from_folder)){
+      textgrids <- paste0(sounds_from_folder,
+                          "/",
+                          list.files(
+                            textgrids_from_folder, pattern = "\\.TextGrid$"))
+    } else {
+      textgrids <- NULL
+    }
 
     if(isTRUE(autonumber)){
-      prefix <- paste0(add_leading_symbols(1:length(sounds)), "_", prefix)
+      prefix <- paste0(phonfieldwork::add_leading_symbols(1:length(sounds)),
+                       "_", prefix)
     }
+
+    names <- list.files(sounds_from_folder,
+                        "(\\.WAVE?$)|(\\.wave?$)|(\\.MP3?$)|(\\.mp3?$)")
+    names <- unlist(strsplit(names,
+                             "(\\.WAVE?$)|(\\.wave?$)|(\\.MP3?$)|(\\.mp3?$)"))
 
     pics <- paste0(pic_path, "/",
                    prefix,
-                   list.files(sounds_from_folder))
-    pics <- substr(pics, 1, nchar(pics)-4)
+                   names)
 
     # loop over the draw_sound function ---------------------------------------
 
     lapply(seq_along(sounds), function(i){
       draw_sound(sounds[i],
+                 textgrid = textgrids[i],
                  output_file = paste0(pics[i], suffix[i]),
-                 title = list.files(sounds_from_folder)[i],
+                 title = switch(title_as_filename+1, NULL, names[i]),
                  text_size = text_size,
                  spectrum_colors = spectrum_colors,
                  maximum_frequency = maximum_frequency,
@@ -266,9 +290,8 @@ draw_sound <- function(file_name,
                  window_length = window_length,
                  output_width = output_width,
                  output_height = output_height,
-                 output_units = output_units)
+                 output_units = output_units,
+                 title_as_filename = FALSE)
     }) -> supress_message
   }
 }
-
-

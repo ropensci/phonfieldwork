@@ -3083,7 +3083,7 @@ Your browser does not support iframes :(
 ##     ├── s2_tap_2.wav
 ##     ├── s2_tip_1.wav
 ##     └── s2_top_3.wav</code></pre>
-<p>It is also possible to create visualizations of all .wav files in a folder. For this purpose you need to specify a source folder with the argument <code>sounds_from_folder</code> and a target folder for the images (<code>pic_folder_name</code>). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.</p>
+<p>It is also possible to create visualizations of all sound files in a folder. For this purpose you need to specify a source folder with the argument <code>sounds_from_folder</code> and a target folder for the images (<code>pic_folder_name</code>). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.</p>
 <pre class="r"><code>draw_sound(sounds_from_folder = &quot;s1/s1_sounds/&quot;, 
            pic_folder_name = &quot;s1_pics&quot;)</code></pre>
 <pre><code>## ├── s1
@@ -3109,6 +3109,7 @@ Your browser does not support iframes :(
 ##     ├── s2_tap_2.wav
 ##     ├── s2_tip_1.wav
 ##     └── s2_top_3.wav</code></pre>
+<p>It is also possible to use the argument <code>textgrid_from_folder</code> in order to specify the folder where .TextGrids for annotation are (could be the same folder as the sound one). By default the <code>draw_sound()</code> function with the <code>sounds_from_folder</code> argument adds a title with the file name to each pictures’ title, but it is possible to turn it off using the argument <code>title_as_filename = FALSE</code>.</p>
 </div>
 <div id="create-a-viewer" class="section level2">
 <h2><span class="header-section-number">4.8</span> Create a viewer</h2>

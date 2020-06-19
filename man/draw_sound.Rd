@@ -23,6 +23,7 @@ draw_sound(
   sounds_from_folder = NULL,
   textgrids_from_folder = NULL,
   pic_folder_name = "pics",
+  title_as_filename = TRUE,
   prefix = NULL,
   suffix = NULL,
   autonumber = FALSE
@@ -64,6 +65,8 @@ draw_sound(
 \item{textgrids_from_folder}{path to a folder with multiple .TextGrid files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.}
 
 \item{pic_folder_name}{name for a folder, where all pictures will be stored in case \code{sounds_from_folder} argument is not \code{NULL}}
+
+\item{title_as_filename}{logical. If true adds filename title to each picture}
 
 \item{prefix}{prefix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}}
 
