@@ -80,6 +80,10 @@ Oscilogram and spectrogram plot (and possibly TextGrid annotation).
 \description{
 Create oscilogram and spectrogram plot.
 }
+\examples{
+draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"))
+
+}
 \author{
 George Moroz <agricolamz@gmail.com>
 }

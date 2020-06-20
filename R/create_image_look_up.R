@@ -14,14 +14,20 @@
 #'
 
 create_image_look_up <- function(img_src,
-                                 img_caption = "",
+                                 img_caption = NULL,
                                  text = "&#x1f441;"){
+  if(is.null(img_caption)){
+    img_caption <- rep("", length(img_src))
+  }
+
+
   if(length(img_src) != length(img_caption)){
     stop(paste0("It looks like the img_src variable contains ",
                 length(img_src),
                 " objects and the img_caption variable contains ",
                 length(img_caption)))
   }
+
   paste0("<a ",
         "onmouseover=\"resize(this, '200%')\" ",
         "onmouseout=\"resize(this, '100%')\" ",

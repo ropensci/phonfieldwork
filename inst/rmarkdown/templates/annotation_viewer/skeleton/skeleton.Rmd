@@ -3,8 +3,7 @@ title: "Sound Viewer"
 output: html_document
 params:
   data: your_file.csv
-  merge_column: "merge_column"
-  caption_column: "caption_column"
+  captions: "caption_for_pictures"
   about: about.Rmd
 editor_options: 
   chunk_output_type: console
@@ -44,15 +43,12 @@ editor_options:
 ## data
 
 ```{r make_viewer, echo=FALSE, message=FALSE, warning=FALSE}
-df <- read.csv(params$data, stringsAsFactors = FALSE)
-merge <- which(colnames(df) %in% params$merge_column)
-captions <- which(colnames(df) %in% params$caption_column)
+df <- read.csv(tmp1, stringsAsFactors = FALSE)
 
-df[,merge] <- 
-  paste(df[,merge],
-         phonfieldwork::create_image_look_up(img_src = df$pictures,
-                                             img_caption = df[,captions]),
-         phonfieldwork::create_sound_play(snd_src = df$audio))
+df$viewer <- 
+  paste(phonfieldwork::create_image_look_up(img_src = df$pictures,
+                                            img_caption = captions),
+        phonfieldwork::create_sound_play(snd_src = df$audio))
 
 df <- df[, -which(colnames(df) %in% c("audio", "pictures"))]
 

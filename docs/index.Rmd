@@ -364,28 +364,6 @@ tree | tail -n 25 | head -n 23
 
 It is also possible to use the argument `textgrid_from_folder` in order to specify the folder where .TextGrids for annotation are (could be the same folder as the sound one). By default the `draw_sound()` function with the `sounds_from_folder` argument adds a title with the file name to each pictures' title, but it is possible to turn it off using the argument `title_as_filename = FALSE`.
 
-## Create a viewer
-
-It is possible to create an annotation viewer.
-
-```{r, message= FALSE, warning=FALSE}
-create_viewer(audio_dir = "s1/s1_sounds/",
-              picture_dir = "s1/s1_pics/", 
-              textgrid = "s1/s1_all.TextGrid",
-              tiers = c(1, 3),
-              merge_column = "labels",
-              output_dir = "s1/",
-              output_file = "stimuli_viewer")
-```
-
-As a result, a `stimuli_viewer.html` was created in the `s1` folder.
-
-```{bash, echo = FALSE}
-tree | tail -n 26 | head -n 24
-```
-
-You can find the created example [here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html).
-
 # Read linguistic files into R
 
 The `phonfieldwork` package provides also several methods for reading different file types into R. This makes it possible to analyze them and convert into `.csv` files (e. g. using the `write.csv()` function):
@@ -422,5 +400,94 @@ create_glossed_document(flextext = "files/zilo_test.flextext",
 ```{r, include=FALSE}
 file.copy("files/glossed_document.html", to = "glossed_document.html", overwrite = TRUE)
 ```
+
+# Create a viewer
+
+In oredr to create a sound viewer you need three things:
+
+* folder with sounds
+* folder with pictures
+* dataframe with some details (e. g. annotation, utterance number etc.)
+
+We will start with the previous folder structure:
+
+```{bash, echo = FALSE}
+tree | tail -n 25 | head -n 23
+```
+
+We have all folders:
+
+```{r}
+list.files("s1/s1_sounds/") # sounds
+list.files("s1/s1_pics/") # pictures
+```
+
+So what is left is the table. It is possible to create manually (or upload it form .csv or .xlsx files, see section 4.1):
+
+```{r}
+df <- data.frame(word  = c("tap", "tip", "top"),
+                 sounds = c("æ", "ı", "ɒ"))
+df
+```
+
+This table could be used in order to create an annotation viewer:
+
+```{r, warning = FALSE}
+create_viewer(audio_dir = "s1/s1_sounds/",
+              picture_dir = "s1/s1_pics/", 
+              table = df,
+              output_dir = "s1/",
+              output_file = "stimuli_viewer")
+```
+
+As a result, a `stimuli_viewer.html` was created in the `s1` folder.
+
+```{bash, echo = FALSE}
+tree | tail -n 26 | head -n 24
+```
+
+You can find the created example [here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html).
+
+Unfortunately, the way of table creation for the annotation viewer presented in this section is not a good solution for the huge amount of sounds. It is possible to derive such a table from annotation TextGrid, that we have created earlier. Here is a TextGrid:
+
+```{r}
+textgrid_to_df("s1/s1_all.TextGrid")
+```
+
+So in order to create desired table we can use `tier_to_df()` function:
+
+```{r}
+t1 <- tier_to_df("s1/s1_all.TextGrid", tier = 1)
+t1
+t3 <- tier_to_df("s1/s1_all.TextGrid", tier = 3)
+t3
+```
+
+As we see the first tier is ready, but the third tier contains empty annotations. Let's remove them:
+
+```{r}
+t3 <- t3[t3$annotation != "",]
+t3
+```
+
+So from this point it is possible to create the table that we wanted:
+
+```{r}
+new_df <- data.frame(words = t1$annotation,
+                 sounds = t3$annotation)
+new_df
+```
+
+So now we are ready to run our code for creating an annotation viewer:
+
+```{r, warning = FALSE}
+create_viewer(audio_dir = "s1/s1_sounds/",
+              picture_dir = "s1/s1_pics/", 
+              table = new_df,
+              output_dir = "s1/",
+              output_file = "stimuli_viewer")
+```
+
+By default sorting in the result annotation viewer will be according file names in the system, so if you want to have another default sorting you can specify column names that the result table should be sorted by using the `sorting_columns` argument.
 
 # References

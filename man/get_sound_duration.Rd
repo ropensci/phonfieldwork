@@ -14,6 +14,11 @@ get_sound_duration(file_name, sounds_from_folder = NULL)
 \description{
 Calculate sound(s) duration.
 }
+\examples{
+get_sound_duration(
+  sounds_from_folder = system.file("extdata", package = "phonfieldwork"))
+
+}
 \author{
 George Moroz <agricolamz@gmail.com>
 }

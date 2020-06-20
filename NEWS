@@ -7,8 +7,9 @@ phonfieldwork 0.0.6 (20.06.2020)
   - add text_size argument to the "draw_sound()" function
   - add zoom argument to the "draw_sound()" function
   - add the "get_sound_duration()" function
-  - fix ploting of multiple sounds with multiple .TextGrid
+  - fix ploting of multiple sounds with multiple .TextGrids
   - add an argument "title_as_filename" to the "draw_sound()" function
+  - change textgrid asociated arguments of the "create_viewer()" function to "table" argument; as a result users now need to provide a table for the annotation viewer and not a TextGrid
 
 phonfieldwork 0.0.5 (07.06.2020)
   - add "textgrid_to_df()" function for reading Praat files

@@ -7,6 +7,10 @@
 #' @param file_name a sound file
 #' @param sounds_from_folder path to a folder with multiple sound files. If this argument is not \code{NULL}, then the function goes through all files and calculates duration for all of them.
 #'
+#' @examples
+#' get_sound_duration(
+#'   sounds_from_folder = system.file("extdata", package = "phonfieldwork"))
+#'
 #' @export
 #'
 #' @importFrom tuneR readWave
@@ -18,7 +22,8 @@ get_sound_duration <- function(file_name,
     if(class(file_name) == "Wave"){
       s <- file_name
     } else{
-      ext <- tolower(substring(file_name, regexpr("\\..*$", file_name) + 1))
+      ext <- unlist(strsplit(file_name, "\\."))
+      ext <- ext[length(ext)]
 
       if(ext == "wave"|ext == "wav"){
         s <- tuneR::readWave(file_name)

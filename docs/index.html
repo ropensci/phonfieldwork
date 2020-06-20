@@ -3111,43 +3111,6 @@ Your browser does not support iframes :(
 ##     └── s2_top_3.wav</code></pre>
 <p>It is also possible to use the argument <code>textgrid_from_folder</code> in order to specify the folder where .TextGrids for annotation are (could be the same folder as the sound one). By default the <code>draw_sound()</code> function with the <code>sounds_from_folder</code> argument adds a title with the file name to each pictures’ title, but it is possible to turn it off using the argument <code>title_as_filename = FALSE</code>.</p>
 </div>
-<div id="create-a-viewer" class="section level2">
-<h2><span class="header-section-number">4.8</span> Create a viewer</h2>
-<p>It is possible to create an annotation viewer.</p>
-<pre class="r"><code>create_viewer(audio_dir = &quot;s1/s1_sounds/&quot;,
-              picture_dir = &quot;s1/s1_pics/&quot;, 
-              textgrid = &quot;s1/s1_all.TextGrid&quot;,
-              tiers = c(1, 3),
-              merge_column = &quot;labels&quot;,
-              output_dir = &quot;s1/&quot;,
-              output_file = &quot;stimuli_viewer&quot;)</code></pre>
-<p>As a result, a <code>stimuli_viewer.html</code> was created in the <code>s1</code> folder.</p>
-<pre><code>## ├── s1
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   └── 03.wav
-## │   ├── s1_all.TextGrid
-## │   ├── s1_all.wav
-## │   ├── s1_pics
-## │   │   ├── 1_s1_æ.png
-## │   │   ├── 2_s1_ı.png
-## │   │   └── 3_s1_ɒ.png
-## │   ├── s1_sounds
-## │   │   ├── 1_s1_æ.wav
-## │   │   ├── 2_s1_ı.wav
-## │   │   └── 3_s1_ɒ.wav
-## │   ├── s1_tap.wav
-## │   ├── s1_tip.png
-## │   ├── s1_tip.wav
-## │   ├── s1_top.wav
-## │   └── stimuli_viewer.html
-## └── s2
-##     ├── s2_tap_2.wav
-##     ├── s2_tip_1.wav
-##     └── s2_top_3.wav</code></pre>
-<p>You can find the created example <a href="https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html">here</a>.</p>
-</div>
 </div>
 <div id="read-linguistic-files-into-r" class="section level1">
 <h1><span class="header-section-number">5</span> Read linguistic files into R</h1>
@@ -3192,6 +3155,133 @@ Your browser does not support iframes :(
 <pre class="r"><code>create_glossed_document(flextext = &quot;files/zilo_test.flextext&quot;, 
                         output_dir = &quot;.&quot;) # you need to specify the path to the output folder</code></pre>
 <pre><code>## Output created: /home/agricolamz/work/packages/phonfieldwork/docs/glossed_document.docx</code></pre>
+</div>
+<div id="create-a-viewer" class="section level1">
+<h1><span class="header-section-number">6</span> Create a viewer</h1>
+<p>In oredr to create a sound viewer you need three things:</p>
+<ul>
+<li>folder with sounds</li>
+<li>folder with pictures</li>
+<li>dataframe with some details (e. g. annotation, utterance number etc.)</li>
+</ul>
+<p>We will start with the previous folder structure:</p>
+<pre><code>## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_pics
+## │   │   ├── 1_s1_æ.png
+## │   │   ├── 2_s1_ı.png
+## │   │   └── 3_s1_ɒ.png
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_æ.wav
+## │   │   ├── 2_s1_ı.wav
+## │   │   └── 3_s1_ɒ.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.png
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav</code></pre>
+<p>We have all folders:</p>
+<pre class="r"><code>list.files(&quot;s1/s1_sounds/&quot;) # sounds</code></pre>
+<pre><code>## [1] &quot;1_s1_æ.wav&quot; &quot;2_s1_ı.wav&quot; &quot;3_s1_ɒ.wav&quot;</code></pre>
+<pre class="r"><code>list.files(&quot;s1/s1_pics/&quot;) # pictures</code></pre>
+<pre><code>## [1] &quot;1_s1_æ.png&quot; &quot;2_s1_ı.png&quot; &quot;3_s1_ɒ.png&quot;</code></pre>
+<p>So what is left is the table. It is possible to create manually (or upload it form .csv or .xlsx files, see section 4.1):</p>
+<pre class="r"><code>df &lt;- data.frame(word  = c(&quot;tap&quot;, &quot;tip&quot;, &quot;top&quot;),
+                 sounds = c(&quot;æ&quot;, &quot;ı&quot;, &quot;ɒ&quot;))
+df</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["word"],"name":[1],"type":["chr"],"align":["left"]},{"label":["sounds"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"tap","2":"æ"},{"1":"tip","2":"ı"},{"1":"top","2":"ɒ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>This table could be used in order to create an annotation viewer:</p>
+<pre class="r"><code>create_viewer(audio_dir = &quot;s1/s1_sounds/&quot;,
+              picture_dir = &quot;s1/s1_pics/&quot;, 
+              table = df,
+              output_dir = &quot;s1/&quot;,
+              output_file = &quot;stimuli_viewer&quot;)</code></pre>
+<pre><code>## Output created: s1/stimuli_viewer.html</code></pre>
+<p>As a result, a <code>stimuli_viewer.html</code> was created in the <code>s1</code> folder.</p>
+<pre><code>## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_pics
+## │   │   ├── 1_s1_æ.png
+## │   │   ├── 2_s1_ı.png
+## │   │   └── 3_s1_ɒ.png
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_æ.wav
+## │   │   ├── 2_s1_ı.wav
+## │   │   └── 3_s1_ɒ.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.png
+## │   ├── s1_tip.wav
+## │   ├── s1_top.wav
+## │   └── stimuli_viewer.html
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav</code></pre>
+<p>You can find the created example <a href="https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html">here</a>.</p>
+<p>Unfortunately, the way of table creation for the annotation viewer presented in this section is not a good solution for the huge amount of sounds. It is possible to derive such a table from annotation TextGrid, that we have created earlier. Here is a TextGrid:</p>
+<pre class="r"><code>textgrid_to_df(&quot;s1/s1_all.TextGrid&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["start"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["end"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["annotation"],"name":[4],"type":["chr"],"align":["left"]},{"label":["tier"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"0.0000000","3":"0.4821542","4":"tap","5":"1","_rn_":"1"},{"1":"1","2":"0.0000000","3":"0.4821542","4":"s1_tap.wav","5":"2","_rn_":"4"},{"1":"1","2":"0.0000000","3":"0.1086809","4":"","5":"3","_rn_":"7"},{"1":"2","2":"0.1086809","3":"0.1774270","4":"æ","5":"3","_rn_":"8"},{"1":"3","2":"0.1774270","3":"0.4821542","4":"","5":"3","_rn_":"9"},{"1":"2","2":"0.4821542","3":"0.9120635","4":"tip","5":"1","_rn_":"2"},{"1":"2","2":"0.4821542","3":"0.9120635","4":"s1_tip.wav","5":"2","_rn_":"5"},{"1":"4","2":"0.4821542","3":"0.5796447","4":"","5":"3","_rn_":"10"},{"1":"5","2":"0.5796447","3":"0.6719451","4":"ı","5":"3","_rn_":"11"},{"1":"6","2":"0.6719451","3":"0.9120635","4":"","5":"3","_rn_":"12"},{"1":"3","2":"0.9120635","3":"1.3942177","4":"top","5":"1","_rn_":"3"},{"1":"3","2":"0.9120635","3":"1.3942177","4":"s1_top.wav","5":"2","_rn_":"6"},{"1":"7","2":"0.9120635","3":"1.0366471","4":"","5":"3","_rn_":"13"},{"1":"8","2":"1.0366471","3":"1.1023025","4":"ɒ","5":"3","_rn_":"14"},{"1":"9","2":"1.1023025","3":"1.3942177","4":"","5":"3","_rn_":"15"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>So in order to create desired table we can use <code>tier_to_df()</code> function:</p>
+<pre class="r"><code>t1 &lt;- tier_to_df(&quot;s1/s1_all.TextGrid&quot;, tier = 1)
+t1</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["start"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["end"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["annotation"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"0.0000000","3":"0.4821542","4":"tap"},{"1":"2","2":"0.4821542","3":"0.9120635","4":"tip"},{"1":"3","2":"0.9120635","3":"1.3942177","4":"top"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>t3 &lt;- tier_to_df(&quot;s1/s1_all.TextGrid&quot;, tier = 3)
+t3</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["start"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["end"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["annotation"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"0.0000000","3":"0.1086809","4":""},{"1":"2","2":"0.1086809","3":"0.1774270","4":"æ"},{"1":"3","2":"0.1774270","3":"0.4821542","4":""},{"1":"4","2":"0.4821542","3":"0.5796447","4":""},{"1":"5","2":"0.5796447","3":"0.6719451","4":"ı"},{"1":"6","2":"0.6719451","3":"0.9120635","4":""},{"1":"7","2":"0.9120635","3":"1.0366471","4":""},{"1":"8","2":"1.0366471","3":"1.1023025","4":"ɒ"},{"1":"9","2":"1.1023025","3":"1.3942177","4":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>As we see the first tier is ready, but the third tier contains empty annotations. Let’s remove them:</p>
+<pre class="r"><code>t3 &lt;- t3[t3$annotation != &quot;&quot;,]
+t3</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["start"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["end"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["annotation"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"2","2":"0.1086809","3":"0.1774270","4":"æ","_rn_":"2"},{"1":"5","2":"0.5796447","3":"0.6719451","4":"ı","_rn_":"5"},{"1":"8","2":"1.0366471","3":"1.1023025","4":"ɒ","_rn_":"8"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>So from this point it is possible to create the table that we wanted:</p>
+<pre class="r"><code>new_df &lt;- data.frame(words = t1$annotation,
+                 sounds = t3$annotation)
+new_df</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["words"],"name":[1],"type":["chr"],"align":["left"]},{"label":["sounds"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"tap","2":"æ"},{"1":"tip","2":"ı"},{"1":"top","2":"ɒ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>So now we are ready to run our code for creating an annotation viewer:</p>
+<pre class="r"><code>create_viewer(audio_dir = &quot;s1/s1_sounds/&quot;,
+              picture_dir = &quot;s1/s1_pics/&quot;, 
+              table = new_df,
+              output_dir = &quot;s1/&quot;,
+              output_file = &quot;stimuli_viewer&quot;)</code></pre>
+<pre><code>## Output created: s1/stimuli_viewer.html</code></pre>
+<p>By default sorting in the result annotation viewer will be according file names in the system, so if you want to have another default sorting you can specify column names that the result table should be sorted by using the <code>sorting_columns</code> argument.</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>

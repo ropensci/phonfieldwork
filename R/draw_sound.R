@@ -29,6 +29,9 @@
 #'
 #' @return Oscilogram and spectrogram plot (and possibly TextGrid annotation).
 #'
+#' @examples
+#' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"))
+#'
 #' @export
 #'
 #' @importFrom tuneR readWave
@@ -74,7 +77,8 @@ draw_sound <- function(file_name,
       if(class(file_name) == "Wave"){
         s <- file_name
       } else{
-        ext <- tolower(substring(file_name, regexpr("\\..*$", file_name) + 1))
+        ext <- unlist(strsplit(file_name, "\\."))
+        ext <- ext[length(ext)]
 
         if(ext == "wave"|ext == "wav"){
           s <- tuneR::readWave(file_name)

@@ -4,7 +4,7 @@
 \alias{create_image_look_up}
 \title{Create image look_up objects for html viewer}
 \usage{
-create_image_look_up(img_src, img_caption = "", text = "&#x1f441;")
+create_image_look_up(img_src, img_caption = NULL, text = "&#x1f441;")
 }
 \arguments{
 \item{img_src}{string or vector of strings with a image(s) path(s).}
