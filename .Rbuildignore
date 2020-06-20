@@ -10,5 +10,6 @@
 ^CONTRIBUTING.md
 ^ISSUE_TEMPLATE.md
 ^LICENSE
+codemeta.json
 ^presentations.*
 ^ignore.*
