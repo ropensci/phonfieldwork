@@ -4,7 +4,7 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param flextext string with a filename or path to the .flextext file
+#' @param file_name string with a filename or path to the .flextext file
 #' @return a dataframe with columns: \code{s_id} (that has structure paragraph_id.phrase_id), \code{txt}, \code{cf}, \code{hn}, \code{gls}, \code{msa}, \code{morph}, \code{word}, \code{phrase}, \code{paragraph}, \code{free_trans}, \code{text}, \code{text_title}
 #'
 #' @export
@@ -15,8 +15,8 @@
 #' @importFrom xml2 xml_children
 #' @importFrom xml2 xml_child
 
-flextext_to_df <- function(flextext){
-  l <- xml2::read_xml(flextext)
+flextext_to_df <- function(file_name){
+  l <- xml2::read_xml(file_name)
   l <- xml2::xml_find_all(l, 'interlinear-text')
   lapply(seq_along(l), function(i){
     t <- xml2::xml_find_all(l[[i]], "paragraphs/paragraph/phrases/phrase/words/word/morphemes/morph")

@@ -384,6 +384,13 @@ eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 ```
 
+* file `.txt` from Audacity
+
+```{r}
+audacity_to_df(system.file("extdata", "test.txt", package = "phonfieldwork"))
+```
+
+
 * file `.flextext` from FLEx
 
 ```{r}

@@ -1,7 +1,7 @@
 Package: phonfieldwork
 Type: Package
 Title: Linguistic Phonetic Fieldwork Tools
-Version: 0.0.6
+Version: 0.0.7
 Depends: R (>= 3.5.0)
 Imports:
     tuneR,

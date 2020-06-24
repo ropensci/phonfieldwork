@@ -1,3 +1,6 @@
+phonfieldwork 0.0.7 (24.06.2020)
+  - add the "audacity_to_df" function
+
 phonfieldwork 0.0.6 (20.06.2020)
   - add "encoding" arguments to functions for working with TextGrids
   - add "textgrid" argument to the "draw_sound()" function

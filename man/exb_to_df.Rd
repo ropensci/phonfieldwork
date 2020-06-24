@@ -4,10 +4,10 @@
 \alias{exb_to_df}
 \title{EXMARaLDA's .exb file to dataframe}
 \usage{
-exb_to_df(exb)
+exb_to_df(file_name)
 }
 \arguments{
-\item{exb}{string with a filename or path to the .exb file}
+\item{file_name}{string with a filename or path to the .exb file}
 }
 \value{
 a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{tier_category}, \code{tier_speaker}, \code{time_start}, \code{time_end}.

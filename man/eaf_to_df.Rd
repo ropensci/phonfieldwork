@@ -4,13 +4,13 @@
 \alias{eaf_to_df}
 \title{ELAN's .eaf file to dataframe}
 \usage{
-eaf_to_df(eaf)
+eaf_to_df(file_name)
 }
 \arguments{
-\item{eaf}{string with a filename or path to the .eaf file}
+\item{file_name}{string with a filename or path to the .eaf file}
 }
 \value{
-a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{ts_start}, \code{ts_end}, \code{a_id}, \code{ar}).
+a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{time_start}, \code{time_end}, \code{a_id}, \code{ar}).
 }
 \description{
 Convert .eaf file from ELAN to a dataframe.

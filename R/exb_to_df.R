@@ -4,7 +4,7 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param exb string with a filename or path to the .exb file
+#' @param file_name string with a filename or path to the .exb file
 #' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{tier_category}, \code{tier_speaker}, \code{time_start}, \code{time_end}.
 #'
 #' @examples
@@ -17,9 +17,9 @@
 #' @importFrom xml2 xml_text
 #' @importFrom xml2 xml_children
 
-exb_to_df <- function(exb){
+exb_to_df <- function(file_name){
   # read file
-  l <- xml2::read_xml(exb)
+  l <- xml2::read_xml(file_name)
   # extract tiers
   t <- xml2::xml_find_all(l, "basic-body/tier")
   # tier names
