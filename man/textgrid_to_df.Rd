@@ -12,7 +12,7 @@ textgrid_to_df(textgrid, encoding = "unknown")
 \item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
-a dataframe with columns:  \code{id}, \code{start}, \code{end} (if it is an interval tier -- the same as the start value), \code{annotation}, and \code{tier}
+a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end} (if it is an interval tier -- the same as the start value), \code{content}, and \code{tier}
 }
 \description{
 Convert Praat TextGrid to a dataframe.

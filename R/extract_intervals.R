@@ -63,13 +63,13 @@ extract_intervals <- function(file_name,
 # get start, end and annotation -------------------------------------------
 
   tg_df <- tier_to_df(textgrid, tier)
-  starts <- tg_df[tg_df$annotation != "", "start"]
-  ends <- tg_df[tg_df$annotation != "", "end"]
+  starts <- tg_df[tg_df$content != "", "time_start"]
+  ends <- tg_df[tg_df$content != "", "time_end"]
   if(isTRUE(autonumber)){
     prefix <- paste0(add_leading_symbols(1:nrow(tg_df)), "_", prefix)
   }
   annotations <- paste0(prefix,
-                        tg_df[tg_df$annotation != "", "annotation"],
+                        tg_df[tg_df$content != "", "content"],
                         suffix)
 
   lapply(seq_along(starts), function(i){

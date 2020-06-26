@@ -14,7 +14,7 @@ tier_to_df(textgrid, tier = 1, encoding = "unknown")
 \item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
-a dataframe with columns:  \code{id}, \code{start} and \code{end annotation} (if it is an interval tier)
+a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end}, \code{content}
 }
 \description{
 Convert selected tier from a Praat TextGrid to a dataframe.

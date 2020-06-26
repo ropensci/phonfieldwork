@@ -11,17 +11,17 @@
 #' @return If \code{overwrite} is \code{FALSE}, then the function returns a vector of strings with a TextGrid. If \code{overwrite} is \code{TRUE}, then no output.
 #' @examples
 #' my_df <- data.frame(id = 1:5,
-#'           start = c(0.00000000,0.01246583,0.24781914,0.39552363,0.51157715),
-#'           end = c(0.01246583,0.24781914,0.39552363,0.51157715,0.65267574),
-#'           annotation = c("", "T", "E", "S", "T"))
+#'                     time_start = c(0.00000000,0.01246583,0.24781914,0.39552363,0.51157715),
+#'                     time_end = c(0.01246583,0.24781914,0.39552363,0.51157715,0.65267574),
+#'                     content = c("", "T", "E", "S", "T"))
 #' df_to_tier(my_df, textgrid = example_textgrid, overwrite = FALSE)
 #'
 #' @export
 #'
 
 df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE){
-  if(!("start" %in% names(df))|!("annotation" %in% names(df))){
-    stop('df columns should have the folowing names: "annotation", "start" and "end" (if you want an interval tier)')
+  if(!("time_start" %in% names(df))|!("time_end" %in% names(df))|!("content" %in% names(df))){
+    stop('df columns should have the folowing names: "content", "time_start" and "time_end"')
   }
 
   if(grepl("TextGrid", textgrid[2])){
@@ -33,30 +33,34 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE){
   n_tiers <- as.numeric(gsub("\\D", "", tg[7]))
   tg[7] <- paste0("size = ", n_tiers+1, " ")
 
-  tier_class <- ifelse("end" %in% names(df),
+  if(!(FALSE %in% (df$time_start == df$time_end))){
+    df <- df[, -which(names(df) %in% "time_end")]
+  }
+
+  tier_class <- ifelse("time_end" %in% names(df),
                        '        class = "IntervalTier" ',
                        '        class = "TextTier" ')
 
-  tier_type <- ifelse("end" %in% names(df),
+  tier_type <- ifelse("time_end" %in% names(df),
                       paste0('        intervals'),
                       paste0('        points'))
 
 
-  if ("end" %in% names(df)) {
+  if ("time_end" %in% names(df)) {
     all_annotations <- lapply(1:nrow(df), function(i) {
       c(
         paste0(tier_type, " [", i, "]:"),
-        paste0("            xmin = ", df$start[i]),
-        paste0("            xmax = ", df$end[i]),
-        paste0('            text = "', df$annotation[i], '" ')
+        paste0("            xmin = ", df$time_start[i]),
+        paste0("            xmax = ", df$time_end[i]),
+        paste0('            text = "', df$content[i], '" ')
       )
     })
   } else {
     all_annotations <- lapply(1:nrow(df), function(i) {
       c(
         paste0(tier_type, "[", i, "]:"),
-        paste0("            number = ", df$start[i]),
-        paste0('            mark = "', df$annotation[i], '" ')
+        paste0("            number = ", df$time_start[i]),
+        paste0('            mark = "', df$content[i], '" ')
       )
     })
   }

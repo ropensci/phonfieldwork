@@ -165,22 +165,7 @@ draw_sound <- function(file_name,
       if(!is.null(annotation)){
         graphics::par(fig=c(0.1, 0.98, 0.09, 0.27), new=TRUE)
 
-        # if(is.character(annotation)){
-        #
-        # } else if()
-#
-#         ext <- unlist(strsplit(annotation, "\\."))
-#         ext <- ext[length(ext)]
-#
-#         if(ext == "wave"|ext == "wav"){
-#           s <- tuneR::readWave(file_name)
-#         } else if(ext == "mp3"){
-#           s <- tuneR::readMP3(file_name)
-#         } else{
-#           stop("The draw_sound() functions works only with .wav(e) or .mp3 formats")
-#         }
-
-        df <- textgrid_to_df(annotation)
+        df <- phonfieldwork::textgrid_to_df(annotation)
 
         if(!is.null(zoom)){
           from <- zoom[1]
@@ -202,7 +187,7 @@ draw_sound <- function(file_name,
             extended <- data.frame(id = NA,
                                    time_start = 0,
                                    time_end = min(df[df$tier == i,]$start),
-                                   annotation = "",
+                                   content = "",
                                    tier = i)
             df <<- rbind(extended, df)
           })
@@ -226,10 +211,10 @@ draw_sound <- function(file_name,
                            y0 = df$tier-0.5, y1 = df$tier+0.5)
         graphics::segments(x0 = df$time_end, x1 = df$time_end,
                            y0 = df$tier-0.5, y1 = df$tier+0.5)
-        graphics::points(x = df[df$annotation != "", "mid_point"],
-                         y = df[df$annotation != "", "tier"],
+        graphics::points(x = df[df$content != "", "mid_point"],
+                         y = df[df$content != "", "tier"],
                          col="white", pch=19, cex = text_size+1.5)
-        graphics::text(x = df$mid_point, y = df$tier, labels = df$annotation,
+        graphics::text(x = df$mid_point, y = df$tier, labels = df$content,
                        cex = text_size)
         graphics::axis(1, cex.axis=text_size)
       }
@@ -307,7 +292,7 @@ draw_sound <- function(file_name,
 
     lapply(seq_along(sounds), function(i){
       draw_sound(sounds[i],
-                 textgrid = textgrids[i],
+                 annotation = textgrids[i],
                  output_file = paste0(pics[i], suffix[i]),
                  title = switch(title_as_filename+1, NULL, names[i]),
                  text_size = text_size,

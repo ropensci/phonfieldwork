@@ -26,15 +26,17 @@ get_sound_duration <- function(file_name,
       ext <- ext[length(ext)]
 
       if(ext == "wave"|ext == "wav"){
-        s <- tuneR::readWave(file_name)
+        s <- tuneR::readWave(file_name, header=TRUE)
+        duration <- s$samples/s$sample.rate
       } else if(ext == "mp3"){
         s <- tuneR::readMP3(file_name)
+        duration <- length(s@left)/s@samp.rate
       } else{
         stop("The get_sound_durations() functions works only with .wav(e) or .mp3 formats")
       }
     }
     return(data.frame(file = rev(unlist(strsplit(normalizePath(file_name), "/")))[1],
-                      duration = length(s@left)/s@samp.rate))
+                      duration = duration))
   } else{
     path <- normalizePath(sounds_from_folder)
     sounds_from_folder <- list.files(path,

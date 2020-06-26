@@ -158,7 +158,13 @@ After collecting data and removing soundfiles with unsuccesful elicitations, one
 tree | tail -n 10 | head -n 8
 ```
 
-For each speaker `s1` and `s2` there is a folder that containes three audiofiles. Now let's rename the files.
+For each speaker `s1` and `s2` there is a folder that containes three audiofiles. It is possible to check the length of each file:
+
+```{r}
+get_sound_duration(sounds_from_folder = "s1")
+```
+
+Now let's rename the files.
 
 ```{r}
 rename_soundfiles(stimuli = my_stimuli_df$stimuli,
@@ -473,15 +479,15 @@ t3
 As we see the first tier is ready, but the third tier contains empty annotations. Let's remove them:
 
 ```{r}
-t3 <- t3[t3$annotation != "",]
+t3 <- t3[t3$content != "",]
 t3
 ```
 
 So from this point it is possible to create the table that we wanted:
 
 ```{r}
-new_df <- data.frame(words = t1$annotation,
-                 sounds = t3$annotation)
+new_df <- data.frame(words = t1$content,
+                 sounds = t3$content)
 new_df
 ```
 

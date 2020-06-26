@@ -8,7 +8,7 @@
 #' @param tier value that could be either ordinal number of the tier either name of the tier. By default is '1'.
 #' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
-#' @return a dataframe with columns:  \code{id}, \code{time_start} and \code{time_end} annotation (if it is an interval tier)
+#' @return a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end}, \code{content}
 #'
 #' @examples
 #' tier_to_df(example_textgrid)
@@ -55,7 +55,7 @@ tier_to_df <- function(textgrid, tier = 1, encoding = "unknown"){
     results <- data.frame(id = 1:length,
                           time_start = w_tier[grep("intervals ", w_tier)+1],
                           time_end = w_tier[grep("intervals ", w_tier)+2],
-                          annotation = w_tier[grep("intervals ", w_tier)+3],
+                          content = w_tier[grep("intervals ", w_tier)+3],
                           stringsAsFactors = FALSE)
     results$time_end <- as.numeric(gsub("[^0-9\\.]", "", results$time_end))
 
@@ -64,14 +64,14 @@ tier_to_df <- function(textgrid, tier = 1, encoding = "unknown"){
     results <- data.frame(id = 1:length,
                           time_start = w_tier[grep("points ", w_tier)+1],
                           time_end = w_tier[grep("points ", w_tier)+1],
-                          annotation = w_tier[grep("points ", w_tier)+2],
+                          content = w_tier[grep("points ", w_tier)+2],
                           stringsAsFactors = FALSE)
     results$time_end <- as.numeric(gsub("[^0-9\\.]", "", results$time_end))
   }
 
   results$time_start <- as.numeric(gsub("[^0-9\\.]", "", results$time_start))
-  results$annotation <- sub('.* = "', "", results$annotation)
-  results$annotation <- sub('".*', "", results$annotation)
+  results$content <- sub('.* = "', "", results$content)
+  results$content <- sub('".*', "", results$content)
   return(results)
 # it won't work if somebody will have string 'intervals ' , 'points ' or '"'
 # in the annotation. I will fix it in the future...

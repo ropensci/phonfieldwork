@@ -6,7 +6,7 @@
 \usage{
 draw_sound(
   file_name,
-  textgrid = NULL,
+  annotation = NULL,
   from = NULL,
   to = NULL,
   zoom = NULL,
@@ -32,7 +32,7 @@ draw_sound(
 \arguments{
 \item{file_name}{a sound file}
 
-\item{textgrid}{a source for TextGrid annotation plot}
+\item{annotation}{a source for annotation files (e. g. TextGrid)}
 
 \item{from}{Time in seconds at which to start extraction.}
 

@@ -37,21 +37,20 @@ create_subannotation <- function(textgrid,
   }
 
   df <- phonfieldwork::tier_to_df(tg, tier = tier)
-  df
 
   if(omit_blank){
-    df <- df[df$annotation != "",]
+    df <- df[df$content != "",]
   }
 
   lapply(1:nrow(df), function(i){
-    t <- seq(df$start[i], df$end[i], length.out = each*(n_of_annotations+1))
-    data.frame(start = t[-length(t)],
-               end = t[-1])
+    t <- seq(df$time_start[i], df$time_end[i], length.out = each*(n_of_annotations+1))
+    data.frame(time_start = t[-length(t)],
+               time_end = t[-1])
   }) ->
     l
 
   final <- Reduce(rbind, l)
-  final <- cbind(id = 1:nrow(final), final, annotation = "")
+  final <- cbind(id = 1:nrow(final), final, content = "")
   phonfieldwork::df_to_tier(final,
                             textgrid = textgrid,
                             tier_name = new_tier_name,

@@ -7,7 +7,7 @@
 #' @param textgrid string with a filename or path to the TextGrid
 #' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
-#' @return a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end} (if it is an interval tier -- the same as the start value), \code{annotation}, and \code{tier}
+#' @return a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end} (if it is an interval tier -- the same as the start value), \code{content}, and \code{tier}
 #'
 #' @examples
 #' textgrid_to_df(example_textgrid)
