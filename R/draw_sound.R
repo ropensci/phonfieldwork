@@ -5,7 +5,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name a sound file
-#' @param textgrid a source for TextGrid annotation plot
+#' @param annotation a source for annotation files (e. g. TextGrid)
 #' @param from Time in seconds at which to start extraction.
 #' @param to Time in seconds at which to stop extraction.
 #' @param zoom numeric vector of zoom window time (in seconds). It will draw the whole oscilogram and part of the spectrogram.
@@ -44,13 +44,14 @@
 #' @importFrom graphics par
 #' @importFrom graphics axis
 #' @importFrom graphics text
+#' @importFrom graphics points
 #' @importFrom graphics abline
 #' @importFrom graphics segments
 #' @importFrom graphics rect
 #'
 
 draw_sound <- function(file_name,
-                       textgrid = NULL,
+                       annotation = NULL,
                        from = NULL,
                        to = NULL,
                        zoom = NULL,
@@ -142,7 +143,7 @@ draw_sound <- function(file_name,
         graphics::axis(1, las=1)
       }
       # plot spectrogram --------------------------------------------------------
-      low_boundary <- ifelse(is.null(textgrid), 0.08, 0.27)
+      low_boundary <- ifelse(is.null(annotation), 0.08, 0.27)
       graphics::par(fig=c(0.1, 0.98, low_boundary, 0.75), new=TRUE)
       if(!is.null(zoom)){
         for_spectrum <- tuneR::extractWave(s,
@@ -159,44 +160,60 @@ draw_sound <- function(file_name,
                        colors = spectrum_colors,
                        maxfreq = maximum_frequency,
                        dynamicrange = dynamic_range,
-                       x_axis = is.null(textgrid))
+                       x_axis = is.null(annotation))
       # plot textgrid -----------------------------------------------------------
-      if(!is.null(textgrid)){
+      if(!is.null(annotation)){
         graphics::par(fig=c(0.1, 0.98, 0.09, 0.27), new=TRUE)
-        df <- textgrid_to_df(textgrid)
+
+        # if(is.character(annotation)){
+        #
+        # } else if()
+#
+#         ext <- unlist(strsplit(annotation, "\\."))
+#         ext <- ext[length(ext)]
+#
+#         if(ext == "wave"|ext == "wav"){
+#           s <- tuneR::readWave(file_name)
+#         } else if(ext == "mp3"){
+#           s <- tuneR::readMP3(file_name)
+#         } else{
+#           stop("The draw_sound() functions works only with .wav(e) or .mp3 formats")
+#         }
+
+        df <- textgrid_to_df(annotation)
 
         if(!is.null(zoom)){
           from <- zoom[1]
           to <- zoom[2]
         }
 
-        df <- df[df$start >= from,]
-        df <- df[df$end <= to,]
+        df <- df[df$time_start >= from,]
+        df <- df[df$time_end <= to,]
         if(nrow(df) < 1){
           graphics::par(oma=c(0,0,0,0),
                         mai=c(1.02, 0.82, 0.82, 0.42),
                         fig=c(0,1,0,1))
           stop("There is no annotion in selected time interval.")
         }
-        df$start <- (df$start-from)*1000
-        df$end <- (df$end-from)*1000
+        df$time_start <- (df$time_start-from)*1000
+        df$time_end <- (df$time_end-from)*1000
         if(from != 0){
           lapply(unique(df$tier), function(i){
             extended <- data.frame(id = NA,
-                                   start = 0,
-                                   end = min(df[df$tier == i,]$start),
+                                   time_start = 0,
+                                   time_end = min(df[df$tier == i,]$start),
                                    annotation = "",
                                    tier = i)
             df <<- rbind(extended, df)
           })
         }
         df <- df[order(df$tier),]
-        df$mid_point <- df$start + (df$end - df$start)/2
+        df$mid_point <- df$time_start + (df$time_end - df$time_start)/2
         df$fake_y <- max(df$tier) - min(df$tier)
         df$tier <- -df$tier
         plot(x = df$mid_point,
              y = df$fake_y,
-             xlim = c(df$start[1], length(for_spectrum@left)/for_spectrum@samp.rate*1000),
+             xlim = c(df$time_start[1], length(for_spectrum@left)/for_spectrum@samp.rate*1000),
              ylim = range(df$tier)+c(-0.4, 0.4),
              cex = 0,
              yaxt='n',
@@ -204,10 +221,16 @@ draw_sound <- function(file_name,
              xlab = "time(ms)",
              ylab = "",
              xaxs="i")
-        graphics::text(x = df$mid_point, y = df$tier, labels = df$annotation, cex = text_size)
         graphics::abline(h = unique(df$tier)[-length(unique(df$tier))]-0.5)
-        graphics::segments(x0 = df$start, x1 = df$start, y0 = df$tier-0.5, y1 = df$tier+0.5)
-        graphics::segments(x0 = df$end, x1 = df$end, y0 = df$tier-0.5, y1 = df$tier+0.5)
+        graphics::segments(x0 = df$time_start, x1 = df$time_start,
+                           y0 = df$tier-0.5, y1 = df$tier+0.5)
+        graphics::segments(x0 = df$time_end, x1 = df$time_end,
+                           y0 = df$tier-0.5, y1 = df$tier+0.5)
+        graphics::points(x = df[df$annotation != "", "mid_point"],
+                         y = df[df$annotation != "", "tier"],
+                         col="white", pch=19, cex = text_size+1.5)
+        graphics::text(x = df$mid_point, y = df$tier, labels = df$annotation,
+                       cex = text_size)
         graphics::axis(1, cex.axis=text_size)
       }
       # reset graphical parameters to default -----------------------------------
@@ -221,7 +244,7 @@ draw_sound <- function(file_name,
                      height = output_height,
                      units = output_units)
       draw_sound(file_name = file_name,
-                 textgrid = textgrid,
+                 annotation = annotation,
                  from = from,
                  to = to,
                  zoom = zoom,

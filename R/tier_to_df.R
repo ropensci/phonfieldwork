@@ -8,7 +8,7 @@
 #' @param tier value that could be either ordinal number of the tier either name of the tier. By default is '1'.
 #' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
-#' @return a dataframe with columns:  \code{id}, \code{start} and \code{end annotation} (if it is an interval tier)
+#' @return a dataframe with columns:  \code{id}, \code{time_start} and \code{time_end} annotation (if it is an interval tier)
 #'
 #' @examples
 #' tier_to_df(example_textgrid)
@@ -53,21 +53,23 @@ tier_to_df <- function(textgrid, tier = 1, encoding = "unknown"){
 # for interval tiers ------------------------------------------------------
   if(grepl("IntervalTier", w_tier[2])){
     results <- data.frame(id = 1:length,
-                          start = w_tier[grep("intervals ", w_tier)+1],
-                          end = w_tier[grep("intervals ", w_tier)+2],
+                          time_start = w_tier[grep("intervals ", w_tier)+1],
+                          time_end = w_tier[grep("intervals ", w_tier)+2],
                           annotation = w_tier[grep("intervals ", w_tier)+3],
                           stringsAsFactors = FALSE)
-    results$end <- as.numeric(gsub("[^0-9\\.]", "", results$end))
+    results$time_end <- as.numeric(gsub("[^0-9\\.]", "", results$time_end))
 
 # for point tiers ---------------------------------------------------------
   } else {
     results <- data.frame(id = 1:length,
-                          start = w_tier[grep("points ", w_tier)+1],
+                          time_start = w_tier[grep("points ", w_tier)+1],
+                          time_end = w_tier[grep("points ", w_tier)+1],
                           annotation = w_tier[grep("points ", w_tier)+2],
                           stringsAsFactors = FALSE)
+    results$time_end <- as.numeric(gsub("[^0-9\\.]", "", results$time_end))
   }
 
-  results$start <- as.numeric(gsub("[^0-9\\.]", "", results$start))
+  results$time_start <- as.numeric(gsub("[^0-9\\.]", "", results$time_start))
   results$annotation <- sub('.* = "', "", results$annotation)
   results$annotation <- sub('".*', "", results$annotation)
   return(results)

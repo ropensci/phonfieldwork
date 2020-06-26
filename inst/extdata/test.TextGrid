@@ -1,0 +1,78 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.6526757369614512 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "intervals" 
+        xmin = 0 
+        xmax = 0.6526757369614512 
+        intervals: size = 5 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.012465825768947203 
+            text = "" 
+        intervals [2]:
+            xmin = 0.012465825768947203 
+            xmax = 0.247819135106803 
+            text = "t" 
+        intervals [3]:
+            xmin = 0.247819135106803 
+            xmax = 0.39552362579469874 
+            text = "e" 
+        intervals [4]:
+            xmin = 0.39552362579469874 
+            xmax = 0.5115771541923311 
+            text = "s" 
+        intervals [5]:
+            xmin = 0.5115771541923311 
+            xmax = 0.6526757369614512 
+            text = "t" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "empty_intervals" 
+        xmin = 0 
+        xmax = 0.6526757369614512 
+        intervals: size = 5 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.012465825768947203 
+            text = "" 
+        intervals [2]:
+            xmin = 0.012465825768947203 
+            xmax = 0.247819135106803 
+            text = "" 
+        intervals [3]:
+            xmin = 0.247819135106803 
+            xmax = 0.39552362579469874 
+            text = "" 
+        intervals [4]:
+            xmin = 0.39552362579469874 
+            xmax = 0.5115771541923311 
+            text = "" 
+        intervals [5]:
+            xmin = 0.5115771541923311 
+            xmax = 0.6526757369614512 
+            text = "" 
+    item [3]:
+        class = "TextTier" 
+        name = "points" 
+        xmin = 0 
+        xmax = 0.6526757369614512 
+        points: size = 4 
+        points [1]:
+            number = 0.012465825768947203 
+            mark = "t" 
+        points [2]:
+            number = 0.247819135106803 
+            mark = "e" 
+        points [3]:
+            number = 0.39552362579469874 
+            mark = "s" 
+        points [4]:
+            number = 0.5115771541923311 
+            mark = "t" 
