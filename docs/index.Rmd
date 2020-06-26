@@ -158,13 +158,7 @@ After collecting data and removing soundfiles with unsuccesful elicitations, one
 tree | tail -n 10 | head -n 8
 ```
 
-For each speaker `s1` and `s2` there is a folder that containes three audiofiles. It is possible to check the length of each file:
-
-```{r}
-get_sound_duration(sounds_from_folder = "s1")
-```
-
-Now let's rename the files.
+For each speaker `s1` and `s2` there is a folder that containes three audiofiles. Now let's rename the files.
 
 ```{r}
 rename_soundfiles(stimuli = my_stimuli_df$stimuli,
@@ -379,7 +373,6 @@ The `phonfieldwork` package provides also several methods for reading different 
 textgrid_to_df(example_textgrid)
 ```
 
-
 * file `.eaf` from ELAN  (just change the `system.file()` function to path to the file)
 ```{r}
 eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
@@ -389,6 +382,13 @@ eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 ```{r}
 exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 ```
+
+* subtitles file `.srt` (just change the `system.file()` function to path to the file)
+
+```{r}
+srt_to_df(system.file("extdata", "test.srt", package = "phonfieldwork"))
+```
+
 
 * file `.txt` from Audacity
 

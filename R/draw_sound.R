@@ -186,7 +186,7 @@ draw_sound <- function(file_name,
           lapply(unique(df$tier), function(i){
             extended <- data.frame(id = NA,
                                    time_start = 0,
-                                   time_end = min(df[df$tier == i,]$start),
+                                   time_end = min(df[df$tier == i,]$time_start),
                                    content = "",
                                    tier = i)
             df <<- rbind(extended, df)
