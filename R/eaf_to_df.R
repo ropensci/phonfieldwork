@@ -52,7 +52,7 @@ eaf_to_df <- function(file_name){
   }) ->
     r
   # merge list of dataframes  into dataframe
-  r <- Reduce(rbind, r)
+  r <- do.call(rbind, r)
 
   # extract info about time
   ts <- data.frame(

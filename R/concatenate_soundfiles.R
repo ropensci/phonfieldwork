@@ -55,7 +55,7 @@ concatenate_soundfiles <- function(file_name,
     } else{
       stop("The concatenate_soundfiles() functions works only with .wav(e) or .mp3 formats")
     }})
-  sound <- Reduce(tuneR::bind, list)
+  sound <- do.call(tuneR::bind, list)
   tuneR::writeWave(sound, paste0(path, "/", file_name, ".wav"))
 # create a TextGrid -------------------------------------------------------
 

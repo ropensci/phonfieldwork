@@ -49,7 +49,7 @@ exb_to_df <- function(file_name){
   }) ->
     r
   # merge list of dataframes  into dataframe
-  r <- Reduce(rbind, r)
+  r <- do.call(rbind, r)
 
   # extract info about time
   tli <- xml2::xml_find_all(l,"basic-body/common-timeline/tli")

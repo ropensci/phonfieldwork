@@ -44,6 +44,6 @@ get_sound_duration <- function(file_name,
     sounds_from_folder <- paste0(path, "/",
                                  sounds_from_folder)
     l <- lapply(sounds_from_folder, phonfieldwork::get_sound_duration)
-    Reduce(rbind, l)
+    do.call(rbind, l)
   }
 }

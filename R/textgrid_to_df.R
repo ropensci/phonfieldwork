@@ -27,6 +27,6 @@ textgrid_to_df <- function(textgrid, encoding = "unknown"){
     return(df)
   }) ->
     l
-  result <- Reduce(rbind, l)
+  result <- do.call(rbind, l)
   return(result[order(result$time_start),])
 }

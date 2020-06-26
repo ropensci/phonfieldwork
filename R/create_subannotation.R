@@ -49,7 +49,7 @@ create_subannotation <- function(textgrid,
   }) ->
     l
 
-  final <- Reduce(rbind, l)
+  final <- do.call(rbind, l)
   final <- cbind(id = 1:nrow(final), final, content = "")
   phonfieldwork::df_to_tier(final,
                             textgrid = textgrid,
