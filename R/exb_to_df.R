@@ -5,7 +5,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name string with a filename or path to the .exb file
-#' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{tier_category}, \code{tier_speaker}, \code{time_start}, \code{time_end}.
+#' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{tier_category}, \code{tier_speaker}, \code{time_start}, \code{time_end}, \code{source}.
 #'
 #' @examples
 #' exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
@@ -68,5 +68,8 @@ exb_to_df <- function(file_name){
 
   # make sorting and remove some columns
   r <- r[order(r$tier, r$id), -c(1:2)]
+
+  source <- unlist(strsplit(normalizePath(file_name), "/"))
+  r$source <- source[length(source)]
   return(r)
 }

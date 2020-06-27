@@ -5,7 +5,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name string with a filename or path to the .eaf file
-#' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{time_start}, \code{time_end}, \code{a_id}, \code{ar}).
+#' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{time_start}, \code{time_end}, \code{source}).
 #'
 #' @examples
 #' eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
@@ -88,5 +88,7 @@ eaf_to_df <- function(file_name){
 
   # make sorting and remove some columns
   r <- r[order(r$tier, r$id), -c(1:3, 9)]
+  source <- unlist(strsplit(normalizePath(file_name), "/"))
+  r$source <- source[length(source)]
   return(r)
 }

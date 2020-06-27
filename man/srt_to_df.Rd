@@ -12,7 +12,7 @@ srt_to_df(file_name, encoding = "unknown")
 \item{encoding}{.srt encoding. Import from \code{readLines()} function.}
 }
 \value{
-a dataframe with columns:  \code{id}, \code{content}, \code{time_start}, \code{time_end}.
+a dataframe with columns:  \code{id}, \code{content}, \code{time_start}, \code{time_end}, \code{source}.
 }
 \description{
 Convert subtitles .srt file to a dataframe.

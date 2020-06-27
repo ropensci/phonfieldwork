@@ -31,6 +31,8 @@
 #'
 #' @examples
 #' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"))
+#' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
+#' system.file("extdata", "test.TextGrid", package = "phonfieldwork"),)
 #'
 #' @export
 #'

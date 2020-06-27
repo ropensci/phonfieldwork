@@ -5,7 +5,10 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name file_name string with a filename or path to the .txt file produced by Audacity
-#' @return a dataframe with columns:  \code{content}, \code{time_start}, \code{time_end}.
+#' @return a dataframe with columns:  \code{content}, \code{time_start}, \code{time_end}, \code{source}.
+#'
+#' @examples
+#' audacity_to_df(system.file("extdata", "test_audacity.txt", package = "phonfieldwork"))
 #'
 #' @importFrom utils read.delim
 #' @export
@@ -15,5 +18,7 @@ audacity_to_df <- function(file_name){
   names(df) <- c("time_start", "time_end", "content")
   df$time_start <- as.numeric(gsub(",", ".", df$time_start))
   df$time_end <- as.numeric(gsub(",", ".", df$time_end))
+  source <- unlist(strsplit(normalizePath(file_name), "/"))
+  df$source <- source[length(source)]
   return(df)
 }

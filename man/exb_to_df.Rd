@@ -10,7 +10,7 @@ exb_to_df(file_name)
 \item{file_name}{string with a filename or path to the .exb file}
 }
 \value{
-a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{tier_category}, \code{tier_speaker}, \code{time_start}, \code{time_end}.
+a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{tier_category}, \code{tier_speaker}, \code{time_start}, \code{time_end}, \code{source}.
 }
 \description{
 Convert .exb file from EXMARaLDA to a dataframe.

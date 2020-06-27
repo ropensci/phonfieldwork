@@ -4,21 +4,21 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param textgrid string with a filename or path to the TextGrid
+#' @param file_name string with a filename or path to the TextGrid
 #' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
-#' @return a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end} (if it is an interval tier -- the same as the start value), \code{content}, and \code{tier}
+#' @return a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end} (if it is an interval tier -- the same as the start value), \code{content}, \code{tier} and \code{source}
 #'
 #' @examples
-#' textgrid_to_df(example_textgrid)
+#' textgrid_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
 #'
 #' @export
 
-textgrid_to_df <- function(textgrid, encoding = "unknown"){
-  if(grepl("TextGrid", textgrid[2])){
-    tg <- textgrid
+textgrid_to_df <- function(file_name, encoding = "unknown"){
+  if(grepl("TextGrid", file_name[2])){
+    tg <- file_name
   } else{
-    tg <- readLines(textgrid, encoding = encoding)
+    tg <- readLines(file_name, encoding = encoding)
   }
   n_tiers <- as.double(regmatches(tg[7], regexpr("\\d", tg[7])))
   lapply(1:n_tiers, function(x){
@@ -28,5 +28,7 @@ textgrid_to_df <- function(textgrid, encoding = "unknown"){
   }) ->
     l
   result <- do.call(rbind, l)
+  source <- unlist(strsplit(normalizePath(file_name), "/"))
+  result$source <- source[length(source)]
   return(result[order(result$time_start),])
 }

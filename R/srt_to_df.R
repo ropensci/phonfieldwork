@@ -7,7 +7,7 @@
 #' @param file_name string with a filename or path to the .srt file
 #' @param encoding .srt encoding. Import from \code{readLines()} function.
 #'
-#' @return a dataframe with columns:  \code{id}, \code{content}, \code{time_start}, \code{time_end}.
+#' @return a dataframe with columns:  \code{id}, \code{content}, \code{time_start}, \code{time_end}, \code{source}.
 #'
 #' @examples
 #' srt_to_df(system.file("extdata", "test.srt", package = "phonfieldwork"))
@@ -54,5 +54,7 @@ srt_to_df <- function(file_name, encoding = "unknown"){
   result <- cbind(result, as.data.frame(l))
   result <- result[, -c(3:4)]
   names(result)[3:4] <- c("time_start", "time_end")
+  source <- unlist(strsplit(normalizePath(file_name), "/"))
+  result$source <- source[length(source)]
   return(result)
 }

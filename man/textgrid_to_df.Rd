@@ -4,21 +4,21 @@
 \alias{textgrid_to_df}
 \title{TextGrid to dataframe}
 \usage{
-textgrid_to_df(textgrid, encoding = "unknown")
+textgrid_to_df(file_name, encoding = "unknown")
 }
 \arguments{
-\item{textgrid}{string with a filename or path to the TextGrid}
+\item{file_name}{string with a filename or path to the TextGrid}
 
 \item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
-a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end} (if it is an interval tier -- the same as the start value), \code{content}, and \code{tier}
+a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end} (if it is an interval tier -- the same as the start value), \code{content}, \code{tier} and \code{source}
 }
 \description{
 Convert Praat TextGrid to a dataframe.
 }
 \examples{
-textgrid_to_df(example_textgrid)
+textgrid_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
 
 }
 \author{

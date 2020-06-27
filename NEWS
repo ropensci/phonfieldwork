@@ -1,4 +1,5 @@
-phonfieldwork 0.0.7 (26.06.2020)
+phonfieldwork 0.0.7 (27.06.2020)
+  - add the "source" column to all "..._to_df()" functions
   - add the "audacity_to_df" function
   - add the "srt_to_df" function
   - chage textgrid related functions' output from "start", "end", "annotation" to "time_start", "time_end", "content"
