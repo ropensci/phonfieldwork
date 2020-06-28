@@ -190,7 +190,8 @@ draw_sound <- function(file_name,
                                    time_start = 0,
                                    time_end = min(df[df$tier == i,]$time_start),
                                    content = "",
-                                   tier = i)
+                                   tier = i,
+                                   source = unique(df$source))
             df <<- rbind(extended, df)
           })
         }

@@ -393,7 +393,7 @@ srt_to_df(system.file("extdata", "test.srt", package = "phonfieldwork"))
 * file `.txt` from Audacity
 
 ```{r}
-audacity_to_df(system.file("extdata", "test.txt", package = "phonfieldwork"))
+audacity_to_df(system.file("extdata", "test_audacity.txt", package = "phonfieldwork"))
 ```
 
 
