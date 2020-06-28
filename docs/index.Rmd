@@ -366,14 +366,14 @@ It is also possible to use the argument `textgrid_from_folder` in order to speci
 
 # Read linguistic files into R
 
-The `phonfieldwork` package provides also several methods for reading different file types into R. This makes it possible to analyze them and convert into `.csv` files (e. g. using the `write.csv()` function):
+The `phonfieldwork` package provides also several methods for reading different file types into R. This makes it possible to analyze them and convert into `.csv` files (e. g. using the `write.csv()` function). The main advantage of using those functions is that all of them return `data.frame`s with columns (`time_start`, `time_end`, `content` and `source`). This make it easer to use the result in the `draw_sound()` function that make it possible to visualise all kind of sound annotation systems.
 
-* file `.TextGrid` from Praat
+* file `.TextGrid` from Praat (just change the `system.file()` function to path to the file); see also [`rPraat`](https://fu.ff.cuni.cz/praat/#rpraat-package-for-r) and [`textgRid`](https://github.com/patrickreidy/textgRid) packages
 ```{r}
-textgrid_to_df(example_textgrid)
+textgrid_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
 ```
 
-* file `.eaf` from ELAN  (just change the `system.file()` function to path to the file)
+* file `.eaf` from ELAN  (just change the `system.file()` function to path to the file); see also the [FRelan](https://github.com/langdoc/FRelan) package by Niko Partanen
 ```{r}
 eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 ```
@@ -397,7 +397,7 @@ audacity_to_df(system.file("extdata", "test_audacity.txt", package = "phonfieldw
 ```
 
 
-* file `.flextext` from FLEx
+* file `.flextext` from FLEx (that is actually is not connected with the main functionality of `phonfieldwork`, but I'd like to have it):
 
 ```{r}
 flextext_to_df("files/zilo_test.flextext")
@@ -487,7 +487,7 @@ So from this point it is possible to create the table that we wanted:
 
 ```{r}
 new_df <- data.frame(words = t1$content,
-                 sounds = t3$content)
+                     sounds = t3$content)
 new_df
 ```
 
