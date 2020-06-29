@@ -31,8 +31,9 @@
 #'
 #' @examples
 #' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"))
+#'
 #' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
-#' system.file("extdata", "test.TextGrid", package = "phonfieldwork"),)
+#'            system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
 #'
 #' @export
 #'
@@ -88,12 +89,18 @@ draw_sound <- function(file_name,
         } else if(ext == "mp3"){
           s <- tuneR::readMP3(file_name)
         } else{
+          graphics::par(oma=c(0,0,0,0),
+                        mai=c(1.02, 0.82, 0.82, 0.42),
+                        fig=c(0,1,0,1))
           stop("The draw_sound() functions works only with .wav(e) or .mp3 formats")
         }
       }
 
       if(!is.null(from)&!is.null(to)){
         if(from >= to){
+          graphics::par(oma=c(0,0,0,0),
+                        mai=c(1.02, 0.82, 0.82, 0.42),
+                        fig=c(0,1,0,1))
           stop("Argument from should be smaler then argument to.")
         }
         if(to > length(s@left)/s@samp.rate){
@@ -167,21 +174,47 @@ draw_sound <- function(file_name,
       if(!is.null(annotation)){
         graphics::par(fig=c(0.1, 0.98, 0.09, 0.27), new=TRUE)
 
-        df <- phonfieldwork::textgrid_to_df(annotation)
+        if(class(annotation) != "data.frame"){
+          df <- phonfieldwork::textgrid_to_df(annotation)
+        } else{
+          df <- annotation
+        }
+
+        if(sum(c("time_start", "time_end", "content") %in% names(df)) != 3){
+          graphics::par(oma=c(0,0,0,0),
+                        mai=c(1.02, 0.82, 0.82, 0.42),
+                        fig=c(0,1,0,1))
+          stop('data.frame that you provide to annotation argument should contain "time_start", "time_end" and "content" columns')
+        }
+
+        if(!("tier" %in% names(df))){
+          df$tier <- 1
+        }
 
         if(!is.null(zoom)){
           from <- zoom[1]
           to <- zoom[2]
         }
 
+        # in case annotation exceed the length of the  sound, change it value to sound length
+        df$time_end <- ifelse(
+          df$time_start < length(for_spectrum@left)/for_spectrum@samp.rate &
+            df$time_end > length(for_spectrum@left)/for_spectrum@samp.rate,
+          length(for_spectrum@left)/for_spectrum@samp.rate,
+          df$time_end
+        )
+
+        # remove annotation that are out of scope
         df <- df[df$time_start >= from,]
         df <- df[df$time_end <= to,]
+
         if(nrow(df) < 1){
           graphics::par(oma=c(0,0,0,0),
                         mai=c(1.02, 0.82, 0.82, 0.42),
                         fig=c(0,1,0,1))
           stop("There is no annotion in selected time interval.")
         }
+
         df$time_start <- (df$time_start-from)*1000
         df$time_end <- (df$time_end-from)*1000
         if(from != 0){

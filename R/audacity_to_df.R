@@ -16,8 +16,8 @@
 audacity_to_df <- function(file_name){
   df <- utils::read.delim(file_name)
   names(df) <- c("time_start", "time_end", "content")
-  df$time_start <- as.numeric(gsub(",", ".", df$time_start))
-  df$time_end <- as.numeric(gsub(",", ".", df$time_end))
+  df$time_start <- as.double(gsub(",", ".", df$time_start))/1000
+  df$time_end <- as.double(gsub(",", ".", df$time_end))/1000
   source <- unlist(strsplit(normalizePath(file_name), "/"))
   df$source <- source[length(source)]
   return(df)

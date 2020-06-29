@@ -11,7 +11,7 @@
 #' @return a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end}, \code{content}
 #'
 #' @examples
-#' tier_to_df(example_textgrid)
+#' tier_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
 #'
 #' @export
 #'

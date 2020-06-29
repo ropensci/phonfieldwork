@@ -1,4 +1,5 @@
 phonfieldwork 0.0.7 (27.06.2020)
+  - make it possible to visualise all types of annotations with the "draw_sound()" function
   - add the "source" column to all "..._to_df()" functions
   - add the "audacity_to_df" function
   - add the "srt_to_df" function

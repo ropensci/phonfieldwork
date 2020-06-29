@@ -414,6 +414,15 @@ create_glossed_document(flextext = "files/zilo_test.flextext",
 file.copy("files/glossed_document.html", to = "glossed_document.html", overwrite = TRUE)
 ```
 
+All those functions (`tier_to_df()`, `textgrid_to_df()`, `eaf_to_df()`, `exb_to_df()`, `audacity_to_df()`, `srt_to_df()`) except `flextext_to_df()` can be used in order to visualise sound annotation:
+
+```{r}
+draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwork"), 
+           annotation = eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork")))
+```
+
+
+
 # Create a viewer
 
 In oredr to create a sound viewer you need three things:

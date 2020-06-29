@@ -47,7 +47,7 @@ srt_to_df <- function(file_name, encoding = "unknown"){
 
   lapply(3:4, function(i){
     do.call(rbind, lapply(strsplit(result[,i], ':|,'),
-                          as.numeric)) %*% c(60*60,60,1,1/1000)
+                          as.double)) %*% c(60*60,60,1,1/1000)
   }) ->
     l
 

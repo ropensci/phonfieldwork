@@ -69,6 +69,9 @@ exb_to_df <- function(file_name){
   # make sorting and remove some columns
   r <- r[order(r$tier, r$id), -c(1:2)]
 
+  r$time_start <- as.double(r$time_start)
+  r$time_end <- as.double(r$time_end)
+
   source <- unlist(strsplit(normalizePath(file_name), "/"))
   r$source <- source[length(source)]
   return(r)
