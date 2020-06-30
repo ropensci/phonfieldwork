@@ -13,6 +13,7 @@
 #' @param output_dir the output directory for the rendered file
 #' @param render the logical argument, if \code{TRUE} renders the created R Markdown viewer to the \code{output_dir} folder, otherwise returns the path to the temporary file with a .csv file.
 #' @param about it is either .Rmd file or string with the text for about information: author, project, place of gahtered information and other metadata, version of the viewer and so on
+#' @param map the logical argument, if \code{TRUE} and there is a \code{glottocode} column in \code{table}
 #'
 #' @return If \code{render} is \code{FALSE}, the function returns a path to the temporary file with .csv file. If \code{render} is \code{TRUE}, there is no output in a function.
 #'
@@ -27,12 +28,23 @@ create_viewer <- function(audio_dir,
                           captions = NULL,
                           sorting_columns = NULL,
                           about = "Created with the `phonfieldworks` package (Moroz 2020).",
+                          map = FALSE,
                           output_dir,
                           output_file = "stimuli_viewer",
                           render = TRUE){
   if(!("DT" %in% utils::installed.packages()[,"Package"])){
     stop('For this function you need to install DT package with a command install.packages("DT").')
   }
+
+  if(isTRUE(map)){
+    if(!("lingtypology" %in% utils::installed.packages()[,"Package"])){
+      stop('If you want to create a map in a viewer, you need to install lingtypology package with a command install.packages("lingtypology").')
+    }
+    if(!("glottocode" %in% names(table))){
+      stop('If you want to create a map in a viewer, you need to add a glottocode column to the datafarame in a table argument.')
+    }
+  }
+
   audio <- list.files(normalizePath(audio_dir))
   pictures <- list.files(normalizePath(picture_dir))
   if(length(audio) > length(pictures)){
@@ -70,12 +82,37 @@ create_viewer <- function(audio_dir,
     writeLines(about, tmp2)
   }
 
+
+# create map file ---------------------------------------------------------
+  tmp3 <- tempfile(fileext = ".Rmd")
+  if(isTRUE(map)){
+    writeLines(
+    '## map
+
+```{r map, echo=FALSE, message=FALSE, warning=FALSE}
+lingtypology::map.feature(
+  languages = lingtypology::lang.gltc(df$glottocode),
+  popup = df$viewer)
+```
+
+<div class = "my_block" id="my_block" onclick = "pic_disappear()">
+  <span class="close">&times;</span>
+  <img class = "my_img" id="my_img">
+  <div class = "caption" id="caption">
+  </div>
+</div>',
+    tmp3)
+  } else{
+    writeLines('', tmp3)
+  }
+
 # render .Rmd -------------------------------------------------------------
   if(render == TRUE){
   rmarkdown::render(paste0(.libPaths()[1],
 "/phonfieldwork/rmarkdown/templates/annotation_viewer/skeleton/skeleton.Rmd"),
                     params = list(data = tmp1,
                                   about = tmp2,
+                                  map = tmp3,
                                   captions = captions),
                     output_dir = output_dir,
                     quiet = TRUE,
@@ -83,8 +120,14 @@ create_viewer <- function(audio_dir,
   message(paste0("Output created: ", output_dir, output_file, ".html"))
   suppress_message <- file.remove(tmp1)
   suppress_message <- file.remove(tmp2)
+  if(isTRUE(map)){
+    suppress_message <- file.remove(tmp3)
+  }
   } else {
     return(tmp1)
     suppress_message <- file.remove(tmp2)
+    if(isTRUE(map)){
+      suppress_message <- file.remove(tmp3)
+    }
   }
 }

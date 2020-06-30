@@ -28,6 +28,7 @@ file.remove(c(paste0("s1/backup/", list.files("s1/backup/")),
               "s1/s1_pics/",
               "s1/s1_sounds/",
               "s1/stimuli_viewer.html",
+              "s1/stimuli_viewer2.html",
               "glossed_document.docx",
               "glossed_document.html"))
 rename_soundfiles(stimuli = c("02", "01", "03"),
@@ -420,11 +421,11 @@ draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwo
            annotation = eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork")))
 ```
 
-
-
 # Create a viewer
 
-In oredr to create a sound viewer you need three things:
+Sound viewer (here is an [example 1](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html) and [example 2](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer2.html)) is a useful tool that combine together your annotations and make it searchable. It is also produce a ready to go `.html` file that could be uploaded on the server (e. g. to Github Pages) and be availible for anyone in the world.
+
+In order to create a sound viewer you need three things:
 
 * folder with sounds
 * folder with pictures
@@ -510,5 +511,25 @@ create_viewer(audio_dir = "s1/s1_sounds/",
 ```
 
 By default sorting in the result annotation viewer will be according file names in the system, so if you want to have another default sorting you can specify column names that the result table should be sorted by using the `sorting_columns` argument.
+
+If you are familiar with my package [`lingtypology`](https://ropensci.github.io/lingtypology/) for interactive linguistic map generation and API for typological databases, there is a good news for you: it is possible to connect those two pacakages creating an interactive map that share the same hear and view buttons. In order to do it you need 
+
+* to add a `glottocode` column with language glottocodes from [Glottolog](https://glottolog.org/) to your dataframe with annotation details;
+* install `lingtypology` with a command `install.packages("lingtypology")` if you don't have it installed;
+* add `map = TRUE` argument to `create_viewer()` function.
+
+I will add some glottocodes for Russian, Polish and Czech to the dataframe that we have already worked with (for those data it doesn't make any sense, I just giving an example of usage):
+
+```{r, warning = FALSE}
+new_df$glottocode <- c("russ1263", "poli1260", "czec1258")
+create_viewer(audio_dir = "s1/s1_sounds/",
+              picture_dir = "s1/s1_pics/", 
+              table = new_df,
+              output_dir = "s1/",
+              output_file = "stimuli_viewer2",
+              map = TRUE)
+```
+
+[Here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer2.html) is the result file.
 
 # References

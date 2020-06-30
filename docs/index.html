@@ -3176,7 +3176,8 @@ Your browser does not support iframes :(
 </div>
 <div id="create-a-viewer" class="section level1">
 <h1><span class="header-section-number">6</span> Create a viewer</h1>
-<p>In oredr to create a sound viewer you need three things:</p>
+<p>Sound viewer (here is an <a href="https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html">example 1</a> and <a href="https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer2.html">example 2</a>) is a useful tool that combine together your annotations and make it searchable. It is also produce a ready to go <code>.html</code> file that could be uploaded on the server (e. g. to Github Pages) and be availible for anyone in the world.</p>
+<p>In order to create a sound viewer you need three things:</p>
 <ul>
 <li>folder with sounds</li>
 <li>folder with pictures</li>
@@ -3300,6 +3301,22 @@ new_df</code></pre>
               output_file = &quot;stimuli_viewer&quot;)</code></pre>
 <pre><code>## Output created: s1/stimuli_viewer.html</code></pre>
 <p>By default sorting in the result annotation viewer will be according file names in the system, so if you want to have another default sorting you can specify column names that the result table should be sorted by using the <code>sorting_columns</code> argument.</p>
+<p>If you are familiar with my package <a href="https://ropensci.github.io/lingtypology/"><code>lingtypology</code></a> for interactive linguistic map generation and API for typological databases, there is a good news for you: it is possible to connect those two pacakages creating an interactive map that share the same hear and view buttons. In order to do it you need</p>
+<ul>
+<li>to add a <code>glottocode</code> column with language glottocodes from <a href="https://glottolog.org/">Glottolog</a> to your dataframe with annotation details;</li>
+<li>install <code>lingtypology</code> with a command <code>install.packages(&quot;lingtypology&quot;)</code> if you don’t have it installed;</li>
+<li>add <code>map = TRUE</code> argument to <code>create_viewer()</code> function.</li>
+</ul>
+<p>I will add some glottocodes for Russian, Polish and Czech to the dataframe that we have already worked with (for those data it doesn’t make any sense, I just giving an example of usage):</p>
+<pre class="r"><code>new_df$glottocode &lt;- c(&quot;russ1263&quot;, &quot;poli1260&quot;, &quot;czec1258&quot;)
+create_viewer(audio_dir = &quot;s1/s1_sounds/&quot;,
+              picture_dir = &quot;s1/s1_pics/&quot;, 
+              table = new_df,
+              output_dir = &quot;s1/&quot;,
+              output_file = &quot;stimuli_viewer2&quot;,
+              map = TRUE)</code></pre>
+<pre><code>## Output created: s1/stimuli_viewer2.html</code></pre>
+<p><a href="https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer2.html">Here</a> is the result file.</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>

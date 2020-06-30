@@ -7,6 +7,7 @@ params:
   data: your_file.csv
   captions: "caption_for_pictures"
   about: about.Rmd
+  map: map.Rmd
 editor_options: 
   chunk_output_type: console
 ---
@@ -41,19 +42,26 @@ editor_options:
 }
 </style>
 
-# {.tabset .tabset-fade .tabset-pills}
-## data
-
-```{r make_viewer, echo=FALSE, message=FALSE, warning=FALSE}
-df <- read.csv(tmp1, stringsAsFactors = FALSE)
+```{r data_creation, include=FALSE}
+df <- read.csv(params$data, stringsAsFactors = FALSE)
 
 df$viewer <- 
   paste(phonfieldwork::create_image_look_up(img_src = df$pictures,
-                                            img_caption = captions),
+                                            img_caption = params$captions),
         phonfieldwork::create_sound_play(snd_src = df$audio))
 
 df <- df[, -which(colnames(df) %in% c("audio", "pictures"))]
+```
 
+
+# {.tabset .tabset-fade .tabset-pills}
+
+```{r add_map, child = params$map}
+```
+
+## data
+
+```{r make_viewer, echo=FALSE, message=FALSE, warning=FALSE}
 DT::datatable(data = df, 
               filter = 'top', 
               rownames = FALSE, 
@@ -71,7 +79,7 @@ DT::datatable(data = df,
 
 ## about
 
-```{r, child = params$about}
+```{r about, child = params$about}
 ```
 
 
