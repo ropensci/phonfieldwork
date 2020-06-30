@@ -2788,7 +2788,7 @@ div.tocify {
 
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
-<p>There are a lot of different typical tasks that have to be solved during phonetic research and experiments. This includes creating a presentation that will contain all stimuli, renaming and concatenating multiple sound files recorded during a session, automatic annotation in ‘Praat’ TextGrids (this is one of the sound annotation standards provided by ‘Praat’ software, see Boersma &amp; Weenink 2018 <a href="http://www.fon.hum.uva.nl/praat/" class="uri">http://www.fon.hum.uva.nl/praat/</a>), creating an html table with annotations and spectrograms, and converting multiple formats (‘Praat’ TextGrid, ‘EXMARaLDA’ and ‘ELAN’). All of these tasks can be solved by a mixture of different tools (any programming language has programs for automatic renaming, and Praat contains scripts for concatenating and renaming files, etc.). <code>phonfieldwork</code> provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other packages: <a href="https://CRAN.R-project.org/package=rPraat">‘rPraat’</a>, <a href="https://CRAN.R-project.org/package=textgRid">‘textgRid’</a>, <a href="https://dopefishh.github.io/pympi/index.html">‘pympi’</a> (thx to Lera Dushkina and Anya Klezovich for letting me know about <code>pympi</code>).</p>
+<p>There are a lot of different typical tasks that have to be solved during phonetic research and experiments. This includes creating a presentation that will contain all stimuli, renaming and concatenating multiple sound files recorded during a session, automatic annotation in ‘Praat’ TextGrids (this is one of the sound annotation standards provided by ‘Praat’ software, see Boersma &amp; Weenink 2018 <a href="http://www.fon.hum.uva.nl/praat/" class="uri">http://www.fon.hum.uva.nl/praat/</a>), creating an html table with annotations and spectrograms, and converting multiple formats (‘Praat’ TextGrid, ‘EXMARaLDA’ <span class="citation">Schmidt and Wörner (2009)</span> and ‘ELAN’ <span class="citation">Wittenburg et al. (2006)</span>). All of these tasks can be solved by a mixture of different tools (any programming language has programs for automatic renaming, and Praat contains scripts for concatenating and renaming files, etc.). <code>phonfieldwork</code> provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other packages: <a href="https://CRAN.R-project.org/package=rPraat">‘rPraat’</a> <span class="citation">Bořil and Skarnitzl (2016)</span>, <a href="https://CRAN.R-project.org/package=textgRid">‘textgRid’</a> <span class="citation">Reidy (2016)</span>, <a href="https://dopefishh.github.io/pympi/index.html">‘pympi’</a> <span class="citation">Lubbers and Torreira (2013)</span> (thx to Lera Dushkina and Anya Klezovich for letting me know about <code>pympi</code>).</p>
 <p>There are a lot of different books about linguistic fieldwork and experiments (e.g. <span class="citation">Gordon (2003)</span>, <span class="citation">Bowern (2015)</span>). This tutorial covers only the data organization part. I will focus on cases where the researcher clearly knows what she or he wants to analyze and has already created a list of stimuli that she or he wants to record. For now <code>phonfieldwork</code> works only with <code>.wav(e)</code> and <code>.mp3</code> audiofiles and <code>.TextGrid</code>, <code>.eaf</code>, <code>.exb</code>, <code>.srt</code>, Audacity <code>.txt</code> and <code>.flextext</code> annotation formats, but the main functionality is availible for <code>.TextGrid</code> files (I plan to extend its functionality to other types of data). In the following sections I will describe my workflow for phonetic fieldwork and experiments.</p>
 </div>
 <div id="install-the-package" class="section level1">
@@ -3301,7 +3301,7 @@ new_df</code></pre>
               output_file = &quot;stimuli_viewer&quot;)</code></pre>
 <pre><code>## Output created: s1/stimuli_viewer.html</code></pre>
 <p>By default sorting in the result annotation viewer will be according file names in the system, so if you want to have another default sorting you can specify column names that the result table should be sorted by using the <code>sorting_columns</code> argument.</p>
-<p>If you are familiar with my package <a href="https://ropensci.github.io/lingtypology/"><code>lingtypology</code></a> for interactive linguistic map generation and API for typological databases, there is a good news for you: it is possible to connect those two pacakages creating an interactive map that share the same hear and view buttons. In order to do it you need</p>
+<p>If you are familiar with my package <a href="https://ropensci.github.io/lingtypology/"><code>lingtypology</code></a> <span class="citation">Moroz (2017)</span> for interactive linguistic map generation and API for typological databases, there is a good news for you: it is possible to connect those two pacakages creating an interactive map that share the same hear and view buttons. In order to do it you need</p>
 <ul>
 <li>to add a <code>glottocode</code> column with language glottocodes from <a href="https://glottolog.org/">Glottolog</a> to your dataframe with annotation details;</li>
 <li>install <code>lingtypology</code> with a command <code>install.packages(&quot;lingtypology&quot;)</code> if you don’t have it installed;</li>
@@ -3321,11 +3321,29 @@ create_viewer(audio_dir = &quot;s1/s1_sounds/&quot;,
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 <div id="refs" class="references">
+<div id="ref-boril16">
+<p>Bořil, Tomáš, and Radek Skarnitzl. 2016. “Tools rPraat and mPraat.” In <em>Text, Speech, and Dialogue: 19th International Conference, Tsd 2016, Brno, Czech Republic, September 12-16, 2016, Proceedings</em>, edited by Petr Sojka, Aleš Horák, Ivan Kopeček, and Karel Pala, 367–74. Cham: Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-45510-5_42">https://doi.org/10.1007/978-3-319-45510-5_42</a>.</p>
+</div>
 <div id="ref-bowern15">
 <p>Bowern, Claire. 2015. <em>Linguistic Fieldwork: A Practical Guide</em>. Springer.</p>
 </div>
 <div id="ref-gordon03">
 <p>Gordon, Matthew. 2003. “Collecting Phonetic Data on Endangered Languages.” In <em>15th International Congress of Phonetic Sciences</em>, 207–10.</p>
+</div>
+<div id="ref-lubbers13">
+<p>Lubbers, Mart, and Francisco Torreira. 2013. “Pympi-Ling: A Python Module for Processing ELANs EAF and Praats TextGrid Annotation Files.”</p>
+</div>
+<div id="ref-moroz17">
+<p>Moroz, George. 2017. <em>Lingtypology: Easy Mapping for Linguistic Typology</em>. <a href="https://CRAN.R-project.org/package=lingtypology">https://CRAN.R-project.org/package=lingtypology</a>.</p>
+</div>
+<div id="ref-reidy16">
+<p>Reidy, Patrick. 2016. <em>TextgRid: Praat Textgrid Objects in R</em>. <a href="https://CRAN.R-project.org/package=textgRid">https://CRAN.R-project.org/package=textgRid</a>.</p>
+</div>
+<div id="ref-schmidt09">
+<p>Schmidt, Thomas, and Kai Wörner. 2009. “EXMARaLDA–Creating, Analysing and Sharing Spoken Language Corpora for Pragmatic Research.” <em>Pragmatics</em> 19 (4): 565–82.</p>
+</div>
+<div id="ref-wittenburg06">
+<p>Wittenburg, Peter, Hennie Brugman, Albert Russel, Alex Klassmann, and Han Sloetjes. 2006. “ELAN: A Professional Framework for Multimodality Research.” In <em>5th International Conference on Language Resources and Evaluation (Lrec 2006)</em>, 1556–9.</p>
 </div>
 </div>
 </div>
