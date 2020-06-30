@@ -27,7 +27,7 @@ create_viewer(
 
 \item{sorting_columns}{vector of strings for sorting the result column}
 
-\item{about}{it is either .Rmd file or string with the text for about}
+\item{about}{it is either .Rmd file or string with the text for about information: author, project, place of gahtered information and other metadata, version of the viewer and so on}
 
 \item{output_dir}{the output directory for the rendered file}
 

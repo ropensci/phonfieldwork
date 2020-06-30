@@ -5,7 +5,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param path path to the directory with soundfiles.
-#' @param file_name name of the result and annotation files.
+#' @param result_file_name name of the result and annotation files.
 #' @param annotation there are several variants: "textgrid" for Praat TextGrid, "eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file
 #' @return
 #'
@@ -14,15 +14,14 @@
 #' s1 <-  system.file("extdata", "test.wav", package = "phonfieldwork")
 #' s2 <-  system.file("extdata", "post.wav", package = "phonfieldwork")
 #' tdir <- tempdir()
-#' file.copy(s1, tdir)
-#' file.copy(s2, tdir)
+#' file.copy(c(s1, s2), tdir)
 #'
 #' # here are two .wav files in a folder
 #' list.files(tdir)
 #' # [1] "post.wav" "test.wav"
 #'
 #' # Concatenate all files from the folder into concatenated.wav and create corresponding TextGrid
-#' concatenate_soundfiles(file_name = "concatenated", path = tdir)
+#' concatenate_soundfiles(path = tdir, result_file_name = "concatenated")
 #'
 #' list.files(tdir)
 #' # [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
@@ -34,29 +33,54 @@
 #' @importFrom tuneR writeWave
 #'
 
-concatenate_soundfiles <- function(file_name,
-                                   path,
+concatenate_soundfiles <- function(path,
+                                   result_file_name = "concatenated",
                                    annotation = "textgrid"){
 
 # concatenate sounds ------------------------------------------------------
 
-  files <- list.files(path = path, pattern = ".wav$")
+  files <- list.files(path = normalizePath(path),
+                      pattern = "(\\.WAVE?$)|(\\.wave?$)|(\\.MP3?$)|(\\.mp3?$)")
 
   if(length(files) == 0){
-    stop("There is no any .wav files")
+    stop("There is no any .wav or .mp3 files")
   }
 
-  list <- lapply(paste0(path, "/", files), function(file_name){
-    ext <- tolower(substring(file_name, regexpr("\\..*$", file_name) + 1))
+  lapply(paste0(normalizePath(path), "/", files), function(file_name){
+    ext <- unlist(strsplit(file_name, "\\."))
+    ext <- tolower(ext[length(ext)])
     if(ext == "wave"|ext == "wav"){
       s <- tuneR::readWave(file_name)
     } else if(ext == "mp3"){
       s <- tuneR::readMP3(file_name)
-    } else{
-      stop("The concatenate_soundfiles() functions works only with .wav(e) or .mp3 formats")
-    }})
+    }}) ->
+    list
+
+  lapply(seq_along(list), function(x){
+    data.frame(
+      file = files[x],
+      stereo = list[[x]]@stereo,
+      samp.rate = list[[x]]@samp.rate,
+      bit = list[[x]]@bit)
+  }) ->
+    sound_attributes
+
+  sound_attributes <- do.call(rbind, sound_attributes)
+
+  lapply(sound_attributes, function(i){
+    length(unique(i)) != 1
+  }) ->
+    problems
+
+  if(TRUE %in% problems[-1]){
+    pos_probs <- c("channel representation", "sampling rate", "bit rate")
+    problem_text <- paste(pos_probs[unlist(problems)[-1]], collapse = ", and ")
+    print(sound_attributes[,unlist(problems)])
+    stop(paste0("You have a problem with ",
+                problem_text, ". Sampling rate, resolution (bit), and number of channels should be the same across all recordings."))
+  }
   sound <- do.call(tuneR::bind, list)
-  tuneR::writeWave(sound, paste0(path, "/", file_name, ".wav"))
+  tuneR::writeWave(sound, paste0(path, "/", result_file_name, ".wav"))
 # create a TextGrid -------------------------------------------------------
 
   if(annotation == "textgrid"){
@@ -94,7 +118,7 @@ concatenate_soundfiles <- function(file_name,
                         paste0('            text = "', my_textgrid$Label, '"'),
                         "\n",
                         collapse = "")),
-               paste0(path, "/", file_name, ".TextGrid"))
+               paste0(path, "/", result_file_name, ".TextGrid"))
   } else if(annotation == "eaf"){
     print("Will be done in the future")
   } else if(annotation == "exb"){

@@ -20,7 +20,7 @@ a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end}, \code{
 Convert selected tier from a Praat TextGrid to a dataframe.
 }
 \examples{
-tier_to_df(example_textgrid)
+tier_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
 
 }
 \author{

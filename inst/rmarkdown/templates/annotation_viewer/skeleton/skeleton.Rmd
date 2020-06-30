@@ -1,6 +1,8 @@
 ---
 title: "Sound Viewer"
-output: html_document
+output: 
+  html_document:
+      self_contained: yes
 params:
   data: your_file.csv
   captions: "caption_for_pictures"

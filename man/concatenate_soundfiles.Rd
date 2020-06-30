@@ -4,12 +4,16 @@
 \alias{concatenate_soundfiles}
 \title{Concatenate sounds}
 \usage{
-concatenate_soundfiles(file_name, path, annotation = "textgrid")
+concatenate_soundfiles(
+  path,
+  result_file_name = "concatenated",
+  annotation = "textgrid"
+)
 }
 \arguments{
-\item{file_name}{name of the result and annotation files.}
-
 \item{path}{path to the directory with soundfiles.}
+
+\item{result_file_name}{name of the result and annotation files.}
 
 \item{annotation}{there are several variants: "textgrid" for Praat TextGrid, "eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file}
 }
@@ -26,15 +30,14 @@ Creates a sound file and a Praat TextGrid whose interval labels are the original
 s1 <-  system.file("extdata", "test.wav", package = "phonfieldwork")
 s2 <-  system.file("extdata", "post.wav", package = "phonfieldwork")
 tdir <- tempdir()
-file.copy(s1, tdir)
-file.copy(s2, tdir)
+file.copy(c(s1, s2), tdir)
 
 # here are two .wav files in a folder
 list.files(tdir)
 # [1] "post.wav" "test.wav"
 
 # Concatenate all files from the folder into concatenated.wav and create corresponding TextGrid
-concatenate_soundfiles(file_name = "concatenated", path = tdir)
+concatenate_soundfiles(path = tdir, result_file_name = "concatenated")
 
 list.files(tdir)
 # [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...

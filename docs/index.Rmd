@@ -42,7 +42,7 @@ rename_soundfiles(stimuli = c("02", "01", "03"),
 
 There are a lot of different typical tasks that have to be solved during phonetic research and experiments. This includes creating a presentation that will contain all stimuli, renaming and concatenating multiple sound files recorded during a session, automatic annotation in 'Praat' TextGrids (this is one of the sound annotation standards provided by 'Praat' software, see Boersma & Weenink 2018 <http://www.fon.hum.uva.nl/praat/>), creating an html table with annotations and spectrograms, and converting multiple formats ('Praat' TextGrid, 'EXMARaLDA' and 'ELAN'). All of these tasks can be solved by a mixture of different tools (any programming language has programs for automatic renaming, and Praat contains scripts for concatenating and renaming files, etc.). `phonfieldwork` provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other packages: ['rPraat'](https://CRAN.R-project.org/package=rPraat), ['textgRid'](https://CRAN.R-project.org/package=textgRid), ['pympi'](https://dopefishh.github.io/pympi/index.html) (thx to Lera Dushkina and Anya Klezovich for letting me know about `pympi`).
 
-There are a lot of different books about linguistic fieldwork and experiments (e.g. @gordon03, @bowern15). This tutorial covers only the data organization part. I will focus on cases where the researcher clearly knows what she or he wants to analyze and has already created a list of stimuli that she or he wants to record. For now `phonfieldwork` works only with `.wav(e)` and `.mp3` audiofiles and `.TextGrid`, `.eaf`, `.exb` and `.flextext` annotation formats, but the main functionality is availible for `.TextGrid` files (I plan to extend its functionality to other types of data). In the following sections I will describe my workflow for phonetic fieldwork and experiments.
+There are a lot of different books about linguistic fieldwork and experiments (e.g. @gordon03, @bowern15). This tutorial covers only the data organization part. I will focus on cases where the researcher clearly knows what she or he wants to analyze and has already created a list of stimuli that she or he wants to record. For now `phonfieldwork` works only with `.wav(e)` and `.mp3` audiofiles and `.TextGrid`, `.eaf`, `.exb`, `.srt`, Audacity `.txt` and `.flextext` annotation formats, but the main functionality is availible for `.TextGrid` files (I plan to extend its functionality to other types of data). In the following sections I will describe my workflow for phonetic fieldwork and experiments.
 
 # Install the package
 
@@ -86,7 +86,7 @@ Most phonetic research consists of the following steps:
 
 1. Formulate a research question. Think of what kind of data is necessary to answer this question, what is the appropriate amount of data, what kind of annotation you will do, what kind of statistical models and visualizations you will use, etc.
 2. Create a list of stimuli.
-3. Elicite list of stimuli from speakers who signed an *Informed Consent* statement, agreeing to participate in the experiment to be recorded on audio and/or video.
+3. Elicite list of stimuli from speakers who signed an *Informed Consent* statement, agreeing to participate in the experiment to be recorded on audio and/or video. Keep an eye on recording settings: sampling rate, resolution (bit), and number of channels should be the same across all recordings.
 4. Annotate the collected data.
 5. Extract the collected data.
 6. Create visualizations and evaluate your statistical models.
@@ -96,8 +96,7 @@ Most phonetic research consists of the following steps:
 The `phonfieldwork` package is created for helping with items 3, partially with 4, and 5 and 8.
 
 To make the automatic annotation of data easier, I usually record each stimulus as a separate file.  While recording, I carefully listen to my consultants to make sure that they are producing the kind of speech I want: three isolated pronunciations of the same stimulus, separated by a pause and contained in a carrier phrase. In case a speaker does not produce three clear repetitions, I ask them to repeat the task, so that as a result of my fieldwork session I will have: 
-
-* a collection of small soundfiles
+* a collection of small soundfiles (video) with the same sampling rate, resolution (bit), and number of channels
 * a list of succesful and unsuccesful attempts to produce a stimulus according to my requirements (usually I keep this list in a regular notebook)
 
 There are some phoneticians who prefer to record everything, for language documentation purposes. I think that should be a separate task: you can’t have your cake and eat it too. But if you insist on recording everything, it is possible to run two recorders at the same time: one could run during the whole session, while the other is used to produce small audio files. You can also use special software to record your stimuli automatically on a computer (e.g. [PsychoPy](https://www.psychopy.org/)).
@@ -204,11 +203,11 @@ For now `phonfieldwork` works only with `.wav(e)` and `.mp3` sound files and sev
 
 ## Merge all data together
 
-After all the files are renamed, you can merge them into one:
+After all the files are renamed, you can merge them into one. Remmber that sampling rate, resolution (bit), and number of channels should be the same across all recordings. It is possible to resample files with the `resample()` function from  `biacoustics`.
 
 ```{r}
-concatenate_soundfiles(file_name = "s1_all",
-                       path = "s1/")
+concatenate_soundfiles(path = "s1/", 
+                       result_file_name = "s1_all")
 ```
 
 This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid `s1_all.TextGrid`:

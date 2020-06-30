@@ -2789,7 +2789,7 @@ div.tocify {
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
 <p>There are a lot of different typical tasks that have to be solved during phonetic research and experiments. This includes creating a presentation that will contain all stimuli, renaming and concatenating multiple sound files recorded during a session, automatic annotation in ‘Praat’ TextGrids (this is one of the sound annotation standards provided by ‘Praat’ software, see Boersma &amp; Weenink 2018 <a href="http://www.fon.hum.uva.nl/praat/" class="uri">http://www.fon.hum.uva.nl/praat/</a>), creating an html table with annotations and spectrograms, and converting multiple formats (‘Praat’ TextGrid, ‘EXMARaLDA’ and ‘ELAN’). All of these tasks can be solved by a mixture of different tools (any programming language has programs for automatic renaming, and Praat contains scripts for concatenating and renaming files, etc.). <code>phonfieldwork</code> provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other packages: <a href="https://CRAN.R-project.org/package=rPraat">‘rPraat’</a>, <a href="https://CRAN.R-project.org/package=textgRid">‘textgRid’</a>, <a href="https://dopefishh.github.io/pympi/index.html">‘pympi’</a> (thx to Lera Dushkina and Anya Klezovich for letting me know about <code>pympi</code>).</p>
-<p>There are a lot of different books about linguistic fieldwork and experiments (e.g. <span class="citation">Gordon (2003)</span>, <span class="citation">Bowern (2015)</span>). This tutorial covers only the data organization part. I will focus on cases where the researcher clearly knows what she or he wants to analyze and has already created a list of stimuli that she or he wants to record. For now <code>phonfieldwork</code> works only with <code>.wav(e)</code> and <code>.mp3</code> audiofiles and <code>.TextGrid</code>, <code>.eaf</code>, <code>.exb</code> and <code>.flextext</code> annotation formats, but the main functionality is availible for <code>.TextGrid</code> files (I plan to extend its functionality to other types of data). In the following sections I will describe my workflow for phonetic fieldwork and experiments.</p>
+<p>There are a lot of different books about linguistic fieldwork and experiments (e.g. <span class="citation">Gordon (2003)</span>, <span class="citation">Bowern (2015)</span>). This tutorial covers only the data organization part. I will focus on cases where the researcher clearly knows what she or he wants to analyze and has already created a list of stimuli that she or he wants to record. For now <code>phonfieldwork</code> works only with <code>.wav(e)</code> and <code>.mp3</code> audiofiles and <code>.TextGrid</code>, <code>.eaf</code>, <code>.exb</code>, <code>.srt</code>, Audacity <code>.txt</code> and <code>.flextext</code> annotation formats, but the main functionality is availible for <code>.TextGrid</code> files (I plan to extend its functionality to other types of data). In the following sections I will describe my workflow for phonetic fieldwork and experiments.</p>
 </div>
 <div id="install-the-package" class="section level1">
 <h1><span class="header-section-number">2</span> Install the package</h1>
@@ -2826,7 +2826,7 @@ devtools::install_github(&quot;agricolamz/phonfieldwork&quot;)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Formulate a research question. Think of what kind of data is necessary to answer this question, what is the appropriate amount of data, what kind of annotation you will do, what kind of statistical models and visualizations you will use, etc.</li>
 <li>Create a list of stimuli.</li>
-<li>Elicite list of stimuli from speakers who signed an <em>Informed Consent</em> statement, agreeing to participate in the experiment to be recorded on audio and/or video.</li>
+<li>Elicite list of stimuli from speakers who signed an <em>Informed Consent</em> statement, agreeing to participate in the experiment to be recorded on audio and/or video. Keep an eye on recording settings: sampling rate, resolution (bit), and number of channels should be the same across all recordings.</li>
 <li>Annotate the collected data.</li>
 <li>Extract the collected data.</li>
 <li>Create visualizations and evaluate your statistical models.</li>
@@ -2834,11 +2834,7 @@ devtools::install_github(&quot;agricolamz/phonfieldwork&quot;)</code></pre>
 <li>Publish your data.</li>
 </ol>
 <p>The <code>phonfieldwork</code> package is created for helping with items 3, partially with 4, and 5 and 8.</p>
-<p>To make the automatic annotation of data easier, I usually record each stimulus as a separate file. While recording, I carefully listen to my consultants to make sure that they are producing the kind of speech I want: three isolated pronunciations of the same stimulus, separated by a pause and contained in a carrier phrase. In case a speaker does not produce three clear repetitions, I ask them to repeat the task, so that as a result of my fieldwork session I will have:</p>
-<ul>
-<li>a collection of small soundfiles</li>
-<li>a list of succesful and unsuccesful attempts to produce a stimulus according to my requirements (usually I keep this list in a regular notebook)</li>
-</ul>
+<p>To make the automatic annotation of data easier, I usually record each stimulus as a separate file. While recording, I carefully listen to my consultants to make sure that they are producing the kind of speech I want: three isolated pronunciations of the same stimulus, separated by a pause and contained in a carrier phrase. In case a speaker does not produce three clear repetitions, I ask them to repeat the task, so that as a result of my fieldwork session I will have: * a collection of small soundfiles (video) with the same sampling rate, resolution (bit), and number of channels * a list of succesful and unsuccesful attempts to produce a stimulus according to my requirements (usually I keep this list in a regular notebook)</p>
 <p>There are some phoneticians who prefer to record everything, for language documentation purposes. I think that should be a separate task: you can’t have your cake and eat it too. But if you insist on recording everything, it is possible to run two recorders at the same time: one could run during the whole session, while the other is used to produce small audio files. You can also use special software to record your stimuli automatically on a computer (e.g. <a href="https://www.psychopy.org/">PsychoPy</a>).</p>
 <p>You can show a native speaker your stimuli one by one or not show them the stimule but ask them to pronounce a certain stimulus or its translation. I use presentations to collect all stimuli in a particular order without the risk of omissions.</p>
 <p>Since each stimulus is recorded as a separate audiofile, it is possible to merge them into one file automatically and make an annotation in a Praat TextGrid (the same result can be achieved with the <code>Concatenate recoverably</code> command in Praat). After this step, the user needs to do some annotation of her/his own. When the annotation part is finished, it is possible to extract the annotated parts to a table, where each annotated object is a row characterised by some features (stimulus, repetition, speaker, etc…). You can play the soundfile and view its oscilogram and spectrogram. Here is <a href="https://agricolamz.github.io/from_sound_to_html_viewer/create_html.html">an example of such a file</a> and <a href="https://github.com/agricolamz/from_sound_to_html_viewer">instruction for doing it</a>.</p>
@@ -2947,16 +2943,16 @@ Your browser does not support iframes :(
 <pre class="r"><code>get_sound_duration(sounds_from_folder = &quot;s2/&quot;)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["file"],"name":[1],"type":["chr"],"align":["left"]},{"label":["duration"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"s2_tap_2.wav","2":"0.5343991"},{"1":"s2_tip_1.wav","2":"0.5866440"},{"1":"s2_top_3.wav","2":"0.6650113"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["file"],"name":[1],"type":["chr"],"align":["left"]},{"label":["duration"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"s2_tap_2.wav","2":"0.5866440"},{"1":"s2_tip_1.wav","2":"0.6650113"},{"1":"s2_top_3.wav","2":"0.5343991"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>For now <code>phonfieldwork</code> works only with <code>.wav(e)</code> and <code>.mp3</code> sound files and several video formats (<code>.mp4</code>, <code>.avi</code> and <code>.mov</code>).</p>
 </div>
 <div id="merge-all-data-together" class="section level2">
 <h2><span class="header-section-number">4.4</span> Merge all data together</h2>
-<p>After all the files are renamed, you can merge them into one:</p>
-<pre class="r"><code>concatenate_soundfiles(file_name = &quot;s1_all&quot;,
-                       path = &quot;s1/&quot;)</code></pre>
+<p>After all the files are renamed, you can merge them into one. Remmber that sampling rate, resolution (bit), and number of channels should be the same across all recordings. It is possible to resample files with the <code>resample()</code> function from <code>biacoustics</code>.</p>
+<pre class="r"><code>concatenate_soundfiles(path = &quot;s1/&quot;, 
+                       result_file_name = &quot;s1_all&quot;)</code></pre>
 <p>This comand creates a new soundfile <code>s1_all.wav</code> and an asociated Praat TextGrid <code>s1_all.TextGrid</code>:</p>
 <pre><code>## ├── s1
 ## │   ├── backup
