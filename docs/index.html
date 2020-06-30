@@ -3303,7 +3303,7 @@ new_df</code></pre>
 <p>By default sorting in the result annotation viewer will be according file names in the system, so if you want to have another default sorting you can specify column names that the result table should be sorted by using the <code>sorting_columns</code> argument.</p>
 <p>If you are familiar with my package <a href="https://ropensci.github.io/lingtypology/"><code>lingtypology</code></a> <span class="citation">Moroz (2017)</span> for interactive linguistic map generation and API for typological databases, there is a good news for you: it is possible to connect those two pacakages creating an interactive map that share the same hear and view buttons. In order to do it you need</p>
 <ul>
-<li>to add a <code>glottocode</code> column with language glottocodes from <a href="https://glottolog.org/">Glottolog</a> to your dataframe with annotation details;</li>
+<li>to add a <code>glottocode</code> column with language glottocodes from <a href="https://glottolog.org/">Glottolog</a> <span class="citation">Hammarström, Forkel, and Haspelmath (2020)</span> to your dataframe with annotation details;</li>
 <li>install <code>lingtypology</code> with a command <code>install.packages(&quot;lingtypology&quot;)</code> if you don’t have it installed;</li>
 <li>add <code>map = TRUE</code> argument to <code>create_viewer()</code> function.</li>
 </ul>
@@ -3329,6 +3329,9 @@ create_viewer(audio_dir = &quot;s1/s1_sounds/&quot;,
 </div>
 <div id="ref-gordon03">
 <p>Gordon, Matthew. 2003. “Collecting Phonetic Data on Endangered Languages.” In <em>15th International Congress of Phonetic Sciences</em>, 207–10.</p>
+</div>
+<div id="ref-hammarstrom2020">
+<p>Hammarström, Harald, Robert Forkel, and Martin Haspelmath. 2020. “Glottolog 4.2.”</p>
 </div>
 <div id="ref-lubbers13">
 <p>Lubbers, Mart, and Francisco Torreira. 2013. “Pympi-Ling: A Python Module for Processing ELANs EAF and Praats TextGrid Annotation Files.”</p>

@@ -514,7 +514,7 @@ By default sorting in the result annotation viewer will be according file names 
 
 If you are familiar with my package [`lingtypology`](https://ropensci.github.io/lingtypology/) @moroz17 for interactive linguistic map generation and API for typological databases, there is a good news for you: it is possible to connect those two pacakages creating an interactive map that share the same hear and view buttons. In order to do it you need 
 
-* to add a `glottocode` column with language glottocodes from [Glottolog](https://glottolog.org/) to your dataframe with annotation details;
+* to add a `glottocode` column with language glottocodes from [Glottolog](https://glottolog.org/) @hammarstrom2020 to your dataframe with annotation details;
 * install `lingtypology` with a command `install.packages("lingtypology")` if you don't have it installed;
 * add `map = TRUE` argument to `create_viewer()` function.
 
