@@ -40,8 +40,20 @@ create_viewer <- function(audio_dir,
     if(!("lingtypology" %in% utils::installed.packages()[,"Package"])){
       stop('If you want to create a map in a viewer, you need to install lingtypology package with a command install.packages("lingtypology").')
     }
+
     if(!("glottocode" %in% names(table))){
-      stop('If you want to create a map in a viewer, you need to add a glottocode column to the datafarame in a table argument.')
+      if(!("longitude" %in% names(table)) &
+         !("latitude" %in% names(table))){
+        stop('If you want to create a map in a viewer, you need to add a glottocode (or latitude and longitude) column to the datafarame in a table argument.')
+      } else {
+        table$glottocode <- "fake"
+      }
+    } else {
+      if(!("longitude" %in% names(table)) &
+         !("latitude" %in% names(table))){
+        table$longitude <- NA
+        table$latitude <- NA
+      }
     }
   }
 
@@ -90,9 +102,17 @@ create_viewer <- function(audio_dir,
     '## map
 
 ```{r map, echo=FALSE, message=FALSE, warning=FALSE}
-lingtypology::map.feature(
-  languages = lingtypology::lang.gltc(df$glottocode),
-  popup = df$viewer)
+if("fake" %in% df$glottocode){
+  df$language_for_lingtypology <- "fake"
+} else {
+  df$language_for_lingtypology <- lingtypology::lang.gltc(df$glottocode)
+}
+
+library(lingtypology)
+map.feature(languages = df$language_for_lingtypology,
+            longitude = df$longitude,
+            latitude = df$latitude,
+            popup = df$viewer)
 ```
 
 <div class = "my_block" id="my_block" onclick = "pic_disappear()">

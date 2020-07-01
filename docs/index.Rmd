@@ -532,4 +532,6 @@ create_viewer(audio_dir = "s1/s1_sounds/",
 
 [Here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer2.html) is the result file.
 
+It is also possible to provide your own coordinates with `latitude` and `longitude` columns. In that case `glottocode` column is optional.
+
 # References

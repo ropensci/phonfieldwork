@@ -20,7 +20,6 @@ create_image_look_up <- function(img_src,
     img_caption <- rep("", length(img_src))
   }
 
-
   if(length(img_src) != length(img_caption)){
     stop(paste0("It looks like the img_src variable contains ",
                 length(img_src),
@@ -31,7 +30,8 @@ create_image_look_up <- function(img_src,
   paste0("<a ",
         "onmouseover=\"resize(this, '200%')\" ",
         "onmouseout=\"resize(this, '100%')\" ",
-        "onclick = 'pic_appear(\"",
+        "onclick = 'pic_appear",
+        "(\"",
         img_src,
         "\", \"",
         img_caption,
