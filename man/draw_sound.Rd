@@ -13,10 +13,11 @@ draw_sound(
   text_size = 1,
   output_file = NULL,
   title = NULL,
-  spectrum_colors = FALSE,
   maximum_frequency = 5000,
   dynamic_range = 50,
   window_length = 5,
+  window = "kaiser",
+  windowparameter = -1,
   output_width = 750,
   output_height = 500,
   output_units = "px",
@@ -46,13 +47,15 @@ draw_sound(
 
 \item{title}{the title for the plot}
 
-\item{spectrum_colors}{if TRUE, a color spectrogram will be displayed. If FALSE, greyscale is used. If a vector of colors is provided, these colors are used to create the spectrogram.}
-
 \item{maximum_frequency}{the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default}
 
 \item{dynamic_range}{values greater than this many dB below the maximum will be displayed in the same color}
 
 \item{window_length}{the desired analysis window length in milliseconds.}
+
+\item{window}{A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.}
+
+\item{windowparameter}{The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.}
 
 \item{output_width}{the width of the device}
 

@@ -1,4 +1,5 @@
-phonfieldwork 0.0.7 (30.06.2020)
+phonfieldwork 0.0.7 (02.07.2020)
+  - add window annotation to spectrograms
   - add bridge to lingtypology package: "map" argument in the "create_viewer()" function
   - make it possible to visualise all types of annotations with the "draw_sound()" function
   - add the "source" column to all "..._to_df()" functions

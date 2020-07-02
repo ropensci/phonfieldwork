@@ -10,11 +10,12 @@
 #' @param to Time in seconds at which to stop extraction.
 #' @param zoom numeric vector of zoom window time (in seconds). It will draw the whole oscilogram and part of the spectrogram.
 #' @param text_size numeric, text size (default = 1).
-#' @param spectrum_colors if TRUE, a color spectrogram will be displayed. If FALSE, greyscale is used. If a vector of colors is provided, these colors are used to create the spectrogram.
 #' @param title the title for the plot
 #' @param maximum_frequency the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default
 #' @param dynamic_range values greater than this many dB below the maximum will be displayed in the same color
 #' @param window_length the desired analysis window length in milliseconds.
+#' @param window A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.
+#' @param windowparameter The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.
 #' @param output_file the name of the output file
 #' @param output_width the width of the device
 #' @param output_height the height of the device
@@ -61,10 +62,11 @@ draw_sound <- function(file_name,
                        text_size = 1,
                        output_file = NULL,
                        title = NULL,
-                       spectrum_colors = FALSE,
                        maximum_frequency = 5000,
                        dynamic_range = 50,
                        window_length = 5,
+                       window = "kaiser",
+                       windowparameter = -1,
                        output_width = 750,
                        output_height = 500,
                        output_units = "px",
@@ -128,7 +130,7 @@ draw_sound <- function(file_name,
 
       graphics::par(oma=c(0,0,title_space,0),
                     mai=c(0, 0, 0, 0),
-                    fig=c(0.1, 0.98, low_boundary, 1))
+                    fig=c(0.1, 0.97, low_boundary, 1))
 
       n <- max(abs(range(s@left)))
       s_range <- floor(n/10^(nchar(n)-1))*10^(nchar(n)-1)
@@ -153,7 +155,7 @@ draw_sound <- function(file_name,
       }
       # plot spectrogram --------------------------------------------------------
       low_boundary <- ifelse(is.null(annotation), 0.08, 0.27)
-      graphics::par(fig=c(0.1, 0.98, low_boundary, 0.75), new=TRUE)
+      graphics::par(fig=c(0.1, 0.97, low_boundary, 0.75), new=TRUE)
       if(!is.null(zoom)){
         for_spectrum <- tuneR::extractWave(s,
                                            from = zoom[1],
@@ -166,13 +168,14 @@ draw_sound <- function(file_name,
                        fs = for_spectrum@samp.rate,
                        text_size = text_size,
                        windowlength = window_length,
-                       colors = spectrum_colors,
+                       window = window,
+                       windowparameter = windowparameter,
                        maxfreq = maximum_frequency,
                        dynamicrange = dynamic_range,
                        x_axis = is.null(annotation))
       # plot textgrid -----------------------------------------------------------
       if(!is.null(annotation)){
-        graphics::par(fig=c(0.1, 0.98, 0.09, 0.27), new=TRUE)
+        graphics::par(fig=c(0.1, 0.97, 0.09, 0.27), new=TRUE)
 
         if(class(annotation) != "data.frame"){
           df <- phonfieldwork::textgrid_to_df(annotation)
@@ -271,7 +274,6 @@ draw_sound <- function(file_name,
                  zoom = zoom,
                  text_size = text_size,
                  title = title,
-                 spectrum_colors = spectrum_colors,
                  maximum_frequency = maximum_frequency,
                  dynamic_range = dynamic_range,
                  window_length = window_length,
@@ -332,7 +334,6 @@ draw_sound <- function(file_name,
                  output_file = paste0(pics[i], suffix[i]),
                  title = switch(title_as_filename+1, NULL, names[i]),
                  text_size = text_size,
-                 spectrum_colors = spectrum_colors,
                  maximum_frequency = maximum_frequency,
                  dynamic_range = dynamic_range,
                  window_length = window_length,

@@ -13,13 +13,11 @@ draw_spectrogram(
   padding = 10,
   preemphasisf = 50,
   maxfreq = 5000,
-  colors = FALSE,
   dynamicrange = 50,
   nlevels = dynamicrange,
   show = TRUE,
   window = "kaiser",
-  windowparameter = 3,
-  quality = FALSE,
+  windowparameter = -1,
   x_axis = TRUE,
   title = NULL
 )
@@ -41,19 +39,15 @@ draw_spectrogram(
 
 \item{maxfreq}{the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default.}
 
-\item{colors}{If TRUE, a color spectrogram will be displayed. If FALSE, greyscale is used. If a vector of colors is provided, these colors are used to create the spectrogram.}
-
 \item{dynamicrange}{Values greater than this many dB below the maximum will be displayed in the same color.}
 
 \item{nlevels}{The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.}
 
 \item{show}{If FALSE, no spectrogram is plotted. This is useful if the user would like to perform an action on an existing spectrogram plot without having to redraw it.}
 
-\item{window}{the window to be applied to the signal, applied by the windowfunc function in this package.}
+\item{window}{A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.}
 
-\item{windowparameter}{the parameter for the window to be applied to the signal, if appropriate.}
-
-\item{quality}{If TRUE, a contour plot is created, which results in a high-quality image that may be slow to plot. If FALSE, a lower-quality image is created that plots much faster.}
+\item{windowparameter}{The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.}
 
 \item{x_axis}{If TRUE then draw x axis.}
 
@@ -61,6 +55,10 @@ draw_spectrogram(
 }
 \description{
 This function was slightly changed from \code{phonTools::spectrogram()}. Argument description is copied from \code{phonTools::spectrogram()}.
+}
+\examples{
+draw_spectrogram(system.file("extdata", "test.wav", package = "phonfieldwork"))
+
 }
 \author{
 Santiago Barreda <sbarreda@ucdavis.edu>
