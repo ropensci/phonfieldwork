@@ -11,7 +11,7 @@
 #' @param zoom numeric vector of zoom window time (in seconds). It will draw the whole oscilogram and part of the spectrogram.
 #' @param text_size numeric, text size (default = 1).
 #' @param title the title for the plot
-#' @param maximum_frequency the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default
+#' @param maximum_frequency the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5 kHz by default
 #' @param dynamic_range values greater than this many dB below the maximum will be displayed in the same color
 #' @param window_length the desired analysis window length in milliseconds.
 #' @param window A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.
@@ -62,7 +62,8 @@ draw_sound <- function(file_name,
                        text_size = 1,
                        output_file = NULL,
                        title = NULL,
-                       maximum_frequency = 5000,
+                       freq_scale = "kHz",
+                       maximum_frequency = 5,
                        dynamic_range = 50,
                        window_length = 5,
                        window = "kaiser",
@@ -128,9 +129,9 @@ draw_sound <- function(file_name,
       # plot oscilogram ---------------------------------------------------------
       low_boundary <- ifelse(is.null(zoom), 0.75, 0.83)
 
-      graphics::par(oma=c(0,0,title_space,0),
-                    mai=c(0, 0, 0, 0),
-                    fig=c(0.1, 0.97, low_boundary, 1))
+      graphics::par(oma=c(0, 0,title_space,0),
+                    mai=c(0, 0.8, 0, 0),
+                    fig=c(0, 0.97, low_boundary, 1))
 
       n <- max(abs(range(s@left)))
       s_range <- floor(n/10^(nchar(n)-1))*10^(nchar(n)-1)
@@ -155,7 +156,7 @@ draw_sound <- function(file_name,
       }
       # plot spectrogram --------------------------------------------------------
       low_boundary <- ifelse(is.null(annotation), 0.08, 0.27)
-      graphics::par(fig=c(0.1, 0.97, low_boundary, 0.75), new=TRUE)
+      graphics::par(fig=c(0, 0.97, low_boundary, 0.75), new=TRUE)
       if(!is.null(zoom)){
         for_spectrum <- tuneR::extractWave(s,
                                            from = zoom[1],
@@ -170,12 +171,14 @@ draw_sound <- function(file_name,
                        windowlength = window_length,
                        window = window,
                        windowparameter = windowparameter,
+                       freq_scale = freq_scale,
                        maxfreq = maximum_frequency,
                        dynamicrange = dynamic_range,
                        x_axis = is.null(annotation))
+
       # plot textgrid -----------------------------------------------------------
       if(!is.null(annotation)){
-        graphics::par(fig=c(0.1, 0.97, 0.09, 0.27), new=TRUE)
+        graphics::par(fig=c(0, 0.97, 0.09, 0.27), new=TRUE)
 
         if(class(annotation) != "data.frame"){
           df <- phonfieldwork::textgrid_to_df(annotation)

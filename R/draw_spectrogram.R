@@ -11,10 +11,9 @@
 #' @param timestep If a negative value is given, -N, then N equally-spaced time steps are calculated. If a positive number is given, this is the spacing between adjacent analyses, in milliseconds.
 #' @param padding The amount of zero padding for each window, measured in units of window length. For example, if the window is 50 points, and padding = 10, 500 zeros will be appended to each window.
 #' @param preemphasisf Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.
-#' @param maxfreq the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default.
+#' @param maxfreq the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5 kHz by default.
 #' @param dynamicrange Values greater than this many dB below the maximum will be displayed in the same color.
 #' @param nlevels The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.
-#' @param show If FALSE, no spectrogram is plotted. This is useful if the user would like to perform an action on an existing spectrogram plot without having to redraw it.
 #' @param window A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.
 #' @param windowparameter The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.
 #' @param x_axis If TRUE then draw x axis.
@@ -36,15 +35,16 @@ draw_spectrogram <- function (sound,
                               fs = 22050,
                               text_size = 1,
                               windowlength = 5,
+                              dynamicrange = 50,
+                              window = "kaiser",
+                              windowparameter = -1,
+                              freq_scale = "kHz",
+                              time_scale = "s",
                               timestep = -1000,
                               padding = 10,
                               preemphasisf = 50,
-                              maxfreq = 5000,
-                              dynamicrange = 50,
+                              maxfreq = 5,
                               nlevels = dynamicrange,
-                              show = TRUE,
-                              window = "kaiser",
-                              windowparameter = -1,
                               x_axis = TRUE,
                               title = NULL){
 
@@ -60,7 +60,6 @@ draw_spectrogram <- function (sound,
     } else{
       stop("The draw_spectrogram() functions works only with .wav(e) or .mp3 formats")
     }
-
     fs <- s@samp.rate
     sound <- s@left
   }
@@ -88,12 +87,25 @@ draw_spectrogram <- function (sound,
     tmp = log(tmp, 10) * 10
   })
   spect = t(spect)
-  for (i in 1:nrow(spect)) spect[i, 1] = min(spect[i, -1])
-  hz = (0:(N/2)) * (fs/N)
+  for (i in 1:nrow(spect)){
+    spect[i, 1] = min(spect[i, -1])
+  }
+
+  if(freq_scale == "kHz"){
+    hz = (0:(N/2)) * (fs/N)/1000
+  } else if(freq_scale == "Hz"){
+    hz = (0:(N/2)) * (fs/N)
+  } else {
+    stop("The only possible values for the freq_scale argument are 'kHz' and 'Hz'")
+  }
+
   times = spots * (1000/fs)
-  if (maxfreq > (fs/2)){
+  if (maxfreq > (fs/2) & freq_scale == "Hz"){
     maxfreq = fs/2
-    }
+  } else if(maxfreq > (fs/2)/1000 & freq_scale == "kHz"){
+    maxfreq = (fs/2)/1000
+  }
+
   spect = spect - max(spect)
 
   xlim = c(0, length(sound)/fs*1000)
@@ -118,19 +130,19 @@ draw_spectrogram <- function (sound,
   }
 
   graphics::image(as.double(times),
-        as.double(hz),
-        spect,
-        useRaster = FALSE,
-        col = zcolors,
-        ylim = ylim,
-        xlim = xlim,
-        main = as.character(title)[1],
-        yaxt='n',
-        xaxt='n',
-        xlab = "",
-        ylab = "")
+                  as.double(hz),
+                  spect,
+                  useRaster = FALSE,
+                  col = zcolors,
+                  ylim = ylim,
+                  xlim = xlim,
+                  main = as.character(title)[1],
+                  yaxt='n',
+                  xaxt='n',
+                  xlab = "",
+                  ylab = "")
   graphics::axis(2, cex.axis=text_size, las=1)
-  graphics::title(ylab = paste0("Frequency (Hz)"))
+  graphics::title(ylab = paste0("Frequency (", freq_scale, ")"))
   graphics::mtext(text = paste0(toupper(substring(window, 1, 1)),
                       tolower(substring(window, 2, nchar(window))),
                       " window (length: ",

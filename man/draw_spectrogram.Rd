@@ -9,15 +9,16 @@ draw_spectrogram(
   fs = 22050,
   text_size = 1,
   windowlength = 5,
+  dynamicrange = 50,
+  window = "kaiser",
+  windowparameter = -1,
+  freq_scale = "kHz",
+  time_scale = "s",
   timestep = -1000,
   padding = 10,
   preemphasisf = 50,
-  maxfreq = 5000,
-  dynamicrange = 50,
+  maxfreq = 5,
   nlevels = dynamicrange,
-  show = TRUE,
-  window = "kaiser",
-  windowparameter = -1,
   x_axis = TRUE,
   title = NULL
 )
@@ -31,23 +32,21 @@ draw_spectrogram(
 
 \item{windowlength}{The desired analysis window length in milliseconds.}
 
+\item{dynamicrange}{Values greater than this many dB below the maximum will be displayed in the same color.}
+
+\item{window}{A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.}
+
+\item{windowparameter}{The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.}
+
 \item{timestep}{If a negative value is given, -N, then N equally-spaced time steps are calculated. If a positive number is given, this is the spacing between adjacent analyses, in milliseconds.}
 
 \item{padding}{The amount of zero padding for each window, measured in units of window length. For example, if the window is 50 points, and padding = 10, 500 zeros will be appended to each window.}
 
 \item{preemphasisf}{Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.}
 
-\item{maxfreq}{the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5000 Hz by default.}
-
-\item{dynamicrange}{Values greater than this many dB below the maximum will be displayed in the same color.}
+\item{maxfreq}{the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5 kHz by default.}
 
 \item{nlevels}{The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.}
-
-\item{show}{If FALSE, no spectrogram is plotted. This is useful if the user would like to perform an action on an existing spectrogram plot without having to redraw it.}
-
-\item{window}{A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.}
-
-\item{windowparameter}{The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.}
 
 \item{x_axis}{If TRUE then draw x axis.}
 
