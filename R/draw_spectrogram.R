@@ -106,13 +106,13 @@ draw_spectrogram <- function (sound,
   spect[which(spect < (-1 * dynamicrange))] = -1 * dynamicrange
 
   if(windowparameter == -1 & window == "kaiser"){
-    parameter_info <- paste0(", \u03B1  = ", 2)
+    parameter_info <- paste0(", \u03B1: ", 2)
   } else if(windowparameter == -1 & window == "gaussian"){
-    parameter_info <- paste0(", \u03C3 = ", 0.4)
+    parameter_info <- paste0(", \u03C3: ", 0.4)
   } else if(windowparameter != -1 & window == "kaiser"){
-    parameter_info <- paste0(", \u03B1 = ", windowparameter)
+    parameter_info <- paste0(", \u03B1: ", windowparameter)
   } else if(windowparameter != -1 & window == "gaussian"){
-    parameter_info <- paste0(", \u03C3 = ", windowparameter)
+    parameter_info <- paste0(", \u03C3: ", windowparameter)
   } else {
     parameter_info <- ""
   }
@@ -133,11 +133,12 @@ draw_spectrogram <- function (sound,
   graphics::title(ylab = paste0("Frequency (Hz)"))
   graphics::mtext(text = paste0(toupper(substring(window, 1, 1)),
                       tolower(substring(window, 2, nchar(window))),
-                      " window (length = ",
+                      " window (length: ",
                       windowlength,
                       " ms",
                       parameter_info,
-                      ")"),
+                      "), dynamic range: ",
+                      dynamicrange, " (dB)"),
         side = 4, cex = 0.6)
   if(x_axis){
     graphics::axis(1, cex.axis=text_size, las=1)
