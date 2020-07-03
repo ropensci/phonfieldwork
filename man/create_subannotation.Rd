@@ -39,7 +39,8 @@ a string that contain TextGrid. If argument write is \code{TRUE}, then no output
 Create boundaries in a texgrid tier
 }
 \examples{
-create_subannotation(textgrid = example_textgrid, tier = 1, overwrite = FALSE)
+create_subannotation(system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+tier = 1, overwrite = FALSE)
 
 }
 \author{

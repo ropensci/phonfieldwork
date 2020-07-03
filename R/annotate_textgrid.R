@@ -16,7 +16,8 @@
 #'
 #' @examples
 #' annotate_textgrid(annotation = c("", "t", "e", "s", "t"),
-#'                   textgrid = example_textgrid, tier = 2, write = FALSE)
+#'                   textgrid = system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+#'                   tier = 2, write = FALSE)
 #'
 #' @export
 #'

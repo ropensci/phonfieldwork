@@ -7,16 +7,18 @@
 #' @param sound Either a numeric vector representing a sequence of samples taken from a sound wave or a sound object created with the loadsound() or makesound() functions.
 #' @param fs 	The sampling frequency in Hz. If a sound object is passed this does not need to be specified.
 #' @param text_size numeric, text size (default = 1).
-#' @param windowlength The desired analysis window length in milliseconds.
+#' @param window_length The desired analysis window length in milliseconds.
+#' @param spectrum_info logical. If \code{TRUE} then add information about windo method and params.
+#' @param freq_scale a string indicating the type of frequency scale. Supported types are: "Hz" and "kHz".
 #' @param timestep If a negative value is given, -N, then N equally-spaced time steps are calculated. If a positive number is given, this is the spacing between adjacent analyses, in milliseconds.
 #' @param padding The amount of zero padding for each window, measured in units of window length. For example, if the window is 50 points, and padding = 10, 500 zeros will be appended to each window.
 #' @param preemphasisf Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.
 #' @param maxfreq the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5 kHz by default.
-#' @param dynamicrange Values greater than this many dB below the maximum will be displayed in the same color.
+#' @param dynamic_range Values greater than this many dB below the maximum will be displayed in the same color.
 #' @param nlevels The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.
 #' @param window A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.
 #' @param windowparameter The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.
-#' @param x_axis If TRUE then draw x axis.
+#' @param x_axis If \code{TRUE} then draw x axis.
 #' @param title Character with the title.
 #'
 #' @examples
@@ -34,17 +36,17 @@
 draw_spectrogram <- function (sound,
                               fs = 22050,
                               text_size = 1,
-                              windowlength = 5,
-                              dynamicrange = 50,
+                              window_length = 5,
+                              dynamic_range = 50,
                               window = "kaiser",
                               windowparameter = -1,
                               freq_scale = "kHz",
-                              time_scale = "s",
+                              spectrum_info = TRUE,
                               timestep = -1000,
                               padding = 10,
                               preemphasisf = 50,
                               maxfreq = 5,
-                              nlevels = dynamicrange,
+                              nlevels = dynamic_range,
                               x_axis = TRUE,
                               title = NULL){
 
@@ -63,12 +65,19 @@ draw_spectrogram <- function (sound,
     fs <- s@samp.rate
     sound <- s@left
   }
-  n = ceiling((fs/1000) * windowlength)
+  n = ceiling((fs/1000) * window_length)
   if (n%%2) {n = n + 1}
   if (timestep > 0) {timestep = floor(timestep/1000 * fs)}
   if (timestep <= 0) {timestep = floor(length(sound)/-timestep)}
   if (preemphasisf > 0){
     sound = phonTools::preemphasis(sound, preemphasisf, fs)
+    preemphasisf_text <- paste0("\nThe spectral slope is increased by 6 dB. per octave above ",
+      preemphasisf,
+      " Hz")
+    preemphasisf_line <- 0.5
+  } else {
+    preemphasisf_text <- ""
+    preemphasisf_line <- 0
   }
   spots = seq(floor(n/2), length(sound) - n, timestep)
   padding = n * padding
@@ -111,11 +120,11 @@ draw_spectrogram <- function (sound,
   xlim = c(0, length(sound)/fs*1000)
   ylim = c(0, maxfreq)
   zcolors = grDevices::colorRampPalette(c("white", "black"))
-  zrange = c(-dynamicrange, 0)
+  zrange = c(-dynamic_range, 0)
   nlevels = abs(zrange[1] - zrange[2]) * 1.2
   levels = pretty(zrange, nlevels)
   zcolors = zcolors(length(levels) - 1)
-  spect[which(spect < (-1 * dynamicrange))] = -1 * dynamicrange
+  spect[which(spect < (-1 * dynamic_range))] = -1 * dynamic_range
 
   if(windowparameter == -1 & window == "kaiser"){
     parameter_info <- paste0(", \u03B1: ", 2)
@@ -143,15 +152,18 @@ draw_spectrogram <- function (sound,
                   ylab = "")
   graphics::axis(2, cex.axis=text_size, las=1)
   graphics::title(ylab = paste0("Frequency (", freq_scale, ")"))
+  if(spectrum_info){
   graphics::mtext(text = paste0(toupper(substring(window, 1, 1)),
                       tolower(substring(window, 2, nchar(window))),
                       " window (length: ",
-                      windowlength,
+                      window_length,
                       " ms",
                       parameter_info,
                       "), dynamic range: ",
-                      dynamicrange, " (dB)"),
-        side = 4, cex = 0.6)
+                      dynamic_range, " (dB)",
+                      preemphasisf_text),
+        side = 4, cex = 0.6, line = preemphasisf_line)
+  }
   if(x_axis){
     graphics::axis(1, cex.axis=text_size, las=1)
     graphics::title(xlab = "Time (s)")

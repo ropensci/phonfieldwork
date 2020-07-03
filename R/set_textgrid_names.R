@@ -12,7 +12,8 @@
 #'
 #' @return a string that contain TextGrid. If argument write is \code{TRUE}, then no output.
 #' @examples
-#' set_textgrid_names(example_textgrid, tiers = 3, names = "new_name", write = FALSE)
+#' set_textgrid_names(system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+#' tiers = 3, names = "new_name", write = FALSE)
 #'
 #' @export
 #'

@@ -46,7 +46,7 @@ file.copy(s, tdir)
 
 # Extract intervals according the TextGrid into the path
 extract_intervals(file_name = paste0(tdir, "/test.wav"),
-                  textgrid = example_textgrid,
+                  textgrid = system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
                   path = tdir)
 
 list.files(tdir)

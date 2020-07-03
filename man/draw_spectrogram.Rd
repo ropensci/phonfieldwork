@@ -8,17 +8,17 @@ draw_spectrogram(
   sound,
   fs = 22050,
   text_size = 1,
-  windowlength = 5,
-  dynamicrange = 50,
+  window_length = 5,
+  dynamic_range = 50,
   window = "kaiser",
   windowparameter = -1,
   freq_scale = "kHz",
-  time_scale = "s",
+  spectrum_info = TRUE,
   timestep = -1000,
   padding = 10,
   preemphasisf = 50,
   maxfreq = 5,
-  nlevels = dynamicrange,
+  nlevels = dynamic_range,
   x_axis = TRUE,
   title = NULL
 )
@@ -30,13 +30,17 @@ draw_spectrogram(
 
 \item{text_size}{numeric, text size (default = 1).}
 
-\item{windowlength}{The desired analysis window length in milliseconds.}
+\item{window_length}{The desired analysis window length in milliseconds.}
 
-\item{dynamicrange}{Values greater than this many dB below the maximum will be displayed in the same color.}
+\item{dynamic_range}{Values greater than this many dB below the maximum will be displayed in the same color.}
 
 \item{window}{A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.}
 
 \item{windowparameter}{The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.}
+
+\item{freq_scale}{a string indicating the type of frequency scale. Supported types are: "Hz" and "kHz".}
+
+\item{spectrum_info}{logical. If \code{TRUE} then add information about windo method and params.}
 
 \item{timestep}{If a negative value is given, -N, then N equally-spaced time steps are calculated. If a positive number is given, this is the spacing between adjacent analyses, in milliseconds.}
 
@@ -48,7 +52,7 @@ draw_spectrogram(
 
 \item{nlevels}{The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.}
 
-\item{x_axis}{If TRUE then draw x axis.}
+\item{x_axis}{If \code{TRUE} then draw x axis.}
 
 \item{title}{Character with the title.}
 }

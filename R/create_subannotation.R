@@ -15,7 +15,8 @@
 #' @return a string that contain TextGrid. If argument write is \code{TRUE}, then no output.
 #'
 #' @examples
-#' create_subannotation(textgrid = example_textgrid, tier = 1, overwrite = FALSE)
+#' create_subannotation(system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+#' tier = 1, overwrite = FALSE)
 #'
 #' @export
 #'

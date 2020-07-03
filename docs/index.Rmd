@@ -312,11 +312,12 @@ There are additional parameters:
 * `to` -- time in seconds at which to stop extraction
 * `zoom` -- time in seconds for zooming spectrogram
 * `text_size` -- size of the text on the plot
-* `textgrid` -- the optional file with the TextGrid's file path
-* `colores` -- set to (`TRUE`) for a colored spectogram, or (`FALSE`) for greyscale. It is also possible to provide a vector of custom colors for the spectrogram.
+* `annotation` -- the optional file with the TextGrid's file path or dataframe with annotations (see the section 5.)
 * `maximum_frequency` -- the maximum frequency to be displayed for the spectrogram
 * `dynamic_range` -- values greater than this many dB below the maximum will be displayed in the same color
 * `window_length` -- the desired length in milliseconds for the analysis window 
+* `window` -- window type (can be "rectangular", "hann", "hamming", "cosine", "bartlett", "gaussian", and "kaiser")
+* `spectrum_info` -- logical value, if `FALSE` won't print information about spectorgram on the right side of the plot.
 * `output_file` -- the name of the output file
 * `output_width` -- the width of the device
 * `output_height` -- the height of the device

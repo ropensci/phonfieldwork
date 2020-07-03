@@ -11,10 +11,13 @@
 #' @param zoom numeric vector of zoom window time (in seconds). It will draw the whole oscilogram and part of the spectrogram.
 #' @param text_size numeric, text size (default = 1).
 #' @param title the title for the plot
+#' @param freq_scale a string indicating the type of frequency scale. Supported types are: "Hz" and "kHz".
+#' @param spectrum_info logical. If \code{TRUE} then add information about windo method and params.
+#' @param preemphasisf Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.
 #' @param maximum_frequency the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5 kHz by default
 #' @param dynamic_range values greater than this many dB below the maximum will be displayed in the same color
 #' @param window_length the desired analysis window length in milliseconds.
-#' @param window A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.
+#' @param window A string indicating the type of window desired. Supported types are: "rectangular", "hann", "hamming", "cosine", "bartlett", "gaussian", and "kaiser".
 #' @param windowparameter The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.
 #' @param output_file the name of the output file
 #' @param output_width the width of the device
@@ -68,6 +71,8 @@ draw_sound <- function(file_name,
                        window_length = 5,
                        window = "kaiser",
                        windowparameter = -1,
+                       preemphasisf = 50,
+                       spectrum_info = TRUE,
                        output_width = 750,
                        output_height = 500,
                        output_units = "px",
@@ -130,7 +135,7 @@ draw_sound <- function(file_name,
       low_boundary <- ifelse(is.null(zoom), 0.75, 0.83)
 
       graphics::par(oma=c(0, 0,title_space,0),
-                    mai=c(0, 0.8, 0, 0),
+                    mai=c(0, 0.8, 0, 0.2),
                     fig=c(0, 0.97, low_boundary, 1))
 
       n <- max(abs(range(s@left)))
@@ -168,12 +173,14 @@ draw_sound <- function(file_name,
       draw_spectrogram(for_spectrum@left,
                        fs = for_spectrum@samp.rate,
                        text_size = text_size,
-                       windowlength = window_length,
+                       window_length = window_length,
                        window = window,
                        windowparameter = windowparameter,
                        freq_scale = freq_scale,
                        maxfreq = maximum_frequency,
-                       dynamicrange = dynamic_range,
+                       dynamic_range = dynamic_range,
+                       preemphasisf = preemphasisf,
+                       spectrum_info = spectrum_info,
                        x_axis = is.null(annotation))
 
       # plot textgrid -----------------------------------------------------------
@@ -202,6 +209,13 @@ draw_sound <- function(file_name,
           to <- zoom[2]
         }
 
+        # remove annotation that are out of scope
+        df <- df[df$time_start >= from,]
+        df <- df[df$time_end <= to,]
+
+        df$time_start <- (df$time_start-from)*1000
+        df$time_end <- (df$time_end-from)*1000
+
         # in case annotation exceed the length of the  sound, change it value to sound length
         df$time_end <- ifelse(
           df$time_start < length(for_spectrum@left)/for_spectrum@samp.rate &
@@ -210,10 +224,6 @@ draw_sound <- function(file_name,
           df$time_end
         )
 
-        # remove annotation that are out of scope
-        df <- df[df$time_start >= from,]
-        df <- df[df$time_end <= to,]
-
         if(nrow(df) < 1){
           graphics::par(oma=c(0,0,0,0),
                         mai=c(1.02, 0.82, 0.82, 0.42),
@@ -221,8 +231,6 @@ draw_sound <- function(file_name,
           stop("There is no annotion in selected time interval.")
         }
 
-        df$time_start <- (df$time_start-from)*1000
-        df$time_end <- (df$time_end-from)*1000
         if(from != 0){
           lapply(unique(df$tier), function(i){
             extended <- data.frame(id = NA,
@@ -277,9 +285,14 @@ draw_sound <- function(file_name,
                  zoom = zoom,
                  text_size = text_size,
                  title = title,
+                 window_length = window_length,
+                 window = window,
+                 windowparameter = windowparameter,
+                 freq_scale = freq_scale,
                  maximum_frequency = maximum_frequency,
                  dynamic_range = dynamic_range,
-                 window_length = window_length,
+                 preemphasisf = preemphasisf,
+                 spectrum_info = spectrum_info,
                  output_file = NULL)
       supress_message <- grDevices::dev.off()
     }
@@ -337,9 +350,14 @@ draw_sound <- function(file_name,
                  output_file = paste0(pics[i], suffix[i]),
                  title = switch(title_as_filename+1, NULL, names[i]),
                  text_size = text_size,
+                 window_length = window_length,
+                 window = window,
+                 windowparameter = windowparameter,
+                 freq_scale = freq_scale,
                  maximum_frequency = maximum_frequency,
                  dynamic_range = dynamic_range,
-                 window_length = window_length,
+                 preemphasisf = preemphasisf,
+                 spectrum_info = spectrum_info,
                  output_width = output_width,
                  output_height = output_height,
                  output_units = output_units,
