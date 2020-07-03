@@ -13,7 +13,7 @@
 #' @param timestep If a negative value is given, -N, then N equally-spaced time steps are calculated. If a positive number is given, this is the spacing between adjacent analyses, in milliseconds.
 #' @param padding The amount of zero padding for each window, measured in units of window length. For example, if the window is 50 points, and padding = 10, 500 zeros will be appended to each window.
 #' @param preemphasisf Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.
-#' @param maxfreq the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5 kHz by default.
+#' @param frequency_range vector with the range of frequencies to be displayed for the spectrogram up to a maximum of fs/2. This is set to 0-5 kHz by default.
 #' @param dynamic_range Values greater than this many dB below the maximum will be displayed in the same color.
 #' @param nlevels The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.
 #' @param window A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.
@@ -45,7 +45,7 @@ draw_spectrogram <- function (sound,
                               timestep = -1000,
                               padding = 10,
                               preemphasisf = 50,
-                              maxfreq = 5,
+                              frequency_range = c(0, 5),
                               nlevels = dynamic_range,
                               x_axis = TRUE,
                               title = NULL){
@@ -109,16 +109,16 @@ draw_spectrogram <- function (sound,
   }
 
   times = spots * (1000/fs)
-  if (maxfreq > (fs/2) & freq_scale == "Hz"){
-    maxfreq = fs/2
-  } else if(maxfreq > (fs/2)/1000 & freq_scale == "kHz"){
-    maxfreq = (fs/2)/1000
+  if (frequency_range[2] > (fs/2) & freq_scale == "Hz"){
+    frequency_range[2] = fs/2
+  } else if(frequency_range[2] > (fs/2)/1000 & freq_scale == "kHz"){
+    frequency_range[2] = (fs/2)/1000
   }
 
   spect = spect - max(spect)
 
   xlim = c(0, length(sound)/fs*1000)
-  ylim = c(0, maxfreq)
+  ylim = c(frequency_range[1], frequency_range[2])
   zcolors = grDevices::colorRampPalette(c("white", "black"))
   zrange = c(-dynamic_range, 0)
   nlevels = abs(zrange[1] - zrange[2]) * 1.2

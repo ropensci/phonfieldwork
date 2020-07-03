@@ -14,7 +14,7 @@
 #' @param freq_scale a string indicating the type of frequency scale. Supported types are: "Hz" and "kHz".
 #' @param spectrum_info logical. If \code{TRUE} then add information about windo method and params.
 #' @param preemphasisf Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.
-#' @param maximum_frequency the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5 kHz by default
+#' @param frequency_range vector with the range of frequencies to be displayed for the spectrogram up to a maximum of fs/2. This is set to 0-5 kHz by default
 #' @param dynamic_range values greater than this many dB below the maximum will be displayed in the same color
 #' @param window_length the desired analysis window length in milliseconds.
 #' @param window A string indicating the type of window desired. Supported types are: "rectangular", "hann", "hamming", "cosine", "bartlett", "gaussian", and "kaiser".
@@ -66,7 +66,7 @@ draw_sound <- function(file_name,
                        output_file = NULL,
                        title = NULL,
                        freq_scale = "kHz",
-                       maximum_frequency = 5,
+                       frequency_range = c(0, 5),
                        dynamic_range = 50,
                        window_length = 5,
                        window = "kaiser",
@@ -177,7 +177,7 @@ draw_sound <- function(file_name,
                        window = window,
                        windowparameter = windowparameter,
                        freq_scale = freq_scale,
-                       maxfreq = maximum_frequency,
+                       frequency_range = frequency_range,
                        dynamic_range = dynamic_range,
                        preemphasisf = preemphasisf,
                        spectrum_info = spectrum_info,
@@ -218,8 +218,8 @@ draw_sound <- function(file_name,
 
         # in case annotation exceed the length of the  sound, change it value to sound length
         df$time_end <- ifelse(
-          df$time_start < length(for_spectrum@left)/for_spectrum@samp.rate &
-            df$time_end > length(for_spectrum@left)/for_spectrum@samp.rate,
+          df$time_start < length(for_spectrum@left)/for_spectrum@samp.rate*1000 &
+            df$time_end > length(for_spectrum@left)/for_spectrum@samp.rate*1000,
           length(for_spectrum@left)/for_spectrum@samp.rate,
           df$time_end
         )
@@ -289,7 +289,7 @@ draw_sound <- function(file_name,
                  window = window,
                  windowparameter = windowparameter,
                  freq_scale = freq_scale,
-                 maximum_frequency = maximum_frequency,
+                 frequency_range = frequency_range,
                  dynamic_range = dynamic_range,
                  preemphasisf = preemphasisf,
                  spectrum_info = spectrum_info,
@@ -354,7 +354,7 @@ draw_sound <- function(file_name,
                  window = window,
                  windowparameter = windowparameter,
                  freq_scale = freq_scale,
-                 maximum_frequency = maximum_frequency,
+                 frequency_range = frequency_range,
                  dynamic_range = dynamic_range,
                  preemphasisf = preemphasisf,
                  spectrum_info = spectrum_info,

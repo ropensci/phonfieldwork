@@ -17,7 +17,7 @@ draw_spectrogram(
   timestep = -1000,
   padding = 10,
   preemphasisf = 50,
-  maxfreq = 5,
+  frequency_range = c(0, 5),
   nlevels = dynamic_range,
   x_axis = TRUE,
   title = NULL
@@ -48,7 +48,7 @@ draw_spectrogram(
 
 \item{preemphasisf}{Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.}
 
-\item{maxfreq}{the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5 kHz by default.}
+\item{frequency_range}{vector with the range of frequencies to be displayed for the spectrogram up to a maximum of fs/2. This is set to 0-5 kHz by default.}
 
 \item{nlevels}{The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.}
 

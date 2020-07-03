@@ -1,4 +1,5 @@
 phonfieldwork 0.0.7 (03.07.2020)
+  - replace freqmax with frequency_range argument
   - replace example_textgrid with systemfile() call
   - add window annotation to spectrograms
   - add bridge to lingtypology package: "map" argument in the "create_viewer()" function

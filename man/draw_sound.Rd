@@ -14,7 +14,7 @@ draw_sound(
   output_file = NULL,
   title = NULL,
   freq_scale = "kHz",
-  maximum_frequency = 5,
+  frequency_range = c(0, 5),
   dynamic_range = 50,
   window_length = 5,
   window = "kaiser",
@@ -52,7 +52,7 @@ draw_sound(
 
 \item{freq_scale}{a string indicating the type of frequency scale. Supported types are: "Hz" and "kHz".}
 
-\item{maximum_frequency}{the maximum frequency to be displayed for the spectrogram up to a maximum of fs/2. This is set to 5 kHz by default}
+\item{frequency_range}{vector with the range of frequencies to be displayed for the spectrogram up to a maximum of fs/2. This is set to 0-5 kHz by default}
 
 \item{dynamic_range}{values greater than this many dB below the maximum will be displayed in the same color}
 
