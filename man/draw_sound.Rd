@@ -21,6 +21,7 @@ draw_sound(
   windowparameter = -1,
   preemphasisf = 50,
   spectrum_info = TRUE,
+  raven_annotation = NULL,
   output_width = 750,
   output_height = 500,
   output_units = "px",
@@ -65,6 +66,8 @@ draw_sound(
 \item{preemphasisf}{Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.}
 
 \item{spectrum_info}{logical. If \code{TRUE} then add information about windo method and params.}
+
+\item{raven_annotation}{Raven (Center for Conservation Bioacoustics) style annotations (boxes over spectrogram). The dataframe that contains \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high} columns. Optional columns are \code{colors} and \code{content}.}
 
 \item{output_width}{the width of the device}
 

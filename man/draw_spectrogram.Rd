@@ -20,7 +20,8 @@ draw_spectrogram(
   frequency_range = c(0, 5),
   nlevels = dynamic_range,
   x_axis = TRUE,
-  title = NULL
+  title = NULL,
+  raven_annotation = NULL
 )
 }
 \arguments{
@@ -48,13 +49,15 @@ draw_spectrogram(
 
 \item{preemphasisf}{Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.}
 
-\item{frequency_range}{vector with the range of frequencies to be displayed for the spectrogram up to a maximum of fs/2. This is set to 0-5 kHz by default.}
+\item{frequency_range}{vector with the range of frequencies to be displayed for the spectrogram up to a maximum of \code{fs}/2. This is set to 0-5 kHz by default.}
 
 \item{nlevels}{The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.}
 
 \item{x_axis}{If \code{TRUE} then draw x axis.}
 
 \item{title}{Character with the title.}
+
+\item{raven_annotation}{Raven (Center for Conservation Bioacoustics) style annotations (boxes over spectrogram). The dataframe that contains \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high} columns. Optional columns are \code{colors} and \code{content}.}
 }
 \description{
 This function was slightly changed from \code{phonTools::spectrogram()}. Argument description is copied from \code{phonTools::spectrogram()}.

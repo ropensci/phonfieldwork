@@ -30,6 +30,7 @@
 #' @param prefix prefix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}
 #' @param suffix suffix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}
 #' @param autonumber if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.
+#' @param raven_annotation Raven (Center for Conservation Bioacoustics) style annotations (boxes over spectrogram). The dataframe that contains \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high} columns. Optional columns are \code{colors} and \code{content}.
 #'
 #' @return Oscilogram and spectrogram plot (and possibly TextGrid annotation).
 #'
@@ -73,6 +74,7 @@ draw_sound <- function(file_name,
                        windowparameter = -1,
                        preemphasisf = 50,
                        spectrum_info = TRUE,
+                       raven_annotation = NULL,
                        output_width = 750,
                        output_height = 500,
                        output_units = "px",
@@ -181,6 +183,7 @@ draw_sound <- function(file_name,
                        dynamic_range = dynamic_range,
                        preemphasisf = preemphasisf,
                        spectrum_info = spectrum_info,
+                       raven_annotation = raven_annotation,
                        x_axis = is.null(annotation))
 
       # plot textgrid -----------------------------------------------------------
@@ -293,6 +296,7 @@ draw_sound <- function(file_name,
                  dynamic_range = dynamic_range,
                  preemphasisf = preemphasisf,
                  spectrum_info = spectrum_info,
+                 raven_annotation = raven_annotation,
                  output_file = NULL)
       supress_message <- grDevices::dev.off()
     }
@@ -358,6 +362,7 @@ draw_sound <- function(file_name,
                  dynamic_range = dynamic_range,
                  preemphasisf = preemphasisf,
                  spectrum_info = spectrum_info,
+                 raven_annotation = raven_annotation,
                  output_width = output_width,
                  output_height = output_height,
                  output_units = output_units,
