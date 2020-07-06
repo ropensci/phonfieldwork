@@ -4,7 +4,7 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param textgrid string with a filename or path to the TextGrid
+#' @param file_name string with a filename or path to the TextGrid
 #' @param tier value that could be either ordinal number of the tier either name of the tier. By default is '1'.
 #' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
@@ -16,14 +16,14 @@
 #' @export
 #'
 
-tier_to_df <- function(textgrid, tier = 1, encoding = "unknown"){
-  if(grepl("TextGrid", textgrid[2])){
-    tg <- textgrid
+tier_to_df <- function(file_name, tier = 1, encoding = "unknown"){
+  if(grepl("TextGrid", file_name[2])){
+    tg <- file_name
   } else{
-    tg <- readLines(textgrid, encoding = encoding)
+    tg <- readLines(file_name, encoding = encoding)
   }
   # get start and end info about tiers --------------------------------------
-  starts <- grep("item \\[\\d{1,}\\]:", tg)
+  starts <- grep("item ?\\[\\d{1,}\\]:", tg)
   ends <- c(starts[-1]-1, length(tg))
 
   # extract tier by number --------------------------------------------------
@@ -53,26 +53,26 @@ tier_to_df <- function(textgrid, tier = 1, encoding = "unknown"){
 # for interval tiers ------------------------------------------------------
   if(grepl("IntervalTier", w_tier[2])){
     results <- data.frame(id = 1:length,
-                          time_start = w_tier[grep("intervals ", w_tier)+1],
-                          time_end = w_tier[grep("intervals ", w_tier)+2],
-                          content = w_tier[grep("intervals ", w_tier)+3],
+                          time_start = w_tier[grep("intervals \\[", w_tier)+1],
+                          time_end = w_tier[grep("intervals \\[", w_tier)+2],
+                          content = w_tier[grep("intervals \\[", w_tier)+3],
                           stringsAsFactors = FALSE)
     results$time_end <- as.numeric(gsub("[^0-9\\.]", "", results$time_end))
 
 # for point tiers ---------------------------------------------------------
   } else {
     results <- data.frame(id = 1:length,
-                          time_start = w_tier[grep("points ", w_tier)+1],
-                          time_end = w_tier[grep("points ", w_tier)+1],
-                          content = w_tier[grep("points ", w_tier)+2],
+                          time_start = w_tier[grep("points \\[", w_tier)+1],
+                          time_end = w_tier[grep("points \\[", w_tier)+1],
+                          content = w_tier[grep("points \\[", w_tier)+2],
                           stringsAsFactors = FALSE)
     results$time_end <- as.numeric(gsub("[^0-9\\.]", "", results$time_end))
   }
 
   results$time_start <- as.numeric(gsub("[^0-9\\.]", "", results$time_start))
   results$content <- sub('.* = "', "", results$content)
-  results$content <- sub('".*', "", results$content)
+  results$content <- sub('".?$', "", results$content)
   return(results)
-# it won't work if somebody will have string 'intervals ' , 'points ' or '"'
+# it won't work if somebody will have string 'intervals [' or 'points ['
 # in the annotation. I will fix it in the future...
 }

@@ -20,7 +20,7 @@ textgrid_to_df <- function(file_name, encoding = "unknown"){
   } else{
     tg <- readLines(file_name, encoding = encoding)
   }
-  n_tiers <- as.double(regmatches(tg[7], regexpr("\\d", tg[7])))
+  n_tiers <- as.double(regmatches(tg[7], regexpr("\\d{1,}", tg[7])))
   lapply(1:n_tiers, function(x){
     df <- phonfieldwork::tier_to_df(tg, x)
     df$tier <- x
