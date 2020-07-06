@@ -4,10 +4,10 @@
 \alias{tier_to_df}
 \title{TextGrid's tier to dataframe}
 \usage{
-tier_to_df(textgrid, tier = 1, encoding = "unknown")
+tier_to_df(file_name, tier = 1, encoding = "unknown")
 }
 \arguments{
-\item{textgrid}{string with a filename or path to the TextGrid}
+\item{file_name}{string with a filename or path to the TextGrid}
 
 \item{tier}{value that could be either ordinal number of the tier either name of the tier. By default is '1'.}
 
