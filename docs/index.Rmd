@@ -405,6 +405,8 @@ textgrid_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"
 eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 ```
 
+It is possible to read multiple `.eaf` files using the `eafs_from_folder` argument.
+
 * file `.exb` from EXMARaLDA  (just change the `system.file()` function to path to the file)
 ```{r}
 exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
