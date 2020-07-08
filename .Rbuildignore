@@ -13,3 +13,5 @@
 codemeta.json
 ^presentations.*
 ^ignore.*
+^doc$
+^Meta$

@@ -162,7 +162,7 @@ draw_sound <- function(file_name,
         graphics::axis(1, las=1)
       }
       # plot spectrogram --------------------------------------------------------
-      low_boundary <- ifelse(is.null(annotation), 0.08, 0.27)
+      low_boundary <- ifelse(is.null(annotation), 0.1, 0.27)
       graphics::par(fig=c(0, 0.97, low_boundary, 0.75), new=TRUE)
       if(!is.null(zoom)){
         for_spectrum <- tuneR::extractWave(s,
@@ -188,7 +188,7 @@ draw_sound <- function(file_name,
 
       # plot textgrid -----------------------------------------------------------
       if(!is.null(annotation)){
-        graphics::par(fig=c(0, 0.97, 0.09, 0.27), new=TRUE)
+        graphics::par(fig=c(0, 0.97, 0.1, 0.27), new=TRUE)
 
         if(class(annotation) != "data.frame"){
           df <- phonfieldwork::textgrid_to_df(annotation)

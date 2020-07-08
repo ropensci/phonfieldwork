@@ -1,0 +1,27 @@
+---
+title: "Ethical Research with `phonfieldwork`"
+author: "George Moroz"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Ethical Research with `phonfieldwork`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This document is a comment on ethical policy for the `phonfieldwork` package for R that doesn't have any legal effect.
+
+Since it easy to publish online obtained from the `phonfieldwork` `.html` file , I would like to emphasise the possible ethical problems. Obtained from the `create_viewer()` function `.html` file contains: 
+
+* table with any data;
+* list of sounds that could be played by the internet user;
+* list of pictures that could be viewed by the internet user.
+
+
