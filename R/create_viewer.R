@@ -57,6 +57,8 @@ create_viewer <- function(audio_dir,
     }
   }
 
+  message('Since the result .html file possibly containes some vulnerable data, researcher(s) bear the whole responsibility for the publishing of the result. Run vignette("ethical_research_with_phonfieldwork") for more details.')
+
   audio <- list.files(normalizePath(audio_dir))
   pictures <- list.files(normalizePath(picture_dir))
   if(length(audio) > length(pictures)){

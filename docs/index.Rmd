@@ -483,7 +483,7 @@ df
 
 This table could be used in order to create an annotation viewer:
 
-```{r, warning = FALSE}
+```{r}
 create_viewer(audio_dir = "s1/s1_sounds/",
               picture_dir = "s1/s1_pics/", 
               table = df,
@@ -531,7 +531,7 @@ new_df
 
 So now we are ready to run our code for creating an annotation viewer:
 
-```{r, warning = FALSE}
+```{r}
 create_viewer(audio_dir = "s1/s1_sounds/",
               picture_dir = "s1/s1_pics/", 
               table = new_df,
@@ -549,7 +549,7 @@ If you are familiar with my package [`lingtypology`](https://ropensci.github.io/
 
 I will add some glottocodes for Russian, Polish and Czech to the dataframe that we have already worked with (for those data it doesn't make any sense, I just giving an example of usage):
 
-```{r, warning = FALSE}
+```{r}
 new_df$glottocode <- c("russ1263", "poli1260", "czec1258")
 create_viewer(audio_dir = "s1/s1_sounds/",
               picture_dir = "s1/s1_pics/", 
