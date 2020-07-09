@@ -18,15 +18,15 @@ knitr::opts_chunk$set(
 
 ## Intro
 
-This document is a comment on ethical policy for the `phonfieldwork` R package that doesn't have any legal effect.
+This document is a comment on ethical policy for the `phonfieldwork` package that does not have any legal effect.
 
 The `create_viewer()` function that is part of the `phonfieldwork` package creates an `.html` file that contains:
 
-* table with any data;
-* list of sounds that could be played by the internet user;
-* list of pictures that could be viewed by the internet user.
+* table with data;
+* list of sounds that could be played by users;
+* list of pictures that could be viewed by users.
 
-The main goal of the `phonfieldwork` package is to create a tool for linguistic research, so first I would like to emphasise the possible ethical problems connected to possibility to put the obtained `.html` file online. Those problems should be also a concern of an ethical comission from your institution and possible publishing platforms, probably, they have the same or simmilar set of rules and concerns that I list below.
+The main goal of the `phonfieldwork` package is to create a tool for linguistic research, so I would like to emphasise the possible ethical problems connected to possibility of putting the obtained `.html` file online. Those problems should be also a concern of an ethical comission from your institution and publishing platforms, probably, they have the same or simmilar set of rules and concerns that I list below.
 
 ## Linguistic research
 
@@ -37,7 +37,7 @@ If you collected some data from human subjects I expect that all your participan
 * agreed on the usage of gathered data in scintific research;
 * agreed on the sharing of gathered data among other researchers;
 * agreed on the sharing of gathered data on the internet (optional, but important if you want to post data online);
-* agreed on the compensation.
+* agreed on the proposed compensation.
 
 This kind of information is usually collected via informed consent forms, where you also specify the form of data that will be researched and shared: raw data (e. g. like audio), aggregated (by speaker, gender, age, etc), anonymized/non-anonymized etc.
 
@@ -52,7 +52,7 @@ If people subjects in your research are not agree on internet publication of the
 
 ## Bioacoustic research
 
-It is possible to use phonfieldwork in biacoustic research, so publishing data should also be done with caution. So ethical use of the `phonfieldwork` package imply that researcher will not reveal any onformation related to vulnerable animal populations that may bring any possible harms.
+It is possible to use phonfieldwork in biacoustic research, so publishing data should also be done with caution. Ethical use of the `phonfieldwork` package imply that researcher will not reveal any information related to animal populations that may bring any possible harms to any individual animal.
 
 ## Other ethical problems
 
