@@ -12,7 +12,7 @@
 - concatenating multiple soundfiles and create a Praat TextGrid whose interval labels are the original names of the sound
 - extracting sounds from annotation
 - creating an oscilogram and a spectrogram from a sound
-- creating an html viewer [like this](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html)
+- creating an html viewer [like this](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html), ethical problems of this kind of viewer in linguistic research are covered in the vignette `vignette("ethical_research_with_phonfieldwork")`.
 
 For more ditails see [tutorial](https://agricolamz.github.io/phonfieldwork/).
 

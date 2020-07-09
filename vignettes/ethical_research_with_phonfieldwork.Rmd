@@ -16,12 +16,52 @@ knitr::opts_chunk$set(
 )
 ```
 
-This document is a comment on ethical policy for the `phonfieldwork` package for R that doesn't have any legal effect.
+## Intro
 
-Since it easy to publish online obtained from the `phonfieldwork` `.html` file , I would like to emphasise the possible ethical problems. Obtained from the `create_viewer()` function `.html` file contains: 
+This document is a comment on ethical policy for the `phonfieldwork` R package that doesn't have any legal effect.
+
+The `create_viewer()` function that is part of the `phonfieldwork` package creates an `.html` file that contains:
 
 * table with any data;
 * list of sounds that could be played by the internet user;
 * list of pictures that could be viewed by the internet user.
 
+The main goal of the `phonfieldwork` package is to create a tool for linguistic research, so first I would like to emphasise the possible ethical problems connected to possibility to put the obtained `.html` file online. Those problems should be also a concern of an ethical comission from your institution and possible publishing platforms, probably, they have the same or simmilar set of rules and concerns that I list below.
 
+## Linguistic research
+
+If you collected some data from human subjects I expect that all your participants (or their legal representatives)
+
+* participated voluntary;
+* knew the goal of the research;
+* agreed on the usage of gathered data in scintific research;
+* agreed on the sharing of gathered data among other researchers;
+* agreed on the sharing of gathered data on the internet (optional, but important if you want to post data online);
+* agreed on the compensation.
+
+This kind of information is usually collected via informed consent forms, where you also specify the form of data that will be researched and shared: raw data (e. g. like audio), aggregated (by speaker, gender, age, etc), anonymized/non-anonymized etc.
+
+So ethical use of the `phonfieldwork` package imply two things:
+
+* researcher will not reveal any data that are not listed in the informed consent form 
+* informed consent form does not soppose to collect (or collect with further removal) of
+    * information related to vulnerable populations that can bring any possible harms;
+    * personally identifiable or sensitive data that could be traced back to the owner.
+    
+If people subjects in your research are not agree on internet publication of their data, but agree on sharing thier data among researches, you can use the `encrypt_html_file()` function from the [`encryptedRmd`](https://CRAN.R-project.org/package=encryptedRmd) package in order to make your work password protected.
+
+## Bioacoustic research
+
+It is possible to use phonfieldwork in biacoustic research, so publishing data should also be done with caution. So ethical use of the `phonfieldwork` package imply that researcher will not reveal any onformation related to vulnerable animal populations that may bring any possible harms.
+
+## Other ethical problems
+
+Since `phonfieldwork` can create an `.html` with any type of data in it, it is important to emphasise other ethical problems not conected with any kind of research. I think, you should not post data that
+
+* were produced or distributed without informed consent;
+* contain, promote, or threaten harassment or violence against other people on the basis of race, ethnicity, national origin, caste, sexual orientation, gender, gender identity, religious affiliation, age, disability, or serious disease;
+* contain, or promote suicide or self-harm;
+* contain, promote or threaten sexual exploitation;
+* contain, or promote consumption of illigal goods or services;
+* are synthetic or manipulated in order to cause harm;
+* violate others’ intellectual property rights, including copyright and trademark.

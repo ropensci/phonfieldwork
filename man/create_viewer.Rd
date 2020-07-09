@@ -10,7 +10,8 @@ create_viewer(
   table,
   captions = NULL,
   sorting_columns = NULL,
-  about = "Created with the `phonfieldworks` package (Moroz 2020).",
+ 
+    about = "Created with the `phonfieldworks` package (Moroz 2020). <br> If you are a participant of this study and you want to withdraw your consent, please, write to ... on the following adress ...",
   map = FALSE,
   output_dir,
   output_file = "stimuli_viewer",
