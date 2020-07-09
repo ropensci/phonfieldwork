@@ -1,6 +1,6 @@
 ---
 title: "Ethical Research with `phonfieldwork`"
-author: "George Moroz"
+author: "George Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -34,6 +34,7 @@ If you collected data from human subjects I expect that all your participants (o
 
 * participated voluntarily
 * knew the goal of the research
+* were informed about possibility to withdraw the consent
 * agreed to the obtained data being used for the purpose of scientific research
 * agreed to the obtained data being shared with other researchers
 * agreed to to the obtained data being made available online (optional, but important if you want to post data online)
@@ -49,6 +50,8 @@ So the ethical use of the `phonfieldwork` package implies two things:
     * personally identifiable or sensitive data that could be traced back to the owner
     
 If the subjects in your research do not consent to the publication of their data online but agree to sharing it among researchers, you can use the `encrypt_html_file()` function from the [`encryptedRmd`](https://CRAN.R-project.org/package=encryptedRmd) package in order to make your work password protected.
+
+It is also important to have a contact information in your `.html` in case your subjects will want to withdraw they consent on sharing data.
 
 ## Bioacoustic research
 
