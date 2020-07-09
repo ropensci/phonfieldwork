@@ -18,50 +18,50 @@ knitr::opts_chunk$set(
 
 ## Intro
 
-This document is a comment on ethical policy for the `phonfieldwork` package that does not have any legal effect.
+This document is a comment on the ethical policy for the `phonfieldwork` package that does not have any legal effect.
 
 The `create_viewer()` function that is part of the `phonfieldwork` package creates an `.html` file that contains:
 
-* table with data;
-* list of sounds that could be played by users;
-* list of pictures that could be viewed by users.
+* a table with data
+* a list of sounds that can be played by users
+* a list of pictures that can be viewed by users
 
-The main goal of the `phonfieldwork` package is to create a tool for linguistic research, so I would like to emphasise the possible ethical problems connected to possibility of putting the obtained `.html` file online. Those problems should be also a concern of an ethical comission from your institution and publishing platforms, probably, they have the same or simmilar set of rules and concerns that I list below.
+The main goal of the `phonfieldwork` package is to create a tool for linguistic research, so I would like to emphasize the possible ethical problems connected to the possibility of putting the obtained `.html` file online. These problems could also be of concern to the ethical comissions of your institution and publishing platforms. Perhapse they have the same or a similar set of rules and concerns as listed below.
 
 ## Linguistic research
 
-If you collected some data from human subjects I expect that all your participants (or their legal representatives)
+If you collected data from human subjects I expect that all your participants (or their legal representatives):
 
-* participated voluntary;
-* knew the goal of the research;
-* agreed on the usage of gathered data in scintific research;
-* agreed on the sharing of gathered data among other researchers;
-* agreed on the sharing of gathered data on the internet (optional, but important if you want to post data online);
-* agreed on the proposed compensation.
+* participated voluntarily
+* knew the goal of the research
+* agreed to the obtained data being used for the purpose of scientific research
+* agreed to the obtained data being shared with other researchers
+* agreed to to the obtained data being made available online (optional, but important if you want to post data online)
+* agreed to the proposed compensation
 
-This kind of information is usually collected via informed consent forms, where you also specify the form of data that will be researched and shared: raw data (e. g. like audio), aggregated (by speaker, gender, age, etc), anonymized/non-anonymized etc.
+This kind of information is usually collected via informed consent forms, where you also specify the form of data that will be researched and shared: raw data (e.g. audio), aggregated (by speaker, gender, age, etc), anonymized/non-anonymized etc.
 
-So ethical use of the `phonfieldwork` package imply two things:
+So the ethical use of the `phonfieldwork` package implies two things:
 
-* researcher will not reveal any data that are not listed in the informed consent form 
-* informed consent form does not soppose to collect (or collect with further removal) of
-    * information related to vulnerable populations that can bring any possible harms;
-    * personally identifiable or sensitive data that could be traced back to the owner.
+* the researcher will not reveal any data that are not listed in the informed consent form 
+* the informed consent form does not presuppose the collection of:
+    * information related to vulnerable populations that can bring about possible harm
+    * personally identifiable or sensitive data that could be traced back to the owner
     
-If people subjects in your research are not agree on internet publication of their data, but agree on sharing thier data among researches, you can use the `encrypt_html_file()` function from the [`encryptedRmd`](https://CRAN.R-project.org/package=encryptedRmd) package in order to make your work password protected.
+If the subjects in your research do not consent to the publication of their data online but agree to sharing it among researchers, you can use the `encrypt_html_file()` function from the [`encryptedRmd`](https://CRAN.R-project.org/package=encryptedRmd) package in order to make your work password protected.
 
 ## Bioacoustic research
 
-It is possible to use phonfieldwork in biacoustic research, so publishing data should also be done with caution. Ethical use of the `phonfieldwork` package imply that researcher will not reveal any information related to animal populations that may bring any possible harms to any individual animal.
+It is possible to use phonfieldwork in biacoustic research, so publishing data should also be done with caution. Ethical use of the `phonfieldwork` package implies that the researcher will not reveal any information related to animal populations that may bring about possible harm to any individual animal.
 
 ## Other ethical problems
 
-Since `phonfieldwork` can create an `.html` with any type of data in it, it is important to emphasise other ethical problems not conected with any kind of research. I think, you should not post data that
+Since `phonfieldwork` can create an `.html` with any type of data in it, it is important to emphasize other ethical problems not conected to any kind of research. You should not publish data that:
 
-* were produced or distributed without informed consent;
-* contain, promote, or threaten harassment or violence against other people on the basis of race, ethnicity, national origin, caste, sexual orientation, gender, gender identity, religious affiliation, age, disability, or serious disease;
-* contain, or promote suicide or self-harm;
-* contain, promote or threaten sexual exploitation;
-* contain, or promote consumption of illigal goods or services;
-* are synthetic or manipulated in order to cause harm;
-* violate others’ intellectual property rights, including copyright and trademark.
+* were produced or distributed without informed consent
+* contain, promote, or threaten harassment or violence against other people on the basis of race, ethnicity, national origin, caste, sexual orientation, gender identity, religious affiliation, age, disability, or disease
+* contain, or promote suicide or self-harm
+* contain, promote or threaten sexual exploitation
+* contain, or promote consumption of illegal goods or services
+* are synthetic or manipulated in order to cause harm
+* violate others’ intellectual property rights, including copyright and trademark
