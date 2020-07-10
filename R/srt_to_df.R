@@ -21,7 +21,6 @@ srt_to_df <- function(file_name, encoding = "unknown"){
   srt <- readLines(file_name, encoding = encoding, warn = FALSE)
 
   # convert to dataframe
-  s <- split(1:length(srt), cumsum(grepl("^\\s*$",srt)))
   lapply(split(1:length(srt), cumsum(grepl("^\\s*$",srt))), function(i){
     block <- srt[i]
     block <- block[!grepl("^\\s*$", block)]
