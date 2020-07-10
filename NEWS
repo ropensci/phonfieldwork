@@ -1,5 +1,5 @@
-phonfieldwork 0.0.7 (06.07.2020)
-  - add a vigniette about ethical research
+phonfieldwork 0.0.7 (09.07.2020)
+  - add a vigniettes about ethical research and introduction to work with phonfieldwork
   - add an argument "eafs_from_folder" to the "eaf_to_df()" function
   - add Raven style annotations
   - replace freqmax with frequency_range argument
