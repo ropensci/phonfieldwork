@@ -35,11 +35,12 @@
 #' @return Oscilogram and spectrogram plot (and possibly TextGrid annotation).
 #'
 #' @examples
+#' \dontrun{
 #' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"))
 #'
 #' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
 #'            system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
-#'
+#' }
 #' @export
 #'
 #' @importFrom tuneR readWave

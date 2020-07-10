@@ -23,7 +23,7 @@
 #' @param raven_annotation Raven (Center for Conservation Bioacoustics) style annotations (boxes over spectrogram). The dataframe that contains \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high} columns. Optional columns are \code{colors} and \code{content}.
 #'
 #' @examples
-#' draw_spectrogram(system.file("extdata", "test.wav", package = "phonfieldwork"))
+#' \dontrun{draw_spectrogram(system.file("extdata", "test.wav", package = "phonfieldwork"))}
 #'
 #' @export
 #'

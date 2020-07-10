@@ -96,11 +96,12 @@ Oscilogram and spectrogram plot (and possibly TextGrid annotation).
 Create oscilogram and spectrogram plot.
 }
 \examples{
+\dontrun{
 draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"))
 
 draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
            system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
-
+}
 }
 \author{
 George Moroz <agricolamz@gmail.com>
