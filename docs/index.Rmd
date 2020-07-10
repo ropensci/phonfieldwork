@@ -400,6 +400,8 @@ The `phonfieldwork` package provides also several methods for reading different 
 textgrid_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
 ```
 
+It is possible to read multiple `.TextGrid` files using the `textgrids_from_folder` argument.
+
 * file `.eaf` from ELAN  (just change the `system.file()` function to path to the file); see also the [FRelan](https://github.com/langdoc/FRelan) package by Niko Partanen
 ```{r}
 eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
@@ -411,6 +413,8 @@ It is possible to read multiple `.eaf` files using the `eafs_from_folder` argume
 ```{r}
 exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 ```
+
+It is possible to read multiple `.exb` files using the `exbs_from_folder` argument.
 
 * subtitles file `.srt` (just change the `system.file()` function to path to the file)
 

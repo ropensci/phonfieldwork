@@ -56,6 +56,7 @@
 #' @importFrom graphics abline
 #' @importFrom graphics segments
 #' @importFrom graphics rect
+#' @importFrom graphics plot
 #'
 
 draw_sound <- function(file_name,
@@ -142,7 +143,7 @@ draw_sound <- function(file_name,
 
       n <- max(abs(range(s@left)))
       s_range <- floor(n/10^(nchar(n)-1))*10^(nchar(n)-1)
-      plot(y = s@left,
+      graphics::plot(y = s@left,
            x = seq(0, length(s@left)/s@samp.rate*1000,
                    length.out = length(s@left)),
            type = "l",
@@ -249,7 +250,7 @@ draw_sound <- function(file_name,
         df$mid_point <- df$time_start + (df$time_end - df$time_start)/2
         df$fake_y <- max(df$tier) - min(df$tier)
         df$tier <- -df$tier
-        plot(x = df$mid_point,
+        graphics::plot(x = df$mid_point,
              y = df$fake_y,
              xlim = c(df$time_start[1], length(for_spectrum@left)/for_spectrum@samp.rate*1000),
              ylim = range(df$tier)+c(-0.4, 0.4),

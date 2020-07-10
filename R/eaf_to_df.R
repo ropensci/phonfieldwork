@@ -5,7 +5,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name string with a filename or path to the .eaf file
-#' @param eafs_from_folder path to a folder with multiple .eaf files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.
+#' @param eafs_from_folder path to a folder with multiple .eaf files. If this argument is not \code{NULL}, then the function goes through all files and create a merged dataframe for all of them.
 #' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{time_start}, \code{time_end}, \code{source}).
 #'
 #' @examples
