@@ -4,7 +4,6 @@
 ^\.travis\.yml$
 ^rsconnect
 ^appveyor\.yml$
-^docs$
 ^\.Rprofile$
 ^README.md
 ^CONTRIBUTING.md
