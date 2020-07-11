@@ -55,7 +55,7 @@ draw_sound(
 
 \item{freq_scale}{a string indicating the type of frequency scale. Supported types are: "Hz" and "kHz".}
 
-\item{frequency_range}{vector with the range of frequencies to be displayed for the spectrogram up to a maximum of fs/2. This is set to 0-5 kHz by default}
+\item{frequency_range}{vector with the range of frequencies to be displayed for the spectrogram up to a maximum of fs/2. By default this is set to 0-5 kHz.}
 
 \item{dynamic_range}{values greater than this many dB below the maximum will be displayed in the same color}
 
@@ -70,6 +70,10 @@ draw_sound(
 \item{spectrum_info}{logical. If \code{TRUE} then add information about windo method and params.}
 
 \item{raven_annotation}{Raven (Center for Conservation Bioacoustics) style annotations (boxes over spectrogram). The dataframe that contains \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high} columns. Optional columns are \code{colors} and \code{content}.}
+
+\item{pitch}{path to the Praat `.Pitch` file or result of pitch_to_df() function. This variable provide data for visualisation a pitch contour exported from Praat.}
+
+\item{pitch_range}{vector with the range of frequencies to be displayed. By default this is set to 75-350 Hz.}
 
 \item{output_width}{the width of the device}
 

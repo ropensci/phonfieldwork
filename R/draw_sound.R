@@ -14,11 +14,13 @@
 #' @param freq_scale a string indicating the type of frequency scale. Supported types are: "Hz" and "kHz".
 #' @param spectrum_info logical. If \code{TRUE} then add information about windo method and params.
 #' @param preemphasisf Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.
-#' @param frequency_range vector with the range of frequencies to be displayed for the spectrogram up to a maximum of fs/2. This is set to 0-5 kHz by default
+#' @param frequency_range vector with the range of frequencies to be displayed for the spectrogram up to a maximum of fs/2. By default this is set to 0-5 kHz.
 #' @param dynamic_range values greater than this many dB below the maximum will be displayed in the same color
 #' @param window_length the desired analysis window length in milliseconds.
 #' @param window A string indicating the type of window desired. Supported types are: "rectangular", "hann", "hamming", "cosine", "bartlett", "gaussian", and "kaiser".
 #' @param windowparameter The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.
+#' @param pitch path to the Praat `.Pitch` file or result of pitch_to_df() function. This variable provide data for visualisation a pitch contour exported from Praat.
+#' @param pitch_range vector with the range of frequencies to be displayed. By default this is set to 75-350 Hz.
 #' @param output_file the name of the output file
 #' @param output_width the width of the device
 #' @param output_height the height of the device
