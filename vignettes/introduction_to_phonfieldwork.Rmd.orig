@@ -151,7 +151,7 @@ It is also possible to change the output format, using the `output_format` argum
 After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure:
 
 ```{bash, echo = FALSE}
-tree | tail -n 10 | head -n 8
+tree | tail -n 21 | head -n 8
 ```
 
 For each speaker `s1` and `s2` there is a folder that containes three audiofiles. Now let's rename the files.
@@ -165,7 +165,7 @@ rename_soundfiles(stimuli = my_stimuli_df$stimuli,
 As a result, you obtain the following structure:
 
 ```{bash, echo = FALSE}
-tree | tail -n 14 | head -n 12
+tree | tail -n 25 | head -n 12
 ```
 
 The `rename_soundfiles()` function created a backup folder with all of the unrenamed files, and renamed all files using the prefix provided in the `prefix` argument. There is an additional argument `backup` that can be set to `FALSE` (it is `TRUE` by default), in case you are sure that the renaming function will work properly with your files and stimuli, and you do not need a backup of the unrenamed files.
@@ -179,7 +179,7 @@ rename_soundfiles(stimuli = my_stimuli_df$stimuli,
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 14 | head -n 12
+tree | tail -n 25 | head -n 12
 ```
 
 The last command renamed the soundfiles in the `s2` folder, adding the prefix `s2` as in the previous example, and the suffix `1`-`3`. On most operating systems it is impossible to create two files with the same name, so sometimes it can be useful to add some kind of index at the end of the files.
@@ -210,7 +210,7 @@ concatenate_soundfiles(path = "s1/",
 This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid `s1_all.TextGrid`:
 
 ```{bash, echo = FALSE}
-tree | tail -n 16 | head -n 14
+tree | tail -n 27 | head -n 14
 ```
 
 The resulting file can be parsed with Praat (subscripted *t* is the result of Praat's conversion):
@@ -290,7 +290,7 @@ extract_intervals(file_name = "s1/s1_all.wav",
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 19 | head -n 17
+tree | tail -n 30 | head -n 17
 ```
 
 
@@ -345,7 +345,7 @@ draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav",
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 21 | head -n 19
+tree | tail -n 32 | head -n 19
 ```
 
 It is also possible to create visualizations of all sound files in a folder. For this purpose you need to specify a source folder with the argument `sounds_from_folder` and a target folder for the images (`pic_folder_name`). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.
@@ -356,7 +356,7 @@ draw_sound(sounds_from_folder = "s1/s1_sounds/",
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 25 | head -n 23
+tree | tail -n 36 | head -n 23
 ```
 
 It is also possible to use the argument `textgrid_from_folder` in order to specify the folder where .TextGrids for annotation are (could be the same folder as the sound one). By default the `draw_sound()` function with the `sounds_from_folder` argument adds a title with the file name to each pictures' title, but it is possible to turn it off using the argument `title_as_filename = FALSE`.
@@ -463,7 +463,7 @@ In order to create a sound viewer you need three things:
 We will start with the previous folder structure:
 
 ```{bash, echo = FALSE}
-tree | tail -n 25 | head -n 23
+tree | tail -n 36 | head -n 23
 ```
 
 We have all folders:
@@ -494,7 +494,7 @@ create_viewer(audio_dir = "s1/s1_sounds/",
 As a result, a `stimuli_viewer.html` was created in the `s1` folder.
 
 ```{bash, echo = FALSE}
-tree | tail -n 26 | head -n 24
+tree | tail -n 37 | head -n 24
 ```
 
 You can find the created example [here](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html).

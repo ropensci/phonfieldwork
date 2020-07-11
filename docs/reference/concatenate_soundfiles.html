@@ -172,16 +172,16 @@
 <span class='no'>tdir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.copy</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>s1</span>, <span class='no'>s2</span>), <span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] TRUE TRUE</div><div class='input'>
 <span class='co'># here are two .wav files in a folder</span>
-<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] "file30733cb2c79e.so"             "libloc_169_8f48fc7d1db1bb3e.rds"
-#&gt; [3] "libloc_191_3373979b976c09.rds"   "libloc_201_40b5ab1406ba8155.rds"
+<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] "file61cc2e0ab5c1.so"             "libloc_169_8f48fc7d1db1bb3e.rds"
+#&gt; [3] "libloc_191_95a764278da2fa.rds"   "libloc_201_40b5ab1406ba8155.rds"
 #&gt; [5] "post.wav"                        "test.wav"                       </div><div class='input'><span class='co'># [1] "post.wav" "test.wav"</span>
 
 <span class='co'># Concatenate all files from the folder into concatenated.wav and create corresponding TextGrid</span>
 <span class='fu'>concatenate_soundfiles</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>tdir</span>, <span class='kw'>result_file_name</span> <span class='kw'>=</span> <span class='st'>"concatenated"</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] "concatenated.TextGrid"           "concatenated.wav"               
-#&gt; [3] "file30733cb2c79e.so"             "libloc_169_8f48fc7d1db1bb3e.rds"
-#&gt; [5] "libloc_191_3373979b976c09.rds"   "libloc_201_40b5ab1406ba8155.rds"
+#&gt; [3] "file61cc2e0ab5c1.so"             "libloc_169_8f48fc7d1db1bb3e.rds"
+#&gt; [5] "libloc_191_95a764278da2fa.rds"   "libloc_201_40b5ab1406ba8155.rds"
 #&gt; [7] "post.wav"                        "test.wav"                       </div><div class='input'># [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
 </div></pre>
   </div>
