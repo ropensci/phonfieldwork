@@ -141,7 +141,7 @@ create_presentation(stimuli = my_stimuli_df$stimuli,
 
 As a result, a file "first_example.html" was created in the output folder. You can change the name of this file by changing  the `output_file` argument. The `.html` file now looks as follows:
 
-<iframe src="https://agricolamz.github.io/phonfieldwork/first_example.html" width = 800 height = 600>
+<iframe src="https://agricolamz.github.io/phonfieldwork/additional/first_example.html" width = 800 height = 600>
   <p>Your browser does not support iframes :(</p>
 </iframe>
 
@@ -432,7 +432,7 @@ audacity_to_df(system.file("extdata", "test_audacity.txt", package = "phonfieldw
 head(flextext_to_df("files/zilo_test.flextext"))
 ```
 
-There is also an additional function for working with the `.flextext` format that convert it to a glossed document in a `docx` or `.html` format (see examples: [`.docx`](https://github.com/agricolamz/phonfieldwork/raw/master/docs/glossed_document.docx), [`.html`](https://agricolamz.github.io/phonfieldwork/glossed_document.html)):
+There is also an additional function for working with the `.flextext` format that convert it to a glossed document in a `docx` or `.html` format (see examples: [`.docx`](https://github.com/agricolamz/phonfieldwork/raw/master/docs/additional/glossed_document.docx), [`.html`](https://agricolamz.github.io/phonfieldwork/additional/glossed_document.html)):
 
 ```{r}
 create_glossed_document(flextext = "files/zilo_test.flextext",
@@ -452,7 +452,7 @@ draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwo
 
 # Create a viewer
 
-Sound viewer (here is an [example 1](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html) and [example 2](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer2.html)) is a useful tool that combine together your annotations and make it searchable. It is also produce a ready to go `.html` file that could be uploaded on the server (e. g. to Github Pages) and be availible for anyone in the world.
+Sound viewer (here is an [example 1](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html) and [example 2](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer2.html)) is a useful tool that combine together your annotations and make it searchable. It is also produce a ready to go `.html` file that could be uploaded on the server (e. g. to Github Pages) and be availible for anyone in the world.
 
 In order to create a sound viewer you need three things:
 
@@ -497,7 +497,7 @@ As a result, a `stimuli_viewer.html` was created in the `s1` folder.
 tree | tail -n 26 | head -n 24
 ```
 
-You can find the created example [here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html).
+You can find the created example [here](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html).
 
 Unfortunately, the way of table creation for the annotation viewer presented in this section is not a good solution for the huge amount of sounds. It is possible to derive such a table from annotation TextGrid, that we have created earlier. Here is a TextGrid:
 
@@ -559,7 +559,7 @@ create_viewer(audio_dir = "s1/s1_sounds/",
               map = TRUE)
 ```
 
-[Here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer2.html) is the result file.
+[Here](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer2.html) is the result file.
 
 It is also possible to provide your own coordinates with `latitude` and `longitude` columns. In that case `glottocode` column is optional.
 
