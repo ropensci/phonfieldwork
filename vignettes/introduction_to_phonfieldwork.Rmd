@@ -1,20 +1,16 @@
 ---
-title: "Phonetic fieldwork and experiments with phonfieldwork package"
+title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "`r Sys.Date()`"
+date: "2020-07-11"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Phonetic fieldwork and experiments with phonfieldwork package}
+  %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval = FALSE)
-```
 
-The last and more detailed version of this file can be found [here](https://agricolamz.github.io/phonfieldwork/).
 
 # Introduction
 
@@ -26,13 +22,15 @@ There are a lot of different books about linguistic fieldwork and experiments (e
 
 Before you start, make sure that you have installed the package, for example with the following command:
 
-```{r}
+
+```r
 install.packages("phonfieldwork")
 ```
 
 This command will install the last stable version of the `phonfieldwork` package from CRAN. Since CRAN runs multiple package checks before making it available, this is the safest option. Alternatively, you can download the development version from GitHub:
 
-```{r}
+
+```r
 install.packages("devtools")
 devtools::install_github("agricolamz/phonfieldwork")
 ```
@@ -40,19 +38,41 @@ devtools::install_github("agricolamz/phonfieldwork")
 If you have any trouble installing the package, you will not be able to use its functionality. In that case you can create [an issue on Github](https://github.com/agricolamz/phonfieldwork/issues) or send an email. Since this package could completely destroy your data, **please do not use it until you are sure that you have made a backup**.
 
 Use the `library()` command to load the package:
-```{r, eval=TRUE}
+
+```r
 library("phonfieldwork")
 ```
 
 This tutorial was made using the following version of `phonfieldwork`:
-```{r, eval=TRUE}
+
+```r
 packageVersion("phonfieldwork")
+```
+
+```
+## [1] '0.0.8'
 ```
 
 This tutorial can be cited as follows:
 
-```{r, eval=TRUE}
+
+```r
 citation("phonfieldwork")
+```
+
+```
+## 
+## Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork package_. <URL:
+## https://CRAN.R-project.org/package=phonfieldwork>.
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Manual{,
+##     title = {Phonetic fieldwork and experiments with phonfieldwork package},
+##     author = {George Moroz},
+##     year = {2020},
+##     url = {https://CRAN.R-project.org/package=phonfieldwork},
+##   }
 ```
 
 If you have any trouble using the package, do not hesitate to create [an issue on Github](https://github.com/agricolamz/phonfieldwork/issues/new).
@@ -73,7 +93,7 @@ Most phonetic research consists of the following steps:
 
 The `phonfieldwork` package is created for helping with items 3, partially with 4, and 5 and 8.
 
-To make the automatic annotation of data easier, I usually record each stimulus as a separate file.  While recording, I carefully listen to my consultants to make sure that they are producing the kind of speech I want: three isolated pronunciations of the same stimulus, separated by a pause and contained in a carrier phrase. In case a speaker does not produce three clear repetitions, I ask them to repeat the task, so that as a result of my fieldwork session I will have: 
+To make the automatic annotation of data easier, I usually record each stimulus as a separate file.  While recording, I carefully listen to my consultants to make sure that they are producing the kind of speech I want: three isolated pronunciations of the same stimulus, separated by a pause and contained in a carrier phrase. In case a speaker does not produce three clear repetitions, I ask them to repeat the task, so that as a result of my fieldwork session I will have:
 * a collection of small soundfiles (video) with the same sampling rate, resolution (bit), and number of channels
 * a list of succesful and unsuccesful attempts to produce a stimulus according to my requirements (usually I keep this list in a regular notebook)
 
@@ -90,56 +110,110 @@ There are several ways to enter information about a list of stimuli into R:
 
 * using the `c()` function you can create a **vector** of all words and store it in a variable `my_stimuli` (you can choose any other name):
 
-```{r}
+
+```r
 my_stimuli <- c("tip", "tap", "top")
 ```
 
 * it is also possible to store your list as a column in a `.csv` file and read it into R using the `read.csv()` function:
 
-```{r}
+
+```r
 my_stimuli_df <- read.csv("my_stimuli_df.csv")
 my_stimuli_df
 ```
 
+```
+##   stimuli vowel
+## 1     tip     ı
+## 2     tap     æ
+## 3     top     ɒ
+```
+
 * it is also possible to store your list as a column in an `.xls` or `xlsx` file and read it into R using the `read_xls` or `read_xlsx` functions from the `readxl` package. If the package `readxl` is not installed on your computer, install it using `install.packages("readxl")`
 
-```{r}
+
+```r
 library("readxl")
 # run install.packages("readxl") in case you don't have it installed
 my_stimuli_df <- read_xlsx("my_stimuli_df.xlsx")
 my_stimuli_df
 ```
 
+```
+## # A tibble: 3 x 2
+##   stimuli vowel
+##   <chr>   <chr>
+## 1 tip     ı    
+## 2 tap     æ    
+## 3 top     ɒ
+```
+
 ## Create a presentation based on a list of stimuli
 
 When the list of stimuli is loaded into R, you can create a presentation for elicitation. It is important to define an output directory, so in the following example I use the `getwd()` function, which returns the path to the current working directory. You can set any directory as your current one using the `setwd()` function. It is also possible to provide a path to your intended output directory with `output_dir` (e. g. "/home/user_name/..."). This command (unlike `setwd()`) does not change your working directory.
 
-```{r}
+
+```r
 create_presentation(stimuli = my_stimuli_df$stimuli,
                     output_file = "first_example",
-                    output_dir = getwd()) 
+                    output_dir = getwd())
 ```
 
 As a result, a file "first_example.html" was created in the output folder. You can change the name of this file by changing  the `output_file` argument. The `.html` file now looks as follows:
 
-<iframe src="https://agricolamz.github.io/phonfieldwork/first_example.html" width = 900 height = 700>
+<iframe src="https://agricolamz.github.io/phonfieldwork/first_example.html" width = 800 height = 600>
   <p>Your browser does not support iframes :(</p>
 </iframe>
 
 It is also possible to change the output format, using the `output_format` argument. By dafault it is "html", but you can also use "pptx" (this is a relatively new feature of `rmarkdown`, so update the package in case you get errors). There is also an additional argument `translations`, where you can provide translations for stimuli in order that they appeared near the stimuli on the slide.
 
 ## Rename collected data
-After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure: for each speaker `s1` and `s2` there is a folder that containes three audiofiles. Now let's rename the files.
+After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure:
 
-```{r}
+
+```
+## ├── s1
+## │   ├── 01.wav
+## │   ├── 02.wav
+## │   └── 03.wav
+## └── s2
+##     ├── 01.wav
+##     ├── 02.wav
+##     └── 03.wav
+```
+
+For each speaker `s1` and `s2` there is a folder that containes three audiofiles. Now let's rename the files.
+
+
+```r
 rename_soundfiles(stimuli = my_stimuli_df$stimuli,
                   prefix = "s1_",
                   path = "s1/")
 ```
 
+As a result, you obtain the following structure:
+
+
+```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── 01.wav
+##     ├── 02.wav
+##     └── 03.wav
+```
+
 The `rename_soundfiles()` function created a backup folder with all of the unrenamed files, and renamed all files using the prefix provided in the `prefix` argument. There is an additional argument `backup` that can be set to `FALSE` (it is `TRUE` by default), in case you are sure that the renaming function will work properly with your files and stimuli, and you do not need a backup of the unrenamed files.
 
-```{r}
+
+```r
 rename_soundfiles(stimuli = my_stimuli_df$stimuli,
                   prefix = "s2_",
                   suffix = paste0("_", 1:3),
@@ -147,18 +221,48 @@ rename_soundfiles(stimuli = my_stimuli_df$stimuli,
                   backup = FALSE)
 ```
 
+
+```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav
+```
+
 The last command renamed the soundfiles in the `s2` folder, adding the prefix `s2` as in the previous example, and the suffix `1`-`3`. On most operating systems it is impossible to create two files with the same name, so sometimes it can be useful to add some kind of index at the end of the files.
 
 Sometimes it is useful to get information about sound duration:
 
-```{r}
+
+```r
 get_sound_duration("s1/s1_tap.wav")
+```
+
+```
+##         file  duration
+## 1 s1_tap.wav 0.4299093
 ```
 
 It is also possible to analyze the whole folder:
 
-```{r}
+
+```r
 get_sound_duration(sounds_from_folder = "s2/")
+```
+
+```
+##           file  duration
+## 1 s2_tap_2.wav 0.5343991
+## 2 s2_tip_1.wav 0.5866440
+## 3 s2_top_3.wav 0.6650113
 ```
 
 For now `phonfieldwork` works only with `.wav(e)` and `.mp3` sound files and several video formats (`.mp4`, `.avi` and `.mov`).
@@ -167,96 +271,140 @@ For now `phonfieldwork` works only with `.wav(e)` and `.mp3` sound files and sev
 
 After all the files are renamed, you can merge them into one. Remmber that sampling rate, resolution (bit), and number of channels should be the same across all recordings. It is possible to resample files with the `resample()` function from  `biacoustics`.
 
-```{r}
-concatenate_soundfiles(path = "s1/", 
+
+```r
+concatenate_soundfiles(path = "s1/",
                        result_file_name = "s1_all")
 ```
 
-This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid `s1_all.TextGrid`.
+This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid `s1_all.TextGrid`:
+
+
+```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav
+```
 
 The resulting file can be parsed with Praat (subscripted *t* is the result of Praat's conversion):
 
-```{r, echo=FALSE}
-draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
-```
+![plot of chunk unnamed-chunk-20](unnamed-chunk-20-1.png)
 
 ## Annotate your data
 
 It is possible to annotate words using an existing annotation (since file concatination is made according to files sorted on the comuter I use the `sort()` function in order to make correct annotation):
 
-```{r}
+
+```r
 my_stimuli_df$stimuli
+```
+
+```
+## [1] "tip" "tap" "top"
+```
+
+```r
 annotate_textgrid(annotation =  sort(my_stimuli_df$stimuli),
                   textgrid = "s1/s1_all.TextGrid")
 ```
 
-```{r, echo=FALSE}
-draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
-```
+![plot of chunk unnamed-chunk-22](unnamed-chunk-22-1.png)
 
 As you can see in the example, the `annotate_textgrid()` function creates a backup of the tier and adds a new tier on top of the previous one. It is possible to prevent the function from doing so by setting the `backup` argument to `FALSE`.
 
 Imagine that we are interested in annotation of vowels. The most common solution will be open Praat and create new annotations. But it is also possible to create them in advance using subannotations. The idea that you choose some baseline tier that later will be automatically cutted into smaller pieces on the other tier.
 
-```{r}
-create_subannotation(textgrid = "s1/s1_all.TextGrid", 
+
+```r
+create_subannotation(textgrid = "s1/s1_all.TextGrid",
                      tier = 1, # this is a baseline tier
                      n_of_annotations = 3) # how many empty annotations per unit?
 ```
 
-```{r, echo=FALSE}
-draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
-```
+![plot of chunk unnamed-chunk-24](unnamed-chunk-24-1.png)
 
 Now we can annotate created tier:
 
-```{r}
+
+```r
 annotate_textgrid(annotation = c("", "æ", "", "", "ı", "", "", "ɒ", ""),
                   textgrid = "s1/s1_all.TextGrid",
-                  tier = 3, 
+                  tier = 3,
                   backup = FALSE)
 ```
 
-```{r, echo=FALSE}
-draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
-```
+![plot of chunk unnamed-chunk-26](unnamed-chunk-26-1.png)
 
 You can see that we created a third tier with annotation. The only thing left is to move annotation boundaries in Praat (this can not be automated):
 
-```{r, include=FALSE}
-file.copy("files/s1_all.TextGrid", to = "s1/s1_all.TextGrid", overwrite = TRUE)
-```
 
-```{r, echo=FALSE}
-draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
-```
+
+![plot of chunk unnamed-chunk-28](unnamed-chunk-28-1.png)
 
 You can see from the last figure that no backup tier was created (`backup = FALSE`), that the third tier was annotated (`tier = 3`).
 
 ## Extracting your data
 
 First, it is important to create a folder where all of the extracted files will be stored:
-```{r}
+
+```r
 dir.create("s1/s1_sounds")
 ```
 
 It is possible extract to extract all annotated files based on an annotation tier:
 
-```{r}
-extract_intervals(file_name = "s1/s1_all.wav", 
+
+```r
+extract_intervals(file_name = "s1/s1_all.wav",
                   textgrid = "s1/s1_all.TextGrid",
                   tier = 3,
                   path = "s1/s1_sounds/",
                   prefix = "s1_")
 ```
 
+
+```
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_æ.wav
+## │   │   ├── 2_s1_ı.wav
+## │   │   └── 3_s1_ɒ.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav
+```
+
+
 ## Visualizing your data
 It is possible to view an oscilogram and spetrogram of any soundfile:
 
-```{r}
+
+```r
 draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav")
 ```
-  
+
+![plot of chunk unnamed-chunk-32](unnamed-chunk-32-1.png)
+
 There are additional parameters:
 
 * `title` -- the title for the plot
@@ -267,7 +415,7 @@ There are additional parameters:
 * `annotation` -- the optional file with the TextGrid's file path or dataframe with annotations (see the section 5.)
 * `frequency_range` -- the frequency range to be displayed for the spectrogram
 * `dynamic_range` -- values greater than this many dB below the maximum will be displayed in the same color
-* `window_length` -- the desired length in milliseconds for the analysis window 
+* `window_length` -- the desired length in milliseconds for the analysis window
 * `window` -- window type (can be "rectangular", "hann", "hamming", "cosine", "bartlett", "gaussian", and "kaiser")
 * `spectrum_info` -- logical value, if `FALSE` won't print information about spectorgram on the right side of the plot.
 * `output_file` -- the name of the output file
@@ -277,56 +425,118 @@ There are additional parameters:
 
 It is really important in case you have a long file not to draw the whole file, since it won't fit into the RAM of your computer. So you can use `from` and `to` arguments in order to plot the fragment of the sound and annotation:
 
-```{r}
+
+```r
 draw_sound("s1/s1_all.wav",
            "s1/s1_all.TextGrid",
            from = 0.4,
            to = 0.95)
 ```
 
+![plot of chunk unnamed-chunk-33](unnamed-chunk-33-1.png)
+
 It is also possible using the `zoom` argument to show the part of the spectrogram keeping the broader oscilogram context:
 
-```{r}
+
+```r
 draw_sound("s1/s1_all.wav",
            "s1/s1_all.TextGrid",
            zoom = c(0.4, 0.95))
 ```
 
+![plot of chunk unnamed-chunk-34](unnamed-chunk-34-1.png)
+
 If the `output_file` argument is provided, R will save the plot in your directory instead of displaying it.
 
-```{r}
-draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav", 
-           output_file = "s1/s1_tip", 
+
+```r
+draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav",
+           output_file = "s1/s1_tip",
            title = "s1 tip")
+```
+
+
+```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_æ.wav
+## │   │   ├── 2_s1_ı.wav
+## │   │   └── 3_s1_ɒ.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.png
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav
 ```
 
 It is also possible to create visualizations of all sound files in a folder. For this purpose you need to specify a source folder with the argument `sounds_from_folder` and a target folder for the images (`pic_folder_name`). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.
 
-```{r}
-draw_sound(sounds_from_folder = "s1/s1_sounds/", 
+
+```r
+draw_sound(sounds_from_folder = "s1/s1_sounds/",
            pic_folder_name = "s1_pics")
+```
+
+
+```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_pics
+## │   │   ├── 1_s1_æ.png
+## │   │   ├── 2_s1_ı.png
+## │   │   └── 3_s1_ɒ.png
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_æ.wav
+## │   │   ├── 2_s1_ı.wav
+## │   │   └── 3_s1_ɒ.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.png
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav
 ```
 
 It is also possible to use the argument `textgrid_from_folder` in order to specify the folder where .TextGrids for annotation are (could be the same folder as the sound one). By default the `draw_sound()` function with the `sounds_from_folder` argument adds a title with the file name to each pictures' title, but it is possible to turn it off using the argument `title_as_filename = FALSE`.
 
 If you are familiar with the Raven program for bioacoustics, you probably miss an ability to annotate not only time, but also a frequency range. In order to do it you need to create a dataframe with the columns `time_start`, `time_end`, `freq_low` and `freq_high`:
 
-```{r}
-raven_an <- data.frame(time_start = 450, 
-                       time_end  = 520, 
-                       freq_low = 3, 
+
+```r
+raven_an <- data.frame(time_start = 450,
+                       time_end  = 520,
+                       freq_low = 3,
                        freq_high = 4.5)
 
 draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
            raven_annotation = raven_an)
 ```
 
+![plot of chunk unnamed-chunk-39](unnamed-chunk-39-1.png)
+
 It is also possible to use multiple values, colors (adding `colors` column) and annotation (adding `content` column):
 
-```{r}
-raven_an <- data.frame(time_start = c(250, 450), 
-                       time_end  = c(400, 520), 
-                       freq_low = c(1, 3), 
+
+```r
+raven_an <- data.frame(time_start = c(250, 450),
+                       time_end  = c(400, 520),
+                       freq_low = c(1, 3),
                        freq_high = c(2, 4.5),
                        colors = c("red", "blue"),
                        content = c("a", "b"))
@@ -335,67 +545,172 @@ draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
            raven_annotation = raven_an)
 ```
 
+![plot of chunk unnamed-chunk-40](unnamed-chunk-40-1.png)
+
 # Read linguistic files into R
 
 The `phonfieldwork` package provides also several methods for reading different file types into R. This makes it possible to analyze them and convert into `.csv` files (e. g. using the `write.csv()` function). The main advantage of using those functions is that all of them return `data.frame`s with columns (`time_start`, `time_end`, `content` and `source`). This make it easer to use the result in the `draw_sound()` function that make it possible to visualise all kind of sound annotation systems.
 
 * file `.TextGrid` from Praat (just change the `system.file()` function to path to the file); see also [`rPraat`](https://fu.ff.cuni.cz/praat/#rpraat-package-for-r) and [`textgRid`](https://github.com/patrickreidy/textgRid) packages
 
-```{r, eval=TRUE}
+```r
 textgrid_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
+```
+
+```
+##    id time_start   time_end content tier        source
+## 1   1 0.00000000 0.01246583            1 test.TextGrid
+## 6   1 0.00000000 0.01246583            2 test.TextGrid
+## 2   2 0.01246583 0.24781914       t    1 test.TextGrid
+## 7   2 0.01246583 0.24781914            2 test.TextGrid
+## 11  1 0.01246583 0.01246583       t    3 test.TextGrid
+## 3   3 0.24781914 0.39552363       e    1 test.TextGrid
+## 8   3 0.24781914 0.39552363            2 test.TextGrid
+## 12  2 0.24781914 0.24781914       e    3 test.TextGrid
+## 4   4 0.39552363 0.51157715       s    1 test.TextGrid
+## 9   4 0.39552363 0.51157715            2 test.TextGrid
+## 13  3 0.39552363 0.39552363       s    3 test.TextGrid
+## 5   5 0.51157715 0.65267574       t    1 test.TextGrid
+## 10  5 0.51157715 0.65267574            2 test.TextGrid
+## 14  4 0.51157715 0.51157715       t    3 test.TextGrid
 ```
 
 It is possible to read multiple `.TextGrid` files using the `textgrids_from_folder` argument.
 
 * file `.eaf` from ELAN  (just change the `system.file()` function to path to the file); see also the [FRelan](https://github.com/langdoc/FRelan) package by Niko Partanen
 
-```{r, eval=TRUE}
+```r
 eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
+```
+
+```
+##    tier id content       tier_name tier_type time_start time_end   source
+## 9     1  1               intervals     praat      0.000    0.012 test.eaf
+## 10    2  1         empty_intervals     praat      0.000    0.012 test.eaf
+## 11    1  2       t       intervals     praat      0.012    0.248 test.eaf
+## 12    2  2       C empty_intervals     praat      0.012    0.248 test.eaf
+## 1     1  3       e       intervals     praat      0.248    0.396 test.eaf
+## 2     2  3       V empty_intervals     praat      0.248    0.396 test.eaf
+## 3     1  4       s       intervals     praat      0.396    0.512 test.eaf
+## 4     2  4       C empty_intervals     praat      0.396    0.512 test.eaf
+## 5     1  5       t       intervals     praat      0.512    0.652 test.eaf
+## 6     2  5       C empty_intervals     praat      0.512    0.652 test.eaf
+## 7     1  6               intervals     praat      0.652  300.000 test.eaf
+## 8     2  6         empty_intervals     praat      0.652  300.000 test.eaf
 ```
 
 It is possible to read multiple `.eaf` files using the `eafs_from_folder` argument.
 
 * file `.exb` from EXMARaLDA  (just change the `system.file()` function to path to the file)
 
-```{r, eval=TRUE}
+```r
 exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
+```
+
+```
+##   tier id content tier_name tier_type tier_category tier_speaker time_start  time_end   source
+## 3    1  1       t     X [v]         t             v         SPK0 0.06908955 0.2498984 test.exb
+## 1    1  2       e     X [v]         t             v         SPK0 0.24989836 0.3807275 test.exb
+## 5    1  3       s     X [v]         t             v         SPK0 0.38072750 0.4042473 test.exb
+## 7    1  4       t     X [v]         t             v         SPK0 0.40424735 0.6526757 test.exb
+## 4    2  1       C     X [v]         a             v         SPK0 0.06908955 0.2498984 test.exb
+## 2    2  2       V     X [v]         a             v         SPK0 0.24989836 0.3807275 test.exb
+## 6    2  3       C     X [v]         a             v         SPK0 0.38072750 0.4042473 test.exb
+## 8    2  4       C     X [v]         a             v         SPK0 0.40424735 0.6526757 test.exb
 ```
 
 It is possible to read multiple `.exb` files using the `exbs_from_folder` argument.
 
 * subtitles file `.srt` (just change the `system.file()` function to path to the file)
 
-```{r, eval=TRUE}
+
+```r
 srt_to_df(system.file("extdata", "test.srt", package = "phonfieldwork"))
+```
+
+```
+##   id content time_start time_end   source
+## 0  1       t      0.013    0.248 test.srt
+## 1  2       e      0.248    0.396 test.srt
+## 2  3       s      0.396    0.512 test.srt
+## 3  4       t      0.512    0.653 test.srt
 ```
 
 
 * file `.txt` from Audacity
 
-```{r, eval=TRUE}
+
+```r
 audacity_to_df(system.file("extdata", "test_audacity.txt", package = "phonfieldwork"))
+```
+
+```
+##   time_start  time_end content            source
+## 1  0.2319977 0.3953891    sssw test_audacity.txt
 ```
 
 
 * file `.flextext` from FLEx (that is actually is not connected with the main functionality of `phonfieldwork`, but I'd like to have it):
 
-```{r}
-flextext_to_df("files/zilo_test.flextext")
+
+```r
+head(flextext_to_df("files/zilo_test.flextext"))
+```
+
+```
+##   s_id p_id    txt     cf hn     gls                   msa                free_trans
+## 1    1    1     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
+## 2    1    1    ик1    ик1  1    быть                    гл Жил-был (у Гъули?) петух.
+## 3    1    1     -о     -о  1     pst               гл:Past Жил-был (у Гъули?) петух.
+## 4    1    1     -й     -й  5 cvb(pf)    гл:Converb/Perfect Жил-был (у Гъули?) петух.
+## 5    1    1 =гъоди =гъоди  1    =rep                  част Жил-был (у Гъули?) петух.
+## 6    1    1     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
+##                            text_title                                morph
+## 1 2017.04 Fairytale about the rooster d7f713db-e8cf-11d3-9764-00c04f186933
+## 2 2017.04 Fairytale about the rooster d7f713e8-e8cf-11d3-9764-00c04f186933
+## 3 2017.04 Fairytale about the rooster d7f713dd-e8cf-11d3-9764-00c04f186933
+## 4 2017.04 Fairytale about the rooster d7f713dd-e8cf-11d3-9764-00c04f186933
+## 5 2017.04 Fairytale about the rooster d7f713e1-e8cf-11d3-9764-00c04f186933
+## 6 2017.04 Fairytale about the rooster d7f713db-e8cf-11d3-9764-00c04f186933
+##                                   word                               phrase
+## 1 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+## 2 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+## 3 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+## 4 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+## 5 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+## 6 c76d26b7-b84a-42a8-ba34-38e712b1db13 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+##                              paragraph                                 text
+## 1 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+## 2 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+## 3 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+## 4 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+## 5 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+## 6 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
 ```
 
 There is also an additional function for working with the `.flextext` format that convert it to a glossed document in a `docx` or `.html` format (see examples: [`.docx`](https://github.com/agricolamz/phonfieldwork/raw/master/docs/glossed_document.docx), [`.html`](https://agricolamz.github.io/phonfieldwork/glossed_document.html)):
 
-```{r}
-create_glossed_document(flextext = "files/zilo_test.flextext", 
+
+```r
+create_glossed_document(flextext = "files/zilo_test.flextext",
                         output_dir = ".") # you need to specify the path to the output folder
 ```
 
+```
+## Output created: /home/agricolamz/work/packages/phonfieldwork/vignettes/glossed_document.docx
+```
+
+
+
 All those functions (`tier_to_df()`, `textgrid_to_df()`, `eaf_to_df()`, `exb_to_df()`, `audacity_to_df()`, `srt_to_df()`) except `flextext_to_df()` can be used in order to visualise sound annotation:
 
-```{r, eval=TRUE}
-draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwork"), 
+
+```r
+draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwork"),
            annotation = eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork")))
 ```
+
+![plot of chunk unnamed-chunk-49](unnamed-chunk-49-1.png)
 
 # Create a viewer
 
@@ -409,82 +724,231 @@ In order to create a sound viewer you need three things:
 
 We will start with the previous folder structure:
 
-```{bash, echo = FALSE}
-tree | tail -n 25 | head -n 23
+
+```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_pics
+## │   │   ├── 1_s1_æ.png
+## │   │   ├── 2_s1_ı.png
+## │   │   └── 3_s1_ɒ.png
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_æ.wav
+## │   │   ├── 2_s1_ı.wav
+## │   │   └── 3_s1_ɒ.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.png
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav
 ```
 
 We have all folders:
 
-```{r}
+
+```r
 list.files("s1/s1_sounds/") # sounds
+```
+
+```
+## [1] "1_s1_æ.wav" "2_s1_ı.wav" "3_s1_ɒ.wav"
+```
+
+```r
 list.files("s1/s1_pics/") # pictures
+```
+
+```
+## [1] "1_s1_æ.png" "2_s1_ı.png" "3_s1_ɒ.png"
 ```
 
 So what is left is the table. It is possible to create manually (or upload it form .csv or .xlsx files, see section 4.1):
 
-```{r}
+
+```r
 df <- data.frame(word  = c("tap", "tip", "top"),
                  sounds = c("æ", "ı", "ɒ"))
 df
 ```
 
+```
+##   word sounds
+## 1  tap      æ
+## 2  tip      ı
+## 3  top      ɒ
+```
+
 This table could be used in order to create an annotation viewer:
 
-```{r}
+
+```r
 create_viewer(audio_dir = "s1/s1_sounds/",
-              picture_dir = "s1/s1_pics/", 
+              picture_dir = "s1/s1_pics/",
               table = df,
               output_dir = "s1/",
               output_file = "stimuli_viewer")
 ```
 
+```
+## Since the result .html file possibly containes some vulnerable data, researcher(s) bear the whole responsibility for the publishing of the result. Run vignette("ethical_research_with_phonfieldwork") for more details.
+```
+
+```
+## Output created: s1/stimuli_viewer.html
+```
+
 As a result, a `stimuli_viewer.html` was created in the `s1` folder.
+
+
+```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_pics
+## │   │   ├── 1_s1_æ.png
+## │   │   ├── 2_s1_ı.png
+## │   │   └── 3_s1_ɒ.png
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_æ.wav
+## │   │   ├── 2_s1_ı.wav
+## │   │   └── 3_s1_ɒ.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.png
+## │   ├── s1_tip.wav
+## │   ├── s1_top.wav
+## │   └── stimuli_viewer.html
+## └── s2
+##     ├── s2_tap_2.wav
+##     ├── s2_tip_1.wav
+##     └── s2_top_3.wav
+```
 
 You can find the created example [here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html).
 
 Unfortunately, the way of table creation for the annotation viewer presented in this section is not a good solution for the huge amount of sounds. It is possible to derive such a table from annotation TextGrid, that we have created earlier. Here is a TextGrid:
 
-```{r}
+
+```r
 textgrid_to_df("s1/s1_all.TextGrid")
+```
+
+```
+##    id time_start   time_end    content tier          source
+## 1   1 0.00000000 0.42990930        tap    1 s1_all.TextGrid
+## 4   1 0.00000000 0.42990930 s1_tap.wav    2 s1_all.TextGrid
+## 7   1 0.00000000 0.09510719               3 s1_all.TextGrid
+## 8   2 0.09510719 0.20259200          æ    3 s1_all.TextGrid
+## 9   3 0.20259200 0.42990930               3 s1_all.TextGrid
+## 2   2 0.42990930 0.91206349        tip    1 s1_all.TextGrid
+## 5   2 0.42990930 0.91206349 s1_tip.wav    2 s1_all.TextGrid
+## 10  4 0.42990930 0.53544821               3 s1_all.TextGrid
+## 11  5 0.53544821 0.61606182          ı    3 s1_all.TextGrid
+## 12  6 0.61606182 0.91206349               3 s1_all.TextGrid
+## 3   3 0.91206349 1.39421769        top    1 s1_all.TextGrid
+## 6   3 0.91206349 1.39421769 s1_top.wav    2 s1_all.TextGrid
+## 13  7 0.91206349 1.03559934               3 s1_all.TextGrid
+## 14  8 1.03559934 1.13354921          ɒ    3 s1_all.TextGrid
+## 15  9 1.13354921 1.39421769               3 s1_all.TextGrid
 ```
 
 So in order to create desired table we can use `tier_to_df()` function:
 
-```{r}
+
+```r
 t1 <- tier_to_df("s1/s1_all.TextGrid", tier = 1)
 t1
+```
+
+```
+##   id time_start  time_end content
+## 1  1  0.0000000 0.4299093     tap
+## 2  2  0.4299093 0.9120635     tip
+## 3  3  0.9120635 1.3942177     top
+```
+
+```r
 t3 <- tier_to_df("s1/s1_all.TextGrid", tier = 3)
 t3
 ```
 
+```
+##   id time_start   time_end content
+## 1  1 0.00000000 0.09510719        
+## 2  2 0.09510719 0.20259200       æ
+## 3  3 0.20259200 0.42990930        
+## 4  4 0.42990930 0.53544821        
+## 5  5 0.53544821 0.61606182       ı
+## 6  6 0.61606182 0.91206349        
+## 7  7 0.91206349 1.03559934        
+## 8  8 1.03559934 1.13354921       ɒ
+## 9  9 1.13354921 1.39421769
+```
+
 As we see the first tier is ready, but the third tier contains empty annotations. Let's remove them:
 
-```{r}
+
+```r
 t3 <- t3[t3$content != "",]
 t3
 ```
 
+```
+##   id time_start  time_end content
+## 2  2 0.09510719 0.2025920       æ
+## 5  5 0.53544821 0.6160618       ı
+## 8  8 1.03559934 1.1335492       ɒ
+```
+
 So from this point it is possible to create the table that we wanted:
 
-```{r}
+
+```r
 new_df <- data.frame(words = t1$content,
                      sounds = t3$content)
 new_df
 ```
 
+```
+##   words sounds
+## 1   tap      æ
+## 2   tip      ı
+## 3   top      ɒ
+```
+
 So now we are ready to run our code for creating an annotation viewer:
 
-```{r}
+
+```r
 create_viewer(audio_dir = "s1/s1_sounds/",
-              picture_dir = "s1/s1_pics/", 
+              picture_dir = "s1/s1_pics/",
               table = new_df,
               output_dir = "s1/",
               output_file = "stimuli_viewer")
 ```
 
+```
+## Since the result .html file possibly containes some vulnerable data, researcher(s) bear the whole responsibility for the publishing of the result. Run vignette("ethical_research_with_phonfieldwork") for more details.
+```
+
+```
+## Output created: s1/stimuli_viewer.html
+```
+
 By default sorting in the result annotation viewer will be according file names in the system, so if you want to have another default sorting you can specify column names that the result table should be sorted by using the `sorting_columns` argument.
 
-If you are familiar with my package [`lingtypology`](https://ropensci.github.io/lingtypology/) @moroz17 for interactive linguistic map generation and API for typological databases, there is a good news for you: it is possible to connect those two pacakages creating an interactive map that share the same hear and view buttons. In order to do it you need 
+If you are familiar with my package [`lingtypology`](https://ropensci.github.io/lingtypology/) @moroz17 for interactive linguistic map generation and API for typological databases, there is a good news for you: it is possible to connect those two pacakages creating an interactive map that share the same hear and view buttons. In order to do it you need
 
 * to add a `glottocode` column with language glottocodes from [Glottolog](https://glottolog.org/) @hammarstrom2020 to your dataframe with annotation details;
 * install `lingtypology` with a command `install.packages("lingtypology")` if you don't have it installed;
@@ -492,14 +956,23 @@ If you are familiar with my package [`lingtypology`](https://ropensci.github.io/
 
 I will add some glottocodes for Russian, Polish and Czech to the dataframe that we have already worked with (for those data it doesn't make any sense, I just giving an example of usage):
 
-```{r}
+
+```r
 new_df$glottocode <- c("russ1263", "poli1260", "czec1258")
 create_viewer(audio_dir = "s1/s1_sounds/",
-              picture_dir = "s1/s1_pics/", 
+              picture_dir = "s1/s1_pics/",
               table = new_df,
               output_dir = "s1/",
               output_file = "stimuli_viewer2",
               map = TRUE)
+```
+
+```
+## Since the result .html file possibly containes some vulnerable data, researcher(s) bear the whole responsibility for the publishing of the result. Run vignette("ethical_research_with_phonfieldwork") for more details.
+```
+
+```
+## Output created: s1/stimuli_viewer2.html
 ```
 
 [Here](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer2.html) is the result file.

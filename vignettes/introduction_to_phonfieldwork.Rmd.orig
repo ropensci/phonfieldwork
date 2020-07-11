@@ -1,17 +1,13 @@
 ---
-title: "Phonetic fieldwork and experiments with phonfieldwork package"
+title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-output: 
-  html_document:
-    smooth_scroll: false
-    number_sections: true 
-    self_contained: yes
-    df_print: paged
-    toc: yes
-    toc_float: yes
-editor_options: 
-  chunk_output_type: console
+date: "2020-07-11"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include=FALSE}
@@ -96,7 +92,7 @@ Most phonetic research consists of the following steps:
 
 The `phonfieldwork` package is created for helping with items 3, partially with 4, and 5 and 8.
 
-To make the automatic annotation of data easier, I usually record each stimulus as a separate file.  While recording, I carefully listen to my consultants to make sure that they are producing the kind of speech I want: three isolated pronunciations of the same stimulus, separated by a pause and contained in a carrier phrase. In case a speaker does not produce three clear repetitions, I ask them to repeat the task, so that as a result of my fieldwork session I will have: 
+To make the automatic annotation of data easier, I usually record each stimulus as a separate file.  While recording, I carefully listen to my consultants to make sure that they are producing the kind of speech I want: three isolated pronunciations of the same stimulus, separated by a pause and contained in a carrier phrase. In case a speaker does not produce three clear repetitions, I ask them to repeat the task, so that as a result of my fieldwork session I will have:
 * a collection of small soundfiles (video) with the same sampling rate, resolution (bit), and number of channels
 * a list of succesful and unsuccesful attempts to produce a stimulus according to my requirements (usually I keep this list in a regular notebook)
 
@@ -140,12 +136,12 @@ When the list of stimuli is loaded into R, you can create a presentation for eli
 ```{r}
 create_presentation(stimuli = my_stimuli_df$stimuli,
                     output_file = "first_example",
-                    output_dir = getwd()) 
+                    output_dir = getwd())
 ```
 
 As a result, a file "first_example.html" was created in the output folder. You can change the name of this file by changing  the `output_file` argument. The `.html` file now looks as follows:
 
-<iframe src="https://agricolamz.github.io/phonfieldwork/first_example.html" width = 900 height = 700>
+<iframe src="https://agricolamz.github.io/phonfieldwork/first_example.html" width = 800 height = 600>
   <p>Your browser does not support iframes :(</p>
 </iframe>
 
@@ -207,7 +203,7 @@ For now `phonfieldwork` works only with `.wav(e)` and `.mp3` sound files and sev
 After all the files are renamed, you can merge them into one. Remmber that sampling rate, resolution (bit), and number of channels should be the same across all recordings. It is possible to resample files with the `resample()` function from  `biacoustics`.
 
 ```{r}
-concatenate_soundfiles(path = "s1/", 
+concatenate_soundfiles(path = "s1/",
                        result_file_name = "s1_all")
 ```
 
@@ -242,7 +238,7 @@ As you can see in the example, the `annotate_textgrid()` function creates a back
 Imagine that we are interested in annotation of vowels. The most common solution will be open Praat and create new annotations. But it is also possible to create them in advance using subannotations. The idea that you choose some baseline tier that later will be automatically cutted into smaller pieces on the other tier.
 
 ```{r}
-create_subannotation(textgrid = "s1/s1_all.TextGrid", 
+create_subannotation(textgrid = "s1/s1_all.TextGrid",
                      tier = 1, # this is a baseline tier
                      n_of_annotations = 3) # how many empty annotations per unit?
 ```
@@ -256,7 +252,7 @@ Now we can annotate created tier:
 ```{r}
 annotate_textgrid(annotation = c("", "æ", "", "", "ı", "", "", "ɒ", ""),
                   textgrid = "s1/s1_all.TextGrid",
-                  tier = 3, 
+                  tier = 3,
                   backup = FALSE)
 ```
 
@@ -286,7 +282,7 @@ dir.create("s1/s1_sounds")
 It is possible extract to extract all annotated files based on an annotation tier:
 
 ```{r}
-extract_intervals(file_name = "s1/s1_all.wav", 
+extract_intervals(file_name = "s1/s1_all.wav",
                   textgrid = "s1/s1_all.TextGrid",
                   tier = 3,
                   path = "s1/s1_sounds/",
@@ -304,7 +300,7 @@ It is possible to view an oscilogram and spetrogram of any soundfile:
 ```{r}
 draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav")
 ```
-  
+
 There are additional parameters:
 
 * `title` -- the title for the plot
@@ -315,7 +311,7 @@ There are additional parameters:
 * `annotation` -- the optional file with the TextGrid's file path or dataframe with annotations (see the section 5.)
 * `frequency_range` -- the frequency range to be displayed for the spectrogram
 * `dynamic_range` -- values greater than this many dB below the maximum will be displayed in the same color
-* `window_length` -- the desired length in milliseconds for the analysis window 
+* `window_length` -- the desired length in milliseconds for the analysis window
 * `window` -- window type (can be "rectangular", "hann", "hamming", "cosine", "bartlett", "gaussian", and "kaiser")
 * `spectrum_info` -- logical value, if `FALSE` won't print information about spectorgram on the right side of the plot.
 * `output_file` -- the name of the output file
@@ -343,8 +339,8 @@ draw_sound("s1/s1_all.wav",
 If the `output_file` argument is provided, R will save the plot in your directory instead of displaying it.
 
 ```{r}
-draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav", 
-           output_file = "s1/s1_tip", 
+draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav",
+           output_file = "s1/s1_tip",
            title = "s1 tip")
 ```
 
@@ -355,7 +351,7 @@ tree | tail -n 21 | head -n 19
 It is also possible to create visualizations of all sound files in a folder. For this purpose you need to specify a source folder with the argument `sounds_from_folder` and a target folder for the images (`pic_folder_name`). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.
 
 ```{r}
-draw_sound(sounds_from_folder = "s1/s1_sounds/", 
+draw_sound(sounds_from_folder = "s1/s1_sounds/",
            pic_folder_name = "s1_pics")
 ```
 
@@ -368,9 +364,9 @@ It is also possible to use the argument `textgrid_from_folder` in order to speci
 If you are familiar with the Raven program for bioacoustics, you probably miss an ability to annotate not only time, but also a frequency range. In order to do it you need to create a dataframe with the columns `time_start`, `time_end`, `freq_low` and `freq_high`:
 
 ```{r}
-raven_an <- data.frame(time_start = 450, 
-                       time_end  = 520, 
-                       freq_low = 3, 
+raven_an <- data.frame(time_start = 450,
+                       time_end  = 520,
+                       freq_low = 3,
                        freq_high = 4.5)
 
 draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
@@ -380,9 +376,9 @@ draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
 It is also possible to use multiple values, colors (adding `colors` column) and annotation (adding `content` column):
 
 ```{r}
-raven_an <- data.frame(time_start = c(250, 450), 
-                       time_end  = c(400, 520), 
-                       freq_low = c(1, 3), 
+raven_an <- data.frame(time_start = c(250, 450),
+                       time_end  = c(400, 520),
+                       freq_low = c(1, 3),
                        freq_high = c(2, 4.5),
                        colors = c("red", "blue"),
                        content = c("a", "b"))
@@ -433,13 +429,13 @@ audacity_to_df(system.file("extdata", "test_audacity.txt", package = "phonfieldw
 * file `.flextext` from FLEx (that is actually is not connected with the main functionality of `phonfieldwork`, but I'd like to have it):
 
 ```{r}
-flextext_to_df("files/zilo_test.flextext")
+head(flextext_to_df("files/zilo_test.flextext"))
 ```
 
 There is also an additional function for working with the `.flextext` format that convert it to a glossed document in a `docx` or `.html` format (see examples: [`.docx`](https://github.com/agricolamz/phonfieldwork/raw/master/docs/glossed_document.docx), [`.html`](https://agricolamz.github.io/phonfieldwork/glossed_document.html)):
 
 ```{r}
-create_glossed_document(flextext = "files/zilo_test.flextext", 
+create_glossed_document(flextext = "files/zilo_test.flextext",
                         output_dir = ".") # you need to specify the path to the output folder
 ```
 
@@ -450,7 +446,7 @@ file.copy("files/glossed_document.html", to = "glossed_document.html", overwrite
 All those functions (`tier_to_df()`, `textgrid_to_df()`, `eaf_to_df()`, `exb_to_df()`, `audacity_to_df()`, `srt_to_df()`) except `flextext_to_df()` can be used in order to visualise sound annotation:
 
 ```{r}
-draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwork"), 
+draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwork"),
            annotation = eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork")))
 ```
 
@@ -489,7 +485,7 @@ This table could be used in order to create an annotation viewer:
 
 ```{r}
 create_viewer(audio_dir = "s1/s1_sounds/",
-              picture_dir = "s1/s1_pics/", 
+              picture_dir = "s1/s1_pics/",
               table = df,
               output_dir = "s1/",
               output_file = "stimuli_viewer")
@@ -537,7 +533,7 @@ So now we are ready to run our code for creating an annotation viewer:
 
 ```{r}
 create_viewer(audio_dir = "s1/s1_sounds/",
-              picture_dir = "s1/s1_pics/", 
+              picture_dir = "s1/s1_pics/",
               table = new_df,
               output_dir = "s1/",
               output_file = "stimuli_viewer")
@@ -545,7 +541,7 @@ create_viewer(audio_dir = "s1/s1_sounds/",
 
 By default sorting in the result annotation viewer will be according file names in the system, so if you want to have another default sorting you can specify column names that the result table should be sorted by using the `sorting_columns` argument.
 
-If you are familiar with my package [`lingtypology`](https://ropensci.github.io/lingtypology/) @moroz17 for interactive linguistic map generation and API for typological databases, there is a good news for you: it is possible to connect those two pacakages creating an interactive map that share the same hear and view buttons. In order to do it you need 
+If you are familiar with my package [`lingtypology`](https://ropensci.github.io/lingtypology/) @moroz17 for interactive linguistic map generation and API for typological databases, there is a good news for you: it is possible to connect those two pacakages creating an interactive map that share the same hear and view buttons. In order to do it you need
 
 * to add a `glottocode` column with language glottocodes from [Glottolog](https://glottolog.org/) @hammarstrom2020 to your dataframe with annotation details;
 * install `lingtypology` with a command `install.packages("lingtypology")` if you don't have it installed;
@@ -556,7 +552,7 @@ I will add some glottocodes for Russian, Polish and Czech to the dataframe that 
 ```{r}
 new_df$glottocode <- c("russ1263", "poli1260", "czec1258")
 create_viewer(audio_dir = "s1/s1_sounds/",
-              picture_dir = "s1/s1_pics/", 
+              picture_dir = "s1/s1_pics/",
               table = new_df,
               output_dir = "s1/",
               output_file = "stimuli_viewer2",

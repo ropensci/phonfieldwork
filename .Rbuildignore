@@ -15,3 +15,14 @@ codemeta.json
 ^ignore.*
 ^doc$
 ^Meta$
+^vignettes/s1.*
+^vignettes/s2.*
+^vignettes/files.*
+^vignettes/my_stimuli_df.csv
+^vignettes/my_stimuli_df.xlsx
+^vignettes/first_example\.html
+^vignettes/glossed_document\.html
+^vignettes/glossed_document\.docx
+^_pkgdown\.yml$
+^pkgdown$
+^vignettes/compile_vignettes_and_site.R
