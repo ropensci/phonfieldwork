@@ -23,7 +23,9 @@
 #' @param raven_annotation Raven (Center for Conservation Bioacoustics) style annotations (boxes over spectrogram). The dataframe that contains \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high} columns. Optional columns are \code{colors} and \code{content}.
 #'
 #' @examples
-#' \dontrun{draw_spectrogram(system.file("extdata", "test.wav", package = "phonfieldwork"))}
+#' \dontrun{
+#' draw_spectrogram(system.file("extdata", "test.wav", package = "phonfieldwork"))
+#' }
 #'
 #' @export
 #'
@@ -154,7 +156,7 @@ draw_spectrogram <- function (sound,
                   xlab = "",
                   ylab = "")
   graphics::axis(2, cex.axis=text_size, las=1)
-  graphics::title(ylab = paste0("Frequency (", freq_scale, ")"))
+  graphics::title(ylab = paste0("Frequency (", freq_scale, ")"), cex.lab = 0.7)
   if(spectrum_info){
   graphics::mtext(text = paste0(toupper(substring(window, 1, 1)),
                       tolower(substring(window, 2, nchar(window))),
@@ -169,7 +171,7 @@ draw_spectrogram <- function (sound,
   }
   if(x_axis){
     graphics::axis(1, cex.axis=text_size, las=1)
-    graphics::title(xlab = "Time (s)")
+    graphics::title(xlab = "time (ms)")
   }
   if(!is.null(raven_annotation)){
     if(is.null(raven_annotation$colors)){

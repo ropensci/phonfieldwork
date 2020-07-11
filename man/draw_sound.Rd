@@ -22,6 +22,8 @@ draw_sound(
   preemphasisf = 50,
   spectrum_info = TRUE,
   raven_annotation = NULL,
+  pitch = NULL,
+  pitch_range = c(75, 350),
   output_width = 750,
   output_height = 500,
   output_units = "px",
@@ -101,6 +103,11 @@ draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"))
 
 draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
            system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
+
+draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
+           system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+           pitch = system.file("extdata", "test.Pitch", package = "phonfieldwork"),
+           pitch_range = c(50, 200))
 }
 }
 \author{

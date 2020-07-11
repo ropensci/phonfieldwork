@@ -10,6 +10,9 @@
 #'
 #' @return a dataframe with columns:  \code{time_start}, \code{time_end}, \code{frequency} and, if \code{candidates} = \code{"all"}, \code{candidate_id} and \code{strength}
 #'
+#' @examples
+#' pitch_to_df(system.file("extdata", "test.Pitch", package = "phonfieldwork"))
+#'
 #' @export
 #'
 

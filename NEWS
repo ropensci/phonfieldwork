@@ -1,4 +1,5 @@
-phonfieldwork 0.0.7 (10.07.2020)
+phonfieldwork 0.0.8 (11.07.2020)
+  - add the "picth" and "pitch_range" arguments to the "draw_sound()" function
   - add the "picth_to_df()" function
 
 phonfieldwork 0.0.7 (10.07.2020)
@@ -6,7 +7,7 @@ phonfieldwork 0.0.7 (10.07.2020)
   - add an argument "textgrids_from_folder" to the "textgrid_to_df()" function
   - add an argument "exbs_from_folder" to the "exb_to_df()" function
   - add an argument "eafs_from_folder" to the "eaf_to_df()" function
-  - add Raven style annotations
+  - add Raven style annotations8
   - replace freqmax with frequency_range argument
   - replace example_textgrid with systemfile() call
   - add window annotation to spectrograms

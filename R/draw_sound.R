@@ -40,6 +40,11 @@
 #'
 #' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
 #'            system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
+#'
+#' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
+#'            system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+#'            pitch = system.file("extdata", "test.Pitch", package = "phonfieldwork"),
+#'            pitch_range = c(50, 200))
 #' }
 #' @export
 #'
@@ -77,6 +82,8 @@ draw_sound <- function(file_name,
                        preemphasisf = 50,
                        spectrum_info = TRUE,
                        raven_annotation = NULL,
+                       pitch = NULL,
+                       pitch_range = c(75, 350),
                        output_width = 750,
                        output_height = 500,
                        output_units = "px",
@@ -136,7 +143,7 @@ draw_sound <- function(file_name,
       title_space <- ifelse(is.null(title), 0, 2)
 
       # plot oscilogram ---------------------------------------------------------
-      low_boundary <- ifelse(is.null(zoom), 0.75, 0.83)
+      low_boundary <- ifelse(is.null(zoom), 0.83, 0.91)
 
       graphics::par(oma=c(0, 0,title_space,0),
                     mai=c(0, 0.8, 0, 0.2),
@@ -164,8 +171,18 @@ draw_sound <- function(file_name,
         graphics::axis(1, las=1)
       }
       # plot spectrogram --------------------------------------------------------
-      low_boundary <- ifelse(is.null(annotation), 0.1, 0.27)
-      graphics::par(fig=c(0, 0.97, low_boundary, 0.75), new=TRUE)
+
+      if(is.null(annotation) & is.null(pitch)){
+        low_boundary <- 0.1
+      } else if(is.null(annotation) & !is.null(pitch)){
+        low_boundary <- 0.1 + 0.17
+      } else if(!is.null(annotation) & is.null(pitch)){
+        low_boundary <- 0.1 + 0.17
+      } else if(!is.null(annotation) & !is.null(pitch)){
+        low_boundary <- 0.1 + 0.17 + 0.17
+      }
+
+      graphics::par(fig=c(0, 0.97, low_boundary, 0.83), new=TRUE)
       if(!is.null(zoom)){
         for_spectrum <- tuneR::extractWave(s,
                                            from = zoom[1],
@@ -186,11 +203,57 @@ draw_sound <- function(file_name,
                        preemphasisf = preemphasisf,
                        spectrum_info = spectrum_info,
                        raven_annotation = raven_annotation,
-                       x_axis = is.null(annotation))
+                       x_axis = low_boundary == 0.1)
+
+
+      # plot pitch --------------------------------------------------------------
+      if(is.null(annotation) & !is.null(pitch)){
+        upper_boundary <- 0.1 + 0.17
+        low_boundary <- 0.1
+      } else if(!is.null(annotation) & is.null(pitch)){
+        upper_boundary <- 0.1 + 0.17
+        low_boundary <- 0.1
+      } else if(!is.null(annotation) & !is.null(pitch)){
+        upper_boundary <- 0.1 + 0.17 + 0.17
+        low_boundary <- 0.1+ 0.17
+      }
+
+      if(!is.null(pitch)){
+        graphics::par(fig=c(0, 0.97, low_boundary, upper_boundary), new=TRUE)
+        if(class(pitch) != "data.frame"){
+          pitch <- phonfieldwork::pitch_to_df(pitch)
+        }
+
+        graphics::plot(pitch$time_start*1000, pitch$frequency,
+             ylim = c(pitch_range[1], pitch_range[2]+pitch_range[2]/10),
+             type = "l",
+             lwd = 1.5,
+             cex = 0,
+             xaxt='n',
+             yaxt='n',
+             ylab = "Frequency (Hz)",
+             xlab = "",
+             las=1,
+             xaxs="i",
+             yaxs="i",
+             cex.lab = 0.7)
+
+        values <- c(pitch_range[1],
+                    floor(seq(pitch_range[1],
+                              pitch_range[2],
+                              length.out = 4)[-c(1, 4)]/10)*10,
+                    pitch_range[2])
+        graphics::axis(2, cex.axis=text_size, las=1, at = values)
+        if(low_boundary == 0.1){
+          graphics::axis(1, cex.axis=text_size)
+          graphics::title(xlab = "time (ms)", cex.lab = 0.7)
+        }
+      }
 
       # plot textgrid -----------------------------------------------------------
       if(!is.null(annotation)){
-        graphics::par(fig=c(0, 0.97, 0.1, 0.27), new=TRUE)
+
+        graphics::par(fig=c(0, 0.97, 0.1, 0.1 + 0.17), new=TRUE)
 
         if(class(annotation) != "data.frame"){
           df <- phonfieldwork::textgrid_to_df(annotation)
@@ -258,7 +321,7 @@ draw_sound <- function(file_name,
              cex = 0,
              yaxt='n',
              xaxt='n',
-             xlab = "time(ms)",
+             xlab = "time (ms)",
              ylab = "",
              xaxs="i")
         graphics::abline(h = unique(df$tier)[-length(unique(df$tier))]-0.5)

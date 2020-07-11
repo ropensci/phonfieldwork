@@ -63,7 +63,9 @@ draw_spectrogram(
 This function was slightly changed from \code{phonTools::spectrogram()}. Argument description is copied from \code{phonTools::spectrogram()}.
 }
 \examples{
-\dontrun{draw_spectrogram(system.file("extdata", "test.wav", package = "phonfieldwork"))}
+\dontrun{
+draw_spectrogram(system.file("extdata", "test.wav", package = "phonfieldwork"))
+}
 
 }
 \author{
