@@ -1,0 +1,11 @@
+pandoc: 2.7.3
+pkgdown: 1.5.1
+pkgdown_sha: ~
+articles:
+  ethical_research_with_phonfieldwork: ethical_research_with_phonfieldwork.html
+  phonfieldwork: phonfieldwork.html
+last_built: 2020-07-11T13:08Z
+urls:
+  reference: https://agricolamz.github.io/phonfieldwork//reference
+  article: https://agricolamz.github.io/phonfieldwork//articles
+
