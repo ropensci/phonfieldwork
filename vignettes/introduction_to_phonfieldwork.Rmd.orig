@@ -309,10 +309,12 @@ There are additional parameters:
 * `zoom` -- time in seconds for zooming spectrogram
 * `text_size` -- size of the text on the plot
 * `annotation` -- the optional file with the TextGrid's file path or dataframe with annotations (see the section 5.)
+* `freq_scale` -- the measure of the frequency: can be "Hz" or "kHz".
 * `frequency_range` -- the frequency range to be displayed for the spectrogram
 * `dynamic_range` -- values greater than this many dB below the maximum will be displayed in the same color
 * `window_length` -- the desired length in milliseconds for the analysis window
 * `window` -- window type (can be "rectangular", "hann", "hamming", "cosine", "bartlett", "gaussian", and "kaiser")
+* `preemphasisf` -- Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis (important for bioacoustics), set to a 0.
 * `spectrum_info` -- logical value, if `FALSE` won't print information about spectorgram on the right side of the plot.
 * `output_file` -- the name of the output file
 * `output_width` -- the width of the device

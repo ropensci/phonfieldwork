@@ -375,6 +375,8 @@ Your browser does not support iframes :(
 <li>
 <code>annotation</code> – the optional file with the TextGrid’s file path or dataframe with annotations (see the section 5.)</li>
 <li>
+<code>freq_scale</code> – the measure of the frequency: can be “Hz” or “kHz”.</li>
+<li>
 <code>frequency_range</code> – the frequency range to be displayed for the spectrogram</li>
 <li>
 <code>dynamic_range</code> – values greater than this many dB below the maximum will be displayed in the same color</li>
@@ -382,6 +384,8 @@ Your browser does not support iframes :(
 <code>window_length</code> – the desired length in milliseconds for the analysis window</li>
 <li>
 <code>window</code> – window type (can be “rectangular”, “hann”, “hamming”, “cosine”, “bartlett”, “gaussian”, and “kaiser”)</li>
+<li>
+<code>preemphasisf</code> – Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis (important for bioacoustics), set to a 0.</li>
 <li>
 <code>spectrum_info</code> – logical value, if <code>FALSE</code> won’t print information about spectorgram on the right side of the plot.</li>
 <li>
