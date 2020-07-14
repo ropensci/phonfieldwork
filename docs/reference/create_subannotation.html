@@ -155,7 +155,8 @@
     </tr>
     <tr>
       <th>tier</th>
-      <td><p>value that could be either ordinal number of the tier either name of the tier</p></td>
+      <td><p>value that could be either ordinal number of the tier either name
+of the tier</p></td>
     </tr>
     <tr>
       <th>new_tier_name</th>
@@ -167,15 +168,18 @@
     </tr>
     <tr>
       <th>each</th>
-      <td><p>non-negative integer. Each new blank annotation is repeated every first, second or ... times</p></td>
+      <td><p>non-negative integer. Each new blank annotation is repeated every
+first, second or ... times</p></td>
     </tr>
     <tr>
       <th>omit_blank</th>
-      <td><p>logical. If TRUE (by dafault) it doesn't create subannotation for empy annotations.</p></td>
+      <td><p>logical. If TRUE (by dafault) it doesn't create
+subannotation for empy annotations.</p></td>
     </tr>
     <tr>
       <th>overwrite</th>
-      <td><p>logical. If TRUE (by dafault) it overwrites an existing tier.</p></td>
+      <td><p>logical. If TRUE (by dafault) it overwrites an existing
+tier.</p></td>
     </tr>
     <tr>
       <th>encoding</th>
@@ -185,11 +189,13 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a string that contain TextGrid. If argument write is <code>TRUE</code>, then no output.</p>
+    <p>a string that contain TextGrid. If argument write is <code>TRUE</code>,
+then no output.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>create_subannotation</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>),
-<span class='kw'>tier</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;   [1] "File type = \"ooTextFile\""                
+    <pre class="examples"><div class='input'><span class='fu'>create_subannotation</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>,
+                                 <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>),
+                     <span class='kw'>tier</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;   [1] "File type = \"ooTextFile\""                
 #&gt;   [2] "Object class = \"TextGrid\""               
 #&gt;   [3] ""                                          
 #&gt;   [4] "xmin = 0 "                                 

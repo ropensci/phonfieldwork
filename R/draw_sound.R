@@ -8,31 +8,59 @@
 #' @param annotation a source for annotation files (e. g. TextGrid)
 #' @param from Time in seconds at which to start extraction.
 #' @param to Time in seconds at which to stop extraction.
-#' @param zoom numeric vector of zoom window time (in seconds). It will draw the whole oscilogram and part of the spectrogram.
+#' @param zoom numeric vector of zoom window time (in seconds). It will draw
+#' the whole oscilogram and part of the spectrogram.
 #' @param text_size numeric, text size (default = 1).
 #' @param title the title for the plot
-#' @param freq_scale a string indicating the type of frequency scale. Supported types are: "Hz" and "kHz".
-#' @param spectrum_info logical. If \code{TRUE} then add information about windo method and params.
-#' @param preemphasisf Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.
-#' @param frequency_range vector with the range of frequencies to be displayed for the spectrogram up to a maximum of fs/2. By default this is set to 0-5 kHz.
-#' @param dynamic_range values greater than this many dB below the maximum will be displayed in the same color
+#' @param freq_scale a string indicating the type of frequency scale.
+#' Supported types are: "Hz" and "kHz".
+#' @param spectrum_info logical. If \code{TRUE} then add information about
+#' window method and params.
+#' @param preemphasisf Preemphasis of 6 dB per octave is added to frequencies
+#' above the specified frequency. For no preemphasis, set to a frequency higher
+#' than the sampling frequency.
+#' @param frequency_range vector with the range of frequencies to be displayed
+#' for the spectrogram up to a maximum of fs/2. By default this is set to 0-5
+#' kHz.
+#' @param dynamic_range values greater than this many dB below the maximum will
+#' be displayed in the same color
 #' @param window_length the desired analysis window length in milliseconds.
-#' @param window A string indicating the type of window desired. Supported types are: "rectangular", "hann", "hamming", "cosine", "bartlett", "gaussian", and "kaiser".
-#' @param windowparameter The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.
-#' @param pitch path to the Praat `.Pitch` file or result of pitch_to_df() function. This variable provide data for visualisation a pitch contour exported from Praat.
-#' @param pitch_range vector with the range of frequencies to be displayed. By default this is set to 75-350 Hz.
+#' @param window A string indicating the type of window desired. Supported types
+#' are: "rectangular", "hann", "hamming", "cosine", "bartlett", "gaussian", and
+#' "kaiser".
+#' @param windowparameter The parameter necessary to generate the window, if
+#' appropriate. At the moment, the only windows that require parameters are the
+#' Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and
+#' 0.4 for gaussian windows.
+#' @param pitch path to the Praat `.Pitch` file or result of pitch_to_df()
+#' function. This variable provide data for visualisation a pitch contour
+#' exported from Praat.
+#' @param pitch_range vector with the range of frequencies to be displayed.
+#' By default this is set to 75-350 Hz.
 #' @param output_file the name of the output file
 #' @param output_width the width of the device
 #' @param output_height the height of the device
-#' @param output_units the units in which height and width are given. Can be "px" (pixels, the default), "in" (inches), "cm" or "mm".
-#' @param sounds_from_folder path to a folder with multiple sound files. If this argument is not \code{NULL}, then the function goes through all files and creates picture for all of them.
-#' @param textgrids_from_folder path to a folder with multiple .TextGrid files. If this argument is not \code{NULL}, then the function goes through all files and create picture for all of them.
-#' @param pic_folder_name name for a folder, where all pictures will be stored in case \code{sounds_from_folder} argument is not \code{NULL}
+#' @param output_units the units in which height and width are given.
+#' Can be "px" (pixels, the default), "in" (inches), "cm" or "mm".
+#' @param sounds_from_folder path to a folder with multiple sound files.
+#' If this argument is not \code{NULL}, then the function goes through all
+#' files and creates picture for all of them.
+#' @param textgrids_from_folder path to a folder with multiple .TextGrid files.
+#' If this argument is not \code{NULL}, then the function goes through all files
+#' and create picture for all of them.
+#' @param pic_folder_name name for a folder, where all pictures will be stored
+#' in case \code{sounds_from_folder} argument is not \code{NULL}
 #' @param title_as_filename logical. If true adds filename title to each picture
-#' @param prefix prefix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}
-#' @param suffix suffix for all file names for created pictures in case \code{sounds_from_folder} argument is not \code{NULL}
-#' @param autonumber if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.
-#' @param raven_annotation Raven (Center for Conservation Bioacoustics) style annotations (boxes over spectrogram). The dataframe that contains \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high} columns. Optional columns are \code{colors} and \code{content}.
+#' @param prefix prefix for all file names for created pictures in case
+#' \code{sounds_from_folder} argument is not \code{NULL}
+#' @param suffix suffix for all file names for created pictures in case
+#' \code{sounds_from_folder} argument is not \code{NULL}
+#' @param autonumber if TRUE automatically add number of extracted sound to the
+#' file_name. Prevents from creating a duplicated files and wrong sorting.
+#' @param raven_annotation Raven (Center for Conservation Bioacoustics) style
+#' annotations (boxes over spectrogram). The dataframe that contains
+#' \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high}
+#' columns. Optional columns are \code{colors} and \code{content}.
 #'
 #' @return Oscilogram and spectrogram plot (and possibly TextGrid annotation).
 #'
@@ -41,12 +69,14 @@
 #' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"))
 #'
 #' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
-#'            system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
+#'            system.file("extdata", "test.TextGrid",
+#'                        package = "phonfieldwork"))
 #'
-#' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
-#'            system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
-#'            pitch = system.file("extdata", "test.Pitch", package = "phonfieldwork"),
-#'            pitch_range = c(50, 200))
+# draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
+#            system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+#            pitch = system.file("extdata", "test.Pitch",
+#                                package = "phonfieldwork"),
+#            pitch_range = c(50, 200))
 #' }
 #' @export
 #'
@@ -113,7 +143,8 @@ draw_sound <- function(file_name,
           graphics::par(oma=c(0,0,0,0),
                         mai=c(1.02, 0.82, 0.82, 0.42),
                         fig=c(0,1,0,1))
-          stop("The draw_sound() functions works only with .wav(e) or .mp3 formats")
+          stop("The draw_sound() functions works only with .wav(e) or
+               .mp3 formats")
         }
       }
 
@@ -141,10 +172,10 @@ draw_sound <- function(file_name,
 
       s <- tuneR::extractWave(s, from = from, to = to, xunit = "time")
 
-      # if there is no title no need to have a space for it ---------------------
+# if there is no title no need to have a space for it ---------------------
       title_space <- ifelse(is.null(title), 0, 2)
 
-      # plot oscilogram ---------------------------------------------------------
+# plot oscilogram ---------------------------------------------------------
       low_boundary <- ifelse(is.null(zoom), 0.83, 0.91)
 
       graphics::par(oma=c(0, 0,title_space,0),
@@ -172,7 +203,7 @@ draw_sound <- function(file_name,
                        col= grDevices::rgb(0,0,0.5,alpha=0.05))
         graphics::axis(1, las=1)
       }
-      # plot spectrogram --------------------------------------------------------
+# plot spectrogram --------------------------------------------------------
 
       if(is.null(annotation) & is.null(pitch)){
         low_boundary <- 0.1
@@ -208,7 +239,7 @@ draw_sound <- function(file_name,
                        x_axis = low_boundary == 0.1)
 
 
-      # plot pitch --------------------------------------------------------------
+# plot pitch --------------------------------------------------------------
       if(is.null(annotation) & !is.null(pitch)){
         upper_boundary <- 0.1 + 0.17
         low_boundary <- 0.1
@@ -252,7 +283,7 @@ draw_sound <- function(file_name,
         }
       }
 
-      # plot textgrid -----------------------------------------------------------
+# plot textgrid -----------------------------------------------------------
       if(!is.null(annotation)){
 
         graphics::par(fig=c(0, 0.97, 0.1, 0.1 + 0.17), new=TRUE)
@@ -267,7 +298,8 @@ draw_sound <- function(file_name,
           graphics::par(oma=c(0,0,0,0),
                         mai=c(1.02, 0.82, 0.82, 0.42),
                         fig=c(0,1,0,1))
-          stop('data.frame that you provide to annotation argument should contain "time_start", "time_end" and "content" columns')
+          stop('data.frame that you provide to annotation argument should
+               contain "time_start", "time_end" and "content" columns')
         }
 
         if(!("tier" %in% names(df))){
@@ -286,7 +318,9 @@ draw_sound <- function(file_name,
         df$time_start <- (df$time_start-from)*1000
         df$time_end <- (df$time_end-from)*1000
 
-        # in case annotation exceed the length of the  sound, change it value to sound length
+# in case annotation exceed the length of the sound,
+# change its value to sound length
+
         df$time_end <- ifelse(
           df$time_start < length(for_spectrum@left)/for_spectrum@samp.rate*1000 &
             df$time_end > length(for_spectrum@left)/for_spectrum@samp.rate*1000,
@@ -318,7 +352,8 @@ draw_sound <- function(file_name,
         df$tier <- -df$tier
         graphics::plot(x = df$mid_point,
              y = df$fake_y,
-             xlim = c(df$time_start[1], length(for_spectrum@left)/for_spectrum@samp.rate*1000),
+             xlim = c(df$time_start[1],
+                      length(for_spectrum@left)/for_spectrum@samp.rate*1000),
              ylim = range(df$tier)+c(-0.4, 0.4),
              cex = 0,
              yaxt='n',
@@ -338,12 +373,12 @@ draw_sound <- function(file_name,
                        cex = text_size)
         graphics::axis(1, cex.axis=text_size)
       }
-      # reset graphical parameters to default -----------------------------------
+# reset graphical parameters to default -----------------------------------
       graphics::par(oma=c(0,0,0,0),
                     mai=c(1.02, 0.82, 0.82, 0.42),
                     fig=c(0,1,0,1))
     } else {
-      # save a file -------------------------------------------------------------
+# save a file -------------------------------------------------------------
       grDevices::png(filename = paste0(output_file, ".png"),
                      width = output_width,
                      height = output_height,
@@ -367,9 +402,9 @@ draw_sound <- function(file_name,
                  output_file = NULL)
       supress_message <- grDevices::dev.off()
     }
-    # in case of multuple files -----------------------------------------------
+# in case of multuple files -----------------------------------------------
   } else {
-    # get a correct picture folder path ---------------------------------------
+# get a correct picture folder path ---------------------------------------
     sounds_from_folder <- normalizePath(sounds_from_folder)
     if(!is.null(textgrids_from_folder)){
       textgrids_from_folder <- normalizePath(textgrids_from_folder)
@@ -378,17 +413,18 @@ draw_sound <- function(file_name,
     cut <- unlist(gregexpr("/", sounds_from_folder))[length(slashes)]
     pic_path <- paste0(substr(sounds_from_folder, 1, cut), pic_folder_name)
 
-    # create a directory if it is not exists ----------------------------------
+# create a directory if it is not exists ----------------------------------
     if(!dir.exists(pic_path)){
       dir.create(pic_path)
     }
 
-    # get list of sounds and future pictures ----------------------------------
+# get list of sounds and future pictures ----------------------------------
     sounds <- paste0(sounds_from_folder,
                      "/",
                      list.files(
                        sounds_from_folder,
-                       pattern = "(\\.WAVE?$)|(\\.wave?$)|(\\.MP3?$)|(\\.mp3?$)"))
+                       pattern = "(\\.WAVE?$)|(\\.wave?$)|(\\.MP3?$)|
+                       (\\.mp3?$)"))
 
     if(!is.null(textgrids_from_folder)){
       textgrids <- paste0(sounds_from_folder,
@@ -400,7 +436,7 @@ draw_sound <- function(file_name,
     }
 
     if(isTRUE(autonumber)){
-      prefix <- paste0(phonfieldwork::add_leading_symbols(1:length(sounds)),
+      prefix <- paste0(phonfieldwork::add_leading_symbols(seq_along(sounds)),
                        "_", prefix)
     }
 

@@ -1,15 +1,18 @@
 #' Extract intervals
 #'
-#' Extract sound according to non-empty annotated intervals from TextGrid and create soundfiles with correspondent names.
+#' Extract sound according to non-empty annotated intervals from TextGrid and
+#' create soundfiles with correspondent names.
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name path to the soundfile
 #' @param textgrid path to the TextGrid
-#' @param tier tier number or name that should be used as base for extraction and names
+#' @param tier tier number or name that should be used as base for extraction
+#' and names
 #' @param prefix character vector containing prefix(es) for file names
 #' @param suffix character vector containing suffix(es) for file names
-#' @param autonumber if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.
+#' @param autonumber if TRUE automatically add number of extracted sound to the
+#' file_name. Prevents from creating a duplicated files and wrong sorting.
 #' @param path path to the directory where create extracted soundfiles.
 #' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
@@ -22,7 +25,8 @@
 #'
 #' # Extract intervals according the TextGrid into the path
 #' extract_intervals(file_name = paste0(tdir, "/test.wav"),
-#'                   textgrid = system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+#'                   textgrid = system.file("extdata", "test.TextGrid",
+#'                                          package = "phonfieldwork"),
 #'                   path = tdir)
 #'
 #' list.files(tdir)
@@ -66,7 +70,8 @@ extract_intervals <- function(file_name,
   starts <- tg_df[tg_df$content != "", "time_start"]
   ends <- tg_df[tg_df$content != "", "time_end"]
   if(isTRUE(autonumber)){
-    prefix <- paste0(add_leading_symbols(1:nrow(tg_df)), "_", prefix)
+    prefix <- paste0(add_leading_symbols(seq_along(tg_df$time_start)), "_",
+                     prefix)
   }
   annotations <- paste0(prefix,
                         tg_df[tg_df$content != "", "content"],

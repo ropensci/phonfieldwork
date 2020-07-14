@@ -18,29 +18,35 @@ create_subannotation(
 \arguments{
 \item{textgrid}{character with a filename or path to the TextGrid}
 
-\item{tier}{value that could be either ordinal number of the tier either name of the tier}
+\item{tier}{value that could be either ordinal number of the tier either name
+of the tier}
 
 \item{new_tier_name}{a name of a new created tier}
 
 \item{n_of_annotations}{number of new annotations per annotation to create}
 
-\item{each}{non-negative integer. Each new blank annotation is repeated every first, second or ... times}
+\item{each}{non-negative integer. Each new blank annotation is repeated every
+first, second or ... times}
 
-\item{omit_blank}{logical. If TRUE (by dafault) it doesn't create subannotation for empy annotations.}
+\item{omit_blank}{logical. If TRUE (by dafault) it doesn't create
+subannotation for empy annotations.}
 
-\item{overwrite}{logical. If TRUE (by dafault) it overwrites an existing tier.}
+\item{overwrite}{logical. If TRUE (by dafault) it overwrites an existing
+tier.}
 
 \item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
-a string that contain TextGrid. If argument write is \code{TRUE}, then no output.
+a string that contain TextGrid. If argument write is \code{TRUE},
+then no output.
 }
 \description{
 Create boundaries in a texgrid tier
 }
 \examples{
-create_subannotation(system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
-tier = 1, overwrite = FALSE)
+create_subannotation(system.file("extdata", "test.TextGrid",
+                                 package = "phonfieldwork"),
+                     tier = 1, overwrite = FALSE)
 
 }
 \author{

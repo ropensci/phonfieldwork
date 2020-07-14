@@ -5,8 +5,12 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name string with a filename or path to the .exb file
-#' @param exbs_from_folder path to a folder with multiple .exb files. If this argument is not \code{NULL}, then the function goes through all files and create a merged dataframe for all of them.
-#' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{tier_category}, \code{tier_speaker}, \code{time_start}, \code{time_end}, \code{source}.
+#' @param exbs_from_folder path to a folder with multiple .exb files.
+#' If this argument is not \code{NULL}, then the function goes through all
+#' files and create a merged dataframe for all of them.
+#' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content},
+#' \code{tier_name}, \code{tier_type}, \code{tier_category},
+#' \code{tier_speaker}, \code{time_start}, \code{time_end}, \code{source}.
 #'
 #' @examples
 #' exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
@@ -39,7 +43,7 @@ exb_to_df <- function(file_name, exbs_from_folder = NULL){
       ts1 <- xml2::xml_attr(xml2::xml_children(t[[i]]), "start")
       ts2 <- xml2::xml_attr(xml2::xml_children(t[[i]]), "end")
       data.frame(tier = i,
-                 id = 1:length(content),
+                 id = seq_along(content),
                  content = content,
                  tier_name = tier_names[i],
                  tier_type = tier_types[i],

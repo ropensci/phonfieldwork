@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Extract intervals — extract_intervals" />
-<meta property="og:description" content="Extract sound according to non-empty annotated intervals from TextGrid and create soundfiles with correspondent names." />
+<meta property="og:description" content="Extract sound according to non-empty annotated intervals from TextGrid and
+create soundfiles with correspondent names." />
 
 
 
@@ -132,7 +133,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Extract sound according to non-empty annotated intervals from TextGrid and create soundfiles with correspondent names.</p>
+    <p>Extract sound according to non-empty annotated intervals from TextGrid and
+create soundfiles with correspondent names.</p>
     </div>
 
     <pre class="usage"><span class='fu'>extract_intervals</span>(
@@ -159,7 +161,8 @@
     </tr>
     <tr>
       <th>tier</th>
-      <td><p>tier number or name that should be used as base for extraction and names</p></td>
+      <td><p>tier number or name that should be used as base for extraction
+and names</p></td>
     </tr>
     <tr>
       <th>prefix</th>
@@ -171,7 +174,8 @@
     </tr>
     <tr>
       <th>autonumber</th>
-      <td><p>if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.</p></td>
+      <td><p>if TRUE automatically add number of extracted sound to the
+file_name. Prevents from creating a duplicated files and wrong sorting.</p></td>
     </tr>
     <tr>
       <th>path</th>
@@ -194,16 +198,23 @@
 <span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.copy</a></span>(<span class='no'>s</span>, <span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
 <span class='co'># Extract intervals according the TextGrid into the path</span>
 <span class='fu'>extract_intervals</span>(<span class='kw'>file_name</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='no'>tdir</span>, <span class='st'>"/test.wav"</span>),
-                  <span class='kw'>textgrid</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>),
+                  <span class='kw'>textgrid</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>,
+                                         <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>),
                   <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>tdir</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt;  [1] "1_t.wav"                             "2_e.wav"                            
-#&gt;  [3] "3_s.wav"                             "4_t.wav"                            
-#&gt;  [5] "concatenated.TextGrid"               "concatenated.wav"                   
-#&gt;  [7] "file3e7466adb04.so"                  "libloc_169_8f48fc7d1db1bb3e.rds"    
-#&gt;  [9] "libloc_191_bdc07040edb91ba5.rds"     "libloc_201_40b5ab1406ba8155.rds"    
-#&gt; [11] "post.wav"                            "stimuli_presentation3e71d20af56.Rmd"
-#&gt; [13] "test.wav"                           </div><div class='input'># [1] "e-2.wav" "s-3.wav" "t-1.wav" "t-4.wav" "test.TextGrid" "test.wav"
+<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt;  [1] "1_t.wav"                             
+#&gt;  [2] "2_e.wav"                             
+#&gt;  [3] "3_s.wav"                             
+#&gt;  [4] "4_t.wav"                             
+#&gt;  [5] "concatenated.TextGrid"               
+#&gt;  [6] "concatenated.wav"                    
+#&gt;  [7] "file18563ff0403f.so"                 
+#&gt;  [8] "libloc_169_8f48fc7d1db1bb3e.rds"     
+#&gt;  [9] "libloc_191_f1ad5b0db868dc0.rds"      
+#&gt; [10] "libloc_201_40b5ab1406ba8155.rds"     
+#&gt; [11] "post.wav"                            
+#&gt; [12] "stimuli_presentation185629b32458.Rmd"
+#&gt; [13] "test.wav"                            </div><div class='input'># [1] "e-2.wav" "s-3.wav" "t-1.wav" "t-4.wav" "test.TextGrid" "test.wav"
 
 </div></pre>
   </div>

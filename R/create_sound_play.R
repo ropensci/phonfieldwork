@@ -3,7 +3,8 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param snd_src string or vector of strings with a image(s) path(s).
-#' @param text string o vector of strings that will be displayed as view link. By default it is ear emoji (&#x1f442;).
+#' @param text string o vector of strings that will be displayed as view link.
+#' By default it is ear emoji (&#x1f442;).
 #' @return a string or vector of strings
 #'
 #' @examples

@@ -1,22 +1,27 @@
 #' Annotate textgrid
 #'
-#' Annotates textgrids. It is possible to difine step in the argument "each", so each second element of the tier will be annotated.
+#' Annotates textgrids. It is possible to define step in the argument "each",
+#' so each second element of the tier will be annotated.
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param annotation vector of stimuli
 #' @param textgrid character with a filename or path to the TextGrid
-#' @param tier value that could be either ordinal number of the tier either name of the tier
+#' @param tier value that could be either ordinal number of the tier either name
+#' of the tier
 #' @param each non-negative integer. Each element of x is repeated each times
 #' @param backup logical. If TRUE (by default) it creates a backup tier.
 #' @param write logical. If TRUE (by dafault) it overwrites an existing tier.
 #' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
-#' @return a string that contain TextGrid. If argument write is \code{TRUE}, then no output.
+#' @return a string that contain TextGrid. If argument write is \code{TRUE},
+#' then no output.
 #'
 #' @examples
 #' annotate_textgrid(annotation = c("", "t", "e", "s", "t"),
-#'                   textgrid = system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+#'                   textgrid = system.file("extdata",
+#'                                          "test.TextGrid",
+#'                                          package = "phonfieldwork"),
 #'                   tier = 2, write = FALSE)
 #'
 #' @export
@@ -56,7 +61,7 @@ annotate_textgrid <- function(annotation,
                      "",
                      tg[grep('name = ".*"', tg)]))
     if(!(tier %in% names)){
-      stop(paste0("It looks like there is no any tier with a name '", tier, "'"))
+      stop(paste0("It looks like there is no any tier with a name '",tier,"'"))
     }
         tier_number <- which(names %in% tier)
   }

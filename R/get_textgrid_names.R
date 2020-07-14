@@ -9,7 +9,8 @@
 #'
 #' @return return a vector of tier names from given TextGrid
 #' @examples
-#' get_textgrid_names(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
+#' get_textgrid_names(system.file("extdata", "test.TextGrid",
+#'                                package = "phonfieldwork"))
 #'
 #' @export
 #'

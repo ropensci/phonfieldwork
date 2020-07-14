@@ -5,13 +5,16 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name string with a filename or path to the TextGrid
-#' @param tier value that could be either ordinal number of the tier either name of the tier. By default is '1'.
+#' @param tier value that could be either ordinal number of the tier either
+#' name of the tier. By default is '1'.
 #' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
-#' @return a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end}, \code{content}
+#' @return a dataframe with columns:  \code{id}, \code{time_start},
+#' \code{time_end}, \code{content}
 #'
 #' @examples
-#' tier_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
+#' tier_to_df(system.file("extdata", "test.TextGrid",
+#'                        package = "phonfieldwork"))
 #'
 #' @export
 #'
@@ -41,7 +44,7 @@ tier_to_df <- function(file_name, tier = 1, encoding = "unknown"){
                      "",
                      tg[grep('name = ".*"', tg)]))
     if(!(tier %in% names)){
-      stop(paste0("It looks like there is no any tier with a name '", tier, "'"))
+      stop(paste0("It looks like there is no any tier with a name '",tier,"'"))
     }
     tier_number <- which(names %in% tier)
   }

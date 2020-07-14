@@ -13,7 +13,8 @@ add_leading_symbols(file_names)
 A string with numbers padded with leadinng zero.
 }
 \description{
-Create indices padded with zeros. This is important for creating appropriate for sorting names.
+Create indices padded with zeros. This is important for creating appropriate
+for sorting names.
 }
 \examples{
 add_leading_symbols(1:200)

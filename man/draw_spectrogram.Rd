@@ -25,46 +25,71 @@ draw_spectrogram(
 )
 }
 \arguments{
-\item{sound}{Either a numeric vector representing a sequence of samples taken from a sound wave or a sound object created with the loadsound() or makesound() functions.}
+\item{sound}{Either a numeric vector representing a sequence of samples taken
+from a sound wave or a sound object created with the loadsound() or
+makesound() functions.}
 
-\item{fs}{The sampling frequency in Hz. If a sound object is passed this does not need to be specified.}
+\item{fs}{The sampling frequency in Hz. If a sound object is passed this
+does not need to be specified.}
 
 \item{text_size}{numeric, text size (default = 1).}
 
 \item{window_length}{The desired analysis window length in milliseconds.}
 
-\item{dynamic_range}{Values greater than this many dB below the maximum will be displayed in the same color.}
+\item{dynamic_range}{Values greater than this many dB below the maximum will
+be displayed in the same color.}
 
-\item{window}{A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.}
+\item{window}{A string indicating the type of window desired. Supported types
+are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.}
 
-\item{windowparameter}{The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.}
+\item{windowparameter}{The parameter necessary to generate the window, if
+appropriate. At the moment, the only windows that require parameters are the
+Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and
+0.4 for gaussian windows.}
 
-\item{freq_scale}{a string indicating the type of frequency scale. Supported types are: "Hz" and "kHz".}
+\item{freq_scale}{a string indicating the type of frequency scale. Supported
+types are: "Hz" and "kHz".}
 
-\item{spectrum_info}{logical. If \code{TRUE} then add information about windo method and params.}
+\item{spectrum_info}{logical. If \code{TRUE} then add information about
+window method and params.}
 
-\item{timestep}{If a negative value is given, -N, then N equally-spaced time steps are calculated. If a positive number is given, this is the spacing between adjacent analyses, in milliseconds.}
+\item{timestep}{If a negative value is given, -N, then N equally-spaced time
+steps are calculated. If a positive number is given, this is the spacing
+between adjacent analyses, in milliseconds.}
 
-\item{padding}{The amount of zero padding for each window, measured in units of window length. For example, if the window is 50 points, and padding = 10, 500 zeros will be appended to each window.}
+\item{padding}{The amount of zero padding for each window, measured in units
+of window length. For example, if the window is 50 points, and padding = 10,
+500 zeros will be appended to each window.}
 
-\item{preemphasisf}{Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.}
+\item{preemphasisf}{Preemphasis of 6 dB per octave is added to frequencies
+above the specified frequency. For no preemphasis, set to a frequency higher
+than the sampling frequency.}
 
-\item{frequency_range}{vector with the range of frequencies to be displayed for the spectrogram up to a maximum of \code{fs}/2. This is set to 0-5 kHz by default.}
+\item{frequency_range}{vector with the range of frequencies to be displayed
+for the spectrogram up to a maximum of \code{fs}/2. This is set to 0-5 kHz by
+default.}
 
-\item{nlevels}{The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.}
+\item{nlevels}{The number of divisions to be used for the z-axis of the
+spectrogram. By default it is set equal to the dynamic range, meaning that a
+single color represents 1 dB on the z-axis.}
 
 \item{x_axis}{If \code{TRUE} then draw x axis.}
 
 \item{title}{Character with the title.}
 
-\item{raven_annotation}{Raven (Center for Conservation Bioacoustics) style annotations (boxes over spectrogram). The dataframe that contains \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high} columns. Optional columns are \code{colors} and \code{content}.}
+\item{raven_annotation}{Raven (Center for Conservation Bioacoustics) style
+annotations (boxes over spectrogram). The dataframe that contains
+\code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high}
+columns. Optional columns are \code{colors} and \code{content}.}
 }
 \description{
-This function was slightly changed from \code{phonTools::spectrogram()}. Argument description is copied from \code{phonTools::spectrogram()}.
+This function was slightly changed from \code{phonTools::spectrogram()}.
+Argument description is copied from \code{phonTools::spectrogram()}.
 }
 \examples{
 \dontrun{
-draw_spectrogram(system.file("extdata", "test.wav", package = "phonfieldwork"))
+draw_spectrogram(system.file("extdata", "test.wav",
+                             package = "phonfieldwork"))
 }
 
 }

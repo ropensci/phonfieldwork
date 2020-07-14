@@ -11,10 +11,13 @@ pitch_to_df(file_name, encoding = "unknown", candidates = "")
 
 \item{encoding}{Pitch tier encoding. Import from \code{readLines()} function.}
 
-\item{candidates}{Praat Pitch tier contains multiple candidates for each time slice, use the value \code{"all"} if you want to get them all}
+\item{candidates}{Praat Pitch tier contains multiple candidates for each
+time slice, use the value \code{"all"} if you want to get them all}
 }
 \value{
-a dataframe with columns:  \code{time_start}, \code{time_end}, \code{frequency} and, if \code{candidates} = \code{"all"}, \code{candidate_id} and \code{strength}
+a dataframe with columns:  \code{time_start}, \code{time_end},
+\code{frequency} and, if \code{candidates} = \code{"all"},
+\code{candidate_id} and \code{strength}
 }
 \description{
 Convert a Praat Pitch tier to a dataframe.

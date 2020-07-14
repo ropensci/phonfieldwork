@@ -1,6 +1,7 @@
 #' Create indices padded with zeros
 #'
-#' Create indices padded with zeros. This is important for creating appropriate for sorting names.
+#' Create indices padded with zeros. This is important for creating appropriate
+#' for sorting names.
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
@@ -15,5 +16,5 @@
 
 add_leading_symbols <- function(file_names) {
   n_digits <- nchar(length(file_names))
-  sprintf(paste0("%0", n_digits, "d"), 1:length(file_names))
+  sprintf(paste0("%0", n_digits, "d"), seq_along(file_names))
 }

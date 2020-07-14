@@ -11,16 +11,21 @@ textgrid_to_df(file_name, encoding = "unknown", textgrids_from_folder = NULL)
 
 \item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 
-\item{textgrids_from_folder}{path to a folder with multiple .TextGrid files. If this argument is not \code{NULL}, then the function goes through all files and create a merged dataframe for all of them.}
+\item{textgrids_from_folder}{path to a folder with multiple .TextGrid files.
+If this argument is not \code{NULL}, then the function goes through all files
+and create a merged dataframe for all of them.}
 }
 \value{
-a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end} (if it is an interval tier -- the same as the start value), \code{content}, \code{tier} and \code{source}
+a dataframe with columns:  \code{id}, \code{time_start},
+\code{time_end} (if it is an interval tier -- the same as the start value),
+\code{content}, \code{tier} and \code{source}
 }
 \description{
 Convert Praat TextGrid to a dataframe.
 }
 \examples{
-textgrid_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
+textgrid_to_df(system.file("extdata", "test.TextGrid",
+                           package = "phonfieldwork"))
 
 }
 \author{

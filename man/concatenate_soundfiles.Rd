@@ -15,7 +15,8 @@ concatenate_soundfiles(
 
 \item{result_file_name}{name of the result and annotation files.}
 
-\item{annotation}{there are several variants: "textgrid" for Praat TextGrid, "eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file}
+\item{annotation}{there are several variants: "textgrid" for Praat TextGrid,
+"eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file}
 }
 \value{
 
@@ -23,7 +24,8 @@ concatenate_soundfiles(
 no output
 }
 \description{
-Creates a sound file and a Praat TextGrid whose interval labels are the original names of the sound
+Creates a sound file and a Praat TextGrid whose interval labels are the
+original names of the sound
 }
 \examples{
 # create two files in a temprary folder "test_folder"
@@ -36,7 +38,8 @@ file.copy(c(s1, s2), tdir)
 list.files(tdir)
 # [1] "post.wav" "test.wav"
 
-# Concatenate all files from the folder into concatenated.wav and create corresponding TextGrid
+# Concatenate all files from the folder into concatenated.wav and create
+# corresponding TextGrid
 concatenate_soundfiles(path = tdir, result_file_name = "concatenated")
 
 list.files(tdir)

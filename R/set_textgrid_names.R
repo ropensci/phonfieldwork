@@ -10,9 +10,11 @@
 #' @param write logical. If TRUE (by dafault) it overwrites an existing tier
 #' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
-#' @return a string that contain TextGrid. If argument write is \code{TRUE}, then no output.
+#' @return a string that contain TextGrid. If argument write is \code{TRUE},
+#' then no output.
 #' @examples
-#' set_textgrid_names(system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+#' set_textgrid_names(system.file("extdata", "test.TextGrid",
+#'                                package = "phonfieldwork"),
 #' tiers = 3, names = "new_name", write = FALSE)
 #'
 #' @export

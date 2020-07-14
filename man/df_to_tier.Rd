@@ -7,28 +7,32 @@
 df_to_tier(df, textgrid, tier_name = "", overwrite = TRUE)
 }
 \arguments{
-\item{df}{an R dataframe object that contains columns named "annotation", "start" and "end" (if you want an interval tier)}
+\item{df}{an R dataframe object that contains columns named "annotation",
+"time_start" and "time_end"}
 
 \item{textgrid}{a character with a filename or path to the TextGrid}
 
 \item{tier_name}{a vector that contain a name for a created tier}
 
-\item{overwrite}{a logic argument, if \code{TRUE} overwrites the existing TextGrid file}
+\item{overwrite}{a logic argument, if \code{TRUE} overwrites the existing
+TextGrid file}
 }
 \value{
-If \code{overwrite} is \code{FALSE}, then the function returns a vector of strings with a TextGrid. If \code{overwrite} is \code{TRUE}, then no output.
+If \code{overwrite} is \code{FALSE}, then the function returns a
+vector of strings with a TextGrid. If \code{overwrite} is \code{TRUE}, then
+no output.
 }
 \description{
 Convert a dataframe to a Praat TextGrid.
 }
 \examples{
-my_df <- data.frame(id = 1:5,
-                    time_start = c(0.00000000,0.01246583,0.24781914,0.39552363,0.51157715),
-                    time_end = c(0.01246583,0.24781914,0.39552363,0.51157715,0.65267574),
-                    content = c("", "T", "E", "S", "T"))
-df_to_tier(my_df,
-system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
-overwrite = FALSE)
+time_start <-  c(0.00000000,0.01246583,0.24781914,0.39552363,0.51157715)
+time_end <-  c(0.01246583,0.24781914,0.39552363,0.51157715,0.65267574)
+content = c("", "T", "E", "S", "T")
+df_to_tier(my_df <- data.frame(id = 1:5, time_start, time_end, content),
+           system.file("extdata", "test.TextGrid",
+                       package = "phonfieldwork"),
+           overwrite = FALSE)
 
 }
 \author{

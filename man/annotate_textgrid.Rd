@@ -19,7 +19,8 @@ annotate_textgrid(
 
 \item{textgrid}{character with a filename or path to the TextGrid}
 
-\item{tier}{value that could be either ordinal number of the tier either name of the tier}
+\item{tier}{value that could be either ordinal number of the tier either name
+of the tier}
 
 \item{each}{non-negative integer. Each element of x is repeated each times}
 
@@ -30,14 +31,18 @@ annotate_textgrid(
 \item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
-a string that contain TextGrid. If argument write is \code{TRUE}, then no output.
+a string that contain TextGrid. If argument write is \code{TRUE},
+then no output.
 }
 \description{
-Annotates textgrids. It is possible to difine step in the argument "each", so each second element of the tier will be annotated.
+Annotates textgrids. It is possible to define step in the argument "each",
+so each second element of the tier will be annotated.
 }
 \examples{
 annotate_textgrid(annotation = c("", "t", "e", "s", "t"),
-                  textgrid = system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+                  textgrid = system.file("extdata",
+                                         "test.TextGrid",
+                                         package = "phonfieldwork"),
                   tier = 2, write = FALSE)
 
 }

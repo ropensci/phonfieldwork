@@ -7,16 +7,22 @@
 audacity_to_df(file_name)
 }
 \arguments{
-\item{file_name}{file_name string with a filename or path to the .txt file produced by Audacity}
+\item{file_name}{file_name string with a filename or path to the .txt file
+produced by Audacity}
 }
 \value{
-a dataframe with columns:  \code{content}, \code{time_start}, \code{time_end}, \code{source}.
+a dataframe with columns:  \code{content}, \code{time_start},
+\code{time_end}, \code{source}.
 }
 \description{
-Audacity make it possible to annotate sound files with labels that can be exported as a .tsv file with .txt extension. This function convert result to dataframe.
+Audacity make it possible to annotate sound files with labels that can be
+exported as a .tsv file with .txt extension. This function convert result to
+dataframe.
 }
 \examples{
-audacity_to_df(system.file("extdata", "test_audacity.txt", package = "phonfieldwork"))
+audacity_to_df(system.file("extdata",
+                           "test_audacity.txt",
+                           package = "phonfieldwork"))
 
 }
 \author{

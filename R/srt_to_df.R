@@ -7,7 +7,8 @@
 #' @param file_name string with a filename or path to the .srt file
 #' @param encoding .srt encoding. Import from \code{readLines()} function.
 #'
-#' @return a dataframe with columns:  \code{id}, \code{content}, \code{time_start}, \code{time_end}, \code{source}.
+#' @return a dataframe with columns:  \code{id}, \code{content},
+#' \code{time_start}, \code{time_end}, \code{source}.
 #'
 #' @examples
 #' srt_to_df(system.file("extdata", "test.srt", package = "phonfieldwork"))
@@ -21,7 +22,7 @@ srt_to_df <- function(file_name, encoding = "unknown"){
   srt <- readLines(file_name, encoding = encoding, warn = FALSE)
 
   # convert to dataframe
-  lapply(split(1:length(srt), cumsum(grepl("^\\s*$",srt))), function(i){
+  lapply(split(seq_along(srt), cumsum(grepl("^\\s*$",srt))), function(i){
     block <- srt[i]
     block <- block[!grepl("^\\s*$", block)]
     if(length(block) == 0){

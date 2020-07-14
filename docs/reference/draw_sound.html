@@ -188,7 +188,8 @@
     </tr>
     <tr>
       <th>zoom</th>
-      <td><p>numeric vector of zoom window time (in seconds). It will draw the whole oscilogram and part of the spectrogram.</p></td>
+      <td><p>numeric vector of zoom window time (in seconds). It will draw
+the whole oscilogram and part of the spectrogram.</p></td>
     </tr>
     <tr>
       <th>text_size</th>
@@ -204,15 +205,19 @@
     </tr>
     <tr>
       <th>freq_scale</th>
-      <td><p>a string indicating the type of frequency scale. Supported types are: "Hz" and "kHz".</p></td>
+      <td><p>a string indicating the type of frequency scale.
+Supported types are: "Hz" and "kHz".</p></td>
     </tr>
     <tr>
       <th>frequency_range</th>
-      <td><p>vector with the range of frequencies to be displayed for the spectrogram up to a maximum of fs/2. By default this is set to 0-5 kHz.</p></td>
+      <td><p>vector with the range of frequencies to be displayed
+for the spectrogram up to a maximum of fs/2. By default this is set to 0-5
+kHz.</p></td>
     </tr>
     <tr>
       <th>dynamic_range</th>
-      <td><p>values greater than this many dB below the maximum will be displayed in the same color</p></td>
+      <td><p>values greater than this many dB below the maximum will
+be displayed in the same color</p></td>
     </tr>
     <tr>
       <th>window_length</th>
@@ -220,31 +225,45 @@
     </tr>
     <tr>
       <th>window</th>
-      <td><p>A string indicating the type of window desired. Supported types are: "rectangular", "hann", "hamming", "cosine", "bartlett", "gaussian", and "kaiser".</p></td>
+      <td><p>A string indicating the type of window desired. Supported types
+are: "rectangular", "hann", "hamming", "cosine", "bartlett", "gaussian", and
+"kaiser".</p></td>
     </tr>
     <tr>
       <th>windowparameter</th>
-      <td><p>The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.</p></td>
+      <td><p>The parameter necessary to generate the window, if
+appropriate. At the moment, the only windows that require parameters are the
+Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and
+0.4 for gaussian windows.</p></td>
     </tr>
     <tr>
       <th>preemphasisf</th>
-      <td><p>Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.</p></td>
+      <td><p>Preemphasis of 6 dB per octave is added to frequencies
+above the specified frequency. For no preemphasis, set to a frequency higher
+than the sampling frequency.</p></td>
     </tr>
     <tr>
       <th>spectrum_info</th>
-      <td><p>logical. If <code>TRUE</code> then add information about windo method and params.</p></td>
+      <td><p>logical. If <code>TRUE</code> then add information about
+window method and params.</p></td>
     </tr>
     <tr>
       <th>raven_annotation</th>
-      <td><p>Raven (Center for Conservation Bioacoustics) style annotations (boxes over spectrogram). The dataframe that contains <code>time_start</code>, <code>time_end</code>, <code>freq_low</code> and <code>freq_high</code> columns. Optional columns are <code>colors</code> and <code>content</code>.</p></td>
+      <td><p>Raven (Center for Conservation Bioacoustics) style
+annotations (boxes over spectrogram). The dataframe that contains
+<code>time_start</code>, <code>time_end</code>, <code>freq_low</code> and <code>freq_high</code>
+columns. Optional columns are <code>colors</code> and <code>content</code>.</p></td>
     </tr>
     <tr>
       <th>pitch</th>
-      <td><p>path to the Praat `.Pitch` file or result of pitch_to_df() function. This variable provide data for visualisation a pitch contour exported from Praat.</p></td>
+      <td><p>path to the Praat `.Pitch` file or result of pitch_to_df()
+function. This variable provide data for visualisation a pitch contour
+exported from Praat.</p></td>
     </tr>
     <tr>
       <th>pitch_range</th>
-      <td><p>vector with the range of frequencies to be displayed. By default this is set to 75-350 Hz.</p></td>
+      <td><p>vector with the range of frequencies to be displayed.
+By default this is set to 75-350 Hz.</p></td>
     </tr>
     <tr>
       <th>output_width</th>
@@ -256,19 +275,25 @@
     </tr>
     <tr>
       <th>output_units</th>
-      <td><p>the units in which height and width are given. Can be "px" (pixels, the default), "in" (inches), "cm" or "mm".</p></td>
+      <td><p>the units in which height and width are given.
+Can be "px" (pixels, the default), "in" (inches), "cm" or "mm".</p></td>
     </tr>
     <tr>
       <th>sounds_from_folder</th>
-      <td><p>path to a folder with multiple sound files. If this argument is not <code>NULL</code>, then the function goes through all files and creates picture for all of them.</p></td>
+      <td><p>path to a folder with multiple sound files.
+If this argument is not <code>NULL</code>, then the function goes through all
+files and creates picture for all of them.</p></td>
     </tr>
     <tr>
       <th>textgrids_from_folder</th>
-      <td><p>path to a folder with multiple .TextGrid files. If this argument is not <code>NULL</code>, then the function goes through all files and create picture for all of them.</p></td>
+      <td><p>path to a folder with multiple .TextGrid files.
+If this argument is not <code>NULL</code>, then the function goes through all files
+and create picture for all of them.</p></td>
     </tr>
     <tr>
       <th>pic_folder_name</th>
-      <td><p>name for a folder, where all pictures will be stored in case <code>sounds_from_folder</code> argument is not <code>NULL</code></p></td>
+      <td><p>name for a folder, where all pictures will be stored
+in case <code>sounds_from_folder</code> argument is not <code>NULL</code></p></td>
     </tr>
     <tr>
       <th>title_as_filename</th>
@@ -276,15 +301,18 @@
     </tr>
     <tr>
       <th>prefix</th>
-      <td><p>prefix for all file names for created pictures in case <code>sounds_from_folder</code> argument is not <code>NULL</code></p></td>
+      <td><p>prefix for all file names for created pictures in case
+<code>sounds_from_folder</code> argument is not <code>NULL</code></p></td>
     </tr>
     <tr>
       <th>suffix</th>
-      <td><p>suffix for all file names for created pictures in case <code>sounds_from_folder</code> argument is not <code>NULL</code></p></td>
+      <td><p>suffix for all file names for created pictures in case
+<code>sounds_from_folder</code> argument is not <code>NULL</code></p></td>
     </tr>
     <tr>
       <th>autonumber</th>
-      <td><p>if TRUE automatically add number of extracted sound to the file_name. Prevents from creating a duplicated files and wrong sorting.</p></td>
+      <td><p>if TRUE automatically add number of extracted sound to the
+file_name. Prevents from creating a duplicated files and wrong sorting.</p></td>
     </tr>
     </table>
 
@@ -296,11 +324,9 @@
     <pre class="examples"><div class='input'><span class='co'># \dontrun{</span>
 <span class='fu'>draw_sound</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.wav"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;ce&gt;</span></div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;b1&gt;</span></div><div class='img'><img src='draw_sound-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'>draw_sound</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.wav"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>),
-           <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;ce&gt;</span></div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;b1&gt;</span></div><div class='img'><img src='draw_sound-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>draw_sound</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.wav"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>),
-           <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>),
-           <span class='kw'>pitch</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.Pitch"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>),
-           <span class='kw'>pitch_range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>50</span>, <span class='fl'>200</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;ce&gt;</span></div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;b1&gt;</span></div><div class='img'><img src='draw_sound-3.png' alt='' width='700' height='433' /></div><div class='input'># }
+           <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>,
+                       <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;ce&gt;</span></div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;b1&gt;</span></div><div class='img'><img src='draw_sound-2.png' alt='' width='700' height='433' /></div><div class='input'>
+# }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

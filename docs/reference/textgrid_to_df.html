@@ -150,16 +150,21 @@
     </tr>
     <tr>
       <th>textgrids_from_folder</th>
-      <td><p>path to a folder with multiple .TextGrid files. If this argument is not <code>NULL</code>, then the function goes through all files and create a merged dataframe for all of them.</p></td>
+      <td><p>path to a folder with multiple .TextGrid files.
+If this argument is not <code>NULL</code>, then the function goes through all files
+and create a merged dataframe for all of them.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a dataframe with columns:  <code>id</code>, <code>time_start</code>, <code>time_end</code> (if it is an interval tier -- the same as the start value), <code>content</code>, <code>tier</code> and <code>source</code></p>
+    <p>a dataframe with columns:  <code>id</code>, <code>time_start</code>,
+<code>time_end</code> (if it is an interval tier -- the same as the start value),
+<code>content</code>, <code>tier</code> and <code>source</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>textgrid_to_df</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>))</div><div class='output co'>#&gt;    id time_start   time_end content tier        source
+    <pre class="examples"><div class='input'><span class='fu'>textgrid_to_df</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>,
+                           <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>))</div><div class='output co'>#&gt;    id time_start   time_end content tier        source
 #&gt; 1   1 0.00000000 0.01246583            1 test.TextGrid
 #&gt; 6   1 0.00000000 0.01246583            2 test.TextGrid
 #&gt; 2   2 0.01246583 0.24781914       t    1 test.TextGrid

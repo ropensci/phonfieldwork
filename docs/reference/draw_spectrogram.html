@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Draw spectrograms — draw_spectrogram" />
-<meta property="og:description" content="This function was slightly changed from phonTools::spectrogram(). Argument description is copied from phonTools::spectrogram()." />
+<meta property="og:description" content="This function was slightly changed from phonTools::spectrogram().
+Argument description is copied from phonTools::spectrogram()." />
 
 
 
@@ -132,7 +133,8 @@
     </div>
 
     <div class="ref-description">
-    <p>This function was slightly changed from <code><a href='https://rdrr.io/pkg/phonTools/man/spectrogram.html'>phonTools::spectrogram()</a></code>. Argument description is copied from <code><a href='https://rdrr.io/pkg/phonTools/man/spectrogram.html'>phonTools::spectrogram()</a></code>.</p>
+    <p>This function was slightly changed from <code><a href='https://rdrr.io/pkg/phonTools/man/spectrogram.html'>phonTools::spectrogram()</a></code>.
+Argument description is copied from <code><a href='https://rdrr.io/pkg/phonTools/man/spectrogram.html'>phonTools::spectrogram()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>draw_spectrogram</span>(
@@ -160,11 +162,14 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>sound</th>
-      <td><p>Either a numeric vector representing a sequence of samples taken from a sound wave or a sound object created with the loadsound() or makesound() functions.</p></td>
+      <td><p>Either a numeric vector representing a sequence of samples taken
+from a sound wave or a sound object created with the loadsound() or
+makesound() functions.</p></td>
     </tr>
     <tr>
       <th>fs</th>
-      <td><p>The sampling frequency in Hz. If a sound object is passed this does not need to be specified.</p></td>
+      <td><p>The sampling frequency in Hz. If a sound object is passed this
+does not need to be specified.</p></td>
     </tr>
     <tr>
       <th>text_size</th>
@@ -176,43 +181,60 @@
     </tr>
     <tr>
       <th>dynamic_range</th>
-      <td><p>Values greater than this many dB below the maximum will be displayed in the same color.</p></td>
+      <td><p>Values greater than this many dB below the maximum will
+be displayed in the same color.</p></td>
     </tr>
     <tr>
       <th>window</th>
-      <td><p>A string indicating the type of window desired. Supported types are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.</p></td>
+      <td><p>A string indicating the type of window desired. Supported types
+are: rectangular, hann, hamming, cosine, bartlett, gaussian, and kaiser.</p></td>
     </tr>
     <tr>
       <th>windowparameter</th>
-      <td><p>The parameter necessary to generate the window, if appropriate. At the moment, the only windows that require parameters are the Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and 0.4 for gaussian windows.</p></td>
+      <td><p>The parameter necessary to generate the window, if
+appropriate. At the moment, the only windows that require parameters are the
+Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and
+0.4 for gaussian windows.</p></td>
     </tr>
     <tr>
       <th>freq_scale</th>
-      <td><p>a string indicating the type of frequency scale. Supported types are: "Hz" and "kHz".</p></td>
+      <td><p>a string indicating the type of frequency scale. Supported
+types are: "Hz" and "kHz".</p></td>
     </tr>
     <tr>
       <th>spectrum_info</th>
-      <td><p>logical. If <code>TRUE</code> then add information about windo method and params.</p></td>
+      <td><p>logical. If <code>TRUE</code> then add information about
+window method and params.</p></td>
     </tr>
     <tr>
       <th>timestep</th>
-      <td><p>If a negative value is given, -N, then N equally-spaced time steps are calculated. If a positive number is given, this is the spacing between adjacent analyses, in milliseconds.</p></td>
+      <td><p>If a negative value is given, -N, then N equally-spaced time
+steps are calculated. If a positive number is given, this is the spacing
+between adjacent analyses, in milliseconds.</p></td>
     </tr>
     <tr>
       <th>padding</th>
-      <td><p>The amount of zero padding for each window, measured in units of window length. For example, if the window is 50 points, and padding = 10, 500 zeros will be appended to each window.</p></td>
+      <td><p>The amount of zero padding for each window, measured in units
+of window length. For example, if the window is 50 points, and padding = 10,
+500 zeros will be appended to each window.</p></td>
     </tr>
     <tr>
       <th>preemphasisf</th>
-      <td><p>Preemphasis of 6 dB per octave is added to frequencies above the specified frequency. For no preemphasis, set to a frequency higher than the sampling frequency.</p></td>
+      <td><p>Preemphasis of 6 dB per octave is added to frequencies
+above the specified frequency. For no preemphasis, set to a frequency higher
+than the sampling frequency.</p></td>
     </tr>
     <tr>
       <th>frequency_range</th>
-      <td><p>vector with the range of frequencies to be displayed for the spectrogram up to a maximum of <code>fs</code>/2. This is set to 0-5 kHz by default.</p></td>
+      <td><p>vector with the range of frequencies to be displayed
+for the spectrogram up to a maximum of <code>fs</code>/2. This is set to 0-5 kHz by
+default.</p></td>
     </tr>
     <tr>
       <th>nlevels</th>
-      <td><p>The number of divisions to be used for the z-axis of the spectrogram. By default it is set equal to the dynamic range, meaning that a single color represents 1 dB on the z-axis.</p></td>
+      <td><p>The number of divisions to be used for the z-axis of the
+spectrogram. By default it is set equal to the dynamic range, meaning that a
+single color represents 1 dB on the z-axis.</p></td>
     </tr>
     <tr>
       <th>x_axis</th>
@@ -224,14 +246,18 @@
     </tr>
     <tr>
       <th>raven_annotation</th>
-      <td><p>Raven (Center for Conservation Bioacoustics) style annotations (boxes over spectrogram). The dataframe that contains <code>time_start</code>, <code>time_end</code>, <code>freq_low</code> and <code>freq_high</code> columns. Optional columns are <code>colors</code> and <code>content</code>.</p></td>
+      <td><p>Raven (Center for Conservation Bioacoustics) style
+annotations (boxes over spectrogram). The dataframe that contains
+<code>time_start</code>, <code>time_end</code>, <code>freq_low</code> and <code>freq_high</code>
+columns. Optional columns are <code>colors</code> and <code>content</code>.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \dontrun{</span>
-<span class='fu'>draw_spectrogram</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.wav"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;ce&gt;</span></div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;b1&gt;</span></div><div class='img'><img src='draw_spectrogram-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'>draw_spectrogram</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.wav"</span>,
+                             <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;ce&gt;</span></div><div class='output co'>#&gt; <span class='warning'>Warning: conversion failure on 'Kaiser window (length: 5 ms, α: 2), dynamic range: 50 (dB)' in 'mbcsToSbcs': dot substituted for &lt;b1&gt;</span></div><div class='img'><img src='draw_spectrogram-1.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>

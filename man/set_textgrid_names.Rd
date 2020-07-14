@@ -18,13 +18,15 @@ set_textgrid_names(textgrid, tiers, names, write = TRUE, encoding = "unknown")
 \item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
-a string that contain TextGrid. If argument write is \code{TRUE}, then no output.
+a string that contain TextGrid. If argument write is \code{TRUE},
+then no output.
 }
 \description{
 Rewrite TextGrid names.
 }
 \examples{
-set_textgrid_names(system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+set_textgrid_names(system.file("extdata", "test.TextGrid",
+                               package = "phonfieldwork"),
 tiers = 3, names = "new_name", write = FALSE)
 
 }

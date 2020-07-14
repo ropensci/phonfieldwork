@@ -6,12 +6,17 @@
 #'
 #' @param file_name string with a filename or path to the TextGrid
 #' @param encoding TextGrid encoding. Import from \code{readLines()} function.
-#' @param textgrids_from_folder path to a folder with multiple .TextGrid files. If this argument is not \code{NULL}, then the function goes through all files and create a merged dataframe for all of them.
+#' @param textgrids_from_folder path to a folder with multiple .TextGrid files.
+#' If this argument is not \code{NULL}, then the function goes through all files
+#' and create a merged dataframe for all of them.
 #'
-#' @return a dataframe with columns:  \code{id}, \code{time_start}, \code{time_end} (if it is an interval tier -- the same as the start value), \code{content}, \code{tier} and \code{source}
+#' @return a dataframe with columns:  \code{id}, \code{time_start},
+#' \code{time_end} (if it is an interval tier -- the same as the start value),
+#' \code{content}, \code{tier} and \code{source}
 #'
 #' @examples
-#' textgrid_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
+#' textgrid_to_df(system.file("extdata", "test.TextGrid",
+#'                            package = "phonfieldwork"))
 #'
 #' @export
 
@@ -38,7 +43,8 @@ textgrid_to_df <- function(file_name,
   } else {
     files <- paste0(normalizePath(textgrids_from_folder),
                     "/",
-                    list.files(normalizePath(textgrids_from_folder), ".TextGrid$"))
+                    list.files(normalizePath(textgrids_from_folder),
+                               ".TextGrid$"))
     return(do.call(rbind, lapply(files, function(i){
       textgrid_to_df(file_name = i, encoding = encoding)
     })))

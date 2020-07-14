@@ -1,14 +1,20 @@
 #' Audacity's labels to dataframe
 #'
-#' Audacity make it possible to annotate sound files with labels that can be exported as a .tsv file with .txt extension. This function convert result to dataframe.
+#' Audacity make it possible to annotate sound files with labels that can be
+#' exported as a .tsv file with .txt extension. This function convert result to
+#' dataframe.
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param file_name file_name string with a filename or path to the .txt file produced by Audacity
-#' @return a dataframe with columns:  \code{content}, \code{time_start}, \code{time_end}, \code{source}.
+#' @param file_name file_name string with a filename or path to the .txt file
+#' produced by Audacity
+#' @return a dataframe with columns:  \code{content}, \code{time_start},
+#' \code{time_end}, \code{source}.
 #'
 #' @examples
-#' audacity_to_df(system.file("extdata", "test_audacity.txt", package = "phonfieldwork"))
+#' audacity_to_df(system.file("extdata",
+#'                            "test_audacity.txt",
+#'                            package = "phonfieldwork"))
 #'
 #' @importFrom utils read.delim
 #' @export

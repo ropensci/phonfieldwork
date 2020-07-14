@@ -40,7 +40,9 @@
 
 
 <meta property="og:title" content="Audacity's labels to dataframe — audacity_to_df" />
-<meta property="og:description" content="Audacity make it possible to annotate sound files with labels that can be exported as a .tsv file with .txt extension. This function convert result to dataframe." />
+<meta property="og:description" content="Audacity make it possible to annotate sound files with labels that can be
+exported as a .tsv file with .txt extension. This function convert result to
+dataframe." />
 
 
 
@@ -132,7 +134,9 @@
     </div>
 
     <div class="ref-description">
-    <p>Audacity make it possible to annotate sound files with labels that can be exported as a .tsv file with .txt extension. This function convert result to dataframe.</p>
+    <p>Audacity make it possible to annotate sound files with labels that can be
+exported as a .tsv file with .txt extension. This function convert result to
+dataframe.</p>
     </div>
 
     <pre class="usage"><span class='fu'>audacity_to_df</span>(<span class='no'>file_name</span>)</pre>
@@ -142,16 +146,20 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>file_name</th>
-      <td><p>file_name string with a filename or path to the .txt file produced by Audacity</p></td>
+      <td><p>file_name string with a filename or path to the .txt file
+produced by Audacity</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a dataframe with columns:  <code>content</code>, <code>time_start</code>, <code>time_end</code>, <code>source</code>.</p>
+    <p>a dataframe with columns:  <code>content</code>, <code>time_start</code>,
+<code>time_end</code>, <code>source</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>audacity_to_df</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test_audacity.txt"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>))</div><div class='output co'>#&gt;   time_start  time_end content            source
+    <pre class="examples"><div class='input'><span class='fu'>audacity_to_df</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>,
+                           <span class='st'>"test_audacity.txt"</span>,
+                           <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>))</div><div class='output co'>#&gt;   time_start  time_end content            source
 #&gt; 1  0.2319977 0.3953891    sssw test_audacity.txt</div><div class='input'>
 </div></pre>
   </div>

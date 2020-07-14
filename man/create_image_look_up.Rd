@@ -9,9 +9,11 @@ create_image_look_up(img_src, img_caption = NULL, text = "&#x1f441;")
 \arguments{
 \item{img_src}{string or vector of strings with a image(s) path(s).}
 
-\item{img_caption}{string or vector of strings that will be displayed when image is clicked.}
+\item{img_caption}{string or vector of strings that will be displayed when
+image is clicked.}
 
-\item{text}{string o vector of strings that will be displayed as view link. By default it is eye emoji (&#x1f441;).}
+\item{text}{string o vector of strings that will be displayed as view link.
+By default it is eye emoji (&#x1f441;).}
 }
 \value{
 a string or vector of strings

@@ -10,7 +10,10 @@ flextext_to_df(file_name)
 \item{file_name}{string with a filename or path to the .flextext file}
 }
 \value{
-a dataframe with columns: \code{s_id} (that has structure paragraph_id.phrase_id), \code{txt}, \code{cf}, \code{hn}, \code{gls}, \code{msa}, \code{morph}, \code{word}, \code{phrase}, \code{paragraph}, \code{free_trans}, \code{text}, \code{text_title}
+a dataframe with columns: \code{s_id} (that has structure
+paragraph_id.phrase_id), \code{txt}, \code{cf}, \code{hn}, \code{gls},
+\code{msa}, \code{morph}, \code{word}, \code{phrase}, \code{paragraph},
+\code{free_trans}, \code{text}, \code{text_title}
 }
 \description{
 Convert .flextext file from FLEX to a dataframe.

@@ -9,7 +9,9 @@ get_sound_duration(file_name, sounds_from_folder = NULL)
 \arguments{
 \item{file_name}{a sound file}
 
-\item{sounds_from_folder}{path to a folder with multiple sound files. If this argument is not \code{NULL}, then the function goes through all files and calculates duration for all of them.}
+\item{sounds_from_folder}{path to a folder with multiple sound files.
+If this argument is not \code{NULL}, then the function goes through all
+files and calculates duration for all of them.}
 }
 \description{
 Calculate sound(s) duration.

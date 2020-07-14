@@ -9,7 +9,8 @@ create_sound_play(snd_src, text = "&#x1f442;")
 \arguments{
 \item{snd_src}{string or vector of strings with a image(s) path(s).}
 
-\item{text}{string o vector of strings that will be displayed as view link. By default it is ear emoji (&#x1f442;).}
+\item{text}{string o vector of strings that will be displayed as view link.
+By default it is ear emoji (&#x1f442;).}
 }
 \value{
 a string or vector of strings

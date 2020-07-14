@@ -18,7 +18,8 @@ return a vector of tier names from given TextGrid
 Extract TextGrid names.
 }
 \examples{
-get_textgrid_names(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
+get_textgrid_names(system.file("extdata", "test.TextGrid",
+                               package = "phonfieldwork"))
 
 }
 \author{

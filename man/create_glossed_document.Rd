@@ -15,16 +15,21 @@ create_glossed_document(
 \arguments{
 \item{flextext}{path to a .flextext file.}
 
-\item{rows}{vector of row names from the flextext that should appear in the final document. Possible values are: "cf", "hn", "gls", "msa". "gls" is default.}
+\item{rows}{vector of row names from the flextext that should appear in the
+final document. Possible values are: "cf", "hn", "gls", "msa". "gls" is
+default.}
 
 \item{output_dir}{the output directory for the rendered file}
 
-\item{output_file}{the name of the result .html file (by default stimuli_viewer)}
+\item{output_file}{the name of the result .html file (by default
+stimuli_viewer).}
 
 \item{output_format}{The option can be "html" or "docx"}
 }
 \value{
-If \code{render} is \code{FALSE}, the function returns a path to the temporary file with .csv file. If \code{render} is \code{TRUE}, there is no output in a function.
+If \code{render} is \code{FALSE}, the function returns a path to
+the temporary file with .csv file. If \code{render} is \code{TRUE}, there is
+no output in a function.
 }
 \description{
 Creates a file with glossed example (export from .flextext or other formats)

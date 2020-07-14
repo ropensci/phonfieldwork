@@ -1,17 +1,26 @@
 #' Creates a presentation
 #'
-#' Creates an html or powerpoint presentation in a working directory from list of words and translations. \href{https://agricolamz.github.io/phonfieldwork/first_example.html}{Here} is an example of such presentation.
+#' Creates an html or powerpoint presentation in a working directory from list
+#' of words and translations.
+#' \href{https://agricolamz.github.io/phonfieldwork/first_example.html}{Here}
+#' is an example of such presentation.
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param stimuli the vector of stimuli (obligatory)
 #' @param translations the vector of translations (optional)
 #' @param font_size font size in px (50, by default)
-#' @param output_format the string that difine the R Markdown output format: "html" (by default) or "pptx"
-#' @param output_file the name of the result presentation file (by default stimuli_presentation)
+#' @param output_format the string that difine the R Markdown output format:
+#' "html" (by default) or "pptx"
+#' @param output_file the name of the result presentation file
+#' (by default stimuli_presentation)
 #' @param output_dir the output directory for the rendered file
-#' @param render the logical argument, if \code{TRUE} render the created R Markdown presentation to the \code{output_dir} folder, otherwise returns the path to the temporary file with a Rmd file.
-#' @return If \code{render} is \code{FALSE}, the function returns a path to the temporary file. If \code{render} is \code{TRUE}, there is no output in a function.
+#' @param render the logical argument, if \code{TRUE} render the created R
+#' Markdown presentation to the \code{output_dir} folder, otherwise returns the
+#' path to the temporary file with a Rmd file.
+#' @return If \code{render} is \code{FALSE}, the function returns a path to the
+#' temporary file. If \code{render} is \code{TRUE}, there is no output in a
+#' function.
 #' @examples
 #' create_presentation(stimuli = c("rzeka", "drzewo"),
 #'                     translations = c("river", "tree"),

@@ -23,17 +23,26 @@ create_presentation(
 
 \item{output_dir}{the output directory for the rendered file}
 
-\item{output_format}{the string that difine the R Markdown output format: "html" (by default) or "pptx"}
+\item{output_format}{the string that difine the R Markdown output format:
+"html" (by default) or "pptx"}
 
-\item{output_file}{the name of the result presentation file (by default stimuli_presentation)}
+\item{output_file}{the name of the result presentation file
+(by default stimuli_presentation)}
 
-\item{render}{the logical argument, if \code{TRUE} render the created R Markdown presentation to the \code{output_dir} folder, otherwise returns the path to the temporary file with a Rmd file.}
+\item{render}{the logical argument, if \code{TRUE} render the created R
+Markdown presentation to the \code{output_dir} folder, otherwise returns the
+path to the temporary file with a Rmd file.}
 }
 \value{
-If \code{render} is \code{FALSE}, the function returns a path to the temporary file. If \code{render} is \code{TRUE}, there is no output in a function.
+If \code{render} is \code{FALSE}, the function returns a path to the
+temporary file. If \code{render} is \code{TRUE}, there is no output in a
+function.
 }
 \description{
-Creates an html or powerpoint presentation in a working directory from list of words and translations. \href{https://agricolamz.github.io/phonfieldwork/first_example.html}{Here} is an example of such presentation.
+Creates an html or powerpoint presentation in a working directory from list
+of words and translations.
+\href{https://agricolamz.github.io/phonfieldwork/first_example.html}{Here}
+is an example of such presentation.
 }
 \examples{
 create_presentation(stimuli = c("rzeka", "drzewo"),

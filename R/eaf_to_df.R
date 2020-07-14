@@ -5,8 +5,12 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name string with a filename or path to the .eaf file
-#' @param eafs_from_folder path to a folder with multiple .eaf files. If this argument is not \code{NULL}, then the function goes through all files and create a merged dataframe for all of them.
-#' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content}, \code{tier_name}, \code{tier_type}, \code{time_start}, \code{time_end}, \code{source}).
+#' @param eafs_from_folder path to a folder with multiple .eaf files. If this
+#' argument is not \code{NULL}, then the function goes through all files and
+#' create a merged dataframe for all of them.
+#' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content},
+#' \code{tier_name}, \code{tier_type}, \code{time_start}, \code{time_end},
+#' \code{source}).
 #'
 #' @examples
 #' eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
@@ -32,7 +36,7 @@ eaf_to_df <- function(file_name, eafs_from_folder = NULL){
     # create list of dataframes
     lapply(seq_along(t), function(i){
       content <- xml2::xml_text(xml2::xml_find_all(t[[i]],
-                                                   "ANNOTATION/*/ANNOTATION_VALUE"))
+                                              "ANNOTATION/*/ANNOTATION_VALUE"))
       ts1 <- xml2::xml_attr(xml2::xml_children(xml2::xml_children(t[[i]])),
                             "TIME_SLOT_REF1")
       ts2 <- xml2::xml_attr(xml2::xml_children(xml2::xml_children(t[[i]])),
@@ -43,7 +47,7 @@ eaf_to_df <- function(file_name, eafs_from_folder = NULL){
                            "ANNOTATION_REF")
       if(length(content) > 0){
         data.frame(tier = i,
-                   id = 1:length(content),
+                   id = seq_along(content),
                    content = content,
                    tier_name = tier_names[i],
                    tier_type = tier_types[i],

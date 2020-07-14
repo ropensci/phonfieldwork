@@ -23,11 +23,13 @@ rename_videofiles(
 
 \item{suffix}{character vector of length one containing suffix for file names}
 
-\item{order}{numeric vector that define the order of stimuli. By default the order of the stimuli is taken.}
+\item{order}{numeric vector that define the order of stimuli. By default the
+order of the stimuli is taken.}
 
 \item{path}{path to the directory with videofiles.}
 
-\item{backup}{logical. If TRUE, function creates backup folder with all files. By default is TRUE.}
+\item{backup}{logical. If TRUE, function creates backup folder with all
+files. By default is TRUE.}
 }
 \value{
 no output

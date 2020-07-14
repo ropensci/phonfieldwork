@@ -150,13 +150,16 @@
     </tr>
     <tr>
       <th>candidates</th>
-      <td><p>Praat Pitch tier contains multiple candidates for each time slice, use the value <code>"all"</code> if you want to get them all</p></td>
+      <td><p>Praat Pitch tier contains multiple candidates for each
+time slice, use the value <code>"all"</code> if you want to get them all</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a dataframe with columns:  <code>time_start</code>, <code>time_end</code>, <code>frequency</code> and, if <code>candidates</code> = <code>"all"</code>, <code>candidate_id</code> and <code>strength</code></p>
+    <p>a dataframe with columns:  <code>time_start</code>, <code>time_end</code>,
+<code>frequency</code> and, if <code>candidates</code> = <code>"all"</code>,
+<code>candidate_id</code> and <code>strength</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>pitch_to_df</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.Pitch"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>))</div><div class='output co'>#&gt;    frequency time_start   time_end
