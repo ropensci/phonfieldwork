@@ -55,7 +55,7 @@ It is also important to have a contact information in your `.html` in case your 
 
 ## Bioacoustic research
 
-It is possible to use phonfieldwork in biacoustic research, so publishing of high quality recordings should be done with caution. Unfortunately, animal call recordings could be used by poachers, hunters, photographers or any other animal lovers in order to lure animals. The possible harm of poachers and hunters is obviouse, but stimulating animals by photographers or animal lovers could cause lots of stress and distract from animals' routines (like eating, sleeping etc.). Ethical use of the `phonfieldwork` package implies that the researcher will not reveal any information related to animal populations that may bring about possible harm to any individual animal.
+It is possible to use phonfieldwork in biacoustic research, so publishing of high quality recordings should be done with caution. Unfortunately, animal call recordings could be used by poachers, hunters, photographers or any other animal lovers in order to lure animals. The possible harm of poachers and hunters is obviouse. Stimulation of animals made by photographers or animal lovers could cause lots of stress and distract from animals' routines (e. g. eating, sleeping etc.). Ethical use of the `phonfieldwork` package implies that the researcher will not reveal any information related to animal populations that may bring about possible harm to any individual animal.
 
 Thanks to Ines Moran for providing information about ethics and bioacoustics.
 
