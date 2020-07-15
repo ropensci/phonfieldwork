@@ -128,7 +128,7 @@ draw_sound <- function(file_name,
                        autonumber = FALSE){
   if(is.null(sounds_from_folder)){
     if(is.null(output_file)){
-      # read file and convert to phonTools format -------------------------------
+# read file and convert to phonTools format -------------------------------
       if(class(file_name) == "Wave"){
         s <- file_name
       } else{
@@ -322,7 +322,7 @@ draw_sound <- function(file_name,
 # change its value to sound length
 
         df$time_end <- ifelse(
-          df$time_start < length(for_spectrum@left)/for_spectrum@samp.rate*1000 &
+        df$time_start < length(for_spectrum@left)/for_spectrum@samp.rate*1000 &
             df$time_end > length(for_spectrum@left)/for_spectrum@samp.rate*1000,
           length(for_spectrum@left)/for_spectrum@samp.rate,
           df$time_end
