@@ -4,6 +4,7 @@
 [![CRAN version](http://www.r-pkg.org/badges/version/phonfieldwork)](https://cran.r-project.org/package=phonfieldwork)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/phonfieldwork)](https://CRAN.R-project.org/package=phonfieldwork)
 [![](https://travis-ci.org/agricolamz/phonfieldwork.svg?branch=master)](https://travis-ci.org/github/agricolamz/phonfieldwork)
+[![Coverage Status](https://img.shields.io/codecov/c/github/agricolamz/phonfieldwork/master.svg)](https://codecov.io/github/agricolamz/phonfieldwork?branch=master)
 [![DOI](https://zenodo.org/badge/194053227.svg)](https://zenodo.org/badge/latestdoi/194053227)
 
 `phonfieldwork` is a package for phonetic fieldwork research and experiments. This package make it easier:
