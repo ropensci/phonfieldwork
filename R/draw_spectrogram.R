@@ -92,8 +92,7 @@ draw_spectrogram <- function (sound,
     } else if(ext == "mp3"){
       s <- tuneR::readMP3(sound)
     } else{
-      stop("The draw_spectrogram() functions works only with .wav(e) or
-           .mp3 formats")
+stop("The draw_spectrogram() functions works only with .wav(e) or .mp3 formats")
     }
     fs <- s@samp.rate
     sound <- s@left
@@ -104,10 +103,10 @@ draw_spectrogram <- function (sound,
   if (timestep <= 0) {timestep <- floor(length(sound)/-timestep)}
   if (preemphasisf > 0){
     sound <- phonTools::preemphasis(sound, preemphasisf, fs)
-    preemphasisf_text <- paste0("\nThe spectral slope is increased by
-                                6 dB. per octave above ",
-      preemphasisf,
-      " Hz")
+    preemphasisf_text <-
+      paste0("\nThe spectral slope is increased by 6 dB. per octave above ",
+             preemphasisf,
+             " Hz")
     preemphasisf_line <- 0.5
   } else {
     preemphasisf_text <- ""
@@ -119,7 +118,11 @@ draw_spectrogram <- function (sound,
     padding <- padding + 1
     }
   N <- n + padding
-  spect <- sapply(spots, function(x) {
+
+  spect <- matrix(nrow = length(spots),
+                  ncol = (N/2 + 1))
+
+  lapply(spots, function(x) {
     tmp <- sound[x:(x + n - 1)] * phonTools::windowfunc(sound[x:(x + n - 1)],
                                                        window,
                                                        windowparameter)
@@ -128,9 +131,10 @@ draw_spectrogram <- function (sound,
     tmp <- stats::fft(tmp)[1:(N/2 + 1)]
     tmp <- abs(tmp)^2
     tmp <- log(tmp, 10) * 10
+    spect[which(spots == x), ] <<- tmp
   })
-  spect <- t(spect)
-  for (i in 1:nrow(spect)){
+
+  for (i in seq_along(spots)){
     spect[i, 1] <- min(spect[i, -1])
   }
 
@@ -139,8 +143,7 @@ draw_spectrogram <- function (sound,
   } else if(freq_scale == "Hz"){
     hz <- (0:(N/2)) * (fs/N)
   } else {
-    stop("The only possible values for the freq_scale argument are
-         'kHz' and 'Hz'")
+stop("The only possible values for the freq_scale argument are 'kHz' and 'Hz'")
   }
 
   times <- spots * (1000/fs)
@@ -227,8 +230,8 @@ draw_spectrogram <- function (sound,
                        col = raven_annotation$colors)
       }
     } else{
-      warning("raven_annotation should have time_start, time_end,
-              freq_low and freq_high columns")
+      warning(paste0("raven_annotation should have time_start, time_end",
+                     "freq_low and freq_high columns"))
     }
 
   }
