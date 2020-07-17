@@ -4,7 +4,10 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param flextext path to a .flextext file.
+#' @param flextext path to a .flextext file or a dataframe with the following
+#' columns: \code{p_id}, \code{s_id}, \code{w_id}, \code{txt}, \code{cf},
+#' \code{hn}, \code{gls}, \code{msa}, \code{morph}, \code{word}, \code{phrase},
+#' \code{paragraph}, \code{free_trans}, \code{text}, \code{text_title}
 #' @param rows vector of row names from the flextext that should appear in the
 #' final document. Possible values are: "cf", "hn", "gls", "msa". "gls" is
 #' default.
@@ -13,7 +16,7 @@
 #' @param output_dir the output directory for the rendered file
 #' @param output_format The option can be "html" or "docx"
 #' @param example_pkg vector with name of the LaTeX package for glossing
-#' (possible values: "gb4e", "linguex", "expex", "philex")
+#' (possible values: "gb4e", "langsci", "expex", "philex")
 #'
 #' @return If \code{render} is \code{FALSE}, the function returns a path to
 #' the temporary file with .csv file. If \code{render} is \code{TRUE}, there is
@@ -42,8 +45,12 @@ create_glossed_document <- function(flextext = NULL,
     stop('The output_format can be only "html" or "docx"')
   }
 
+  if(class(flextext) != "data.frame"){
+    flextext <- flextext_to_df(flextext)
+  }
+
   tmp1 <- tempfile(fileext = ".csv")
-  utils::write.csv(flextext_to_df(flextext), tmp1, row.names = FALSE)
+  utils::write.csv(flextext, tmp1, row.names = FALSE)
   output_format2 <- ifelse(output_format == "docx", "word", output_format)
   rmarkdown::render(paste0(.libPaths()[1],
 "/phonfieldwork/rmarkdown/templates/glossed_document/skeleton/skeleton.Rmd"),

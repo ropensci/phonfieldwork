@@ -15,6 +15,7 @@ codemeta.json
 ^doc$
 ^Meta$
 ^docs/.*
+^\.github/.*
 ^vignettes/s1.*
 ^vignettes/s2.*
 ^vignettes/files.*

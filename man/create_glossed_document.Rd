@@ -14,7 +14,10 @@ create_glossed_document(
 )
 }
 \arguments{
-\item{flextext}{path to a .flextext file.}
+\item{flextext}{path to a .flextext file or a dataframe with the following
+columns: \code{p_id}, \code{s_id}, \code{w_id}, \code{txt}, \code{cf},
+\code{hn}, \code{gls}, \code{msa}, \code{morph}, \code{word}, \code{phrase},
+\code{paragraph}, \code{free_trans}, \code{text}, \code{text_title}}
 
 \item{rows}{vector of row names from the flextext that should appear in the
 final document. Possible values are: "cf", "hn", "gls", "msa". "gls" is
@@ -28,7 +31,7 @@ stimuli_viewer).}
 \item{output_format}{The option can be "html" or "docx"}
 
 \item{example_pkg}{vector with name of the LaTeX package for glossing
-(possible values: "gb4e", "linguex", "expex", "philex")}
+(possible values: "gb4e", "langsci", "expex", "philex")}
 }
 \value{
 If \code{render} is \code{FALSE}, the function returns a path to
