@@ -11,12 +11,13 @@
 #' @param rows vector of row names from the flextext that should appear in the
 #' final document. Possible values are: "cf", "hn", "gls", "msa". "gls" is
 #' default.
-#' @param output_file the name of the result .html file (by default
-#' stimuli_viewer).
+#' @param output_file the name of the result \code{.html} file (by default
+#' \code{glossed_document}).
 #' @param output_dir the output directory for the rendered file
 #' @param output_format The option can be "html" or "docx"
 #' @param example_pkg vector with name of the LaTeX package for glossing
-#' (possible values: "gb4e", "langsci", "expex", "philex")
+#' (possible values: \code{"gb4e"}, \code{"langsci"}, \code{"expex"},
+#' \code{"philex"})
 #'
 #' @return If \code{render} is \code{FALSE}, the function returns a path to
 #' the temporary file with .csv file. If \code{render} is \code{TRUE}, there is

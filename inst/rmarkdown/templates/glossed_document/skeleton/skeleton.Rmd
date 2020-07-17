@@ -24,6 +24,10 @@ if(is.null(example_pkg)){
               hn = paste0(hn, collapse = "-"),
               msa = paste0(msa, collapse = "-"),
               gls = paste0(gls, collapse = "-")) %>% 
+    mutate(cf = gsub("-=", "=", cf),
+           hn = gsub("-=", "=", hn),
+           msa = gsub("-=", "=", msa),
+           gls = gsub("-=", "=", gls)) %>% 
     group_by(text_title, p_id, s_id, free_trans) %>%
     summarise(txt = paste0(txt, collapse = "&#x09;"),
               cf = paste0(cf, collapse = "&#x09;"),
@@ -64,12 +68,16 @@ if(is.null(example_pkg)){
               hn = paste0(hn, collapse = "-"),
               msa = paste0(msa, collapse = "-"),
               gls = paste0(gls, collapse = "-")) %>% 
+    mutate(cf = gsub("-=", "=", cf),
+           hn = gsub("-=", "=", hn),
+           msa = gsub("-=", "=", msa),
+           gls = gsub("-=", "=", gls)) %>%
     group_by(text_title, p_id, s_id, free_trans) %>%
     summarise(txt = paste0(txt, collapse = " "),
               cf = paste0(cf, collapse = " "),
               hn = paste0(hn, collapse = " "),
               msa = paste0(msa, collapse = " "),
-              gls = paste0(gls, collapse = " ")) %>% 
+              gls = paste0(gls, collapse = " ")) %>%
     mutate(txt = paste0("\\\\lb\\{ex:", s_id, "\\}\\{\\\\gll ", txt, "\\\\\\\\\n\n&#x09;"),
            cf = paste0(cf, "\\\\\\\\\n\n&#x09;"),
            hn = paste0(hn, "\\\\\\\\\n\n&#x09;"),
@@ -88,8 +96,8 @@ if(is.null(example_pkg)){
                    gls = NA,
                    free_trans = NA), .before = 1)  %>% 
     arrange(text_title, p_id, s_id) %>% 
-    select(-c(all_rows[!(all_rows %in% params$rows)])) %>% 
-    pivot_longer(names_to = "type", values_to = "value", cols = c("txt", params$rows, "free_trans")) %>% 
+    select(-c(all_rows[!(all_rows %in% params$rows)])) %>%
+    pivot_longer(names_to = "type", values_to = "value", cols = c("txt", params$rows, "free_trans")) %>%
     na.omit() %>% 
     ungroup() %>% 
     select(value) %>% 
@@ -104,13 +112,17 @@ if(is.null(example_pkg)){
   # \glt I invited Fred for dinner.
   # \end{exe}
   
-    df %>%
+  df %>%
     group_by(text_title, p_id, s_id, free_trans, w_id) %>%
     summarise(txt = paste0(txt, collapse = ""),
               cf = paste0(cf, collapse = "-"),
               hn = paste0(hn, collapse = "-"),
               msa = paste0(msa, collapse = "-"),
               gls = paste0(gls, collapse = "-")) %>% 
+    mutate(cf = gsub("-=", "=", cf),
+           hn = gsub("-=", "=", hn),
+           msa = gsub("-=", "=", msa),
+           gls = gsub("-=", "=", gls)) %>% 
     group_by(text_title, p_id, s_id, free_trans) %>%
     summarise(txt = paste0(txt, collapse = " "),
               cf = paste0(cf, collapse = " "),
@@ -154,7 +166,7 @@ if(is.null(example_pkg)){
   # John love-\textsc{3s.pres.ind} Mary \\
   # \glt ‘John loves Mary.’
   # \z
-
+  
   df %>%
     group_by(text_title, p_id, s_id, free_trans, w_id) %>%
     summarise(txt = paste0(txt, collapse = ""),
@@ -162,6 +174,10 @@ if(is.null(example_pkg)){
               hn = paste0(hn, collapse = "-"),
               msa = paste0(msa, collapse = "-"),
               gls = paste0(gls, collapse = "-")) %>% 
+    mutate(cf = gsub("-=", "=", cf),
+           hn = gsub("-=", "=", hn),
+           msa = gsub("-=", "=", msa),
+           gls = gsub("-=", "=", gls)) %>% 
     group_by(text_title, p_id, s_id, free_trans) %>%
     summarise(txt = paste0(txt, collapse = " "),
               cf = paste0(cf, collapse = " "),
@@ -197,7 +213,7 @@ if(is.null(example_pkg)){
     unname() %>% 
     cat(sep = "")  
   
-  } else if(example_pkg == "expex"){
+} else if(example_pkg == "expex"){
   # \ex\label{ex:exmaple1}\begingl
   # \gla k- wapm -a -s’i -m -wapunin -uk //
   # \glb CL V AGR NEG AGR TNS AGR //
@@ -212,6 +228,10 @@ if(is.null(example_pkg)){
               hn = paste0(hn, collapse = "-"),
               msa = paste0(msa, collapse = "-"),
               gls = paste0(gls, collapse = "-")) %>% 
+    mutate(cf = gsub("-=", "=", cf),
+           hn = gsub("-=", "=", hn),
+           msa = gsub("-=", "=", msa),
+           gls = gsub("-=", "=", gls)) %>% 
     group_by(text_title, p_id, s_id, free_trans) %>%
     summarise(txt = paste0(txt, collapse = " "),
               cf = paste0(cf, collapse = " "),
@@ -247,5 +267,4 @@ if(is.null(example_pkg)){
     unname() %>% 
     cat(sep = "")  
 }
-
 ```
