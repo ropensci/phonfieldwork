@@ -5,8 +5,8 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name string with a filename or path to the .flextext file
-#' @return a dataframe with columns: \code{s_id} (that has structure
-#' paragraph_id.phrase_id), \code{txt}, \code{cf}, \code{hn}, \code{gls},
+#' @return a dataframe with columns: \code{p_id}, \code{s_id}, \code{w_id},
+#' \code{txt}, \code{cf}, \code{hn}, \code{gls},
 #' \code{msa}, \code{morph}, \code{word}, \code{phrase}, \code{paragraph},
 #' \code{free_trans}, \code{text}, \code{text_title}
 #'
@@ -26,11 +26,33 @@ flextext_to_df <- function(file_name){
                             "paragraphs/paragraph/phrases/phrase/words/word")
     lapply(seq_along(t), function(j){
       word <- xml2::xml_attr(t[[j]], "guid")
-free_trans <- xml2::xml_text(xml2::xml_child(xml2::xml_parents(t[[j]])[[2]], 3))
-      if(length(xml2::xml_children(xml2::xml_parents(t[[j]])[[2]])) > 3){
-lit_trans <- xml2::xml_text(xml2::xml_child(xml2::xml_parents(t[[j]])[[2]], 4))
-        free_trans <- paste0(free_trans, "(", lit_trans, ")")
+      p_at <- xml2::xml_attr(xml2::xml_children(xml2::xml_parents(t[[j]])[[2]]),
+                             "type")
+
+      free_trans <- ifelse("gls" %in% p_at,
+                           xml2::xml_text(
+                             xml2::xml_children(
+                               xml2::xml_parents(
+                                 t[[j]])[[2]])[which(p_at %in% "gls")]),
+                           "")
+
+      lit_trans <- ifelse("lit" %in% p_at,
+                          xml2::xml_text(
+                            xml2::xml_children(
+                              xml2::xml_parents(
+                                t[[j]])[[2]])[which(p_at %in% "lit")]),
+                          "")
+
+      if(free_trans == "" & lit_trans == ""){
+        free_trans <- ""
+      } else if(free_trans != "" & lit_trans == ""){
+        free_trans <- free_trans
+      } else if(free_trans == "" & lit_trans != ""){
+        free_trans <- lit_trans
+      } else if(free_trans != "" & lit_trans != ""){
+        free_trans <- paste0(free_trans, " (", lit_trans, ")")
       }
+
 title <- xml2::xml_text(xml2::xml_children(xml2::xml_parents(t[[j]])[[6]])[1])
       m <- xml2::xml_find_all(t[[j]], "morphemes/morph")
       if(length(m) == 0){
@@ -54,11 +76,22 @@ title <- xml2::xml_text(xml2::xml_children(xml2::xml_parents(t[[j]])[[6]])[1])
           morph <- xml2::xml_attr(morpheme, "guid")
           other <- unlist(xml2::xml_attrs(xml2::xml_parents(morpheme), "guid"))
           values <- xml2::xml_text(xml2::xml_children(morpheme))
-          data.frame(txt = values[1],
-                     cf = values[2],
-                     hn = values[3],
-                     gls = values[4],
-                     msa = values[5],
+          attrs <- xml2::xml_attr(xml2::xml_children(morpheme), "type")
+          data.frame(txt = ifelse("txt" %in% attrs,
+                                  values[which(attrs == "txt")],
+                                  NA),
+                     cf = ifelse("cf" %in% attrs,
+                                 values[which(attrs == "cf")],
+                                 NA),
+                     hn = ifelse("hn" %in% attrs,
+                                 values[which(attrs == "hn")],
+                                 NA),
+                     gls = ifelse("gls" %in% attrs,
+                                  values[which(attrs == "gls")],
+                                  NA),
+                     msa = ifelse("msa" %in% attrs,
+                                  values[which(attrs == "msa")],
+                                  NA),
                      free_trans = free_trans,
                      text_title = title,
                      morph = morph,
@@ -72,10 +105,17 @@ title <- xml2::xml_text(xml2::xml_children(xml2::xml_parents(t[[j]])[[6]])[1])
     }) ->
       result_df
     df <- do.call(rbind, result_df)
-    index <- data.frame(s_id = as.numeric(factor(df$phrase,
+
+    # change empty puntuation ids to number
+    df$word[which(is.na(df$word))] <- seq_along(which(is.na(df$word)))
+
+
+    index <- data.frame(p_id = as.numeric(factor(df$paragraph,
+                                                levels = unique(df$paragraph))),
+                        s_id = as.numeric(factor(df$phrase,
                                                  levels = unique(df$phrase))),
-                        p_id = as.numeric(factor(df$paragraph,
-                                              levels = unique(df$paragraph))))
+                        w_id = as.numeric(factor(df$word,
+                                                 levels = unique(df$word))))
     cbind(index, df)
   }) ->
     text_df
@@ -85,5 +125,6 @@ title <- xml2::xml_text(xml2::xml_children(xml2::xml_parents(t[[j]])[[6]])[1])
                                  function(x){ifelse(is.na(x), "", x)}))
   text_df$s_id <- as.numeric(text_df$s_id)
   text_df$p_id <- as.numeric(text_df$p_id)
+  text_df$w_id <- as.numeric(text_df$w_id)
   return(text_df)
 }

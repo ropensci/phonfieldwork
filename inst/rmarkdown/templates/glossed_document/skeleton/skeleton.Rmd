@@ -18,8 +18,7 @@ library(tidyr, warn.conflicts = FALSE)
 
 if(is.null(example_pkg)){
 df %>%
-  mutate(id = seq_along(df$text_title)) %>% 
-  group_by(text_title, p_id, s_id, id, free_trans, word) %>%
+  group_by(text_title, p_id, s_id, free_trans, w_id) %>%
   summarise(txt = paste0(txt, collapse = ""),
             cf = paste0(cf, collapse = "-"),
             hn = paste0(hn, collapse = "-"),
