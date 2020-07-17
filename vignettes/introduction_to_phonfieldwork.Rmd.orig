@@ -445,6 +445,8 @@ create_glossed_document(flextext = "files/zilo_test.flextext",
 file.copy("files/glossed_document.html", to = "glossed_document.html", overwrite = TRUE)
 ```
 
+It is also possible to convert to LaTeX examples format using the `example_pkg` argument (possible values are: `gb4e`, `langsci`, `expex`, `philex`).
+
 All those functions (`tier_to_df()`, `textgrid_to_df()`, `eaf_to_df()`, `exb_to_df()`, `audacity_to_df()`, `srt_to_df()`) except `flextext_to_df()` can be used in order to visualise sound annotation:
 
 ```{r}
