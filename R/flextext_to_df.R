@@ -23,25 +23,52 @@ flextext_to_df <- function(file_name){
   l <- xml2::xml_find_all(l, 'interlinear-text')
   lapply(seq_along(l), function(i){
     t <- xml2::xml_find_all(l[[i]],
-"paragraphs/paragraph/phrases/phrase/words/word/morphemes/morph")
+                            "paragraphs/paragraph/phrases/phrase/words/word")
     lapply(seq_along(t), function(j){
-      morph <- xml2::xml_attr(t[[j]], "guid")
-      other <- unlist(xml2::xml_attrs(xml2::xml_parents(t[[j]]), "guid"))
-      values <- xml2::xml_text(xml2::xml_children(t[[j]]))
-      title <- xml2::xml_text(xml2::xml_child(xml2::xml_parents(t[[j]])[[8]]))
-free_trans <- xml2::xml_text(xml2::xml_child(xml2::xml_parents(t[[j]])[[4]], 3))
-      data.frame(txt = values[1],
-                 cf = values[2],
-                 hn = values[3],
-                 gls = values[4],
-                 msa = values[5],
-                 free_trans = free_trans,
-                 text_title = title,
-                 morph = morph,
-                 word = other[1],
-                 phrase = other[2],
-                 paragraph = other[3],
-                 text = other[4])
+      word <- xml2::xml_attr(t[[j]], "guid")
+free_trans <- xml2::xml_text(xml2::xml_child(xml2::xml_parents(t[[j]])[[2]], 3))
+      if(length(xml2::xml_children(xml2::xml_parents(t[[j]])[[2]])) > 3){
+lit_trans <- xml2::xml_text(xml2::xml_child(xml2::xml_parents(t[[j]])[[2]], 4))
+        free_trans <- paste0(free_trans, "(", lit_trans, ")")
+      }
+title <- xml2::xml_text(xml2::xml_children(xml2::xml_parents(t[[j]])[[6]])[1])
+      m <- xml2::xml_find_all(t[[j]], "morphemes/morph")
+      if(length(m) == 0){
+        other <- unlist(xml2::xml_attrs(xml2::xml_parents(t[[j]]), "guid"))
+        data.frame(txt = xml2::xml_text(t[[j]]),
+                   cf = NA,
+                   hn = NA,
+                   gls = NA,
+                   msa = NA,
+                   free_trans = free_trans,
+                   text_title = title,
+                   morph = NA,
+                   word = word,
+                   phrase = other[1],
+                   paragraph = other[2],
+                   text = other[3])
+
+
+      } else {
+        morphemes <- lapply(m, function(morpheme){
+          morph <- xml2::xml_attr(morpheme, "guid")
+          other <- unlist(xml2::xml_attrs(xml2::xml_parents(morpheme), "guid"))
+          values <- xml2::xml_text(xml2::xml_children(morpheme))
+          data.frame(txt = values[1],
+                     cf = values[2],
+                     hn = values[3],
+                     gls = values[4],
+                     msa = values[5],
+                     free_trans = free_trans,
+                     text_title = title,
+                     morph = morph,
+                     word = other[1],
+                     phrase = other[2],
+                     paragraph = other[3],
+                     text = other[4])
+        })
+        do.call(rbind, morphemes)
+      }
     }) ->
       result_df
     df <- do.call(rbind, result_df)

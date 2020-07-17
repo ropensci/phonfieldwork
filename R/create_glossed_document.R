@@ -12,6 +12,8 @@
 #' stimuli_viewer).
 #' @param output_dir the output directory for the rendered file
 #' @param output_format The option can be "html" or "docx"
+#' @param example_pkg vector with name of the LaTeX package for glossing
+#' (possible values: "gb4e", "linguex", "expex", "philex")
 #'
 #' @return If \code{render} is \code{FALSE}, the function returns a path to
 #' the temporary file with .csv file. If \code{render} is \code{TRUE}, there is
@@ -26,7 +28,8 @@ create_glossed_document <- function(flextext = NULL,
                                     rows = c("gls"),
                                     output_dir,
                                     output_file = "glossed_document",
-                                    output_format = "docx"){
+                                    output_format = "docx",
+                                    example_pkg = NULL){
   if(!("dplyr" %in% utils::installed.packages()[,"Package"])){
     stop('For this function you need to install dplyr package with a command
          install.packages("dplyr").')
@@ -39,14 +42,14 @@ create_glossed_document <- function(flextext = NULL,
     stop('The output_format can be only "html" or "docx"')
   }
 
-# flextext input ----------------------------------------------------------
-  if(!is.null(flextext)){
+  if(output_format %in% c("html", "docx")){
     tmp1 <- tempfile(fileext = ".csv")
     utils::write.csv(flextext_to_df(flextext), tmp1, row.names = FALSE)
     output_format2 <- ifelse(output_format == "docx", "word", output_format)
     rmarkdown::render(paste0(.libPaths()[1],
 "/phonfieldwork/rmarkdown/templates/glossed_document/skeleton/skeleton.Rmd"),
-                      params = list(data = tmp1, rows = rows),
+                      params = list(data = tmp1, rows = rows,
+                                    example_pkg = example_pkg),
                       output_dir = output_dir,
                       output_format = paste0(output_format2[1], "_document"),
                       quiet = TRUE,
@@ -54,6 +57,8 @@ create_glossed_document <- function(flextext = NULL,
     message(paste0("Output created: ", normalizePath(output_dir), "/",
                    output_file, ".", output_format[1]))
     suppress_message <- file.remove(tmp1)
-# non-flextext input ------------------------------------------------------
+  } else if(output_format == "philex"){
+
+
   }
 }

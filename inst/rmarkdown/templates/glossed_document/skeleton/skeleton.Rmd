@@ -3,6 +3,7 @@ title: "Glossed document by phonfieldwork [Moroz 2020]"
 params:
   data: your_file.csv
   rows: rows
+  example_pkg: example_pkg
 editor_options: 
   chunk_output_type: console
 ---
@@ -14,13 +15,16 @@ all_rows <- c("cf", "hn", "gls", "msa")
 
 library(dplyr, warn.conflicts = FALSE)
 library(tidyr, warn.conflicts = FALSE)
+
+if(is.null(example_pkg)){
 df %>%
-  group_by(text_title, p_id, s_id, free_trans, word) %>%
+  mutate(id = seq_along(df$text_title)) %>% 
+  group_by(text_title, p_id, s_id, id, free_trans, word) %>%
   summarise(txt = paste0(txt, collapse = ""),
             cf = paste0(cf, collapse = "-"),
             hn = paste0(hn, collapse = "-"),
             msa = paste0(msa, collapse = "-"),
-            gls = paste0(gls, collapse = "-")) %>%
+            gls = paste0(gls, collapse = "-")) %>% 
   group_by(text_title, p_id, s_id, free_trans) %>%
   summarise(txt = paste0(txt, collapse = "&#x09;"),
             cf = paste0(cf, collapse = "&#x09;"),
@@ -53,4 +57,69 @@ df %>%
   unlist() %>% 
   unname() %>% 
   cat(sep = "")
+  } else if(example_pkg == "philex"){
+    df %>%
+      group_by(text_title, p_id, s_id, free_trans, word) %>%
+      summarise(txt = paste0(txt, collapse = ""),
+            cf = paste0(cf, collapse = "-"),
+            hn = paste0(hn, collapse = "-"),
+            msa = paste0(msa, collapse = "-"),
+            gls = paste0(gls, collapse = "-")) %>% 
+  group_by(text_title, p_id, s_id, free_trans) %>%
+  summarise(txt = paste0(txt, collapse = " "),
+            cf = paste0(cf, collapse = " "),
+            hn = paste0(hn, collapse = " "),
+            msa = paste0(msa, collapse = " "),
+            gls = paste0(gls, collapse = " ")) %>%
+  mutate(txt = paste0("\\lb{", s_id, "}{\\gll ", txt, "\\\\\n\n"),
+         cf = paste0(cf, "\\\\\n\n"),
+         hn = paste0(hn, "\\\\\n\n"),
+         msa = paste0(msa, "\\\\\n\n"),
+         gls = paste0(gls, "\\\\\n\n"),
+         free_trans = paste0("\\trans `", free_trans, "'}\n\n")) %>% 
+  select(text_title, p_id, s_id, txt, cf, hn, msa, gls, free_trans) %>% 
+  ungroup() %>% 
+  add_row(tibble(text_title = unique(.$text_title),
+                 p_id = 0,
+                 s_id = 0,
+                 txt = paste0("\n\n## ", unique(.$text_title), "\n\n"),
+                 cf = NA,
+                 hn = NA,
+                 msa = NA,
+                 gls = NA,
+                 free_trans = NA), .before = 1)  %>% 
+  arrange(text_title, p_id, s_id) %>%
+  select(-c(all_rows[!(all_rows %in% params$rows)])) %>% 
+  pivot_longer(names_to = "type", values_to = "value", cols = c("txt", params$rows, "free_trans")) %>% 
+  na.omit() %>% 
+  ungroup() %>% 
+  select(value) %>% 
+  unlist() %>% 
+  unname() %>% 
+  cat(sep = "")
+  } else if(example_pkg == "gb4e"){
+# \begin{exe}
+# \ex\label{ex1}
+# \gll Den Fritz_1 habe ich \_\_{}_1 zum Essen eingeladen.\\
+# the fred have I {} {to the} eating invited.\\
+# \glt I invited Fred for dinner.
+# \end{exe}
+    
+  } else if(example_pkg == "langsci"){
+# \ea\label{ex:examplelabel}
+# \langinfo{French}{Indo-European}{personal knowledge}\\
+# \gll Jean aim-e
+# Marie \\
+# John love-\textsc{3s.pres.ind} Mary \\
+# \glt ‘John loves Mary.’
+# \z
+  } else if(example_pkg == "expex"){
+# \ex \begingl
+# \gla k- wapm -a -s’i -m -wapunin -uk //
+# \glb CL V AGR NEG AGR TNS AGR //
+# \glb 2 see {\sc 3acc} {} {\sc 2pl} preterit {\sc 3pl} //
+# \glft ‘you (pl) didn’t see them’//
+# \endgl  \xe
+  }
+
 ```

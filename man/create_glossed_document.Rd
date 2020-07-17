@@ -9,7 +9,8 @@ create_glossed_document(
   rows = c("gls"),
   output_dir,
   output_file = "glossed_document",
-  output_format = "docx"
+  output_format = "docx",
+  example_pkg = NULL
 )
 }
 \arguments{
@@ -25,6 +26,9 @@ default.}
 stimuli_viewer).}
 
 \item{output_format}{The option can be "html" or "docx"}
+
+\item{example_pkg}{vector with name of the LaTeX package for glossing
+(possible values: "gb4e", "linguex", "expex", "philex")}
 }
 \value{
 If \code{render} is \code{FALSE}, the function returns a path to
