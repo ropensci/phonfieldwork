@@ -10,5 +10,5 @@ extract_intervals(file_name = paste0(tdir, "/test.wav"),
                   path = tdir)
 
 test_that("extract_intervals", {
-  expect_true(length(list.files(tdir, pattern = "wav")) == 5)
+  expect_true("2_e.wav" %in% list.files(tdir))
 })
