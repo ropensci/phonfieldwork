@@ -37,14 +37,18 @@ textgrid_to_df <- function(file_name,
     }) ->
       l
     result <- do.call(rbind, l)
-    source <- unlist(strsplit(normalizePath(file_name), "/"))
+    if(grepl("TextGrid", file_name[2])){
+      source <- "custom_file"
+    } else{
+      source <- unlist(strsplit(normalizePath(file_name), "/"))
+    }
     result$source <- source[length(source)]
     return(result[order(result$time_start),])
   } else {
     files <- paste0(normalizePath(textgrids_from_folder),
                     "/",
                     list.files(normalizePath(textgrids_from_folder),
-                               ".TextGrid$"))
+                               "\\.TextGrid$"))
     return(do.call(rbind, lapply(files, function(i){
       textgrid_to_df(file_name = i, encoding = encoding)
     })))

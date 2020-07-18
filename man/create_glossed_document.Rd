@@ -25,13 +25,14 @@ default.}
 
 \item{output_dir}{the output directory for the rendered file}
 
-\item{output_file}{the name of the result .html file (by default
-stimuli_viewer).}
+\item{output_file}{the name of the result \code{.html} file (by default
+\code{glossed_document}).}
 
 \item{output_format}{The option can be "html" or "docx"}
 
 \item{example_pkg}{vector with name of the LaTeX package for glossing
-(possible values: "gb4e", "langsci", "expex", "philex")}
+(possible values: \code{"gb4e"}, \code{"langsci"}, \code{"expex"},
+\code{"philex"})}
 }
 \value{
 If \code{render} is \code{FALSE}, the function returns a path to
