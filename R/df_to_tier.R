@@ -29,8 +29,8 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE){
   if(!("time_start" %in% names(df))|
       !("time_end" %in% names(df))|
       !("content" %in% names(df))){
-    stop('df columns should have the folowing names: "content",
-         "time_start" and "time_end"')
+    stop(paste0('df columns should have the folowing names: "content"',
+                '"time_start" and "time_end"'))
   }
 
   if(grepl("TextGrid", textgrid[2])){
