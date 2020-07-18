@@ -49,8 +49,9 @@ textgrid_to_df <- function(file_name,
                     "/",
                     list.files(normalizePath(textgrids_from_folder),
                                "\\.TextGrid$"))
-    return(do.call(rbind, lapply(files, function(i){
-      textgrid_to_df(file_name = i, encoding = encoding)
+    return(do.call(rbind,
+                   lapply(files, function(i){
+                     textgrid_to_df(file_name = i, encoding = encoding)
     })))
   }
 }
