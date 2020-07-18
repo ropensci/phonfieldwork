@@ -36,11 +36,11 @@ create_glossed_document <- function(flextext = NULL,
                                     example_pkg = NULL){
   if(!("dplyr" %in% utils::installed.packages()[,"Package"])){
     stop(paste0('For this function you need to install dplyr package with a',
-                'command install.packages("dplyr").'))
+                ' command install.packages("dplyr").'))
   }
   if(!("tidyr" %in% utils::installed.packages()[,"Package"])){
     stop(paste0('For this function you need to install tidyr package with a',
-                'command install.packages("tidyr").'))
+                ' command install.packages("tidyr").'))
   }
   if(!(output_format %in% c("html", "docx"))){
     stop('The output_format can be only "html" or "docx"')
