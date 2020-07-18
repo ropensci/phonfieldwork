@@ -23,6 +23,8 @@ get_sound_duration <- function(file_name,
   if(is.null(sounds_from_folder)){
     if(class(file_name) == "Wave"){
       s <- file_name
+      source <- "custom_file"
+      duration <- length(s@left)/s@samp.rate
     } else{
       ext <- unlist(strsplit(file_name, "\\."))
       ext <- ext[length(ext)]
@@ -37,9 +39,10 @@ get_sound_duration <- function(file_name,
         stop("The get_sound_durations() functions works only with .wav(e)
              or .mp3 formats")
       }
+      source <- rev(unlist(strsplit(normalizePath(file_name), "/")))[1]
     }
-    return(data.frame(file =
-                        rev(unlist(strsplit(normalizePath(file_name), "/")))[1],
+
+    return(data.frame(file = source,
                       duration = duration))
   } else{
     path <- normalizePath(sounds_from_folder)
