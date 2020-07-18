@@ -286,9 +286,7 @@ Your browser does not support iframes :(
 ## │   ├── s2_tip_1.wav
 ## │   └── s2_top_3.wav</code></pre>
 <p>The resulting file can be parsed with Praat (subscripted <em>t</em> is the result of Praat’s conversion):</p>
-<div class="figure">
-<img src="unnamed-chunk-20-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-20</p>
-</div>
+<p><img src="unnamed-chunk-20-1.png"></p>
 </div>
 <div id="annotate-your-data" class="section level2">
 <h2 class="hasAnchor">
@@ -298,29 +296,21 @@ Your browser does not support iframes :(
 <pre><code>## [1] "tip" "tap" "top"</code></pre>
 <div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="../reference/annotate_textgrid.html">annotate_textgrid</a></span>(<span class="kw">annotation</span> <span class="kw">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">my_stimuli_df</span>$<span class="no">stimuli</span>),
                   <span class="kw">textgrid</span> <span class="kw">=</span> <span class="st">"s1/s1_all.TextGrid"</span>)</pre></body></html></div>
-<div class="figure">
-<img src="unnamed-chunk-22-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-22</p>
-</div>
+<p><img src="unnamed-chunk-22-1.png"></p>
 <p>As you can see in the example, the <code><a href="../reference/annotate_textgrid.html">annotate_textgrid()</a></code> function creates a backup of the tier and adds a new tier on top of the previous one. It is possible to prevent the function from doing so by setting the <code>backup</code> argument to <code>FALSE</code>.</p>
 <p>Imagine that we are interested in annotation of vowels. The most common solution will be open Praat and create new annotations. But it is also possible to create them in advance using subannotations. The idea that you choose some baseline tier that later will be automatically cutted into smaller pieces on the other tier.</p>
 <div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu"><a href="../reference/create_subannotation.html">create_subannotation</a></span>(<span class="kw">textgrid</span> <span class="kw">=</span> <span class="st">"s1/s1_all.TextGrid"</span>,
                      <span class="kw">tier</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="co"># this is a baseline tier</span>
                      <span class="kw">n_of_annotations</span> <span class="kw">=</span> <span class="fl">3</span>) <span class="co"># how many empty annotations per unit?</span></pre></body></html></div>
-<div class="figure">
-<img src="unnamed-chunk-24-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-24</p>
-</div>
+<p><img src="unnamed-chunk-24-1.png"></p>
 <p>Now we can annotate created tier:</p>
 <div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="fu"><a href="../reference/annotate_textgrid.html">annotate_textgrid</a></span>(<span class="kw">annotation</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">""</span>, <span class="st">"æ"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"ı"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"ɒ"</span>, <span class="st">""</span>),
                   <span class="kw">textgrid</span> <span class="kw">=</span> <span class="st">"s1/s1_all.TextGrid"</span>,
                   <span class="kw">tier</span> <span class="kw">=</span> <span class="fl">3</span>,
                   <span class="kw">backup</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
-<div class="figure">
-<img src="unnamed-chunk-26-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-26</p>
-</div>
+<p><img src="unnamed-chunk-26-1.png"></p>
 <p>You can see that we created a third tier with annotation. The only thing left is to move annotation boundaries in Praat (this can not be automated):</p>
-<div class="figure">
-<img src="unnamed-chunk-28-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-28</p>
-</div>
+<p><img src="unnamed-chunk-28-1.png"></p>
 <p>You can see from the last figure that no backup tier was created (<code>backup = FALSE</code>), that the third tier was annotated (<code>tier = 3</code>).</p>
 </div>
 <div id="extracting-your-data" class="section level2">
@@ -357,9 +347,7 @@ Your browser does not support iframes :(
 <a href="#visualizing-your-data" class="anchor"></a>Visualizing your data</h2>
 <p>It is possible to view an oscilogram and spetrogram of any soundfile:</p>
 <div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span>(<span class="kw">file_name</span> <span class="kw">=</span> <span class="st">"s1/s1_sounds/2_s1_ı.wav"</span>)</pre></body></html></div>
-<div class="figure">
-<img src="unnamed-chunk-32-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-32</p>
-</div>
+<p><img src="unnamed-chunk-32-1.png"></p>
 <p>There are additional parameters:</p>
 <ul>
 <li>
@@ -402,16 +390,12 @@ Your browser does not support iframes :(
            <span class="st">"s1/s1_all.TextGrid"</span>,
            <span class="kw">from</span> <span class="kw">=</span> <span class="fl">0.4</span>,
            <span class="kw">to</span> <span class="kw">=</span> <span class="fl">0.95</span>)</pre></body></html></div>
-<div class="figure">
-<img src="unnamed-chunk-33-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-33</p>
-</div>
+<p><img src="unnamed-chunk-33-1.png"></p>
 <p>It is also possible using the <code>zoom</code> argument to show the part of the spectrogram keeping the broader oscilogram context:</p>
 <div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span>(<span class="st">"s1/s1_all.wav"</span>,
            <span class="st">"s1/s1_all.TextGrid"</span>,
            <span class="kw">zoom</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.4</span>, <span class="fl">0.95</span>))</pre></body></html></div>
-<div class="figure">
-<img src="unnamed-chunk-34-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-34</p>
-</div>
+<p><img src="unnamed-chunk-34-1.png"></p>
 <p>If the <code>output_file</code> argument is provided, R will save the plot in your directory instead of displaying it.</p>
 <div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span>(<span class="kw">file_name</span> <span class="kw">=</span> <span class="st">"s1/s1_sounds/2_s1_ı.wav"</span>,
            <span class="kw">output_file</span> <span class="kw">=</span> <span class="st">"s1/s1_tip"</span>,
@@ -470,9 +454,7 @@ Your browser does not support iframes :(
 
 <span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test.wav"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"phonfieldwork"</span>),
            <span class="kw">raven_annotation</span> <span class="kw">=</span> <span class="no">raven_an</span>)</pre></body></html></div>
-<div class="figure">
-<img src="unnamed-chunk-39-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-39</p>
-</div>
+<p><img src="unnamed-chunk-39-1.png"></p>
 <p>It is also possible to use multiple values, colors (adding <code>colors</code> column) and annotation (adding <code>content</code> column):</p>
 <div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="no">raven_an</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">time_start</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">250</span>, <span class="fl">450</span>),
                        <span class="kw">time_end</span>  <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">400</span>, <span class="fl">520</span>),
@@ -483,9 +465,7 @@ Your browser does not support iframes :(
 
 <span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test.wav"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"phonfieldwork"</span>),
            <span class="kw">raven_annotation</span> <span class="kw">=</span> <span class="no">raven_an</span>)</pre></body></html></div>
-<div class="figure">
-<img src="unnamed-chunk-40-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-40</p>
-</div>
+<p><img src="unnamed-chunk-40-1.png"></p>
 </div>
 </div>
 <div id="read-linguistic-files-into-r" class="section level1">
@@ -599,9 +579,7 @@ Your browser does not support iframes :(
 <p>All those functions (<code><a href="../reference/tier_to_df.html">tier_to_df()</a></code>, <code><a href="../reference/textgrid_to_df.html">textgrid_to_df()</a></code>, <code><a href="../reference/eaf_to_df.html">eaf_to_df()</a></code>, <code><a href="../reference/exb_to_df.html">exb_to_df()</a></code>, <code><a href="../reference/audacity_to_df.html">audacity_to_df()</a></code>, <code><a href="../reference/srt_to_df.html">srt_to_df()</a></code>) except <code><a href="../reference/flextext_to_df.html">flextext_to_df()</a></code> can be used in order to visualise sound annotation:</p>
 <div class="sourceCode" id="cb56"><html><body><pre class="r"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span>(<span class="kw">file_name</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test.wav"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"phonfieldwork"</span>),
            <span class="kw">annotation</span> <span class="kw">=</span> <span class="fu"><a href="../reference/eaf_to_df.html">eaf_to_df</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test.eaf"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"phonfieldwork"</span>)))</pre></body></html></div>
-<div class="figure">
-<img src="unnamed-chunk-49-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-49</p>
-</div>
+<p><img src="unnamed-chunk-49-1.png"></p>
 </div>
 <div id="create-a-viewer" class="section level1">
 <h1 class="hasAnchor">

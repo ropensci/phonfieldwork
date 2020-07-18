@@ -299,7 +299,7 @@ This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid
 
 The resulting file can be parsed with Praat (subscripted *t* is the result of Praat's conversion):
 
-![plot of chunk unnamed-chunk-20](unnamed-chunk-20-1.png)
+![](unnamed-chunk-20-1.png)
 
 ## Annotate your data
 
@@ -319,7 +319,7 @@ annotate_textgrid(annotation =  sort(my_stimuli_df$stimuli),
                   textgrid = "s1/s1_all.TextGrid")
 ```
 
-![plot of chunk unnamed-chunk-22](unnamed-chunk-22-1.png)
+![](unnamed-chunk-22-1.png)
 
 As you can see in the example, the `annotate_textgrid()` function creates a backup of the tier and adds a new tier on top of the previous one. It is possible to prevent the function from doing so by setting the `backup` argument to `FALSE`.
 
@@ -332,7 +332,7 @@ create_subannotation(textgrid = "s1/s1_all.TextGrid",
                      n_of_annotations = 3) # how many empty annotations per unit?
 ```
 
-![plot of chunk unnamed-chunk-24](unnamed-chunk-24-1.png)
+![](unnamed-chunk-24-1.png)
 
 Now we can annotate created tier:
 
@@ -344,13 +344,13 @@ annotate_textgrid(annotation = c("", "æ", "", "", "ı", "", "", "ɒ", ""),
                   backup = FALSE)
 ```
 
-![plot of chunk unnamed-chunk-26](unnamed-chunk-26-1.png)
+![](unnamed-chunk-26-1.png)
 
 You can see that we created a third tier with annotation. The only thing left is to move annotation boundaries in Praat (this can not be automated):
 
 
 
-![plot of chunk unnamed-chunk-28](unnamed-chunk-28-1.png)
+![](unnamed-chunk-28-1.png)
 
 You can see from the last figure that no backup tier was created (`backup = FALSE`), that the third tier was annotated (`tier = 3`).
 
@@ -403,7 +403,7 @@ It is possible to view an oscilogram and spetrogram of any soundfile:
 draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav")
 ```
 
-![plot of chunk unnamed-chunk-32](unnamed-chunk-32-1.png)
+![](unnamed-chunk-32-1.png)
 
 There are additional parameters:
 
@@ -435,7 +435,7 @@ draw_sound("s1/s1_all.wav",
            to = 0.95)
 ```
 
-![plot of chunk unnamed-chunk-33](unnamed-chunk-33-1.png)
+![](unnamed-chunk-33-1.png)
 
 It is also possible using the `zoom` argument to show the part of the spectrogram keeping the broader oscilogram context:
 
@@ -446,7 +446,7 @@ draw_sound("s1/s1_all.wav",
            zoom = c(0.4, 0.95))
 ```
 
-![plot of chunk unnamed-chunk-34](unnamed-chunk-34-1.png)
+![](unnamed-chunk-34-1.png)
 
 If the `output_file` argument is provided, R will save the plot in your directory instead of displaying it.
 
@@ -530,7 +530,7 @@ draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
            raven_annotation = raven_an)
 ```
 
-![plot of chunk unnamed-chunk-39](unnamed-chunk-39-1.png)
+![](unnamed-chunk-39-1.png)
 
 It is also possible to use multiple values, colors (adding `colors` column) and annotation (adding `content` column):
 
@@ -547,7 +547,7 @@ draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
            raven_annotation = raven_an)
 ```
 
-![plot of chunk unnamed-chunk-40](unnamed-chunk-40-1.png)
+![](unnamed-chunk-40-1.png)
 
 # Read linguistic files into R
 
@@ -714,7 +714,7 @@ draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwo
            annotation = eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork")))
 ```
 
-![plot of chunk unnamed-chunk-49](unnamed-chunk-49-1.png)
+![](unnamed-chunk-49-1.png)
 
 # Create a viewer
 
