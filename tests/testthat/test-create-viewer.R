@@ -34,7 +34,9 @@ test_that("create_viewer", {
                              output_file = "with_a_map",
                              output_dir = paste0(tmp, "/result"),
                              map = TRUE),
-               'If you want to create a map in a viewer, you need to add a glottocode \\(or latitude and longitude\\) column to the datafarame in a table argument\\.')
+               paste0('If you want to create a map in a viewer, you need to',
+                      ' add a glottocode \\(or latitude and longitude\\)',
+                      ' column to the datafarame in a table argument\\.'))
   })
 
 unlink(paste0(tmp, "/result/"))
