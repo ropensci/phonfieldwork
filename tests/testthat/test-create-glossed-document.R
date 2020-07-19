@@ -1,17 +1,12 @@
-# library(phonfieldwork)
-# context("Tests for 'create_glossed_document()' functions")
-#
-# my_tmp1 <- tempdir()
-# create_glossed_document("../../vignettes/files/zilo_test.flextext",
-#                         output_dir = my_tmp1)
-#
-# my_tmp2 <- tempdir()
-# create_glossed_document(
-#   flextext_to_df("../../vignettes/files/zilo_test.flextext"),
-#   output_dir = my_tmp2)
-#
-# test_that("create_glossed_document", {
-#   expect_true(file.exists(paste0(my_tmp1, "/glossed_document.docx")))
-#   expect_true(file.exists(paste0(my_tmp2, "/glossed_document.docx")))
-# })
-#
+library(phonfieldwork)
+context("Tests for 'create_glossed_document()' functions")
+file_name <- "https://raw.githubusercontent.com/agricolamz/phonfieldwork/master/vignettes/files/zilo_test.flextext"
+tmp <- tempdir()
+create_glossed_document(file_name, output_dir = tmp)
+create_glossed_document(file_name, output_dir = tmp, output_format = "html")
+create_glossed_document(flextext_to_df(file_name), output_dir = tmp,
+                        output_file = "glossed_document2")
+
+test_that("create_glossed_document", {
+  expect_true(length(list.files(tmp, pattern = "html$|docx$")) == 3)
+})
