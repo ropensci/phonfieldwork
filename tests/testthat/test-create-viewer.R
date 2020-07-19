@@ -37,7 +37,7 @@ test_that("create_viewer", {
                'If you want to create a map in a viewer, you need to add a glottocode \\(or latitude and longitude\\) column to the datafarame in a table argument\\.')
   })
 
-unlink(paste0(tmp, "/result"))
-unlink(paste0(tmp, "/audio"))
-unlink(paste0(tmp, "/pic"))
+unlink(paste0(tmp, "/result/"))
+unlink(paste0(tmp, "/audio/"))
+unlink(paste0(tmp, "/pic/"))
 rm(tmp)
