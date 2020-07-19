@@ -26,5 +26,9 @@ VignetteBuilder: knitr
 Suggests: 
     knitr,
     testthat,
-    covr
+    covr,
+    dplyr,
+    tidyr,
+    DT,
+    lingtypology
 Language: en-US

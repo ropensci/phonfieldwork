@@ -10,3 +10,5 @@ create_glossed_document(flextext_to_df(file_name), output_dir = tmp,
 test_that("create_glossed_document", {
   expect_true(length(list.files(tmp, pattern = "html$|docx$")) == 3)
 })
+
+rm(tmp)

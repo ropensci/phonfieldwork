@@ -11,3 +11,5 @@ test_that("concatenate_soundfiles", {
   expect_true("concatenated.wav" %in% list.files(tdir))
   expect_true("concatenated.TextGrid" %in% list.files(tdir))
 })
+
+rm(tdir)
