@@ -51,3 +51,4 @@ library(phonfieldwork)
 
 * export to ELAN and EXMARALDA files
 * use ELAN and EXMARALDA files in the whole pipline discribed in docs
+* use the same pipline with video (for Sign Languages)

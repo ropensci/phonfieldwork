@@ -83,7 +83,7 @@ draw_spectrogram <- function (sound,
 # This function is slightly modification of phonTools::spectrogram()
 # by Santiago Barreda <sbarreda@ucdavis.edu>
 
-  if(class(sound) != "integer"){
+  if(class(sound) != "integer" & class(sound) != "numeric"){
     ext <- unlist(strsplit(normalizePath(sound), "\\."))
     ext <- ext[length(ext)]
 
