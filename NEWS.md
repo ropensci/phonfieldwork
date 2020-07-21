@@ -2,6 +2,7 @@
 
 - add the `picth` and `pitch_range` arguments to the `draw_sound()` function
 - add the `picth_to_df()` function
+- add an argument `external` to the `create_presentation` function in order to mark external images or gifs
 
 # phonfieldwork 0.0.7
 
