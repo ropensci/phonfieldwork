@@ -38,33 +38,32 @@ create_presentation <- function(stimuli,
                                 output_file = "stimuli_presentation",
                                 render = TRUE) {
   output_format <- ifelse(output_format == "pptx",
-                   "  powerpoint_presentation",
-                   "  ioslides_presentation:\n    transition: faster")
-  rmd <- paste0(c(paste0("---\ntitle: 'Use arrows for scrolling'\noutput:\n",
+                          "  powerpoint_presentation",
+                          "  ioslides_presentation:\n    transition: faster")
+  rmd <- paste0(paste0("---\ntitle: 'Use arrows for scrolling'\noutput:\n",
                          output_format,
                          "\n---\n\n"),
-                  collapse = ""),
-                 paste0('##\n<div class="container">\n**',
+                paste0('##\n<div class="container">\n**',
                        stimuli,
                        "**\n\n",
                        translations,
-                       "</div>",
+                       "\n</div>\n\n",
                        collapse = ""),
-                paste0("<style>\n",
-                '.container {
+                paste0("\n<style>\n",
+                       '.container {
     position: absolute;
     top: 50%;
-    left: 50%;',
-    'font-size: ',
-    font_size,
-    'px;
+    left: 50%;\n',
+                       '    font-size: ',
+                       font_size,
+                       'px;
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-                }
-<\\\\style>
+}
+</style>
 '),
-               collapse = "")
+                collapse = "")
   tmp <- tempfile(pattern = output_file, fileext = ".Rmd")
   writeLines(rmd, tmp)
   if(isTRUE(render)){
