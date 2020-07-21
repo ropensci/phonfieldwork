@@ -44,7 +44,7 @@ function.
 \description{
 Creates an html or powerpoint presentation in a working directory from list
 of words and translations.
-\href{https://agricolamz.github.io/phonfieldwork/first_example.html}{Here}
+\href{https://agricolamz.github.io/phonfieldwork/additional/first_example.html}{Here}
 is an example of such presentation.
 }
 \examples{
