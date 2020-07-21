@@ -53,6 +53,7 @@ create_presentation <- function(stimuli,
 
   l <- rep("internal", length(stimuli))
   l[external] <- "external"
+  stimuli <- as.character(stimuli)
   stimuli[l == "external"] <- normalizePath(stimuli[l == "external"])
 
   rmd <- paste0(paste0("---\ntitle: 'Use arrows for scrolling'\noutput:\n",
