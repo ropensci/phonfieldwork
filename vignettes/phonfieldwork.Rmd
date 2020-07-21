@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2020-07-11"
+date: "2020-07-21"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -196,14 +196,14 @@ After collecting data and removing soundfiles with unsuccesful elicitations, one
 
 
 ```
-## ├── unnamed-chunk-20-1.png
-## ├── unnamed-chunk-21-1.png
-## ├── unnamed-chunk-22-1.png
-## ├── unnamed-chunk-23-1.png
-## ├── unnamed-chunk-24-1.png
-## ├── unnamed-chunk-25-1.png
-## ├── unnamed-chunk-26-1.png
-## ├── unnamed-chunk-27-1.png
+## ├── s1
+## │   ├── 01.wav
+## │   ├── 02.wav
+## │   └── 03.wav
+## ├── s2
+## │   ├── 01.wav
+## │   ├── 02.wav
+## │   └── 03.wav
 ```
 
 For each speaker `s1` and `s2` there is a folder that containes three audiofiles. Now let's rename the files.
@@ -219,18 +219,18 @@ As a result, you obtain the following structure:
 
 
 ```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## ├── s2
 ## │   ├── 01.wav
 ## │   ├── 02.wav
 ## │   └── 03.wav
-## ├── second_example.html
-## ├── unnamed-chunk-20-1.png
-## ├── unnamed-chunk-21-1.png
-## ├── unnamed-chunk-22-1.png
-## ├── unnamed-chunk-23-1.png
-## ├── unnamed-chunk-24-1.png
-## ├── unnamed-chunk-25-1.png
-## ├── unnamed-chunk-26-1.png
-## ├── unnamed-chunk-27-1.png
 ```
 
 The `rename_soundfiles()` function created a backup folder with all of the unrenamed files, and renamed all files using the prefix provided in the `prefix` argument. There is an additional argument `backup` that can be set to `FALSE` (it is `TRUE` by default), in case you are sure that the renaming function will work properly with your files and stimuli, and you do not need a backup of the unrenamed files.
@@ -246,18 +246,18 @@ rename_soundfiles(stimuli = my_stimuli_df$stimuli,
 
 
 ```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
+## │   └── s1_top.wav
+## ├── s2
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.wav
 ## │   └── s2_top_3.wav
-## ├── second_example.html
-## ├── unnamed-chunk-20-1.png
-## ├── unnamed-chunk-21-1.png
-## ├── unnamed-chunk-22-1.png
-## ├── unnamed-chunk-23-1.png
-## ├── unnamed-chunk-24-1.png
-## ├── unnamed-chunk-25-1.png
-## ├── unnamed-chunk-26-1.png
-## ├── unnamed-chunk-27-1.png
 ```
 
 The last command renamed the soundfiles in the `s2` folder, adding the prefix `s2` as in the previous example, and the suffix `1`-`3`. On most operating systems it is impossible to create two files with the same name, so sometimes it can be useful to add some kind of index at the end of the files.
@@ -304,20 +304,20 @@ This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid
 
 
 ```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_tap.wav
+## │   ├── s1_tip.wav
 ## │   └── s1_top.wav
 ## ├── s2
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.wav
 ## │   └── s2_top_3.wav
-## ├── second_example.html
-## ├── unnamed-chunk-20-1.png
-## ├── unnamed-chunk-21-1.png
-## ├── unnamed-chunk-22-1.png
-## ├── unnamed-chunk-23-1.png
-## ├── unnamed-chunk-24-1.png
-## ├── unnamed-chunk-25-1.png
-## ├── unnamed-chunk-26-1.png
-## ├── unnamed-chunk-27-1.png
 ```
 
 The resulting file can be parsed with Praat (subscripted *t* is the result of Praat's conversion):
@@ -398,6 +398,15 @@ extract_intervals(file_name = "s1/s1_all.wav",
 
 
 ```
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_æ.wav
+## │   │   ├── 2_s1_ı.wav
 ## │   │   └── 3_s1_ɒ.wav
 ## │   ├── s1_tap.wav
 ## │   ├── s1_tip.wav
@@ -406,15 +415,6 @@ extract_intervals(file_name = "s1/s1_all.wav",
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.wav
 ## │   └── s2_top_3.wav
-## ├── second_example.html
-## ├── unnamed-chunk-20-1.png
-## ├── unnamed-chunk-21-1.png
-## ├── unnamed-chunk-22-1.png
-## ├── unnamed-chunk-23-1.png
-## ├── unnamed-chunk-24-1.png
-## ├── unnamed-chunk-25-1.png
-## ├── unnamed-chunk-26-1.png
-## ├── unnamed-chunk-27-1.png
 ```
 
 
@@ -482,6 +482,15 @@ draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav",
 
 
 ```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_sounds
+## │   │   ├── 1_s1_æ.wav
 ## │   │   ├── 2_s1_ı.wav
 ## │   │   └── 3_s1_ɒ.wav
 ## │   ├── s1_tap.wav
@@ -492,15 +501,6 @@ draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav",
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.wav
 ## │   └── s2_top_3.wav
-## ├── second_example.html
-## ├── unnamed-chunk-20-1.png
-## ├── unnamed-chunk-21-1.png
-## ├── unnamed-chunk-22-1.png
-## ├── unnamed-chunk-23-1.png
-## ├── unnamed-chunk-24-1.png
-## ├── unnamed-chunk-25-1.png
-## ├── unnamed-chunk-26-1.png
-## ├── unnamed-chunk-27-1.png
 ```
 
 It is also possible to create visualizations of all sound files in a folder. For this purpose you need to specify a source folder with the argument `sounds_from_folder` and a target folder for the images (`pic_folder_name`). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.
@@ -513,6 +513,15 @@ draw_sound(sounds_from_folder = "s1/s1_sounds/",
 
 
 ```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_pics
+## │   │   ├── 1_s1_æ.png
 ## │   │   ├── 2_s1_ı.png
 ## │   │   └── 3_s1_ɒ.png
 ## │   ├── s1_sounds
@@ -527,15 +536,6 @@ draw_sound(sounds_from_folder = "s1/s1_sounds/",
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.wav
 ## │   └── s2_top_3.wav
-## ├── second_example.html
-## ├── unnamed-chunk-20-1.png
-## ├── unnamed-chunk-21-1.png
-## ├── unnamed-chunk-22-1.png
-## ├── unnamed-chunk-23-1.png
-## ├── unnamed-chunk-24-1.png
-## ├── unnamed-chunk-25-1.png
-## ├── unnamed-chunk-26-1.png
-## ├── unnamed-chunk-27-1.png
 ```
 
 It is also possible to use the argument `textgrid_from_folder` in order to specify the folder where .TextGrids for annotation are (could be the same folder as the sound one). By default the `draw_sound()` function with the `sounds_from_folder` argument adds a title with the file name to each pictures' title, but it is possible to turn it off using the argument `title_as_filename = FALSE`.
@@ -753,6 +753,15 @@ We will start with the previous folder structure:
 
 
 ```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_pics
+## │   │   ├── 1_s1_æ.png
 ## │   │   ├── 2_s1_ı.png
 ## │   │   └── 3_s1_ɒ.png
 ## │   ├── s1_sounds
@@ -767,15 +776,6 @@ We will start with the previous folder structure:
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.wav
 ## │   └── s2_top_3.wav
-## ├── second_example.html
-## ├── unnamed-chunk-20-1.png
-## ├── unnamed-chunk-21-1.png
-## ├── unnamed-chunk-22-1.png
-## ├── unnamed-chunk-23-1.png
-## ├── unnamed-chunk-24-1.png
-## ├── unnamed-chunk-25-1.png
-## ├── unnamed-chunk-26-1.png
-## ├── unnamed-chunk-27-1.png
 ```
 
 We have all folders:
@@ -836,6 +836,15 @@ As a result, a `stimuli_viewer.html` was created in the `s1` folder.
 
 
 ```
+## ├── s1
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   └── 03.wav
+## │   ├── s1_all.TextGrid
+## │   ├── s1_all.wav
+## │   ├── s1_pics
+## │   │   ├── 1_s1_æ.png
 ## │   │   ├── 2_s1_ı.png
 ## │   │   └── 3_s1_ɒ.png
 ## │   ├── s1_sounds
@@ -851,15 +860,6 @@ As a result, a `stimuli_viewer.html` was created in the `s1` folder.
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.wav
 ## │   └── s2_top_3.wav
-## ├── second_example.html
-## ├── unnamed-chunk-20-1.png
-## ├── unnamed-chunk-21-1.png
-## ├── unnamed-chunk-22-1.png
-## ├── unnamed-chunk-23-1.png
-## ├── unnamed-chunk-24-1.png
-## ├── unnamed-chunk-25-1.png
-## ├── unnamed-chunk-26-1.png
-## ├── unnamed-chunk-27-1.png
 ```
 
 You can find the created example [here](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html).
