@@ -307,7 +307,7 @@ extract_intervals(file_name = "s1/s1_all.wav",
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 20 | head -n 17
+tree | tail -n 21 | head -n 18
 ```
 
 
