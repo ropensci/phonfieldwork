@@ -7,6 +7,7 @@
 create_presentation(
   stimuli,
   translations = "",
+  external = NULL,
   font_size = 50,
   output_dir,
   output_format = "html",
@@ -15,9 +16,11 @@ create_presentation(
 )
 }
 \arguments{
-\item{stimuli}{the vector of stimuli (obligatory)}
+\item{stimuli}{the vector of stimuli (obligatory). Can be a path to an image.}
 
 \item{translations}{the vector of translations (optional)}
+
+\item{external}{the vector with the indices of external images}
 
 \item{font_size}{font size in px (50, by default)}
 
@@ -48,6 +51,14 @@ is an example of such presentation.
 create_presentation(stimuli = c("rzeka", "drzewo"),
                     translations = c("river", "tree"),
                     render = FALSE)
+
+# with image
+create_presentation(stimuli = c("rzeka", "drzewo",
+                               system.file("extdata", "r-logo.png",
+                                           package = "phonfieldwork")),
+                   translations = c("river", "tree", ""),
+                   external = 3,
+                   render = FALSE)
 
 }
 \author{

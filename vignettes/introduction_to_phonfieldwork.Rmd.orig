@@ -147,6 +147,21 @@ As a result, a file "first_example.html" was created in the output folder. You c
 
 It is also possible to change the output format, using the `output_format` argument. By dafault it is "html", but you can also use "pptx" (this is a relatively new feature of `rmarkdown`, so update the package in case you get errors). There is also an additional argument `translations`, where you can provide translations for stimuli in order that they appeared near the stimuli on the slide.
 
+It is also possible to use images (or gif, e. g. for a sign language research) as a stimuli. In order to do that you need to provide an absolute or relative path to the file instead of the stimulus and mark in the `external` argument, which of the stimuli is external:
+
+```{r}
+my_image <- system.file("extdata", "r-logo.png", package = "phonfieldwork")
+my_image
+
+create_presentation(stimuli = c("rzeka", "drzewo", my_image),
+                    external = 3, 
+                    output_dir = getwd())
+```
+
+<iframe src="https://agricolamz.github.io/phonfieldwork/additional/second_example.html" width = 800 height = 600>
+  <p>Your browser does not support iframes :(</p>
+</iframe>
+
 ## Rename collected data
 After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure:
 

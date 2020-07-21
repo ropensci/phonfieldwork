@@ -7,8 +7,9 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param stimuli the vector of stimuli (obligatory)
+#' @param stimuli the vector of stimuli (obligatory). Can be a path to an image.
 #' @param translations the vector of translations (optional)
+#' @param external the vector with the indices of external images
 #' @param font_size font size in px (50, by default)
 #' @param output_format the string that difine the R Markdown output format:
 #' "html" (by default) or "pptx"
@@ -26,12 +27,21 @@
 #'                     translations = c("river", "tree"),
 #'                     render = FALSE)
 #'
+#' # with image
+#' create_presentation(stimuli = c("rzeka", "drzewo",
+#'                                system.file("extdata", "r-logo.png",
+#'                                            package = "phonfieldwork")),
+#'                    translations = c("river", "tree", ""),
+#'                    external = 3,
+#'                    render = FALSE)
+#'
 #' @export
 #' @importFrom rmarkdown render
 #'
 
 create_presentation <- function(stimuli,
                                 translations = "",
+                                external = NULL,
                                 font_size = 50,
                                 output_dir,
                                 output_format = "html",
@@ -40,12 +50,19 @@ create_presentation <- function(stimuli,
   output_format <- ifelse(output_format == "pptx",
                           "  powerpoint_presentation",
                           "  ioslides_presentation:\n    transition: faster")
+
+  l <- rep("internal", length(stimuli))
+  l[external] <- "external"
+  stimuli[l == "external"] <- normalizePath(stimuli[l == "external"])
+
   rmd <- paste0(paste0("---\ntitle: 'Use arrows for scrolling'\noutput:\n",
                          output_format,
                          "\n---\n\n"),
-                paste0('##\n<div class="container">\n**',
+                paste0('##\n<div class="container">\n',
+                       ifelse(l == "internal", "**", "![]("),
                        stimuli,
-                       "**\n\n",
+                       ifelse(l == "internal", "**", ")"),
+                       "\n\n",
                        translations,
                        "\n</div>\n\n",
                        collapse = ""),
