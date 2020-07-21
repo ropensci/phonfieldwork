@@ -154,7 +154,8 @@ my_image <- system.file("extdata", "r-logo.png", package = "phonfieldwork")
 my_image
 
 create_presentation(stimuli = c("rzeka", "drzewo", my_image),
-                    external = 3, 
+                    external = 3,
+                    output_file = "second_example",
                     output_dir = getwd())
 ```
 
