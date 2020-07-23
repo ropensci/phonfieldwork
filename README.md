@@ -52,3 +52,4 @@ library(phonfieldwork)
 * export to ELAN and EXMARALDA files
 * use ELAN and EXMARALDA files in the whole pipline discribed in docs
 * use the same pipline with video (for Sign Languages)
+* make [TECkit](https://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=BeyondUTR22_pdf&filename=BeyondUTR22_pdf.pdf) to df and back
