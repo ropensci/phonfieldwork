@@ -32,11 +32,14 @@
 #' appropriate. At the moment, the only windows that require parameters are the
 #' Kaiser and Gaussian windows. By default, these are set to 2 for kaiser and
 #' 0.4 for gaussian windows.
-#' @param pitch path to the Praat `.Pitch` file or result of pitch_to_df()
-#' function. This variable provide data for visualisation a pitch contour
-#' exported from Praat.
+#' @param pitch path to the Praat `.Pitch` file or result of
+#' \code{pitch_to_df()} function. This variable provide data for visualisation
+#' of a pitch contour exported from Praat.
 #' @param pitch_range vector with the range of frequencies to be displayed.
 #' By default this is set to 75-350 Hz.
+#' @param intensity path to the Praat `.Intensity` file or result of
+#' \code{intensity_to_df()} function. This variable provide data for
+#' visualisation of an intensity contour exported from Praat.
 #' @param output_file the name of the output file
 #' @param output_width the width of the device
 #' @param output_height the height of the device
@@ -72,11 +75,18 @@
 #'            system.file("extdata", "test.TextGrid",
 #'                        package = "phonfieldwork"))
 #'
-# draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
-#            system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
-#            pitch = system.file("extdata", "test.Pitch",
-#                                package = "phonfieldwork"),
-#            pitch_range = c(50, 200))
+#' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
+#'            system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+#'            pitch = system.file("extdata", "test.Pitch",
+#'                                package = "phonfieldwork"),
+#'            pitch_range = c(50, 200))
+#' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
+#'            system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+#'            pitch = system.file("extdata", "test.Pitch",
+#'                                package = "phonfieldwork"),
+#'            pitch_range = c(50, 200),
+#'            intensity = intensity_to_df(system.file("extdata", "test.Intensity",
+#'                                                    package = "phonfieldwork")))
 #' }
 #' @export
 #'
@@ -116,6 +126,7 @@ draw_sound <- function(file_name,
                        raven_annotation = NULL,
                        pitch = NULL,
                        pitch_range = c(75, 350),
+                       intensity = NULL,
                        output_width = 750,
                        output_height = 500,
                        output_units = "px",
@@ -205,13 +216,13 @@ draw_sound <- function(file_name,
       }
 # plot spectrogram --------------------------------------------------------
 
-      if(is.null(annotation) & is.null(pitch)){
+      if(is.null(annotation) & is.null(pitch) & is.null(intensity)){
         low_boundary <- 0.1
-      } else if(is.null(annotation) & !is.null(pitch)){
+      } else if(is.null(annotation) & (!is.null(pitch)|!is.null(intensity))){
         low_boundary <- 0.1 + 0.17
-      } else if(!is.null(annotation) & is.null(pitch)){
+      } else if(!is.null(annotation) & is.null(pitch)& is.null(intensity)){
         low_boundary <- 0.1 + 0.17
-      } else if(!is.null(annotation) & !is.null(pitch)){
+      } else if(!is.null(annotation) & (!is.null(pitch)|!is.null(intensity))){
         low_boundary <- 0.1 + 0.17 + 0.17
       }
 
@@ -240,13 +251,13 @@ draw_sound <- function(file_name,
 
 
 # plot pitch --------------------------------------------------------------
-      if(is.null(annotation) & !is.null(pitch)){
+      if(is.null(annotation) & (!is.null(pitch)|!is.null(intensity))){
         upper_boundary <- 0.1 + 0.17
         low_boundary <- 0.1
-      } else if(!is.null(annotation) & is.null(pitch)){
+      } else if(!is.null(annotation) & is.null(pitch)& is.null(intensity)){
         upper_boundary <- 0.1 + 0.17
         low_boundary <- 0.1
-      } else if(!is.null(annotation) & !is.null(pitch)){
+      } else if(!is.null(annotation) & (!is.null(pitch)|!is.null(intensity))){
         upper_boundary <- 0.1 + 0.17 + 0.17
         low_boundary <- 0.1+ 0.17
       }
@@ -271,12 +282,46 @@ draw_sound <- function(file_name,
              yaxs="i",
              cex.lab = 0.7)
 
-        values <- c(pitch_range[1],
-                    floor(seq(pitch_range[1],
-                              pitch_range[2],
-                              length.out = 4)[-c(1, 4)]/10)*10,
-                    pitch_range[2])
-        graphics::axis(2, cex.axis=text_size, las=1, at = values)
+        graphics::axis(2, cex.axis=text_size, las=1,
+                       at = pretty(pitch_range, n = 4))
+        if(low_boundary == 0.1){
+          graphics::axis(1, cex.axis=text_size)
+          graphics::title(xlab = "time (ms)", cex.lab = 0.7)
+        }
+        if(!is.null(intensity)){
+          if(class(intensity) != "data.frame"){
+            intensity <- phonfieldwork::intensity_to_df(intensity)
+          }
+          graphics::legend(x = 0, y = pitch_range[2]+pitch_range[2]/10,
+                           legend=c("pitch", "intensity"),
+                           lty=c(1, 3), cex=0.8, box.lty=0)
+          graphics::par(new = TRUE)
+          graphics::plot(intensity$time_start*1000, intensity$intensity,
+                         type = "l", xlab = "", ylab = "", axes = FALSE,
+                         lty = 3)
+          graphics::axis(4, cex.axis=text_size, las=1,
+                         at = pretty(intensity$intensity, n = 4))
+          graphics::mtext(text = "Intensity (Db)",
+                          side = 4, cex = 0.6, padj = -3)
+        }
+      } else if(!is.null(intensity)){
+        graphics::par(fig=c(0, 0.97, low_boundary, upper_boundary), new=TRUE)
+        if(class(intensity) != "data.frame"){
+          intensity <- phonfieldwork::intensity_to_df(intensity)
+        }
+        graphics::plot(intensity$time_start*1000, intensity$intensity,
+                       type = "l",
+                       cex = 0,
+                       xaxt='n',
+                       yaxt='n',
+                       ylab = "Intensity (Db)",
+                       xlab = "",
+                       las=1,
+                       xaxs="i",
+                       yaxs="i",
+                       cex.lab = 0.7)
+        graphics::axis(2, cex.axis=text_size, las=1,
+                       at = pretty(intensity$intensity, n = 4))
         if(low_boundary == 0.1){
           graphics::axis(1, cex.axis=text_size)
           graphics::title(xlab = "time (ms)", cex.lab = 0.7)

@@ -24,6 +24,7 @@ draw_sound(
   raven_annotation = NULL,
   pitch = NULL,
   pitch_range = c(75, 350),
+  intensity = NULL,
   output_width = 750,
   output_height = 500,
   output_units = "px",
@@ -87,12 +88,16 @@ annotations (boxes over spectrogram). The dataframe that contains
 \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high}
 columns. Optional columns are \code{colors} and \code{content}.}
 
-\item{pitch}{path to the Praat `.Pitch` file or result of pitch_to_df()
-function. This variable provide data for visualisation a pitch contour
-exported from Praat.}
+\item{pitch}{path to the Praat `.Pitch` file or result of
+\code{pitch_to_df()} function. This variable provide data for visualisation
+of a pitch contour exported from Praat.}
 
 \item{pitch_range}{vector with the range of frequencies to be displayed.
 By default this is set to 75-350 Hz.}
+
+\item{intensity}{path to the Praat `.Intensity` file or result of
+\code{intensity_to_df()} function. This variable provide data for
+visualisation of an intensity contour exported from Praat.}
 
 \item{output_width}{the width of the device}
 
@@ -137,6 +142,18 @@ draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
            system.file("extdata", "test.TextGrid",
                        package = "phonfieldwork"))
 
+draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
+           system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+           pitch = system.file("extdata", "test.Pitch",
+                               package = "phonfieldwork"),
+           pitch_range = c(50, 200))
+draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
+           system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+           pitch = system.file("extdata", "test.Pitch",
+                               package = "phonfieldwork"),
+           pitch_range = c(50, 200),
+           intensity = intensity_to_df(system.file("extdata", "test.Intensity",
+                                                   package = "phonfieldwork")))
 }
 }
 \author{
