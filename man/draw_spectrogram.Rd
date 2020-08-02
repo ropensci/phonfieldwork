@@ -21,7 +21,8 @@ draw_spectrogram(
   nlevels = dynamic_range,
   x_axis = TRUE,
   title = NULL,
-  raven_annotation = NULL
+  raven_annotation = NULL,
+  formant_df = NULL
 )
 }
 \arguments{
@@ -81,6 +82,8 @@ single color represents 1 dB on the z-axis.}
 annotations (boxes over spectrogram). The dataframe that contains
 \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high}
 columns. Optional columns are \code{colors} and \code{content}.}
+
+\item{formant_df}{dataframe with formants from \code{formant_to_df()} function}
 }
 \description{
 This function was slightly changed from \code{phonTools::spectrogram()}.

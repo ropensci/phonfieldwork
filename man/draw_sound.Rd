@@ -22,6 +22,7 @@ draw_sound(
   preemphasisf = 50,
   spectrum_info = TRUE,
   raven_annotation = NULL,
+  formant_df = NULL,
   pitch = NULL,
   pitch_range = c(75, 350),
   intensity = NULL,
@@ -87,6 +88,8 @@ window method and params.}
 annotations (boxes over spectrogram). The dataframe that contains
 \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high}
 columns. Optional columns are \code{colors} and \code{content}.}
+
+\item{formant_df}{dataframe with formants from \code{formant_to_df()} function}
 
 \item{pitch}{path to the Praat `.Pitch` file or result of
 \code{pitch_to_df()} function. This variable provide data for visualisation
@@ -154,6 +157,9 @@ draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
            pitch_range = c(50, 200),
            intensity = intensity_to_df(system.file("extdata", "test.Intensity",
                                                    package = "phonfieldwork")))
+draw_spectrogram(system.file("extdata", "test.wav", package = "phonfieldwork"),
+                 formant_df = formant_to_df(system.file("extdata", "e.Formant",
+                                                        package = "phonfieldwork")))
 }
 }
 \author{

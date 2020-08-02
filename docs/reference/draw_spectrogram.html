@@ -154,7 +154,8 @@ Argument description is copied from <code><a href='https://rdrr.io/pkg/phonTools
   <span class='kw'>nlevels</span> <span class='kw'>=</span> <span class='no'>dynamic_range</span>,
   <span class='kw'>x_axis</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>raven_annotation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>raven_annotation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>formant_df</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -250,6 +251,10 @@ single color represents 1 dB on the z-axis.</p></td>
 annotations (boxes over spectrogram). The dataframe that contains
 <code>time_start</code>, <code>time_end</code>, <code>freq_low</code> and <code>freq_high</code>
 columns. Optional columns are <code>colors</code> and <code>content</code>.</p></td>
+    </tr>
+    <tr>
+      <th>formant_df</th>
+      <td><p>dataframe with formants from <code><a href='formant_to_df.html'>formant_to_df()</a></code> function</p></td>
     </tr>
     </table>
 

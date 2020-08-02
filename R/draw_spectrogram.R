@@ -45,6 +45,7 @@
 #' annotations (boxes over spectrogram). The dataframe that contains
 #' \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high}
 #' columns. Optional columns are \code{colors} and \code{content}.
+#' @param formant_df dataframe with formants from \code{formant_to_df()} function
 #'
 #' @examples
 #' \dontrun{
@@ -78,10 +79,11 @@ draw_spectrogram <- function (sound,
                               nlevels = dynamic_range,
                               x_axis = TRUE,
                               title = NULL,
-                              raven_annotation = NULL){
+                              raven_annotation = NULL,
+                              formant_df = NULL){
 
-# This function is slightly modification of phonTools::spectrogram()
-# by Santiago Barreda <sbarreda@ucdavis.edu>
+  # This function is slightly modification of phonTools::spectrogram()
+  # by Santiago Barreda <sbarreda@ucdavis.edu>
 
   if(class(sound) != "integer" & class(sound) != "numeric"){
     ext <- unlist(strsplit(normalizePath(sound), "\\."))
@@ -92,7 +94,7 @@ draw_spectrogram <- function (sound,
     } else if(ext == "mp3"){
       s <- tuneR::readMP3(sound)
     } else{
-stop("The draw_spectrogram() functions works only with .wav(e) or .mp3 formats")
+      stop("The draw_spectrogram() functions works only with .wav(e) or .mp3 formats")
     }
     fs <- s@samp.rate
     sound <- s@left
@@ -116,7 +118,7 @@ stop("The draw_spectrogram() functions works only with .wav(e) or .mp3 formats")
   padding <- n * padding
   if ((n + padding)%%2){
     padding <- padding + 1
-    }
+  }
   N <- n + padding
 
   spect <- matrix(nrow = length(spots),
@@ -124,8 +126,8 @@ stop("The draw_spectrogram() functions works only with .wav(e) or .mp3 formats")
 
   lapply(spots, function(x) {
     tmp <- sound[x:(x + n - 1)] * phonTools::windowfunc(sound[x:(x + n - 1)],
-                                                       window,
-                                                       windowparameter)
+                                                        window,
+                                                        windowparameter)
     tmp <- c(tmp, rep(0, padding))
     tmp <- tmp - mean(tmp)
     tmp <- stats::fft(tmp)[1:(N/2 + 1)]
@@ -143,7 +145,7 @@ stop("The draw_spectrogram() functions works only with .wav(e) or .mp3 formats")
   } else if(freq_scale == "Hz"){
     hz <- (0:(N/2)) * (fs/N)
   } else {
-stop("The only possible values for the freq_scale argument are 'kHz' and 'Hz'")
+    stop("The only possible values for the freq_scale argument are 'kHz' and 'Hz'")
   }
 
   times <- spots * (1000/fs)
@@ -191,16 +193,16 @@ stop("The only possible values for the freq_scale argument are 'kHz' and 'Hz'")
   graphics::axis(2, cex.axis=text_size, las=1)
   graphics::title(ylab = paste0("Frequency (", freq_scale, ")"), cex.lab = 0.7)
   if(spectrum_info){
-  graphics::mtext(text = paste0(toupper(substring(window, 1, 1)),
-                      tolower(substring(window, 2, nchar(window))),
-                      " window (length: ",
-                      window_length,
-                      " ms",
-                      parameter_info,
-                      "), dynamic range: ",
-                      dynamic_range, " (dB)",
-                      preemphasisf_text),
-        side = 4, cex = 0.6, line = preemphasisf_line)
+    graphics::mtext(text = paste0(toupper(substring(window, 1, 1)),
+                                  tolower(substring(window, 2, nchar(window))),
+                                  " window (length: ",
+                                  window_length,
+                                  " ms",
+                                  parameter_info,
+                                  "), dynamic range: ",
+                                  dynamic_range, " (dB)",
+                                  preemphasisf_text),
+                    side = 4, cex = 0.6, line = preemphasisf_line)
   }
   if(x_axis){
     graphics::axis(1, cex.axis=text_size, las=1)
@@ -232,7 +234,24 @@ stop("The only possible values for the freq_scale argument are 'kHz' and 'Hz'")
     } else{
       warning(paste0("raven_annotation should have time_start, time_end",
                      "freq_low and freq_high columns"))
-    }
+    }}
 
+  if(!is.null(formant_df)){
+    if(is.null(formant_df$colors)){
+      formant_df$colors <- "red"
+    }
+    if("time_start" %in% names(formant_df) &
+       "time_end" %in% names(formant_df) &
+       "formant" %in% names(formant_df) &
+       "frequency" %in% names(formant_df)){
+      graphics::points(formant_df$time_start*1000,
+                       formant_df$frequency/1000,
+                       col = unique(formant_df$color),
+                       pch = 16,
+                       cex = 0.5)
+    } else{
+      warning(paste0("formant_df should have time_start, time_end",
+                     "formant and frequency columns"))
+    }
   }
 }

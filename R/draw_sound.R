@@ -64,6 +64,7 @@
 #' annotations (boxes over spectrogram). The dataframe that contains
 #' \code{time_start}, \code{time_end}, \code{freq_low} and \code{freq_high}
 #' columns. Optional columns are \code{colors} and \code{content}.
+#' @param formant_df dataframe with formants from \code{formant_to_df()} function
 #'
 #' @return Oscilogram and spectrogram plot (and possibly TextGrid annotation).
 #'
@@ -87,6 +88,9 @@
 #'            pitch_range = c(50, 200),
 #'            intensity = intensity_to_df(system.file("extdata", "test.Intensity",
 #'                                                    package = "phonfieldwork")))
+#' draw_spectrogram(system.file("extdata", "test.wav", package = "phonfieldwork"),
+#'                  formant_df = formant_to_df(system.file("extdata", "e.Formant",
+#'                                                         package = "phonfieldwork")))
 #' }
 #' @export
 #'
@@ -124,6 +128,7 @@ draw_sound <- function(file_name,
                        preemphasisf = 50,
                        spectrum_info = TRUE,
                        raven_annotation = NULL,
+                       formant_df = NULL,
                        pitch = NULL,
                        pitch_range = c(75, 350),
                        intensity = NULL,
@@ -247,6 +252,7 @@ draw_sound <- function(file_name,
                        preemphasisf = preemphasisf,
                        spectrum_info = spectrum_info,
                        raven_annotation = raven_annotation,
+                       formant_df = formant_df,
                        x_axis = low_boundary == 0.1)
 
 
@@ -444,6 +450,7 @@ draw_sound <- function(file_name,
                  preemphasisf = preemphasisf,
                  spectrum_info = spectrum_info,
                  raven_annotation = raven_annotation,
+                 formant_df = formant_df,
                  output_file = NULL)
       supress_message <- grDevices::dev.off()
     }
@@ -511,6 +518,7 @@ draw_sound <- function(file_name,
                  preemphasisf = preemphasisf,
                  spectrum_info = spectrum_info,
                  raven_annotation = raven_annotation,
+                 formant_df = formant_df,
                  output_width = output_width,
                  output_height = output_height,
                  output_units = output_units,
