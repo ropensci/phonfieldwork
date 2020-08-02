@@ -88,7 +88,7 @@
 #'            pitch_range = c(50, 200),
 #'            intensity = intensity_to_df(system.file("extdata", "test.Intensity",
 #'                                                    package = "phonfieldwork")))
-#' draw_spectrogram(system.file("extdata", "test.wav", package = "phonfieldwork"),
+#' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
 #'                  formant_df = formant_to_df(system.file("extdata", "e.Formant",
 #'                                                         package = "phonfieldwork")))
 #' }

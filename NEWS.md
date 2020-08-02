@@ -1,6 +1,6 @@
 # phonfieldwork 0.0.8
 
-- add `intensity`, `picth` and `pitch_range` arguments to the `draw_sound()` function
+- add `formant_df`, `intensity`, `picth` and `pitch_range` arguments to the `draw_sound()` function
 - add the `formant_to_df()` function
 - add the `picth_to_df()` function
 - add the `intensity_to_df()` function
