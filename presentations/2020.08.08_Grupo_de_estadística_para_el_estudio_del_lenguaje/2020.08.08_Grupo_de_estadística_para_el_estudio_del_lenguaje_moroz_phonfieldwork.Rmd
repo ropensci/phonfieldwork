@@ -1,0 +1,38 @@
+---
+title: "Phonetic fieldwork and experiments with the `phonfieldwork` package for R"
+author: "George Moroz"
+institute: "Linguistic Convergence Laboratory, NRU HSE"
+date: |
+    | 08.08.2020, Grupo de estadística para el estudio del lenguaje
+    |
+    |
+    | ![](images/01_qrcode.png)'
+    | Presentation is available here: \alert{tinyurl.com/y7kjsp67}
+output: 
+  beamer_presentation:
+    df_print: kable
+    latex_engine: xelatex
+    citation_package: natbib
+    keep_tex: false
+    includes:
+      in_header: "config/presento.sty"
+bibliography: bibliography.bib
+biblio-style: "apalike"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+# library(qrcode)
+# png(filename="images/01_qrcode.png", width = 200, height = 200)
+# qrcode_gen("https://github.com/agricolamz/2020_SLE_Koile_Moroz_geosampling/raw/master/2020_SLE_Koile_Moroz_geosampling.pdf")
+# dev.off()
+```
+
+## Outline of the talk
+
+* introduction
+* blar
+
+# References {.allowframebreaks}
