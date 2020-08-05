@@ -6,8 +6,8 @@ date: |
     | 08.08.2020, Grupo de estadística para el estudio del lenguaje
     |
     |
+    | Presentation is available here: \alert{tinyurl.com/y6lf5ch4}
     | ![](images/01_qrcode.png)'
-    | Presentation is available here: \alert{tinyurl.com/y7kjsp67}
 output: 
   beamer_presentation:
     df_print: kable
@@ -26,13 +26,42 @@ editor_options:
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 # library(qrcode)
 # png(filename="images/01_qrcode.png", width = 200, height = 200)
-# qrcode_gen("https://github.com/agricolamz/2020_SLE_Koile_Moroz_geosampling/raw/master/2020_SLE_Koile_Moroz_geosampling.pdf")
+# qrcode_gen("https://github.com/agricolamz/phonfieldwork/raw/master/presentations/2020.08.08_Grupo_de_estad%C3%ADstica_para_el_estudio_del_lenguaje/2020.08.08_Grupo_de_estad%C3%ADstica_para_el_estudio_del_lenguaje_moroz_phonfieldwork.pdf")
 # dev.off()
 ```
 
-## Outline of the talk
+# Introduction
 
-* introduction
-* blar
+## Most phonetic research consists of the following steps:
+
+1. Formulate a research question. Think of what kind of data is necessary to answer this question, what is the appropriate amount of data, what kind of annotation you will do, what kind of statistical models and visualizations you will use, etc.
+2. Create a list of stimuli.
+3. Elicite list of stimuli from speakers who signed an Informed Consent statement, agreeing to participate in the experiment to be recorded on audio and/or video.
+4. Annotate the collected data.
+5. Extract the information from annotated data.
+6. Create visualizations.
+7. Evaluate your statistical models.
+8. Report your results.
+9. Publish your data. \pause
+
+The `phonfieldwork` package is created for helping with items 3, 4 (partially), 5, 6, and 9.
+
+# Installation of the package
+
+# Creating your presentation
+
+# Data renaming
+
+# Data merging
+
+# Data annotation
+
+# Data extraction
+
+# Data visulization
+
+# Reading data from different linguistic sources
+
+# Creating a data viewer -- template for the data sharing
 
 # References {.allowframebreaks}
