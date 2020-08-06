@@ -46,6 +46,23 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 The `phonfieldwork` package is created for helping with items 3, 4 (partially), 5, 6, and 9.
 
+## Why/when do you need the phonfieldwork package?
+
+These ideal plan hides some technical subtasks:
+
+* creating a presentation for elicitation task
+* renaming and concatenating multiple sound files
+* automatic annotation in Praat TextGrids [@boersma19]
+* creating a searchable `.html` table with annotations, spectrograms and ability to hear sound
+* converting multiple formats (Praat, ELAN [@brugman04] and EXMARaLDA [@schmidt09]) \pause
+
+All of these tasks can be solved by a mixture of different tools:
+
+* any programming language can handle automatic file renaming
+* Praat contains scripts for concatenating and renaming files \pause
+
+`phonfieldwork` provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other packages: `rPraat` [@borzil16], `textgRid` [@reidy16], `pympi` [@lubbers13]
+
 # Installation of the package
 
 ## Install `phonfieldwork`
@@ -89,5 +106,13 @@ packageVersion("phonfieldwork") # Unreleased version
 # Reading data from different linguistic sources
 
 # Creating a data viewer -- template for the data sharing
+
+# Cite
+
+## Cite the package
+
+```{r}
+citation("phonfieldwork")
+```
 
 # References {.allowframebreaks}
