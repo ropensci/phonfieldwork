@@ -107,9 +107,13 @@ packageVersion("phonfieldwork") # Unreleased version
 
 # Creating a data viewer -- template for the data sharing
 
-# Cite
+# Get help and cite
 
-## Cite the package
+## Get help and cite
+
+You can always write an email or open an [issue on GitHub](https://github.com/agricolamz/phonfieldwork/issues), asking some questions.
+
+The most recent citation information is avalible with this command:
 
 ```{r}
 citation("phonfieldwork")
