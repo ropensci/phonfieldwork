@@ -163,7 +163,7 @@ Here is [the result](https://agricolamz.github.io/phonfieldwork/additional/secon
 After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure:
 
 ```{bash, echo = FALSE}
-tree data | tail -n 11 | head -n 8
+tree data | tail -n 13 | head -n 8
 ```
 
 ## Rename collected data
@@ -175,7 +175,7 @@ rename_soundfiles(stimuli = my_stimuli, # it is "tip" "tap" "top"
 ```
 
 ```{bash, echo = FALSE}
-tree data | tail -n 15 | head -n 12
+tree data | tail -n 17 | head -n 12
 ```
 
 ## Rename collected data
@@ -189,7 +189,7 @@ rename_soundfiles(stimuli = my_stimuli, # it is "tip" "tap" "top"
 ```
 
 ```{bash, echo = FALSE}
-tree data | tail -n 15 | head -n 12
+tree data | tail -n 17 | head -n 12
 ```
 
 ## Rename collected data
