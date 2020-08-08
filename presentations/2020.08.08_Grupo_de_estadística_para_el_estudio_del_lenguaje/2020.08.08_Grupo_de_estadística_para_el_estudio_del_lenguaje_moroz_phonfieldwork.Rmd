@@ -3,14 +3,13 @@ title: "Phonetic fieldwork and experiments with the `phonfieldwork` package for 
 author: "George Moroz"
 institute: "Linguistic Convergence Laboratory, NRU HSE"
 date: |
-    | 08.08.2020, Grupo de estadística para el estudio del lenguaje
+    | 08 August 2020, Grupo de estadística para el estudio del lenguaje
     |
     |
     | Presentation is available here: \alert{tinyurl.com/y6lf5ch4}
     | ![](images/01_qrcode.png)'
 output: 
   beamer_presentation:
-    df_print: kable
     latex_engine: xelatex
     citation_package: natbib
     keep_tex: false
@@ -28,6 +27,13 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 # png(filename="images/01_qrcode.png", width = 200, height = 200)
 # qrcode_gen("https://github.com/agricolamz/phonfieldwork/raw/master/presentations/2020.08.08_Grupo_de_estad%C3%ADstica_para_el_estudio_del_lenguaje/2020.08.08_Grupo_de_estad%C3%ADstica_para_el_estudio_del_lenguaje_moroz_phonfieldwork.pdf")
 # dev.off()
+
+unlink("data/s1", recursive = TRUE)
+unlink("data/s2", recursive = TRUE)
+dir.create("data/s1")
+dir.create("data/s2")
+file.copy(paste0("../backup/s1/", list.files("../backup/s1/")), "data/s1/")
+file.copy(paste0("../backup/s2/", list.files("../backup/s2/")), "data/s2/")
 ```
 
 # Introduction
@@ -63,6 +69,14 @@ All of these tasks can be solved by a mixture of different tools:
 
 `phonfieldwork` provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other packages: `rPraat` [@borzil16], `textgRid` [@reidy16], `pympi` [@lubbers13]
 
+## Philosophy of the `phonfieldwork` package
+
+* each stimulus is a separate file
+* researcher carefully listens to consultants to make sure that they are producing the kind of speech they wanted
+* in case a speaker does not produce clear repetitions, researcher ask them to repeat the task
+
+There are some phoneticians who prefer to record everything for language documentation purposes. I think that should be a separate task. If you insist on recording everything, it is possible to run two recorders at the same time: one could run during the whole session, while the other is used to produce small audio files. You can also use special software to record your stimuli automatically on a computer (e.g. `PsychoPy` [@peirce19]).
+   
 # Installation of the package
 
 ## Install `phonfieldwork`
@@ -93,7 +107,89 @@ packageVersion("phonfieldwork") # Unreleased version
 
 # Creating your presentation
 
+##   Make a list of your stimuli
+
+There are several ways to enter information about a list of stimuli into R:
+
+* list them with the `c()` command
+
+```{r}
+my_stimuli <- c("tip", "tap", "top")
+```
+
+* read from `.csv` file with the `read.csv()` function:
+
+```{r, eval = FALSE}
+my_stimuli_df <- read.csv("my_stimuli_df.csv")
+```
+
+* read from `.xls` or `.xlsx` file with the `read_xls()` or `read_xlsx()` function from the `readxl` package (run `install.packages("readxl")` in case you don't have it installed):
+
+```{r, eval = FALSE}
+library("readxl")
+my_stimuli_df <- read_xlsx("my_stimuli_df.xlsx")
+```
+
+
+##  Create a presentation based on a list of stimuli
+
 # Data renaming
+
+## Obtained data
+
+After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure:
+
+```{bash, echo = FALSE}
+tree data | tail -n 10 | head -n 8
+```
+
+## Rename collected data
+
+```{r}
+rename_soundfiles(stimuli = my_stimuli, # it is "tip" "tap" "top"
+                  prefix = "s1_",
+                  path = "data/s1/")
+```
+
+```{bash, echo = FALSE}
+tree data | tail -n 14 | head -n 12
+```
+
+## Rename collected data
+
+```{r}
+rename_soundfiles(stimuli = my_stimuli, # it is "tip" "tap" "top"
+                  prefix = paste0(1:3, "_"),
+                  suffix = "_s2",
+                  path = "data/s2/",
+                  backup = FALSE)
+```
+
+```{bash, echo = FALSE}
+tree data | tail -n 14 | head -n 12
+```
+
+## Rename collected data
+
+Sometimes it is better to keep and order that will deal with the computer sorting:
+
+```{r}
+add_leading_symbols(1:105)
+```
+
+So it is better to use the result of `add_leading_symbols()` as a prefix during the renaming of a huge amount of files.
+
+## Get sound duration
+
+Sometimes it is useful to get information about sound duration:
+
+```{r}
+get_sound_duration("data/s1/s1_tap.wav")
+```
+
+```{r}
+get_sound_duration(sounds_from_folder = "data/s2/")
+```
 
 # Data merging
 
