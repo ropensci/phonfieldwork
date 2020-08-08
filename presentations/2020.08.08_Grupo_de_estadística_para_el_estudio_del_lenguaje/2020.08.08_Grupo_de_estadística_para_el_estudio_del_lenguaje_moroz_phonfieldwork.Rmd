@@ -28,12 +28,13 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 # qrcode_gen("https://github.com/agricolamz/phonfieldwork/raw/master/presentations/2020.08.08_Grupo_de_estad%C3%ADstica_para_el_estudio_del_lenguaje/2020.08.08_Grupo_de_estad%C3%ADstica_para_el_estudio_del_lenguaje_moroz_phonfieldwork.pdf")
 # dev.off()
 
-unlink("data/s1", recursive = TRUE)
-unlink("data/s2", recursive = TRUE)
+unlink("data", recursive = TRUE)
+dir.create("data")
 dir.create("data/s1")
 dir.create("data/s2")
 file.copy(paste0("../backup/s1/", list.files("../backup/s1/")), "data/s1/")
 file.copy(paste0("../backup/s2/", list.files("../backup/s2/")), "data/s2/")
+file.copy(paste0("../backup/", list.files("../backup/", pattern = "test")), "data/")
 ```
 
 # Introduction
@@ -133,6 +134,28 @@ my_stimuli_df <- read_xlsx("my_stimuli_df.xlsx")
 
 ##  Create a presentation based on a list of stimuli
 
+```{r}
+create_presentation(stimuli = my_stimuli, # it is "tip" "tap" "top"
+                    output_file = "first_example",
+                    output_dir = "data/")
+```
+
+Here is [the result](https://agricolamz.github.io/phonfieldwork/additional/first_example.html). \pause
+
+It is also possible to use images (or `.gif`) as a stimuli:
+
+```{r}
+my_image <- system.file("extdata", "r-logo.png", package = "phonfieldwork")
+my_image
+
+create_presentation(stimuli = c("rzeka", "drzewo", my_image),
+                    external = 3,
+                    output_file = "second_example",
+                    output_dir = "data/")
+```
+
+Here is [the result](https://agricolamz.github.io/phonfieldwork/additional/second_example.html).
+
 # Data renaming
 
 ## Obtained data
@@ -140,7 +163,7 @@ my_stimuli_df <- read_xlsx("my_stimuli_df.xlsx")
 After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure:
 
 ```{bash, echo = FALSE}
-tree data | tail -n 10 | head -n 8
+tree data | tail -n 11 | head -n 8
 ```
 
 ## Rename collected data
@@ -152,7 +175,7 @@ rename_soundfiles(stimuli = my_stimuli, # it is "tip" "tap" "top"
 ```
 
 ```{bash, echo = FALSE}
-tree data | tail -n 14 | head -n 12
+tree data | tail -n 15 | head -n 12
 ```
 
 ## Rename collected data
@@ -166,7 +189,7 @@ rename_soundfiles(stimuli = my_stimuli, # it is "tip" "tap" "top"
 ```
 
 ```{bash, echo = FALSE}
-tree data | tail -n 14 | head -n 12
+tree data | tail -n 15 | head -n 12
 ```
 
 ## Rename collected data
@@ -193,15 +216,219 @@ get_sound_duration(sounds_from_folder = "data/s2/")
 
 # Data merging
 
+## Merge all data together
+
+After all the files are renamed, you can merge them into one:
+
+```{r}
+concatenate_soundfiles(path = "data/s1/",
+                       result_file_name = "s1_all")
+```
+
+```{bash, echo = FALSE}
+tree data/s1 | head -n 10
+```
+
+## Merge all data together
+
+```{r, echo=FALSE}
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all")
+```
+
 # Data annotation
 
+## Annotate your data
+
+It is possible to create annotation in advance (since file concatination is made according to files sorted on the comuter I use the `sort()` function in order to make correct annotation):
+
+```{r}
+annotate_textgrid(annotation =  sort(my_stimuli),
+                  textgrid = "data/s1/s1_all.TextGrid")
+```
+
+## Annotate your data
+
+```{r, echo=FALSE}
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all")
+```
+
+## Create subannotation
+
+Imagine that we are interested in annotation of vowels. The most common solution will be open Praat and create new annotations. But it is also possible to create them in advance. The idea that you choose some baseline tier that later will be automatically cutted into smaller pieces on the other tier.
+
+```{r}
+create_subannotation(textgrid = "data/s1/s1_all.TextGrid",
+                     tier = 1, # this is a baseline tier
+                     n_of_annotations = 3) # how many empty annotations per unit?
+```
+
+## Annotate subannotation in advance
+
+```{r, echo=FALSE}
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all")
+```
+
+## Annotate subannotation in advance
+
+Now we can annotate created tier:
+```{r}
+annotate_textgrid(annotation = c("", "æ", "", "", "ı", "", "", "ɒ", ""),
+                  textgrid = "data/s1/s1_all.TextGrid",
+                  tier = 3,
+                  backup = FALSE)
+```
+
+List annotations by hand is a boring task, so if you have a prepared list of annotations, the merege could be done with the following code:
+```{r}
+vowels <- c("æ", "ı", "ɒ")
+unlist(lapply(vowels, function(x){c("", x, "")}))
+```
+
+
+## Create subannotation
+
+```{r, echo=FALSE, eval = FALSE}
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all", output_file = "images/02_subannotation")
+```
+
+![](images/02_subannotation.png)
+
+## The only thing left is to move annotation boundaries
+
+```{r, include=FALSE}
+file.copy("../backup/s1_all.TextGrid", to = "data/s1/s1_all.TextGrid", overwrite = TRUE)
+```
+
+```{r, echo=FALSE, eval=FALSE}
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all", output_file = "images/03_subannotation")
+```
+
+![](images/03_subannotation.png)
+
 # Data extraction
+## Data viewer
+
+Sound viewer (here is an [example](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html)) is a useful tool that combine together your annotations and make it searchable. It is also produce a ready to go .html file that could be uploaded on the server (e. g. to Github Pages) and be availible for anyone in the world.
+
+In order to do that we need:
+
+* seperate folder with soundfiles
+* separate folder with spectorgrams (optional)
+* `data.frame` with data about utterances or speakers
+
+## Data extraction
+First, it is important to create a folder where all of the extracted files will be stored:
+
+```{r}
+dir.create("data/s1/s1_sounds")
+```
+
+It is possible extract to extract all annotated files based on an annotation tier:
+
+```{r}
+extract_intervals(file_name = "data/s1/s1_all.wav",
+                  textgrid = "data/s1/s1_all.TextGrid",
+                  tier = 3,
+                  path = "data/s1/s1_sounds/",
+                  prefix = "s1_")
+```
+
+## Data extraction
+
+After those commands, one could end up with the following structure:
+
+```{bash, echo = FALSE}
+tree data/s1 | head -n 14
+```
 
 # Data visulization
 
-# Reading data from different linguistic sources
+## Sound visulization in `phonfieldwork`
+
+The easiest way to visualise sound in phonfieldwork:
+```{r}
+draw_sound(file_name = "data/s1/s1_tap.wav")
+```
+
+## Sound visulization in `phonfieldwork`
+
+```{r, eval=FALSE}
+draw_sound(file_name = "data/s1/s1_all.wav", 
+           annotation = "data/s1/s1_all.TextGrid")
+```
+
+```{r, include=FALSE, eval=FALSE}
+draw_sound(file_name = "data/s1/s1_all.wav", 
+           annotation = "data/s1/s1_all.TextGrid", 
+           output_file = "images/04_sound_visualisation.png")
+```
+
+![](images/04_sound_visualisation.png)
+
+
+```{r, eval = FALSE}
+draw_sound("data/s1/s1_all.wav",
+           "data/s1/s1_all.TextGrid",
+           from = 0.4, to = 0.95)
+```
+
+```{r, include=FALSE, eval = FALSE}
+draw_sound(file_name = "data/s1/s1_all.wav", 
+           annotation = "data/s1/s1_all.TextGrid", 
+           output_file = "images/05_sound_visualisation.png")
+```
+
+![](images/05_sound_visualisation.png)
+
+## Create multiple spectrograms
+
+```{r}
+draw_sound(sounds_from_folder = "data/s1/s1_sounds/",
+           pic_folder_name = "s1_pics")
+```
+
+```{bash, echo = FALSE}
+tree data/s1 head -n 18
+```
 
 # Creating a data viewer -- template for the data sharing
+
+## Create a [viewer](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html)
+
+* seperate folder with soundfiles 
+* separate folder with spectorgrams (optional) 
+* \alert{→ data.frame with data about utterances or speakers}
+
+```{r}
+df <- data.frame(word  = c("tap", "tip", "top"),
+                 sounds = c("æ", "ı", "ɒ"))
+df
+
+create_viewer(audio_dir = "data/s1/s1_sounds/",
+              picture_dir = "data/s1/s1_pics/",
+              table = df,
+              output_dir = "data/s1/",
+              output_file = "stimuli_viewer")
+```
+
+# Reading data from different linguistic sources
+
+##  Read linguistic files into R
+
+* `textgrid_to_df()` (Praat)
+* `eaf_to_df()` (ELAN)
+* `exb_to_df()` (EXMARaLDA)
+* `srt_to_df()` (subtitle file)
+* `audacity_to_df()` (Audacity)
+* `flextext_to_df()` (FieldWorks)
+
+##  Read linguistic files into R
+
+```{r}
+draw_sound(file_name = "data/test.wav",
+           annotation = eaf_to_df("data/test.eaf"))
+```
+
 
 # Get help and cite
 
