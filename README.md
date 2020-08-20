@@ -39,8 +39,8 @@ install.packages("phonfieldwork")
 Get the development version from GitHub:
 
 ```
-install.packages("devtools")
-devtools::install_github("agricolamz/phonfieldwork")
+install.packages("remotes")
+remotes::install_github("agricolamz/phonfieldwork")
 ```
 Load a library:
 ```

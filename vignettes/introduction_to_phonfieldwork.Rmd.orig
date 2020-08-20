@@ -53,8 +53,8 @@ install.packages("phonfieldwork")
 This command will install the last stable version of the `phonfieldwork` package from CRAN. Since CRAN runs multiple package checks before making it available, this is the safest option. Alternatively, you can download the development version from GitHub:
 
 ```{r, eval = FALSE}
-install.packages("devtools")
-devtools::install_github("agricolamz/phonfieldwork")
+install.packages("remotes")
+remotes::install_github("agricolamz/phonfieldwork")
 ```
 
 If you have any trouble installing the package, you will not be able to use its functionality. In that case you can create [an issue on Github](https://github.com/agricolamz/phonfieldwork/issues) or send an email. Since this package could completely destroy your data, **please do not use it until you are sure that you have made a backup**.
