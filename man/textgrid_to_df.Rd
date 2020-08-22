@@ -18,7 +18,7 @@ and create a merged dataframe for all of them.}
 \value{
 a dataframe with columns:  \code{id}, \code{time_start},
 \code{time_end} (if it is an interval tier -- the same as the start value),
-\code{content}, \code{tier} and \code{source}
+\code{content}, \code{tier}, \code{tier_name} and \code{source}
 }
 \description{
 Convert Praat TextGrid to a dataframe.

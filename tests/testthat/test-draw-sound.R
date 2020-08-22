@@ -31,7 +31,7 @@ test_that("draw_sound_general", {
   grDevices::png(filename = paste0(tdir, "/draw_sound/test5.png"))
   draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
              system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
-             zoom = c(0.4, 0.65),
+             zoom = c(0.4, 0.66),
              pitch = system.file("extdata", "test.Pitch",
                                  package = "phonfieldwork"))
   supress_message <- grDevices::dev.off()

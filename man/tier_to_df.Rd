@@ -16,7 +16,7 @@ name of the tier. By default is '1'.}
 }
 \value{
 a dataframe with columns:  \code{id}, \code{time_start},
-\code{time_end}, \code{content}
+\code{time_end}, \code{content}, , \code{tier_name}
 }
 \description{
 Convert selected tier from a Praat TextGrid to a dataframe.
