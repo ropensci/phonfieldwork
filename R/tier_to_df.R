@@ -15,7 +15,9 @@
 #' @examples
 #' tier_to_df(system.file("extdata", "test.TextGrid",
 #'                        package = "phonfieldwork"))
-#'
+#' tier_to_df(system.file("extdata", "test.TextGrid",
+#'                        package = "phonfieldwork"),
+#'                        "intervals")
 #' @export
 #'
 
@@ -28,8 +30,8 @@ tier_to_df <- function(file_name, tier = 1, encoding = "unknown"){
       stop(paste0("It looks like there is no tier number '", tier, "'"))
     }
     results <- df[df$tier == tier,]
-  } else if(as.character(tier)){
-    if(!(tier %in% names)){
+  } else if(is.character(tier)){
+    if(!(tier %in% unique(df$tier_name))){
       stop(paste0("It looks like there is no any tier with a name '",tier,"'"))
     }
     results <- df[df$tier_name == tier,]

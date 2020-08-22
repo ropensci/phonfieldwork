@@ -24,7 +24,9 @@ Convert selected tier from a Praat TextGrid to a dataframe.
 \examples{
 tier_to_df(system.file("extdata", "test.TextGrid",
                        package = "phonfieldwork"))
-
+tier_to_df(system.file("extdata", "test.TextGrid",
+                       package = "phonfieldwork"),
+                       "intervals")
 }
 \author{
 George Moroz <agricolamz@gmail.com>

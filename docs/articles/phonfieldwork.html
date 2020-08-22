@@ -89,7 +89,7 @@
                         <h4 class="author">G. Moroz, <a href="https://ilcl.hse.ru/en/">NRU HSE Linguistic Convergence Laboratory</a>
 </h4>
             
-            <h4 class="date">2020-08-20</h4>
+            <h4 class="date">2020-08-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/agricolamz/phonfieldwork/blob/master/vignettes/phonfieldwork.Rmd"><code>vignettes/phonfieldwork.Rmd</code></a></small>
       <div class="hidden name"><code>phonfieldwork.Rmd</code></div>
@@ -111,7 +111,7 @@
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"phonfieldwork"</span>)</pre></body></html></div>
 <p>This command will install the last stable version of the <code>phonfieldwork</code> package from CRAN. Since CRAN runs multiple package checks before making it available, this is the safest option. Alternatively, you can download the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"agricolamz/phonfieldwork"</span>)</pre></body></html></div>
+<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"agricolamz/phonfieldwork"</span>)</pre></body></html></div>
 <p>If you have any trouble installing the package, you will not be able to use its functionality. In that case you can create <a href="https://github.com/agricolamz/phonfieldwork/issues">an issue on Github</a> or send an email. Since this package could completely destroy your data, <strong>please do not use it until you are sure that you have made a backup</strong>.</p>
 <p>Use the <code>library()</code> command to load the package:</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"phonfieldwork"</span>)</pre></body></html></div>
@@ -121,8 +121,8 @@
 <p>This tutorial can be cited as follows:</p>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"phonfieldwork"</span>)</pre></body></html></div>
 <pre><code>## 
-## Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork
-## package_. &lt;URL: https://CRAN.R-project.org/package=phonfieldwork&gt;.
+## Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork package_. &lt;URL:
+## https://CRAN.R-project.org/package=phonfieldwork&gt;.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -180,7 +180,7 @@
 </ul>
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"readxl"</span>)
 <span class="co"># run install.packages("readxl") in case you don't have it installed</span>
-<span class="no">my_stimuli_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_xlsx</a></span>(<span class="st">"my_stimuli_df.xlsx"</span>)
+<span class="no">my_stimuli_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_xlsx</a></span>(<span class="st">"my_stimuli_df.xlsx"</span>)
 <span class="no">my_stimuli_df</span></pre></body></html></div>
 <pre><code>## # A tibble: 3 x 2
 ##   stimuli vowel
@@ -490,21 +490,21 @@ Your browser does not support iframes :(
 <li>file <code>.TextGrid</code> from Praat (just change the <code><a href="https://rdrr.io/r/base/system.file.html">system.file()</a></code> function to path to the file); see also <a href="https://fu.ff.cuni.cz/praat/#rpraat-package-for-r"><code>rPraat</code></a> and <a href="https://github.com/patrickreidy/textgRid"><code>textgRid</code></a> packages</li>
 </ul>
 <div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="fu"><a href="../reference/textgrid_to_df.html">textgrid_to_df</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test.TextGrid"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"phonfieldwork"</span>))</pre></body></html></div>
-<pre><code>##    id time_start   time_end content tier        source
-## 1   1 0.00000000 0.01246583            1 test.TextGrid
-## 6   1 0.00000000 0.01246583            2 test.TextGrid
-## 2   2 0.01246583 0.24781914       t    1 test.TextGrid
-## 7   2 0.01246583 0.24781914            2 test.TextGrid
-## 11  1 0.01246583 0.01246583       t    3 test.TextGrid
-## 3   3 0.24781914 0.39552363       e    1 test.TextGrid
-## 8   3 0.24781914 0.39552363            2 test.TextGrid
-## 12  2 0.24781914 0.24781914       e    3 test.TextGrid
-## 4   4 0.39552363 0.51157715       s    1 test.TextGrid
-## 9   4 0.39552363 0.51157715            2 test.TextGrid
-## 13  3 0.39552363 0.39552363       s    3 test.TextGrid
-## 5   5 0.51157715 0.65267574       t    1 test.TextGrid
-## 10  5 0.51157715 0.65267574            2 test.TextGrid
-## 14  4 0.51157715 0.51157715       t    3 test.TextGrid</code></pre>
+<pre><code>##    id time_start   time_end content tier       tier_name        source
+## 1   1 0.00000000 0.01246583            1       intervals test.TextGrid
+## 6   1 0.00000000 0.01246583            2 empty_intervals test.TextGrid
+## 2   2 0.01246583 0.24781914       t    1       intervals test.TextGrid
+## 7   2 0.01246583 0.24781914            2 empty_intervals test.TextGrid
+## 11  1 0.01246583 0.01246583       t    3          points test.TextGrid
+## 3   3 0.24781914 0.39552363       e    1       intervals test.TextGrid
+## 8   3 0.24781914 0.39552363            2 empty_intervals test.TextGrid
+## 12  2 0.24781914 0.24781914       e    3          points test.TextGrid
+## 4   4 0.39552363 0.51157715       s    1       intervals test.TextGrid
+## 9   4 0.39552363 0.51157715            2 empty_intervals test.TextGrid
+## 13  3 0.39552363 0.39552363       s    3          points test.TextGrid
+## 5   5 0.51157715 0.65267574       t    1       intervals test.TextGrid
+## 10  5 0.51157715 0.65267574            2 empty_intervals test.TextGrid
+## 14  4 0.51157715 0.51157715       t    3          points test.TextGrid</code></pre>
 <p>It is possible to read multiple <code>.TextGrid</code> files using the <code>textgrids_from_folder</code> argument.</p>
 <ul>
 <li>file <code>.eaf</code> from ELAN (just change the <code><a href="https://rdrr.io/r/base/system.file.html">system.file()</a></code> function to path to the file); see also the <a href="https://github.com/langdoc/FRelan">FRelan</a> package by Niko Partanen</li>
@@ -528,24 +528,15 @@ Your browser does not support iframes :(
 <li>file <code>.exb</code> from EXMARaLDA (just change the <code><a href="https://rdrr.io/r/base/system.file.html">system.file()</a></code> function to path to the file)</li>
 </ul>
 <div class="sourceCode" id="cb49"><html><body><pre class="r"><span class="fu"><a href="../reference/exb_to_df.html">exb_to_df</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test.exb"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"phonfieldwork"</span>))</pre></body></html></div>
-<pre><code>##   tier id content tier_name tier_type tier_category tier_speaker time_start
-## 3    1  1       t     X [v]         t             v         SPK0 0.06908955
-## 1    1  2       e     X [v]         t             v         SPK0 0.24989836
-## 5    1  3       s     X [v]         t             v         SPK0 0.38072750
-## 7    1  4       t     X [v]         t             v         SPK0 0.40424735
-## 4    2  1       C     X [v]         a             v         SPK0 0.06908955
-## 2    2  2       V     X [v]         a             v         SPK0 0.24989836
-## 6    2  3       C     X [v]         a             v         SPK0 0.38072750
-## 8    2  4       C     X [v]         a             v         SPK0 0.40424735
-##    time_end   source
-## 3 0.2498984 test.exb
-## 1 0.3807275 test.exb
-## 5 0.4042473 test.exb
-## 7 0.6526757 test.exb
-## 4 0.2498984 test.exb
-## 2 0.3807275 test.exb
-## 6 0.4042473 test.exb
-## 8 0.6526757 test.exb</code></pre>
+<pre><code>##   tier id content tier_name tier_type tier_category tier_speaker time_start  time_end   source
+## 3    1  1       t     X [v]         t             v         SPK0 0.06908955 0.2498984 test.exb
+## 1    1  2       e     X [v]         t             v         SPK0 0.24989836 0.3807275 test.exb
+## 5    1  3       s     X [v]         t             v         SPK0 0.38072750 0.4042473 test.exb
+## 7    1  4       t     X [v]         t             v         SPK0 0.40424735 0.6526757 test.exb
+## 4    2  1       C     X [v]         a             v         SPK0 0.06908955 0.2498984 test.exb
+## 2    2  2       V     X [v]         a             v         SPK0 0.24989836 0.3807275 test.exb
+## 6    2  3       C     X [v]         a             v         SPK0 0.38072750 0.4042473 test.exb
+## 8    2  4       C     X [v]         a             v         SPK0 0.40424735 0.6526757 test.exb</code></pre>
 <p>It is possible to read multiple <code>.exb</code> files using the <code>exbs_from_folder</code> argument.</p>
 <ul>
 <li>subtitles file <code>.srt</code> (just change the <code><a href="https://rdrr.io/r/base/system.file.html">system.file()</a></code> function to path to the file)</li>
@@ -566,41 +557,34 @@ Your browser does not support iframes :(
 <li>file <code>.flextext</code> from FLEx (that is actually is not connected with the main functionality of <code>phonfieldwork</code>, but I’d like to have it):</li>
 </ul>
 <div class="sourceCode" id="cb55"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="../reference/flextext_to_df.html">flextext_to_df</a></span>(<span class="st">"files/zilo_test.flextext"</span>))</pre></body></html></div>
-<pre><code>##   p_id s_id w_id    txt     cf hn     gls                   msa
-## 1    1    1    1     б-     б-  1      an Inflects any category
-## 2    1    1    1    ик1    ик1  1    быть                    гл
-## 3    1    1    1     -о     -о  1     pst               гл:Past
-## 4    1    1    1     -й     -й  5 cvb(pf)    гл:Converb/Perfect
-## 5    1    1    1 =гъоди =гъоди  1    =rep                  част
-## 6    1    1    2     б-     б-  1      an Inflects any category
-##                  free_trans                          text_title
-## 1 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-## 2 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-## 3 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-## 4 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-## 5 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-## 6 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-##                                  morph                                 word
-## 1 d7f713db-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
-## 2 d7f713e8-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
-## 3 d7f713dd-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
-## 4 d7f713dd-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
-## 5 d7f713e1-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
-## 6 d7f713db-e8cf-11d3-9764-00c04f186933 c76d26b7-b84a-42a8-ba34-38e712b1db13
-##                                 phrase                            paragraph
-## 1 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-## 2 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-## 3 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-## 4 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-## 5 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-## 6 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-##                                   text
-## 1 f08dd466-fca6-4597-925c-c46309387ef7
-## 2 f08dd466-fca6-4597-925c-c46309387ef7
-## 3 f08dd466-fca6-4597-925c-c46309387ef7
-## 4 f08dd466-fca6-4597-925c-c46309387ef7
-## 5 f08dd466-fca6-4597-925c-c46309387ef7
-## 6 f08dd466-fca6-4597-925c-c46309387ef7</code></pre>
+<pre><code>##   p_id s_id w_id    txt     cf hn     gls                   msa                free_trans
+## 1    1    1    1     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
+## 2    1    1    1    ик1    ик1  1    быть                    гл Жил-был (у Гъули?) петух.
+## 3    1    1    1     -о     -о  1     pst               гл:Past Жил-был (у Гъули?) петух.
+## 4    1    1    1     -й     -й  5 cvb(pf)    гл:Converb/Perfect Жил-был (у Гъули?) петух.
+## 5    1    1    1 =гъоди =гъоди  1    =rep                  част Жил-был (у Гъули?) петух.
+## 6    1    1    2     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
+##                            text_title                                morph
+## 1 2017.04 Fairytale about the rooster d7f713db-e8cf-11d3-9764-00c04f186933
+## 2 2017.04 Fairytale about the rooster d7f713e8-e8cf-11d3-9764-00c04f186933
+## 3 2017.04 Fairytale about the rooster d7f713dd-e8cf-11d3-9764-00c04f186933
+## 4 2017.04 Fairytale about the rooster d7f713dd-e8cf-11d3-9764-00c04f186933
+## 5 2017.04 Fairytale about the rooster d7f713e1-e8cf-11d3-9764-00c04f186933
+## 6 2017.04 Fairytale about the rooster d7f713db-e8cf-11d3-9764-00c04f186933
+##                                   word                               phrase
+## 1 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+## 2 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+## 3 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+## 4 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+## 5 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+## 6 c76d26b7-b84a-42a8-ba34-38e712b1db13 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+##                              paragraph                                 text
+## 1 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+## 2 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+## 3 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+## 4 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+## 5 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+## 6 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7</code></pre>
 <p>There is also an additional function for working with the <code>.flextext</code> format that convert it to a glossed document in a <code>docx</code> or <code>.html</code> format (see examples: <a href="https://github.com/agricolamz/phonfieldwork/raw/master/docs/additional/glossed_document.docx"><code>.docx</code></a>, <a href="https://agricolamz.github.io/phonfieldwork/additional/glossed_document.html"><code>.html</code></a>):</p>
 <div class="sourceCode" id="cb57"><html><body><pre class="r"><span class="fu"><a href="../reference/create_glossed_document.html">create_glossed_document</a></span>(<span class="kw">flextext</span> <span class="kw">=</span> <span class="st">"files/zilo_test.flextext"</span>,
                         <span class="kw">output_dir</span> <span class="kw">=</span> <span class="st">"."</span>) <span class="co"># you need to specify the path to the output folder</span></pre></body></html></div>
@@ -694,48 +678,48 @@ Your browser does not support iframes :(
 <p>You can find the created example <a href="https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html">here</a>.</p>
 <p>Unfortunately, the way of table creation for the annotation viewer presented in this section is not a good solution for the huge amount of sounds. It is possible to derive such a table from annotation TextGrid, that we have created earlier. Here is a TextGrid:</p>
 <div class="sourceCode" id="cb71"><html><body><pre class="r"><span class="fu"><a href="../reference/textgrid_to_df.html">textgrid_to_df</a></span>(<span class="st">"s1/s1_all.TextGrid"</span>)</pre></body></html></div>
-<pre><code>##    id time_start   time_end    content tier          source
-## 1   1 0.00000000 0.42990930        tap    1 s1_all.TextGrid
-## 4   1 0.00000000 0.42990930 s1_tap.wav    2 s1_all.TextGrid
-## 7   1 0.00000000 0.09510719               3 s1_all.TextGrid
-## 8   2 0.09510719 0.20259200          æ    3 s1_all.TextGrid
-## 9   3 0.20259200 0.42990930               3 s1_all.TextGrid
-## 2   2 0.42990930 0.91206349        tip    1 s1_all.TextGrid
-## 5   2 0.42990930 0.91206349 s1_tip.wav    2 s1_all.TextGrid
-## 10  4 0.42990930 0.53544821               3 s1_all.TextGrid
-## 11  5 0.53544821 0.61606182          ı    3 s1_all.TextGrid
-## 12  6 0.61606182 0.91206349               3 s1_all.TextGrid
-## 3   3 0.91206349 1.39421769        top    1 s1_all.TextGrid
-## 6   3 0.91206349 1.39421769 s1_top.wav    2 s1_all.TextGrid
-## 13  7 0.91206349 1.03559934               3 s1_all.TextGrid
-## 14  8 1.03559934 1.13354921          ɒ    3 s1_all.TextGrid
-## 15  9 1.13354921 1.39421769               3 s1_all.TextGrid</code></pre>
+<pre><code>##    id time_start   time_end    content tier     tier_name          source
+## 1   1 0.00000000 0.42990930        tap    1        labels s1_all.TextGrid
+## 4   1 0.00000000 0.42990930 s1_tap.wav    2 backup labels s1_all.TextGrid
+## 7   1 0.00000000 0.09510719               3               s1_all.TextGrid
+## 8   2 0.09510719 0.20259200          æ    3               s1_all.TextGrid
+## 9   3 0.20259200 0.42990930               3               s1_all.TextGrid
+## 2   2 0.42990930 0.91206349        tip    1        labels s1_all.TextGrid
+## 5   2 0.42990930 0.91206349 s1_tip.wav    2 backup labels s1_all.TextGrid
+## 10  4 0.42990930 0.53544821               3               s1_all.TextGrid
+## 11  5 0.53544821 0.61606182          ı    3               s1_all.TextGrid
+## 12  6 0.61606182 0.91206349               3               s1_all.TextGrid
+## 3   3 0.91206349 1.39421769        top    1        labels s1_all.TextGrid
+## 6   3 0.91206349 1.39421769 s1_top.wav    2 backup labels s1_all.TextGrid
+## 13  7 0.91206349 1.03559934               3               s1_all.TextGrid
+## 14  8 1.03559934 1.13354921          ɒ    3               s1_all.TextGrid
+## 15  9 1.13354921 1.39421769               3               s1_all.TextGrid</code></pre>
 <p>So in order to create desired table we can use <code><a href="../reference/tier_to_df.html">tier_to_df()</a></code> function:</p>
 <div class="sourceCode" id="cb73"><html><body><pre class="r"><span class="no">t1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/tier_to_df.html">tier_to_df</a></span>(<span class="st">"s1/s1_all.TextGrid"</span>, <span class="kw">tier</span> <span class="kw">=</span> <span class="fl">1</span>)
 <span class="no">t1</span></pre></body></html></div>
-<pre><code>##   id time_start  time_end content
-## 1  1  0.0000000 0.4299093     tap
-## 2  2  0.4299093 0.9120635     tip
-## 3  3  0.9120635 1.3942177     top</code></pre>
+<pre><code>##   id time_start  time_end content tier tier_name          source
+## 1  1  0.0000000 0.4299093     tap    1    labels s1_all.TextGrid
+## 2  2  0.4299093 0.9120635     tip    1    labels s1_all.TextGrid
+## 3  3  0.9120635 1.3942177     top    1    labels s1_all.TextGrid</code></pre>
 <div class="sourceCode" id="cb75"><html><body><pre class="r"><span class="no">t3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/tier_to_df.html">tier_to_df</a></span>(<span class="st">"s1/s1_all.TextGrid"</span>, <span class="kw">tier</span> <span class="kw">=</span> <span class="fl">3</span>)
 <span class="no">t3</span></pre></body></html></div>
-<pre><code>##   id time_start   time_end content
-## 1  1 0.00000000 0.09510719        
-## 2  2 0.09510719 0.20259200       æ
-## 3  3 0.20259200 0.42990930        
-## 4  4 0.42990930 0.53544821        
-## 5  5 0.53544821 0.61606182       ı
-## 6  6 0.61606182 0.91206349        
-## 7  7 0.91206349 1.03559934        
-## 8  8 1.03559934 1.13354921       ɒ
-## 9  9 1.13354921 1.39421769</code></pre>
+<pre><code>##    id time_start   time_end content tier tier_name          source
+## 7   1 0.00000000 0.09510719            3           s1_all.TextGrid
+## 8   2 0.09510719 0.20259200       æ    3           s1_all.TextGrid
+## 9   3 0.20259200 0.42990930            3           s1_all.TextGrid
+## 10  4 0.42990930 0.53544821            3           s1_all.TextGrid
+## 11  5 0.53544821 0.61606182       ı    3           s1_all.TextGrid
+## 12  6 0.61606182 0.91206349            3           s1_all.TextGrid
+## 13  7 0.91206349 1.03559934            3           s1_all.TextGrid
+## 14  8 1.03559934 1.13354921       ɒ    3           s1_all.TextGrid
+## 15  9 1.13354921 1.39421769            3           s1_all.TextGrid</code></pre>
 <p>As we see the first tier is ready, but the third tier contains empty annotations. Let’s remove them:</p>
 <div class="sourceCode" id="cb77"><html><body><pre class="r"><span class="no">t3</span> <span class="kw">&lt;-</span> <span class="no">t3</span>[<span class="no">t3</span>$<span class="no">content</span> <span class="kw">!=</span> <span class="st">""</span>,]
 <span class="no">t3</span></pre></body></html></div>
-<pre><code>##   id time_start  time_end content
-## 2  2 0.09510719 0.2025920       æ
-## 5  5 0.53544821 0.6160618       ı
-## 8  8 1.03559934 1.1335492       ɒ</code></pre>
+<pre><code>##    id time_start  time_end content tier tier_name          source
+## 8   2 0.09510719 0.2025920       æ    3           s1_all.TextGrid
+## 11  5 0.53544821 0.6160618       ı    3           s1_all.TextGrid
+## 14  8 1.03559934 1.1335492       ɒ    3           s1_all.TextGrid</code></pre>
 <p>So from this point it is possible to create the table that we wanted:</p>
 <div class="sourceCode" id="cb79"><html><body><pre class="r"><span class="no">new_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">words</span> <span class="kw">=</span> <span class="no">t1</span>$<span class="no">content</span>,
                      <span class="kw">sounds</span> <span class="kw">=</span> <span class="no">t3</span>$<span class="no">content</span>)
