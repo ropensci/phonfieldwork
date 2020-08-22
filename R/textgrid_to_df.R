@@ -18,6 +18,9 @@
 #' textgrid_to_df(system.file("extdata", "test.TextGrid",
 #'                            package = "phonfieldwork"))
 #'
+#' # this is and example of reading a short .TextGrid format
+#' textgrid_to_df(system.file("extdata", "test_short.TextGrid",
+#'                            package = "phonfieldwork"))
 #' @export
 
 textgrid_to_df <- function(file_name,
@@ -30,29 +33,46 @@ textgrid_to_df <- function(file_name,
       tg <- readLines(file_name, encoding = encoding)
     }
 
-    sum(grepl("item ?\\[\\d{1,}\\]:", tg)) < 1
+    if(sum(grepl('tiers\\? <exists>', tg)) > 0){
+      if(sum(grepl("item ?\\[\\d{1,}\\]:", tg)) < 1){
+        "It looks like there is no tiers in this .TextGrid"
+      }
+      split_text <- split(seq_along(tg),
+                          cumsum(grepl("item ?\\[\\d{1,}\\]:", tg)))[-1]
+      correction <- 0
+    } else if('<exists>' %in% tg){
+      if(sum(grepl("IntervalTier|TextTier", tg)) < 1){
+        "It looks like there is no tiers in this .TextGrid"
+      }
+      split_text <- split(seq_along(tg),
+                          cumsum(grepl("IntervalTier|TextTier", tg)))[-1]
+      correction <- 1
+    }
 
-    lapply(split(seq_along(tg),
-                 cumsum(grepl("item ?\\[\\d{1,}\\]:", tg)))[-1],
+
+    lapply(split_text,
            function(i){
-             class <- unlist(strsplit(tg[i[2]], '"'))[2]
-             step_by = ifelse(class == "IntervalTier", 4, 3)
-             start_max = ifelse(class == "IntervalTier", 9, 8)
+             class <- unlist(strsplit(tg[i[2-correction]], '"'))[2]
+             step_by = ifelse(class == "IntervalTier", 4, 3) - correction
+             start_max = ifelse(class == "IntervalTier", 9, 8) - correction*2
              data.frame(
-               id = seq_along(seq(8, length(i), by = step_by)),
-               time_start = gsub("[^0-9.]", "", tg[i[seq(8, length(i),
+               id = 0,
+               time_start = gsub("[^0-9.]", "", tg[i[seq(8 - correction*2,
+                                                         length(i),
                                                          by = step_by)]]),
                time_end = gsub("[^0-9.]", "", tg[i[seq(start_max, length(i),
                                                        by = step_by)]]),
                content = tg[i[seq(start_max+1, length(i), by = step_by)]],
-               tier = gsub("[^0-9]", "", tg[i[1]]),
-               tier_name = unlist(strsplit(tg[i[3]], '"'))[2],
+               tier = 0,
+               tier_name = unlist(strsplit(tg[i[3-correction]], '"'))[2],
                stringsAsFactors = FALSE)
            }) ->
       l
 
     result <- do.call(rbind, l)
 
+    result$id <- as.numeric(gsub("\\d{1,}\\.", "", rownames(result)))
+    result$tier <- as.numeric(gsub("\\.\\d{1,}", "", rownames(result)))
 
     result$content <- unlist(lapply(result$content, function(j){
       unlist(strsplit(j, '"'))[2]
@@ -77,6 +97,7 @@ textgrid_to_df <- function(file_name,
     return(do.call(rbind,
                    lapply(files, function(i){
                      textgrid_to_df(file_name = i, encoding = encoding)
-    })))
+                   })))
   }
 }
+
