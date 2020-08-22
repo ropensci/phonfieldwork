@@ -1,5 +1,6 @@
 # phonfieldwork 0.0.8
 
+- add possibility to read short format of `.TextGrid`s and fix `textgrid_to_df()` and `tier_to_df()` functions
 - add `formant_df`, `intensity`, `picth` and `pitch_range` arguments to the `draw_sound()` function
 - add the `formant_to_df()` function
 - add the `picth_to_df()` function
