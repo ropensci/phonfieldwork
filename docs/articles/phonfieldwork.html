@@ -111,7 +111,7 @@
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"phonfieldwork"</span>)</pre></body></html></div>
 <p>This command will install the last stable version of the <code>phonfieldwork</code> package from CRAN. Since CRAN runs multiple package checks before making it available, this is the safest option. Alternatively, you can download the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"agricolamz/phonfieldwork"</span>)</pre></body></html></div>
+<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"agricolamz/phonfieldwork"</span>)</pre></body></html></div>
 <p>If you have any trouble installing the package, you will not be able to use its functionality. In that case you can create <a href="https://github.com/agricolamz/phonfieldwork/issues">an issue on Github</a> or send an email. Since this package could completely destroy your data, <strong>please do not use it until you are sure that you have made a backup</strong>.</p>
 <p>Use the <code>library()</code> command to load the package:</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"phonfieldwork"</span>)</pre></body></html></div>
@@ -180,7 +180,7 @@
 </ul>
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"readxl"</span>)
 <span class="co"># run install.packages("readxl") in case you don't have it installed</span>
-<span class="no">my_stimuli_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_xlsx</a></span>(<span class="st">"my_stimuli_df.xlsx"</span>)
+<span class="no">my_stimuli_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_xlsx</a></span>(<span class="st">"my_stimuli_df.xlsx"</span>)
 <span class="no">my_stimuli_df</span></pre></body></html></div>
 <pre><code>## # A tibble: 3 x 2
 ##   stimuli vowel

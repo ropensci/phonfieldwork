@@ -179,7 +179,23 @@ and create a merged dataframe for all of them.</p></td>
 #&gt; 5   5 0.51157715 0.65267574       t    1       intervals test.TextGrid
 #&gt; 10  5 0.51157715 0.65267574            2 empty_intervals test.TextGrid
 #&gt; 14  4 0.51157715 0.51157715       t    3          points test.TextGrid</div><div class='input'>
-</div></pre>
+<span class='co'># this is and example of reading a short .TextGrid format</span>
+<span class='fu'>textgrid_to_df</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test_short.TextGrid"</span>,
+                           <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>))</div><div class='output co'>#&gt;    id time_start   time_end content tier       tier_name              source
+#&gt; 1   1 0.00000000 0.01246583            1       intervals test_short.TextGrid
+#&gt; 6   1 0.00000000 0.01246583            2 empty_intervals test_short.TextGrid
+#&gt; 2   2 0.01246583 0.24781914       t    1       intervals test_short.TextGrid
+#&gt; 7   2 0.01246583 0.24781914            2 empty_intervals test_short.TextGrid
+#&gt; 11  1 0.01246583 0.01246583       t    3          points test_short.TextGrid
+#&gt; 3   3 0.24781914 0.39552363       e    1       intervals test_short.TextGrid
+#&gt; 8   3 0.24781914 0.39552363            2 empty_intervals test_short.TextGrid
+#&gt; 12  2 0.24781914 0.24781914       e    3          points test_short.TextGrid
+#&gt; 4   4 0.39552363 0.51157715       s    1       intervals test_short.TextGrid
+#&gt; 9   4 0.39552363 0.51157715            2 empty_intervals test_short.TextGrid
+#&gt; 13  3 0.39552363 0.39552363       s    3          points test_short.TextGrid
+#&gt; 5   5 0.51157715 0.65267574       t    1       intervals test_short.TextGrid
+#&gt; 10  5 0.51157715 0.65267574            2 empty_intervals test_short.TextGrid
+#&gt; 14  4 0.51157715 0.51157715       t    3          points test_short.TextGrid</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
