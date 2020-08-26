@@ -8,7 +8,6 @@
 #' @param tiers integer vector with the number of tiers that should be named
 #' @param names vector of strings with new names for TextGrid tiers
 #' @param write logical. If TRUE (by dafault) it overwrites an existing tier
-#' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
 #' @return a string that contain TextGrid. If argument write is \code{TRUE},
 #' then no output.
@@ -19,17 +18,21 @@
 #'
 #' @export
 #'
+#' @importFrom uchardet detect_file_enc
+#'
 
 set_textgrid_names <- function(textgrid,
                                tiers,
                                names,
-                               write = TRUE,
-                               encoding = "unknown"){
+                               write = TRUE){
   # read TextGrid -----------------------------------------------------------
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{
-    tg <- readLines(normalizePath(textgrid), encoding = encoding)
+    # thanks to Artem Klevtsov for this code
+    con <- file(textgrid, encoding = uchardet::detect_file_enc(textgrid))
+    tg <- readLines(con)
+    close(con)
   }
 
 # rewrite names in TextGrid -----------------------------------------------

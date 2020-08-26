@@ -10,7 +10,8 @@ Imports:
     utils,
     graphics,
     rmarkdown,
-    xml2
+    xml2,
+    uchardet
 Authors@R: c(person("George", "Moroz",
              role = c("aut", "cre"),
              email = "agricolamz@gmail.com",

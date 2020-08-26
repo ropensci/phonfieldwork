@@ -14,7 +14,6 @@
 #' @param autonumber if TRUE automatically add number of extracted sound to the
 #' file_name. Prevents from creating a duplicated files and wrong sorting.
 #' @param path path to the directory where create extracted soundfiles.
-#' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
 #' @return no output
 #' @examples
@@ -45,8 +44,7 @@ extract_intervals <- function(file_name,
                               prefix = NULL,
                               suffix = NULL,
                               autonumber = TRUE,
-                              path,
-                              encoding = "unknown"){
+                              path){
 
   ext <- tolower(substring(file_name, regexpr("\\..*$", file_name) + 1))
 
@@ -56,12 +54,6 @@ extract_intervals <- function(file_name,
     s <- tuneR::readMP3(file_name)
   } else{
     stop("The draw_sound() functions works only with .wav(e) or .mp3 formats")
-  }
-
-  if(grepl("TextGrid", textgrid[2])){
-    tg <- textgrid
-  } else{
-    tg <- readLines(textgrid, encoding = encoding)
   }
 
 # get start, end and annotation -------------------------------------------

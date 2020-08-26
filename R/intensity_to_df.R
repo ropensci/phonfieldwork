@@ -5,7 +5,6 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name string with a filename or path to the Intensity tier
-#' @param encoding Intensity tier encoding. Import from \code{readLines()} function.
 #'
 #' @return a dataframe with columns:  \code{time_start}, \code{time_end},
 #' \code{Intensity}
@@ -15,15 +14,19 @@
 #'
 #' @export
 #'
+#' @importFrom uchardet detect_file_enc
+#'
 
-intensity_to_df <- function(file_name,
-                            encoding = "unknown"){
+intensity_to_df <- function(file_name){
 
 # read file ---------------------------------------------------------------
   if(grepl("Intensity", file_name[2])){
     intensity <- file_name
   } else{
-    intensity <- readLines(file_name, encoding = encoding)
+    # thanks to Artem Klevtsov for this code
+    con <- file(file_name, encoding = uchardet::detect_file_enc(file_name))
+    intensity <- readLines(con)
+    close(con)
   }
 
 # get metadata ------------------------------------------------------------

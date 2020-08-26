@@ -11,8 +11,7 @@ extract_intervals(
   prefix = NULL,
   suffix = NULL,
   autonumber = TRUE,
-  path,
-  encoding = "unknown"
+  path
 )
 }
 \arguments{
@@ -31,8 +30,6 @@ and names}
 file_name. Prevents from creating a duplicated files and wrong sorting.}
 
 \item{path}{path to the directory where create extracted soundfiles.}
-
-\item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
 no output

@@ -29,7 +29,6 @@ draw_sound(
   output_width = 750,
   output_height = 500,
   output_units = "px",
-  encoding = "unknown",
   sounds_from_folder = NULL,
   textgrids_from_folder = NULL,
   pic_folder_name = "pics",
@@ -109,8 +108,6 @@ visualisation of an intensity contour exported from Praat.}
 
 \item{output_units}{the units in which height and width are given.
 Can be "px" (pixels, the default), "in" (inches), "cm" or "mm".}
-
-\item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 
 \item{sounds_from_folder}{path to a folder with multiple sound files.
 If this argument is not \code{NULL}, then the function goes through all

@@ -5,7 +5,6 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name string with a filename or path to the .srt file
-#' @param encoding .srt encoding. Import from \code{readLines()} function.
 #'
 #' @return a dataframe with columns:  \code{id}, \code{content},
 #' \code{time_start}, \code{time_end}, \code{source}.
@@ -14,12 +13,18 @@
 #' srt_to_df(system.file("extdata", "test.srt", package = "phonfieldwork"))
 #'
 #' @export
+#'
+#' @importFrom uchardet detect_file_enc
+#'
 
-srt_to_df <- function(file_name, encoding = "unknown"){
+srt_to_df <- function(file_name){
+
+  # thanks to Artem Klevtsov for this code
+  con <- file(file_name, encoding = uchardet::detect_file_enc(file_name))
+  srt <- readLines(con)
+  close(con)
 
   # after https://stackoverflow.com/a/36532461/6056442
-
-  srt <- readLines(file_name, encoding = encoding, warn = FALSE)
 
   # convert to dataframe
   lapply(split(seq_along(srt), cumsum(grepl("^\\s*$",srt))), function(i){

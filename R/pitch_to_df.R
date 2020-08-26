@@ -18,6 +18,8 @@
 #'
 #' @export
 #'
+#' @importFrom uchardet detect_file_enc
+#'
 
 pitch_to_df <- function(file_name,
                         encoding = "unknown",
@@ -26,7 +28,10 @@ pitch_to_df <- function(file_name,
   if(grepl("Pitch", file_name[2])){
     pitch <- file_name
   } else{
-    pitch <- readLines(file_name, encoding = encoding)
+    # thanks to Artem Klevtsov for this code
+    con <- file(file_name, encoding = uchardet::detect_file_enc(file_name))
+    pitch <- readLines(con)
+    close(con)
   }
 
   # get metadata ------------------------------------------------------------

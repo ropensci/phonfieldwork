@@ -24,6 +24,8 @@
 #'
 #' @export
 #'
+#' @importFrom uchardet detect_file_enc
+#'
 
 df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE){
   if(!("time_start" %in% names(df))|
@@ -36,7 +38,10 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE){
   if(grepl("TextGrid", textgrid[2])){
     tg <- textgrid
   } else{
-    tg <- readLines(textgrid)
+    # thanks to Artem Klevtsov for this code
+    con <- file(textgrid, encoding = uchardet::detect_file_enc(textgrid))
+    tg <- readLines(con)
+    close(con)
   }
 
   n_tiers <- as.numeric(gsub("\\D", "", tg[7]))

@@ -14,7 +14,6 @@
 #' subannotation for empy annotations.
 #' @param overwrite logical. If TRUE (by dafault) it overwrites an existing
 #' tier.
-#' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #'
 #' @return a string that contain TextGrid. If argument write is \code{TRUE},
 #' then no output.
@@ -33,17 +32,9 @@ create_subannotation <- function(textgrid,
                                  n_of_annotations = 4,
                                  each = 1,
                                  omit_blank = TRUE,
-                                 overwrite = TRUE,
-                                 encoding = "unknown"){
+                                 overwrite = TRUE){
 
-# read TextGrid -----------------------------------------------------------
-  if(grepl("TextGrid", textgrid[2])){
-    tg <- textgrid
-  } else{
-    tg <- readLines(normalizePath(textgrid), encoding = encoding)
-  }
-
-  df <- phonfieldwork::tier_to_df(tg, tier = tier)
+  df <- phonfieldwork::tier_to_df(textgrid, tier = tier)
 
   if(omit_blank){
     df <- df[df$content != "",]

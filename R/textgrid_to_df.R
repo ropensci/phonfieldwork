@@ -5,7 +5,6 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name string with a filename or path to the TextGrid
-#' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #' @param textgrids_from_folder path to a folder with multiple .TextGrid files.
 #' If this argument is not \code{NULL}, then the function goes through all files
 #' and create a merged dataframe for all of them.
@@ -22,15 +21,20 @@
 #' textgrid_to_df(system.file("extdata", "test_short.TextGrid",
 #'                            package = "phonfieldwork"))
 #' @export
+#'
+#' @importFrom uchardet detect_file_enc
+#'
 
 textgrid_to_df <- function(file_name,
-                           encoding = "unknown",
                            textgrids_from_folder = NULL){
   if(is.null(textgrids_from_folder)){
     if(grepl("TextGrid", file_name[2])){
       tg <- file_name
     } else{
-      tg <- readLines(file_name, encoding = encoding)
+      # thanks to Artem Klevtsov for this code
+      con <- file(file_name, encoding = uchardet::detect_file_enc(file_name))
+      tg <- readLines(con)
+      close(con)
     }
 
     if(sum(grepl('tiers\\? <exists>', tg)) > 0){
@@ -96,7 +100,7 @@ textgrid_to_df <- function(file_name,
                                "\\.TextGrid$"))
     return(do.call(rbind,
                    lapply(files, function(i){
-                     textgrid_to_df(file_name = i, encoding = encoding)
+                     textgrid_to_df(file_name = i)
                    })))
   }
 }

@@ -11,8 +11,7 @@ create_subannotation(
   n_of_annotations = 4,
   each = 1,
   omit_blank = TRUE,
-  overwrite = TRUE,
-  encoding = "unknown"
+  overwrite = TRUE
 )
 }
 \arguments{
@@ -33,8 +32,6 @@ subannotation for empy annotations.}
 
 \item{overwrite}{logical. If TRUE (by dafault) it overwrites an existing
 tier.}
-
-\item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
 a string that contain TextGrid. If argument write is \code{TRUE},

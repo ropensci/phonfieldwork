@@ -4,12 +4,10 @@
 \alias{textgrid_to_df}
 \title{TextGrid to dataframe}
 \usage{
-textgrid_to_df(file_name, encoding = "unknown", textgrids_from_folder = NULL)
+textgrid_to_df(file_name, textgrids_from_folder = NULL)
 }
 \arguments{
 \item{file_name}{string with a filename or path to the TextGrid}
-
-\item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 
 \item{textgrids_from_folder}{path to a folder with multiple .TextGrid files.
 If this argument is not \code{NULL}, then the function goes through all files

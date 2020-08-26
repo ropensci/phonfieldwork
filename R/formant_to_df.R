@@ -5,7 +5,6 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name string with a filename or path to the Formant file
-#' @param encoding Pitch tier encoding. Import from \code{readLines()} function.
 #'
 #' @return a dataframe with columns:  \code{time_start}, \code{time_end},
 #' \code{frequency}, \code{bandwidth} and \code{formant}
@@ -15,14 +14,18 @@
 #'
 #' @export
 #'
+#' @importFrom uchardet detect_file_enc
+#'
 
-formant_to_df <- function(file_name,
-                          encoding = "unknown"){
+formant_to_df <- function(file_name){
   # read file ---------------------------------------------------------------
   if(grepl("Formant", file_name[2])){
     formant <- file_name
   } else{
-    formant <- readLines(file_name, encoding = encoding)
+    # thanks to Artem Klevtsov for this code
+    con <- file(file_name, encoding = uchardet::detect_file_enc(file_name))
+    formant <- readLines(con)
+    close(con)
   }
 
   # get metadata ------------------------------------------------------------

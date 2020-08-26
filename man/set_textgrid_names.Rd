@@ -4,7 +4,7 @@
 \alias{set_textgrid_names}
 \title{Rewrite TextGrid names}
 \usage{
-set_textgrid_names(textgrid, tiers, names, write = TRUE, encoding = "unknown")
+set_textgrid_names(textgrid, tiers, names, write = TRUE)
 }
 \arguments{
 \item{textgrid}{path to the TextGrid}
@@ -14,8 +14,6 @@ set_textgrid_names(textgrid, tiers, names, write = TRUE, encoding = "unknown")
 \item{names}{vector of strings with new names for TextGrid tiers}
 
 \item{write}{logical. If TRUE (by dafault) it overwrites an existing tier}
-
-\item{encoding}{TextGrid encoding. Import from \code{readLines()} function.}
 }
 \value{
 a string that contain TextGrid. If argument write is \code{TRUE},

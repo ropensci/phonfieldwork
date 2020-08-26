@@ -4,12 +4,10 @@
 \alias{formant_to_df}
 \title{Praat Formant object to dataframe}
 \usage{
-formant_to_df(file_name, encoding = "unknown")
+formant_to_df(file_name)
 }
 \arguments{
 \item{file_name}{string with a filename or path to the Formant file}
-
-\item{encoding}{Pitch tier encoding. Import from \code{readLines()} function.}
 }
 \value{
 a dataframe with columns:  \code{time_start}, \code{time_end},

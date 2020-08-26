@@ -48,7 +48,6 @@
 #' @param sounds_from_folder path to a folder with multiple sound files.
 #' If this argument is not \code{NULL}, then the function goes through all
 #' files and creates picture for all of them.
-#' @param encoding TextGrid encoding. Import from \code{readLines()} function.
 #' @param textgrids_from_folder path to a folder with multiple .TextGrid files.
 #' If this argument is not \code{NULL}, then the function goes through all files
 #' and create picture for all of them.
@@ -136,7 +135,6 @@ draw_sound <- function(file_name,
                        output_width = 750,
                        output_height = 500,
                        output_units = "px",
-                       encoding = "unknown",
                        sounds_from_folder = NULL,
                        textgrids_from_folder = NULL,
                        pic_folder_name = "pics",
@@ -342,7 +340,7 @@ draw_sound <- function(file_name,
         graphics::par(fig=c(0, 0.97, 0.1, 0.1 + 0.17), new=TRUE)
 
         if(class(annotation) != "data.frame"){
-          df <- phonfieldwork::textgrid_to_df(annotation, encoding = encoding)
+          df <- phonfieldwork::textgrid_to_df(annotation)
         } else{
           df <- annotation
         }

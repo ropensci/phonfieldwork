@@ -4,12 +4,10 @@
 \alias{intensity_to_df}
 \title{Praat Intensity tier to dataframe}
 \usage{
-intensity_to_df(file_name, encoding = "unknown")
+intensity_to_df(file_name)
 }
 \arguments{
 \item{file_name}{string with a filename or path to the Intensity tier}
-
-\item{encoding}{Intensity tier encoding. Import from \code{readLines()} function.}
 }
 \value{
 a dataframe with columns:  \code{time_start}, \code{time_end},

@@ -4,12 +4,10 @@
 \alias{srt_to_df}
 \title{Subtitles .srt file to dataframe}
 \usage{
-srt_to_df(file_name, encoding = "unknown")
+srt_to_df(file_name)
 }
 \arguments{
 \item{file_name}{string with a filename or path to the .srt file}
-
-\item{encoding}{.srt encoding. Import from \code{readLines()} function.}
 }
 \value{
 a dataframe with columns:  \code{id}, \code{content},
