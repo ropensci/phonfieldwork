@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2020-08-22"
+date: "2020-08-27"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}

@@ -6,6 +6,7 @@
 - add the `picth_to_df()` function
 - add the `intensity_to_df()` function
 - add an argument `external` to the `create_presentation()` function in order to mark external images or gifs
+- remove all `encoding` arguments and replace it with encoding autodetection from `uchardet` (thanks to Artem Klevtsov for help)
 
 # phonfieldwork 0.0.7
 

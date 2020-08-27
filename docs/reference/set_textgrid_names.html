@@ -135,7 +135,7 @@
     <p>Rewrite TextGrid names.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>set_textgrid_names</span>(<span class='no'>textgrid</span>, <span class='no'>tiers</span>, <span class='no'>names</span>, <span class='kw'>write</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='st'>"unknown"</span>)</pre>
+    <pre class="usage"><span class='fu'>set_textgrid_names</span>(<span class='no'>textgrid</span>, <span class='no'>tiers</span>, <span class='no'>names</span>, <span class='kw'>write</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,10 +155,6 @@
     <tr>
       <th>write</th>
       <td><p>logical. If TRUE (by dafault) it overwrites an existing tier</p></td>
-    </tr>
-    <tr>
-      <th>encoding</th>
-      <td><p>TextGrid encoding. Import from <code><a href='https://rdrr.io/r/base/readLines.html'>readLines()</a></code> function.</p></td>
     </tr>
     </table>
 
@@ -232,7 +228,7 @@ then no output.</p>
 #&gt; [60] "            text = \"\" "                  
 #&gt; [61] "    item [3]:"                             
 #&gt; [62] "        class = \"TextTier\" "             
-#&gt; [63] "        name = \"NA\""                     
+#&gt; [63] "        name = \"new_name\""               
 #&gt; [64] "        xmin = 0 "                         
 #&gt; [65] "        xmax = 0.6526757369614512 "        
 #&gt; [66] "        points: size = 4 "                 

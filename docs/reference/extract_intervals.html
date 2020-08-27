@@ -144,8 +144,7 @@ create soundfiles with correspondent names.</p>
   <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>suffix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>autonumber</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>path</span>,
-  <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='st'>"unknown"</span>
+  <span class='no'>path</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -181,10 +180,6 @@ file_name. Prevents from creating a duplicated files and wrong sorting.</p></td>
       <th>path</th>
       <td><p>path to the directory where create extracted soundfiles.</p></td>
     </tr>
-    <tr>
-      <th>encoding</th>
-      <td><p>TextGrid encoding. Import from <code><a href='https://rdrr.io/r/base/readLines.html'>readLines()</a></code> function.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -195,26 +190,18 @@ file_name. Prevents from creating a duplicated files and wrong sorting.</p></td>
     <pre class="examples"><div class='input'><span class='co'># create two files in a temprary folder "test_folder"</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.wav"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>)
 <span class='no'>tdir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.copy</a></span>(<span class='no'>s</span>, <span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.copy</a></span>(<span class='no'>s</span>, <span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'># Extract intervals according the TextGrid into the path</span>
 <span class='fu'>extract_intervals</span>(<span class='kw'>file_name</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='no'>tdir</span>, <span class='st'>"/test.wav"</span>),
                   <span class='kw'>textgrid</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>,
                                          <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>),
                   <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>tdir</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt;  [1] "1_t.wav"                             
-#&gt;  [2] "2_e.wav"                             
-#&gt;  [3] "3_s.wav"                             
-#&gt;  [4] "4_t.wav"                             
-#&gt;  [5] "concatenated.TextGrid"               
-#&gt;  [6] "concatenated.wav"                    
-#&gt;  [7] "file18563ff0403f.so"                 
-#&gt;  [8] "libloc_169_8f48fc7d1db1bb3e.rds"     
-#&gt;  [9] "libloc_191_f1ad5b0db868dc0.rds"      
-#&gt; [10] "libloc_201_40b5ab1406ba8155.rds"     
-#&gt; [11] "post.wav"                            
-#&gt; [12] "stimuli_presentation185629b32458.Rmd"
-#&gt; [13] "test.wav"                            </div><div class='input'># [1] "e-2.wav" "s-3.wav" "t-1.wav" "t-4.wav" "test.TextGrid" "test.wav"
+<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] "1_t.wav"                         "2_e.wav"                        
+#&gt; [3] "3_s.wav"                         "4_t.wav"                        
+#&gt; [5] "filedf520c15315.so"              "libloc_169_8f48fc7d1db1bb3e.rds"
+#&gt; [7] "libloc_191_ba90599327dbac5a.rds" "libloc_201_40b5ab1406ba8155.rds"
+#&gt; [9] "test.wav"                       </div><div class='input'># [1] "e-2.wav" "s-3.wav" "t-1.wav" "t-4.wav" "test.TextGrid" "test.wav"
 
 </div></pre>
   </div>
