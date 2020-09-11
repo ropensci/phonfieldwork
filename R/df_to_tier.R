@@ -35,14 +35,7 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE){
                 '"time_start" and "time_end"'))
   }
 
-  if(grepl("TextGrid", textgrid[2])){
-    tg <- textgrid
-  } else{
-    # thanks to Artem Klevtsov for this code
-    con <- file(textgrid, encoding = uchardet::detect_file_enc(textgrid))
-    tg <- readLines(con)
-    close(con)
-  }
+  tg <- read_textgrid(textgrid)
 
   n_tiers <- as.numeric(gsub("\\D", "", tg[7]))
   tg[7] <- paste0("size = ", n_tiers+1, " ")

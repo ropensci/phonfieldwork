@@ -25,8 +25,6 @@
 #'
 #' @export
 #'
-#' @importFrom uchardet detect_file_enc
-#'
 
 annotate_textgrid <- function(annotation,
                               textgrid,
@@ -36,14 +34,7 @@ annotate_textgrid <- function(annotation,
                               write = TRUE) {
 
 # read TextGrid -----------------------------------------------------------
-  if(grepl("TextGrid", textgrid[2])){
-    tg <- textgrid
-  } else{
-    # thanks to Artem Klevtsov for this code
-    con <- file(textgrid, encoding = uchardet::detect_file_enc(textgrid))
-    tg <- readLines(con)
-    close(con)
-  }
+  tg <- read_textgrid(textgrid)
 
 # get start and end info about tiers --------------------------------------
   starts <- grep("item \\[\\d{1,}\\]:", tg)

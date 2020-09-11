@@ -295,7 +295,7 @@ draw_sound <- function(file_name,
           graphics::title(xlab = "time (ms)", cex.lab = 0.7)
         }
         if(!is.null(intensity)){
-          if(class(intensity) != "data.frame"){
+          if(!("data.frame" %in% class(intensity))){
             intensity <- phonfieldwork::intensity_to_df(intensity)
           }
           graphics::legend(x = 0, y = pitch_range[2]+pitch_range[2]/10,
@@ -312,7 +312,7 @@ draw_sound <- function(file_name,
         }
       } else if(!is.null(intensity)){
         graphics::par(fig=c(0, 0.97, low_boundary, upper_boundary), new=TRUE)
-        if(class(intensity) != "data.frame"){
+        if("data.frame" %in% class(intensity)){
           intensity <- phonfieldwork::intensity_to_df(intensity)
         }
         graphics::plot(intensity$time_start*1000, intensity$intensity,
@@ -339,7 +339,7 @@ draw_sound <- function(file_name,
 
         graphics::par(fig=c(0, 0.97, 0.1, 0.1 + 0.17), new=TRUE)
 
-        if(class(annotation) != "data.frame"){
+        if(!("data.frame" %in% class(annotation))){
           df <- phonfieldwork::textgrid_to_df(annotation)
         } else{
           df <- annotation
@@ -364,7 +364,7 @@ draw_sound <- function(file_name,
 
         # remove annotation that are out of scope
         df <- df[df$time_start >= from,]
-        df <- df[df$time_end <= to,]
+        df <- df[df$time_end <= to+0.000000001,]
 
         df$time_start <- (df$time_start-from)*1000
         df$time_end <- (df$time_end-from)*1000
@@ -375,7 +375,7 @@ draw_sound <- function(file_name,
         df$time_end <- ifelse(
         df$time_start < length(for_spectrum@left)/for_spectrum@samp.rate*1000 &
             df$time_end > length(for_spectrum@left)/for_spectrum@samp.rate*1000,
-          length(for_spectrum@left)/for_spectrum@samp.rate,
+          length(for_spectrum@left)/for_spectrum@samp.rate*1000,
           df$time_end
         )
 

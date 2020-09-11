@@ -26,14 +26,7 @@ set_textgrid_names <- function(textgrid,
                                names,
                                write = TRUE){
   # read TextGrid -----------------------------------------------------------
-  if(grepl("TextGrid", textgrid[2])){
-    tg <- textgrid
-  } else{
-    # thanks to Artem Klevtsov for this code
-    con <- file(textgrid, encoding = uchardet::detect_file_enc(textgrid))
-    tg <- readLines(con)
-    close(con)
-  }
+  tg <- read_textgrid(textgrid)
 
 # rewrite names in TextGrid -----------------------------------------------
   change <- grep('name = ".*"', tg)[tiers]

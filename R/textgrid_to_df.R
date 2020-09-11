@@ -28,14 +28,7 @@
 textgrid_to_df <- function(file_name,
                            textgrids_from_folder = NULL){
   if(is.null(textgrids_from_folder)){
-    if(grepl("TextGrid", file_name[2])){
-      tg <- file_name
-    } else{
-      # thanks to Artem Klevtsov for this code
-      con <- file(file_name, encoding = uchardet::detect_file_enc(file_name))
-      tg <- readLines(con)
-      close(con)
-    }
+    tg <- read_textgrid(file_name)
 
     if(sum(grepl('tiers\\? <exists>', tg)) > 0){
       if(sum(grepl("item ?\\[\\d{1,}\\]:", tg)) < 1){
