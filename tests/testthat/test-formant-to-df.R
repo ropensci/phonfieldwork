@@ -8,4 +8,3 @@ test_that("formant_to_df", {
   expect_equal(nrow(formant_to_df(file1)), 164)
   expect_equal(nrow(formant_to_df(file2)), 164)
 })
-

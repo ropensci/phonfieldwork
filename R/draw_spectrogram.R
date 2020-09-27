@@ -50,7 +50,8 @@
 #' @examples
 #' \dontrun{
 #' draw_spectrogram(system.file("extdata", "test.wav",
-#'                              package = "phonfieldwork"))
+#'   package = "phonfieldwork"
+#' ))
 #' }
 #'
 #' @export
@@ -63,101 +64,113 @@
 #' @importFrom graphics rect
 #'
 
-draw_spectrogram <- function (sound,
-                              fs = 22050,
-                              text_size = 1,
-                              window_length = 5,
-                              dynamic_range = 50,
-                              window = "kaiser",
-                              windowparameter = -1,
-                              freq_scale = "kHz",
-                              spectrum_info = TRUE,
-                              timestep = -1000,
-                              padding = 10,
-                              preemphasisf = 50,
-                              frequency_range = c(0, 5),
-                              nlevels = dynamic_range,
-                              x_axis = TRUE,
-                              title = NULL,
-                              raven_annotation = NULL,
-                              formant_df = NULL){
+draw_spectrogram <- function(sound,
+                             fs = 22050,
+                             text_size = 1,
+                             window_length = 5,
+                             dynamic_range = 50,
+                             window = "kaiser",
+                             windowparameter = -1,
+                             freq_scale = "kHz",
+                             spectrum_info = TRUE,
+                             timestep = -1000,
+                             padding = 10,
+                             preemphasisf = 50,
+                             frequency_range = c(0, 5),
+                             nlevels = dynamic_range,
+                             x_axis = TRUE,
+                             title = NULL,
+                             raven_annotation = NULL,
+                             formant_df = NULL) {
 
   # This function is slightly modification of phonTools::spectrogram()
   # by Santiago Barreda <sbarreda@ucdavis.edu>
 
-  if(class(sound) != "integer" & class(sound) != "numeric"){
+  if (class(sound) != "integer" & class(sound) != "numeric") {
     ext <- unlist(strsplit(normalizePath(sound), "\\."))
     ext <- ext[length(ext)]
 
-    if(ext == "wave"|ext == "wav"){
+    if (ext == "wave" | ext == "wav") {
       s <- tuneR::readWave(sound)
-    } else if(ext == "mp3"){
+    } else if (ext == "mp3") {
       s <- tuneR::readMP3(sound)
-    } else{
+    } else {
       stop("The draw_spectrogram() functions works only with .wav(e) or .mp3 formats")
     }
     fs <- s@samp.rate
     sound <- s@left
   }
-  n <- ceiling((fs/1000) * window_length)
-  if (n%%2) {n <- n + 1}
-  if (timestep > 0) {timestep <- floor(timestep/1000 * fs)}
-  if (timestep <= 0) {timestep <- floor(length(sound)/-timestep)}
-  if (preemphasisf > 0){
+  n <- ceiling((fs / 1000) * window_length)
+  if (n %% 2) {
+    n <- n + 1
+  }
+  if (timestep > 0) {
+    timestep <- floor(timestep / 1000 * fs)
+  }
+  if (timestep <= 0) {
+    timestep <- floor(length(sound) / -timestep)
+  }
+  if (preemphasisf > 0) {
     sound <- phonTools::preemphasis(sound, preemphasisf, fs)
     preemphasisf_text <-
-      paste0("\nThe spectral slope is increased by 6 dB. per octave above ",
-             preemphasisf,
-             " Hz")
+      paste0(
+        "\nThe spectral slope is increased by 6 dB. per octave above ",
+        preemphasisf,
+        " Hz"
+      )
     preemphasisf_line <- 0.5
   } else {
     preemphasisf_text <- ""
     preemphasisf_line <- 0
   }
-  spots <- seq(floor(n/2), length(sound) - n, timestep)
+  spots <- seq(floor(n / 2), length(sound) - n, timestep)
   padding <- n * padding
-  if ((n + padding)%%2){
+  if ((n + padding) %% 2) {
     padding <- padding + 1
   }
   N <- n + padding
 
-  spect <- matrix(nrow = length(spots),
-                  ncol = (N/2 + 1))
+  spect <- matrix(
+    nrow = length(spots),
+    ncol = (N / 2 + 1)
+  )
 
   lapply(spots, function(x) {
-    tmp <- sound[x:(x + n - 1)] * phonTools::windowfunc(sound[x:(x + n - 1)],
-                                                        window,
-                                                        windowparameter)
+    tmp <- sound[x:(x + n - 1)] * phonTools::windowfunc(
+      sound[x:(x + n - 1)],
+      window,
+      windowparameter
+    )
     tmp <- c(tmp, rep(0, padding))
     tmp <- tmp - mean(tmp)
-    tmp <- stats::fft(tmp)[1:(N/2 + 1)]
+    tmp <- stats::fft(tmp)[1:(N / 2 + 1)]
     tmp <- abs(tmp)^2
     tmp <- log(tmp, 10) * 10
     spect[which(spots == x), ] <<- tmp
   })
 
-  for (i in seq_along(spots)){
+  for (i in seq_along(spots)) {
     spect[i, 1] <- min(spect[i, -1])
   }
 
-  if(freq_scale == "kHz"){
-    hz <- (0:(N/2)) * (fs/N)/1000
-  } else if(freq_scale == "Hz"){
-    hz <- (0:(N/2)) * (fs/N)
+  if (freq_scale == "kHz") {
+    hz <- (0:(N / 2)) * (fs / N) / 1000
+  } else if (freq_scale == "Hz") {
+    hz <- (0:(N / 2)) * (fs / N)
   } else {
     stop("The only possible values for the freq_scale argument are 'kHz' and 'Hz'")
   }
 
-  times <- spots * (1000/fs)
-  if (frequency_range[2] > (fs/2) & freq_scale == "Hz"){
-    frequency_range[2] <- fs/2
-  } else if(frequency_range[2] > (fs/2)/1000 & freq_scale == "kHz"){
-    frequency_range[2] <- (fs/2)/1000
+  times <- spots * (1000 / fs)
+  if (frequency_range[2] > (fs / 2) & freq_scale == "Hz") {
+    frequency_range[2] <- fs / 2
+  } else if (frequency_range[2] > (fs / 2) / 1000 & freq_scale == "kHz") {
+    frequency_range[2] <- (fs / 2) / 1000
   }
 
   spect <- spect - max(spect)
 
-  xlim <- c(0, length(sound)/fs*1000)
+  xlim <- c(0, length(sound) / fs * 1000)
   ylim <- c(frequency_range[1], frequency_range[2])
   zcolors <- grDevices::colorRampPalette(c("white", "black"))
   zrange <- c(-dynamic_range, 0)
@@ -166,92 +179,107 @@ draw_spectrogram <- function (sound,
   zcolors <- zcolors(length(levels) - 1)
   spect[which(spect < (-1 * dynamic_range))] <- -1 * dynamic_range
 
-  if(windowparameter == -1 & window == "kaiser"){
+  if (windowparameter == -1 & window == "kaiser") {
     parameter_info <- paste0(", \u03B1: ", 2)
-  } else if(windowparameter == -1 & window == "gaussian"){
+  } else if (windowparameter == -1 & window == "gaussian") {
     parameter_info <- paste0(", \u03C3: ", 0.4)
-  } else if(windowparameter != -1 & window == "kaiser"){
+  } else if (windowparameter != -1 & window == "kaiser") {
     parameter_info <- paste0(", \u03B1: ", windowparameter)
-  } else if(windowparameter != -1 & window == "gaussian"){
+  } else if (windowparameter != -1 & window == "gaussian") {
     parameter_info <- paste0(", \u03C3: ", windowparameter)
   } else {
     parameter_info <- ""
   }
 
   graphics::image(as.double(times),
-                  as.double(hz),
-                  spect,
-                  useRaster = FALSE,
-                  col = zcolors,
-                  ylim = ylim,
-                  xlim = xlim,
-                  main = as.character(title)[1],
-                  yaxt='n',
-                  xaxt='n',
-                  xlab = "",
-                  ylab = "")
-  graphics::axis(2, cex.axis=text_size, las=1)
+    as.double(hz),
+    spect,
+    useRaster = FALSE,
+    col = zcolors,
+    ylim = ylim,
+    xlim = xlim,
+    main = as.character(title)[1],
+    yaxt = "n",
+    xaxt = "n",
+    xlab = "",
+    ylab = ""
+  )
+  graphics::axis(2, cex.axis = text_size, las = 1)
   graphics::title(ylab = paste0("Frequency (", freq_scale, ")"), cex.lab = 0.7)
-  if(spectrum_info){
-    graphics::mtext(text = paste0(toupper(substring(window, 1, 1)),
-                                  tolower(substring(window, 2, nchar(window))),
-                                  " window (length: ",
-                                  window_length,
-                                  " ms",
-                                  parameter_info,
-                                  "), dynamic range: ",
-                                  dynamic_range, " (dB)",
-                                  preemphasisf_text),
-                    side = 4, cex = 0.6, line = preemphasisf_line)
+  if (spectrum_info) {
+    graphics::mtext(
+      text = paste0(
+        toupper(substring(window, 1, 1)),
+        tolower(substring(window, 2, nchar(window))),
+        " window (length: ",
+        window_length,
+        " ms",
+        parameter_info,
+        "), dynamic range: ",
+        dynamic_range, " (dB)",
+        preemphasisf_text
+      ),
+      side = 4, cex = 0.6, line = preemphasisf_line
+    )
   }
-  if(x_axis){
-    graphics::axis(1, cex.axis=text_size, las=1)
+  if (x_axis) {
+    graphics::axis(1, cex.axis = text_size, las = 1)
     graphics::title(xlab = "time (ms)")
   }
-  if(!is.null(raven_annotation)){
-    if(is.null(raven_annotation$colors)){
+  if (!is.null(raven_annotation)) {
+    if (is.null(raven_annotation$colors)) {
       raven_annotation$colors <- "black"
     }
-    if("time_start" %in% names(raven_annotation) &
-       "time_end" %in% names(raven_annotation) &
-       "freq_low" %in% names(raven_annotation) &
-       "freq_high" %in% names(raven_annotation)){
-      graphics::rect(xleft = raven_annotation$time_start,
-                     xright = raven_annotation$time_end,
-                     ybottom = raven_annotation$freq_low,
-                     ytop = raven_annotation$freq_high,
-                     lwd = 2,
-                     border = raven_annotation$colors)
-      if("content" %in% names(raven_annotation)){
-        graphics::text(x = raven_annotation$time_start,
-                       y = raven_annotation$freq_high,
-                       labels = raven_annotation$content,
-                       pos = 3,
-                       offset = 0.2,
-                       cex = text_size,
-                       col = raven_annotation$colors)
+    if ("time_start" %in% names(raven_annotation) &
+      "time_end" %in% names(raven_annotation) &
+      "freq_low" %in% names(raven_annotation) &
+      "freq_high" %in% names(raven_annotation)) {
+      graphics::rect(
+        xleft = raven_annotation$time_start,
+        xright = raven_annotation$time_end,
+        ybottom = raven_annotation$freq_low,
+        ytop = raven_annotation$freq_high,
+        lwd = 2,
+        border = raven_annotation$colors
+      )
+      if ("content" %in% names(raven_annotation)) {
+        graphics::text(
+          x = raven_annotation$time_start,
+          y = raven_annotation$freq_high,
+          labels = raven_annotation$content,
+          pos = 3,
+          offset = 0.2,
+          cex = text_size,
+          col = raven_annotation$colors
+        )
       }
-    } else{
-      warning(paste0("raven_annotation should have time_start, time_end",
-                     "freq_low and freq_high columns"))
-    }}
+    } else {
+      warning(paste0(
+        "raven_annotation should have time_start, time_end",
+        "freq_low and freq_high columns"
+      ))
+    }
+  }
 
-  if(!is.null(formant_df)){
-    if(is.null(formant_df$colors)){
+  if (!is.null(formant_df)) {
+    if (is.null(formant_df$colors)) {
       formant_df$colors <- "red"
     }
-    if("time_start" %in% names(formant_df) &
-       "time_end" %in% names(formant_df) &
-       "formant" %in% names(formant_df) &
-       "frequency" %in% names(formant_df)){
-      graphics::points(formant_df$time_start*1000,
-                       formant_df$frequency/1000,
-                       col = unique(formant_df$color),
-                       pch = 16,
-                       cex = 0.5)
-    } else{
-      warning(paste0("formant_df should have time_start, time_end",
-                     "formant and frequency columns"))
+    if ("time_start" %in% names(formant_df) &
+      "time_end" %in% names(formant_df) &
+      "formant" %in% names(formant_df) &
+      "frequency" %in% names(formant_df)) {
+      graphics::points(formant_df$time_start * 1000,
+        formant_df$frequency / 1000,
+        col = unique(formant_df$color),
+        pch = 16,
+        cex = 0.5
+      )
+    } else {
+      warning(paste0(
+        "formant_df should have time_start, time_end",
+        "formant and frequency columns"
+      ))
     }
   }
 }

@@ -14,43 +14,48 @@
 #' vector of strings with a TextGrid. If \code{overwrite} is \code{TRUE}, then
 #' no output.
 #' @examples
-#' time_start <-  c(0.00000000,0.01246583,0.24781914,0.39552363,0.51157715)
-#' time_end <-  c(0.01246583,0.24781914,0.39552363,0.51157715,0.65267574)
-#' content = c("", "T", "E", "S", "T")
+#' time_start <- c(0.00000000, 0.01246583, 0.24781914, 0.39552363, 0.51157715)
+#' time_end <- c(0.01246583, 0.24781914, 0.39552363, 0.51157715, 0.65267574)
+#' content <- c("", "T", "E", "S", "T")
 #' df_to_tier(my_df <- data.frame(id = 1:5, time_start, time_end, content),
-#'            system.file("extdata", "test.TextGrid",
-#'                        package = "phonfieldwork"),
-#'            overwrite = FALSE)
-#'
+#'   system.file("extdata", "test.TextGrid",
+#'     package = "phonfieldwork"
+#'   ),
+#'   overwrite = FALSE
+#' )
 #' @export
 #'
 #' @importFrom uchardet detect_file_enc
 #'
 
-df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE){
-  if(!("time_start" %in% names(df))|
-      !("time_end" %in% names(df))|
-      !("content" %in% names(df))){
-    stop(paste0('df columns should have the folowing names: "content"',
-                '"time_start" and "time_end"'))
+df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE) {
+  if (!("time_start" %in% names(df)) |
+    !("time_end" %in% names(df)) |
+    !("content" %in% names(df))) {
+    stop(paste0(
+      'df columns should have the folowing names: "content"',
+      '"time_start" and "time_end"'
+    ))
   }
 
   tg <- read_textgrid(textgrid)
 
   n_tiers <- as.numeric(gsub("\\D", "", tg[7]))
-  tg[7] <- paste0("size = ", n_tiers+1, " ")
+  tg[7] <- paste0("size = ", n_tiers + 1, " ")
 
-  if(!(FALSE %in% (df$time_start == df$time_end))){
+  if (!(FALSE %in% (df$time_start == df$time_end))) {
     df <- df[, -which(names(df) %in% "time_end")]
   }
 
   tier_class <- ifelse("time_end" %in% names(df),
-                       '        class = "IntervalTier" ',
-                       '        class = "TextTier" ')
+    '        class = "IntervalTier" ',
+    '        class = "TextTier" '
+  )
 
   tier_type <- ifelse("time_end" %in% names(df),
-                      paste0('        intervals'),
-                      paste0('        points'))
+    paste0("        intervals"),
+    paste0("        points")
+  )
 
 
   if ("time_end" %in% names(df)) {
@@ -73,17 +78,17 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE){
   }
 
   add_tier <- c(
-    paste0("    item [", n_tiers+1, "]:"),
+    paste0("    item [", n_tiers + 1, "]:"),
     tier_class,
     paste0('        name = "', tier_name, '" '),
-    tg[grep("item", tg)[2]+3],
-    tg[grep("item", tg)[2]+4],
+    tg[grep("item", tg)[2] + 3],
+    tg[grep("item", tg)[2] + 4],
     paste0(tier_type, ": size = ", nrow(df), " "),
     unlist(all_annotations)
   )
-  if(overwrite){
+  if (overwrite) {
     writeLines(append(tg, add_tier), textgrid)
   } else {
     append(tg, add_tier)
-    }
+  }
 }

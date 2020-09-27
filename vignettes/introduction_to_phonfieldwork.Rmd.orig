@@ -97,7 +97,7 @@ To make the automatic annotation of data easier, I usually record each stimulus 
 * a collection of small soundfiles (video) with the same sampling rate, resolution (bit), and number of channels
 * a list of succesful and unsuccesful attempts to produce a stimulus according to my requirements (usually I keep this list in a regular notebook)
 
-There are some phoneticians who prefer to record everything, for language documentation purposes. I think that should be a separate task: you can’t have your cake and eat it too. But if you insist on recording everything, it is possible to run two recorders at the same time: one could run during the whole session, while the other is used to produce small audio files. You can also use special software to record your stimuli automatically on a computer (e.g. [PsychoPy](https://www.psychopy.org/)).
+There are some phoneticians who prefer to record everything, for language documentation purposes. I think that should be a separate task: you can’t have your cake and eat it too. But if you insist on recording everything, it is possible to run two recorders at the same time: one could run during the whole session, while the other is used to produce small audio files. You can also use special software to record your stimuli automatically on a computer (e.g. [SpeechRecorder](https://www.bas.uni-muenchen.de/Bas/software/speechrecorder/) or [PsychoPy](https://www.psychopy.org/)).
 
 You can show a native speaker your stimuli one by one or not show them the stimule but ask them to pronounce a certain stimulus or its translation. I use presentations to collect all stimuli in a particular order without the risk of omissions.
 

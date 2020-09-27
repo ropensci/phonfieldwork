@@ -13,9 +13,10 @@
 #' then no output.
 #' @examples
 #' set_textgrid_names(system.file("extdata", "test.TextGrid",
-#'                                package = "phonfieldwork"),
-#' tiers = 3, names = "new_name", write = FALSE)
-#'
+#'   package = "phonfieldwork"
+#' ),
+#' tiers = 3, names = "new_name", write = FALSE
+#' )
 #' @export
 #'
 #' @importFrom uchardet detect_file_enc
@@ -24,19 +25,21 @@
 set_textgrid_names <- function(textgrid,
                                tiers,
                                names,
-                               write = TRUE){
+                               write = TRUE) {
   # read TextGrid -----------------------------------------------------------
   tg <- read_textgrid(textgrid)
 
-# rewrite names in TextGrid -----------------------------------------------
+  # rewrite names in TextGrid -----------------------------------------------
   change <- grep('name = ".*"', tg)[tiers]
-  lapply(seq_along(change), function(i){
-    tg[change[i]] <<- paste0('        name = "',
-                             names[i],
-                             '"')
-  }) -> result
+  result <- lapply(seq_along(change), function(i) {
+    tg[change[i]] <<- paste0(
+      '        name = "',
+      names[i],
+      '"'
+    )
+  })
 
-# write the result TextGrid -----------------------------------------------
+  # write the result TextGrid -----------------------------------------------
   if (isTRUE(write)) {
     writeLines(tg, normalizePath(textgrid))
   } else {

@@ -13,18 +13,17 @@
 #'
 #' @examples
 #' audacity_to_df(system.file("extdata",
-#'                            "test_audacity.txt",
-#'                            package = "phonfieldwork"))
-#'
+#'   "test_audacity.txt",
+#'   package = "phonfieldwork"
+#' ))
 #' @importFrom utils read.delim
 #' @export
 
-audacity_to_df <- function(file_name){
+audacity_to_df <- function(file_name) {
   df <- utils::read.delim(file_name)
   names(df) <- c("time_start", "time_end", "content")
-  df$time_start <- as.double(gsub(",", ".", df$time_start))/1000
-  df$time_end <- as.double(gsub(",", ".", df$time_end))/1000
-  source <- unlist(strsplit(normalizePath(file_name), "/"))
-  df$source <- source[length(source)]
+  df$time_start <- as.double(gsub(",", ".", df$time_start)) / 1000
+  df$time_end <- as.double(gsub(",", ".", df$time_end)) / 1000
+  df$source <- basename(file_name)
   return(df)
 }

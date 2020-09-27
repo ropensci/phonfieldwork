@@ -15,86 +15,101 @@
 #'
 #' @examples
 #' textgrid_to_df(system.file("extdata", "test.TextGrid",
-#'                            package = "phonfieldwork"))
+#'   package = "phonfieldwork"
+#' ))
 #'
 #' # this is and example of reading a short .TextGrid format
 #' textgrid_to_df(system.file("extdata", "test_short.TextGrid",
-#'                            package = "phonfieldwork"))
+#'   package = "phonfieldwork"
+#' ))
 #' @export
 #'
 #' @importFrom uchardet detect_file_enc
 #'
 
 textgrid_to_df <- function(file_name,
-                           textgrids_from_folder = NULL){
-  if(is.null(textgrids_from_folder)){
+                           textgrids_from_folder = NULL) {
+  if (is.null(textgrids_from_folder)) {
     tg <- read_textgrid(file_name)
 
-    if(sum(grepl('tiers\\? <exists>', tg)) > 0){
-      if(sum(grepl("item ?\\[\\d{1,}\\]:", tg)) < 1){
+    if (sum(grepl("tiers\\? <exists>", tg)) > 0) {
+      if (sum(grepl("item ?\\[\\d{1,}\\]:", tg)) < 1) {
         "It looks like there is no tiers in this .TextGrid"
       }
-      split_text <- split(seq_along(tg),
-                          cumsum(grepl("item ?\\[\\d{1,}\\]:", tg)))[-1]
+      split_text <- split(
+        seq_along(tg),
+        cumsum(grepl("item ?\\[\\d{1,}\\]:", tg))
+      )[-1]
       correction <- 0
-    } else if('<exists>' %in% tg){
-      if(sum(grepl("IntervalTier|TextTier", tg)) < 1){
+    } else if ("<exists>" %in% tg) {
+      if (sum(grepl("IntervalTier|TextTier", tg)) < 1) {
         "It looks like there is no tiers in this .TextGrid"
       }
-      split_text <- split(seq_along(tg),
-                          cumsum(grepl("IntervalTier|TextTier", tg)))[-1]
+      split_text <- split(
+        seq_along(tg),
+        cumsum(grepl("IntervalTier|TextTier", tg))
+      )[-1]
       correction <- 1
     }
 
 
-    lapply(split_text,
-           function(i){
-             class <- unlist(strsplit(tg[i[2-correction]], '"'))[2]
-             step_by = ifelse(class == "IntervalTier", 4, 3) - correction
-             start_max = ifelse(class == "IntervalTier", 9, 8) - correction*2
-             data.frame(
-               id = 0,
-               time_start = gsub("[^0-9.]", "", tg[i[seq(8 - correction*2,
-                                                         length(i),
-                                                         by = step_by)]]),
-               time_end = gsub("[^0-9.]", "", tg[i[seq(start_max, length(i),
-                                                       by = step_by)]]),
-               content = tg[i[seq(start_max+1, length(i), by = step_by)]],
-               tier = 0,
-               tier_name = unlist(strsplit(tg[i[3-correction]], '"'))[2],
-               stringsAsFactors = FALSE)
-           }) ->
-      l
+    l <- lapply(
+      split_text,
+      function(i) {
+        class <- unlist(strsplit(tg[i[2 - correction]], '"'))[2]
+        step_by <- ifelse(class == "IntervalTier", 4, 3) - correction
+        start_max <- ifelse(class == "IntervalTier", 9, 8) - correction * 2
+        data.frame(
+          id = 0,
+          time_start = gsub("[^0-9.]", "", tg[i[seq(8 - correction * 2,
+            length(i),
+            by = step_by
+          )]]),
+          time_end = gsub("[^0-9.]", "", tg[i[seq(start_max, length(i),
+            by = step_by
+          )]]),
+          content = tg[i[seq(start_max + 1, length(i), by = step_by)]],
+          tier = 0,
+          tier_name = unlist(strsplit(tg[i[3 - correction]], '"'))[2],
+          stringsAsFactors = FALSE
+        )
+      }
+    )
 
     result <- do.call(rbind, l)
 
     result$id <- as.numeric(gsub("\\d{1,}\\.", "", rownames(result)))
     result$tier <- as.numeric(gsub("\\.\\d{1,}", "", rownames(result)))
 
-    result$content <- unlist(lapply(result$content, function(j){
+    result$content <- unlist(lapply(result$content, function(j) {
       unlist(strsplit(j, '"'))[2]
     }))
     result$time_start <- as.numeric(result$time_start)
     result$time_end <- as.numeric(result$time_end)
     result$tier <- as.numeric(result$tier)
-    if(grepl("TextGrid", file_name[2])){
+    if (grepl("TextGrid", file_name[2])) {
       source <- "custom_file"
-    } else{
-      source <- unlist(strsplit(normalizePath(file_name), "/"))
+    } else {
+      source <- basename(file_name)
     }
-    result$source <- source[length(source)]
+    result$source <- source
 
     rownames(result) <- NULL
-    return(result[order(result$time_start),])
+    return(result[order(result$time_start), ])
   } else {
-    files <- paste0(normalizePath(textgrids_from_folder),
-                    "/",
-                    list.files(normalizePath(textgrids_from_folder),
-                               "\\.TextGrid$"))
-    return(do.call(rbind,
-                   lapply(files, function(i){
-                     textgrid_to_df(file_name = i)
-                   })))
+    files <- paste0(
+      normalizePath(textgrids_from_folder),
+      "/",
+      list.files(
+        normalizePath(textgrids_from_folder),
+        "\\.TextGrid$"
+      )
+    )
+    return(do.call(
+      rbind,
+      lapply(files, function(i) {
+        textgrid_to_df(file_name = i)
+      })
+    ))
   }
 }
-

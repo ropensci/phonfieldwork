@@ -15,7 +15,6 @@
 #'
 #' @examples
 #' pitch_to_df(system.file("extdata", "test.Pitch", package = "phonfieldwork"))
-#'
 #' @export
 #'
 #' @importFrom uchardet detect_file_enc
@@ -23,11 +22,11 @@
 
 pitch_to_df <- function(file_name,
                         encoding = "unknown",
-                        candidates = ""){
+                        candidates = "") {
   # read file ---------------------------------------------------------------
-  if(grepl("Pitch", file_name[2])){
+  if (grepl("Pitch", file_name[2])) {
     pitch <- file_name
-  } else{
+  } else {
     # thanks to Artem Klevtsov for this code
     con <- file(file_name, encoding = uchardet::detect_file_enc(file_name))
     pitch <- readLines(con)
@@ -41,24 +40,27 @@ pitch_to_df <- function(file_name,
   # get all frames ----------------------------------------------------------
   s <- split(seq_along(pitch), cumsum(grepl("frame \\[\\d{1,}\\]", pitch)))
   s <- s[-1]
-  lapply(seq_along(s), function(i){
-    data.frame(candidate_id = 1:sum(grepl("frequency =", pitch[s[[i]]])),
-               frequency = grep("frequency =", pitch[s[[i]]], value = TRUE),
-               strength = grep("strength =", pitch[s[[i]]], value = TRUE))
-  }) -> result
+  result <- lapply(seq_along(s), function(i) {
+    data.frame(
+      candidate_id = 1:sum(grepl("frequency =", pitch[s[[i]]])),
+      frequency = grep("frequency =", pitch[s[[i]]], value = TRUE),
+      strength = grep("strength =", pitch[s[[i]]], value = TRUE)
+    )
+  })
 
-  result <- do.call(rbind,result)
+  result <- do.call(rbind, result)
   result$frequency <- as.numeric(gsub("[^0-9\\.]", "", result$frequency))
   result$strength <- as.numeric(gsub("[^0-9\\.]", "", result$strength))
 
   # define frames with maximum strengh --------------------------------------
-  if(candidates != "all"){
-    result <- data.frame(frequency = result[result$candidate_id == 1,
-                                            "frequency"])
+  if (candidates != "all") {
+    result <- data.frame(frequency = result[
+      result$candidate_id == 1,
+      "frequency"
+    ])
   }
   result$frequency <- ifelse(result$frequency == 0, NA, result$frequency)
   result$time_start <- seq(time_start, time_end, length.out = nrow(result))
   result$time_end <- result$time_start
   return(result)
 }
-

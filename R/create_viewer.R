@@ -31,26 +31,26 @@ create_viewer <- function(audio_dir,
                           map = FALSE,
                           output_dir,
                           output_file = "stimuli_viewer",
-                          render = TRUE){
-  if(!("DT" %in% utils::installed.packages()[,"Package"])){
+                          render = TRUE) {
+  if (!("DT" %in% utils::installed.packages()[, "Package"])) {
     stop('For this function you need to install DT package with a command install.packages("DT").')
   }
 
-  if(isTRUE(map)){
-    if(!("lingtypology" %in% utils::installed.packages()[,"Package"])){
+  if (isTRUE(map)) {
+    if (!("lingtypology" %in% utils::installed.packages()[, "Package"])) {
       stop('If you want to create a map in a viewer, you need to install lingtypology package with a command install.packages("lingtypology").')
     }
 
-    if(!("glottocode" %in% names(table))){
-      if(!("longitude" %in% names(table)) &
-         !("latitude" %in% names(table))){
-        stop('If you want to create a map in a viewer, you need to add a glottocode (or latitude and longitude) column to the datafarame in a table argument.')
+    if (!("glottocode" %in% names(table))) {
+      if (!("longitude" %in% names(table)) &
+        !("latitude" %in% names(table))) {
+        stop("If you want to create a map in a viewer, you need to add a glottocode (or latitude and longitude) column to the datafarame in a table argument.")
       } else {
         table$glottocode <- "fake"
       }
     } else {
-      if(!("longitude" %in% names(table)) &
-         !("latitude" %in% names(table))){
+      if (!("longitude" %in% names(table)) &
+        !("latitude" %in% names(table))) {
         table$longitude <- NA
         table$latitude <- NA
       }
@@ -61,35 +61,39 @@ create_viewer <- function(audio_dir,
 
   audio <- list.files(normalizePath(audio_dir), "(\\.wav$)|(\\.wave$)|(\\.WAV$)|(\\.WAVE$)")
   pictures <- list.files(normalizePath(picture_dir), "(\\.png$)|(\\.PNG$)")
-  if(length(audio) > length(pictures)){
+  if (length(audio) > length(pictures)) {
     stop("The number of audio files is greater then number of pictures.")
   }
-  if(length(audio) < length(pictures)){
+  if (length(audio) < length(pictures)) {
     stop("The number of audio files is less then number of pictures.")
   }
 
-# create correct relative paths -------------------------------------------
-  audio_dir <- strsplit(normalizePath(audio_dir),
-                        normalizePath(output_dir))[[1]][2]
+  # create correct relative paths -------------------------------------------
+  audio_dir <- strsplit(
+    normalizePath(audio_dir),
+    normalizePath(output_dir)
+  )[[1]][2]
   audio_dir <- substr(audio_dir, 2, nchar(audio_dir))
   table$audio <- paste0(audio_dir, "/", audio)
 
-  picture_dir <- strsplit(normalizePath(picture_dir),
-                          normalizePath(output_dir))[[1]][2]
+  picture_dir <- strsplit(
+    normalizePath(picture_dir),
+    normalizePath(output_dir)
+  )[[1]][2]
   picture_dir <- substr(picture_dir, 2, nchar(picture_dir))
   table$pictures <- paste0(picture_dir, "/", pictures)
 
   # sort rows according to sorting_columns
-  if(!is.null(sorting_columns)){
+  if (!is.null(sorting_columns)) {
     table <- table[do.call(order, table[sorting_columns]), ]
   }
 
-# create a .csv file ------------------------------------------------------
+  # create a .csv file ------------------------------------------------------
   tmp1 <- tempfile(fileext = ".csv")
   utils::write.csv(table, tmp1, row.names = FALSE)
 
-# create about file -------------------------------------------------------
-  if(substr(about, nchar(about)-3, nchar(about)) == ".Rmd"){
+  # create about file -------------------------------------------------------
+  if (substr(about, nchar(about) - 3, nchar(about)) == ".Rmd") {
     tmp2 <- about
   } else {
     tmp2 <- tempfile(fileext = ".Rmd")
@@ -97,11 +101,11 @@ create_viewer <- function(audio_dir,
   }
 
 
-# create map file ---------------------------------------------------------
+  # create map file ---------------------------------------------------------
   tmp3 <- tempfile(fileext = ".Rmd")
-  if(isTRUE(map)){
+  if (isTRUE(map)) {
     writeLines(
-    '## map
+      '## map
 
 ```{r map, echo=FALSE, message=FALSE, warning=FALSE}
 if("fake" %in% df$glottocode){
@@ -123,32 +127,38 @@ map.feature(languages = df$language_for_lingtypology,
   <div class = "caption" id="caption">
   </div>
 </div>',
-    tmp3)
-  } else{
-    writeLines('', tmp3)
+      tmp3
+    )
+  } else {
+    writeLines("", tmp3)
   }
 
-# render .Rmd -------------------------------------------------------------
-  if(render == TRUE){
-  rmarkdown::render(paste0(.libPaths()[1],
-"/phonfieldwork/rmarkdown/templates/annotation_viewer/skeleton/skeleton.Rmd"),
-                    params = list(data = tmp1,
-                                  about = tmp2,
-                                  map = tmp3,
-                                  captions = captions),
-                    output_dir = output_dir,
-                    quiet = TRUE,
-                    output_file = output_file)
-  message(paste0("Output created: ", output_dir, output_file, ".html"))
-  suppress_message <- file.remove(tmp1)
-  suppress_message <- file.remove(tmp2)
-  if(isTRUE(map)){
-    suppress_message <- file.remove(tmp3)
-  }
+  # render .Rmd -------------------------------------------------------------
+  if (render == TRUE) {
+    rmarkdown::render(paste0(
+      .libPaths()[1],
+      "/phonfieldwork/rmarkdown/templates/annotation_viewer/skeleton/skeleton.Rmd"
+    ),
+    params = list(
+      data = tmp1,
+      about = tmp2,
+      map = tmp3,
+      captions = captions
+    ),
+    output_dir = output_dir,
+    quiet = TRUE,
+    output_file = output_file
+    )
+    message(paste0("Output created: ", output_dir, output_file, ".html"))
+    suppress_message <- file.remove(tmp1)
+    suppress_message <- file.remove(tmp2)
+    if (isTRUE(map)) {
+      suppress_message <- file.remove(tmp3)
+    }
   } else {
     return(tmp1)
     suppress_message <- file.remove(tmp2)
-    if(isTRUE(map)){
+    if (isTRUE(map)) {
       suppress_message <- file.remove(tmp3)
     }
   }

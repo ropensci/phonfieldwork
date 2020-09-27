@@ -11,7 +11,6 @@
 #'
 #' @examples
 #' add_leading_symbols(1:200)
-#'
 #' @export
 
 add_leading_symbols <- function(file_names) {

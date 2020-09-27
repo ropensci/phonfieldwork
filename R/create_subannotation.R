@@ -20,9 +20,10 @@
 #'
 #' @examples
 #' create_subannotation(system.file("extdata", "test.TextGrid",
-#'                                  package = "phonfieldwork"),
-#'                      tier = 1, overwrite = FALSE)
-#'
+#'   package = "phonfieldwork"
+#' ),
+#' tier = 1, overwrite = FALSE
+#' )
 #' @export
 #'
 
@@ -32,27 +33,29 @@ create_subannotation <- function(textgrid,
                                  n_of_annotations = 4,
                                  each = 1,
                                  omit_blank = TRUE,
-                                 overwrite = TRUE){
-
+                                 overwrite = TRUE) {
   df <- phonfieldwork::tier_to_df(textgrid, tier = tier)
 
-  if(omit_blank){
-    df <- df[df$content != "",]
+  if (omit_blank) {
+    df <- df[df$content != "", ]
   }
 
-  lapply(seq_along(df$content), function(i){
+  l <- lapply(seq_along(df$content), function(i) {
     t <- seq(df$time_start[i],
-             df$time_end[i],
-             length.out = each*(n_of_annotations+1))
-    data.frame(time_start = t[-length(t)],
-               time_end = t[-1])
-  }) ->
-    l
+      df$time_end[i],
+      length.out = each * (n_of_annotations + 1)
+    )
+    data.frame(
+      time_start = t[-length(t)],
+      time_end = t[-1]
+    )
+  })
 
   final <- do.call(rbind, l)
   final <- cbind(id = seq_along(final$time_start), final, content = "")
   phonfieldwork::df_to_tier(final,
-                            textgrid = textgrid,
-                            tier_name = new_tier_name,
-                            overwrite = overwrite)
+    textgrid = textgrid,
+    tier_name = new_tier_name,
+    overwrite = overwrite
+  )
 }

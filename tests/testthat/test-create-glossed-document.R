@@ -6,8 +6,10 @@ test_that("create_glossed_document", {
   tmp <- tempdir()
   create_glossed_document(file_name, output_dir = tmp)
   create_glossed_document(file_name, output_dir = tmp, output_format = "html")
-  create_glossed_document(flextext_to_df(file_name), output_dir = tmp,
-                          output_file = "glossed_document2")
+  create_glossed_document(flextext_to_df(file_name),
+    output_dir = tmp,
+    output_file = "glossed_document2"
+  )
 
   test_that("create_glossed_document", {
     skip_on_cran()

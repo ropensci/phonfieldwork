@@ -11,46 +11,51 @@
 #'
 #' @examples
 #' get_sound_duration(
-#'   sounds_from_folder = system.file("extdata", package = "phonfieldwork"))
-#'
+#'   sounds_from_folder = system.file("extdata", package = "phonfieldwork")
+#' )
 #' @export
 #'
 #' @importFrom tuneR readWave
 #' @importFrom tuneR readMP3
 
 get_sound_duration <- function(file_name,
-                               sounds_from_folder = NULL){
-  if(is.null(sounds_from_folder)){
-    if(class(file_name) == "Wave"){
+                               sounds_from_folder = NULL) {
+  if (is.null(sounds_from_folder)) {
+    if (class(file_name) == "Wave") {
       s <- file_name
       source <- "custom_file"
-      duration <- length(s@left)/s@samp.rate
-    } else{
+      duration <- length(s@left) / s@samp.rate
+    } else {
       ext <- unlist(strsplit(file_name, "\\."))
       ext <- ext[length(ext)]
 
-      if(ext == "wave"|ext == "wav"){
-        s <- tuneR::readWave(file_name, header=TRUE)
-        duration <- s$samples/s$sample.rate
-      } else if(ext == "mp3"){
+      if (ext == "wave" | ext == "wav") {
+        s <- tuneR::readWave(file_name, header = TRUE)
+        duration <- s$samples / s$sample.rate
+      } else if (ext == "mp3") {
         s <- tuneR::readMP3(file_name)
-        duration <- length(s@left)/s@samp.rate
-      } else{
+        duration <- length(s@left) / s@samp.rate
+      } else {
         stop("The get_sound_durations() functions works only with .wav(e)
              or .mp3 formats")
       }
-      source <- rev(unlist(strsplit(normalizePath(file_name), "/")))[1]
+      source <- basename(file_name)
     }
 
-    return(data.frame(file = source,
-                      duration = duration))
-  } else{
+    return(data.frame(
+      file = source,
+      duration = duration
+    ))
+  } else {
     path <- normalizePath(sounds_from_folder)
     sounds_from_folder <- list.files(path,
-                                     pattern = "(\\.wave?$)|(\\.mp3$)|
-                                     (\\.WAVE?$)|(\\.MP3$)")
-    sounds_from_folder <- paste0(path, "/",
-                                 sounds_from_folder)
+      pattern = "(\\.wave?$)|(\\.mp3$)|
+                                     (\\.WAVE?$)|(\\.MP3$)"
+    )
+    sounds_from_folder <- paste0(
+      path, "/",
+      sounds_from_folder
+    )
     l <- lapply(sounds_from_folder, phonfieldwork::get_sound_duration)
     do.call(rbind, l)
   }

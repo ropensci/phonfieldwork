@@ -9,18 +9,19 @@
 #'
 #' @examples
 #' create_sound_play("path/to/your/file")
-#'
 #' @export
 #'
 
 create_sound_play <- function(snd_src,
-                                 text = "&#x1f442;"){
-  paste0("<a ",
-         "onmouseover=\"resize(this, '200%')\" ",
-         "onmouseout=\"resize(this, '100%')\" ",
-         "onclick = 'sound_play(\"",
-         snd_src,
-         "\")'> ",
-         text,
-         "<a>")
+                              text = "&#x1f442;") {
+  paste0(
+    "<a ",
+    "onmouseover=\"resize(this, '200%')\" ",
+    "onmouseout=\"resize(this, '100%')\" ",
+    "onclick = 'sound_play(\"",
+    snd_src,
+    "\")'> ",
+    text,
+    "<a>"
+  )
 }
