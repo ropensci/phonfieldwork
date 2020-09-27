@@ -11,11 +11,14 @@
 #' @param suffix character vector of length one containing suffix for file names
 #' @param order numeric vector that define the order of stimuli. By default the
 #' order of the stimuli is taken.
+#' @param autonumber logical. If TRUE, function creates an automatic numbering of files.
 #' @param backup logical. If TRUE, function creates backup folder with all
 #' files. By default is TRUE.
+#' @param logging logical. If TRUE creates a .csv file with the correspondences of old names and new names. This could be useful for restoring in case something goes wrong.
 #' @return no output
 #' @export
 #'
+#' @importFrom utils write.csv
 
 rename_soundfiles <- function(stimuli,
                               translations = NULL,
@@ -23,16 +26,18 @@ rename_soundfiles <- function(stimuli,
                               suffix = NULL,
                               order = NULL,
                               path,
-                              backup = TRUE) {
+                              autonumber = TRUE,
+                              backup = TRUE,
+                              logging = TRUE) {
   path <- normalizePath(path)
   files <- list.files(path)
 
-  unlist(
+  extension <- unlist(
     lapply(seq_along(files), function(x){
-      res <- unlist(strsplit(files, "\\."))
+      res <- unlist(strsplit(files[x], "\\."))
       res[length(res)]
-      })) ->
-    extension
+    }))
+
 
   not_wav <- which(!(tolower(extension) %in% "wav"))
   if(length(not_wav) > 0){
@@ -57,12 +62,30 @@ rename_soundfiles <- function(stimuli,
 
   medial_part <- if(!is.null(translations)){
     paste0(stimuli[order], "_", translations[order])
-    } else {
-      stimuli[order]
-      }
+  } else{
+    stimuli[order]
+  }
+
+  if(autonumber){
+    prefix <- paste0(add_leading_symbols(medial_part), "_", prefix)
+  }
+
+  if(logging){
+    logging_path <- ifelse(backup,
+                          paste0(path, "/backup/logging.csv"),
+                          paste0(path, "/logging.csv"))
+    logging_df <- data.frame(from = files,
+                             to = paste0(prefix,
+                                         medial_part,
+                                         suffix,
+                                         ".", extension[1]))
+    utils::write.csv(x = logging_df, file = logging_path, row.names = FALSE)
+    message(paste0("You can find change correspondences in the following",
+                   " file:\n",
+                   logging_path))
+  }
 
   result <- file.rename(
     paste0(path, "/", files),
     paste0(path, "/", prefix, medial_part, suffix, ".", extension[1]))
 }
-
