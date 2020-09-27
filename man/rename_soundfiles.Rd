@@ -10,6 +10,7 @@ rename_soundfiles(
   prefix = NULL,
   suffix = NULL,
   order = NULL,
+  missing = NULL,
   path,
   autonumber = TRUE,
   backup = TRUE,
@@ -27,6 +28,8 @@ rename_soundfiles(
 
 \item{order}{numeric vector that define the order of stimuli. By default the
 order of the stimuli is taken.}
+
+\item{missing}{numeric vector that define missing stimuli in case when some stimuli are not recorded.}
 
 \item{path}{path to the directory with soundfiles.}
 

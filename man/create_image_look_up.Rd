@@ -23,7 +23,6 @@ Create image look_up objects for html viewer
 }
 \examples{
 create_image_look_up("path/to/your/file")
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

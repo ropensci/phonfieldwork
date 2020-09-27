@@ -18,7 +18,6 @@ Convert a Praat Intensity tier to a dataframe.
 }
 \examples{
 intensity_to_df(system.file("extdata", "test.Intensity", package = "phonfieldwork"))
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

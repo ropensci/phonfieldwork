@@ -40,19 +40,21 @@ create soundfiles with correspondent names.
 }
 \examples{
 # create two files in a temprary folder "test_folder"
-s <-  system.file("extdata", "test.wav", package = "phonfieldwork")
+s <- system.file("extdata", "test.wav", package = "phonfieldwork")
 tdir <- tempdir()
 file.copy(s, tdir)
 
 # Extract intervals according the TextGrid into the path
-extract_intervals(file_name = paste0(tdir, "/test.wav"),
-                  textgrid = system.file("extdata", "test.TextGrid",
-                                         package = "phonfieldwork"),
-                  path = tdir)
+extract_intervals(
+  file_name = paste0(tdir, "/test.wav"),
+  textgrid = system.file("extdata", "test.TextGrid",
+    package = "phonfieldwork"
+  ),
+  path = tdir
+)
 
 list.files(tdir)
 # [1] "e-2.wav" "s-3.wav" "t-1.wav" "t-4.wav" "test.TextGrid" "test.wav"
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

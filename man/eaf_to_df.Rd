@@ -23,7 +23,6 @@ Convert .eaf file from ELAN to a dataframe.
 }
 \examples{
 eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

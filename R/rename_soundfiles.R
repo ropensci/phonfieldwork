@@ -4,7 +4,6 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param path path to the directory with soundfiles.
 #' @param stimuli character vector of stimuli
 #' @param translations character vector of translations (optonal)
 #' @param prefix character vector of length one containing prefix for file names
@@ -12,6 +11,7 @@
 #' @param order numeric vector that define the order of stimuli. By default the
 #' order of the stimuli is taken.
 #' @param missing numeric vector that define missing stimuli in case when some stimuli are not recorded.
+#' @param path path to the directory with soundfiles.
 #' @param autonumber logical. If TRUE, function creates an automatic numbering of files.
 #' @param backup logical. If TRUE, function creates backup folder with all
 #' files. By default is TRUE.

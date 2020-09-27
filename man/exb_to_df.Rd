@@ -23,7 +23,6 @@ Convert .exb file from EXMARaLDA to a dataframe.
 }
 \examples{
 exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

@@ -29,8 +29,8 @@ original names of the sound
 }
 \examples{
 # create two files in a temprary folder "test_folder"
-s1 <-  system.file("extdata", "test.wav", package = "phonfieldwork")
-s2 <-  system.file("extdata", "post.wav", package = "phonfieldwork")
+s1 <- system.file("extdata", "test.wav", package = "phonfieldwork")
+s2 <- system.file("extdata", "post.wav", package = "phonfieldwork")
 tdir <- tempdir()
 file.copy(c(s1, s2), tdir)
 

@@ -23,11 +23,13 @@ Convert Praat TextGrid to a dataframe.
 }
 \examples{
 textgrid_to_df(system.file("extdata", "test.TextGrid",
-                           package = "phonfieldwork"))
+  package = "phonfieldwork"
+))
 
 # this is and example of reading a short .TextGrid format
 textgrid_to_df(system.file("extdata", "test_short.TextGrid",
-                           package = "phonfieldwork"))
+  package = "phonfieldwork"
+))
 }
 \author{
 George Moroz <agricolamz@gmail.com>

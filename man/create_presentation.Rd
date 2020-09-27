@@ -48,18 +48,24 @@ of words and translations.
 is an example of such presentation.
 }
 \examples{
-create_presentation(stimuli = c("rzeka", "drzewo"),
-                    translations = c("river", "tree"),
-                    render = FALSE)
+create_presentation(
+  stimuli = c("rzeka", "drzewo"),
+  translations = c("river", "tree"),
+  render = FALSE
+)
 
 # with image
-create_presentation(stimuli = c("rzeka", "drzewo",
-                               system.file("extdata", "r-logo.png",
-                                           package = "phonfieldwork")),
-                   translations = c("river", "tree", ""),
-                   external = 3,
-                   render = FALSE)
-
+create_presentation(
+  stimuli = c(
+    "rzeka", "drzewo",
+    system.file("extdata", "r-logo.png",
+      package = "phonfieldwork"
+    )
+  ),
+  translations = c("river", "tree", ""),
+  external = 3,
+  render = FALSE
+)
 }
 \author{
 George Moroz <agricolamz@gmail.com>

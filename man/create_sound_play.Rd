@@ -20,7 +20,6 @@ Create audio play objects for html viewer
 }
 \examples{
 create_sound_play("path/to/your/file")
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

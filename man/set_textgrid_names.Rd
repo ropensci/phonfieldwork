@@ -24,9 +24,10 @@ Rewrite TextGrid names.
 }
 \examples{
 set_textgrid_names(system.file("extdata", "test.TextGrid",
-                               package = "phonfieldwork"),
-tiers = 3, names = "new_name", write = FALSE)
-
+  package = "phonfieldwork"
+),
+tiers = 3, names = "new_name", write = FALSE
+)
 }
 \author{
 George Moroz <agricolamz@gmail.com>

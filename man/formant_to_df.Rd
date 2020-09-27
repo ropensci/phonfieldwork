@@ -18,7 +18,6 @@ Convert a Praat Formant object to a dataframe.
 }
 \examples{
 formant_to_df(system.file("extdata", "e.Formant", package = "phonfieldwork"))
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

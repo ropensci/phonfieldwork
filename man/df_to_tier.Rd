@@ -26,14 +26,15 @@ no output.
 Convert a dataframe to a Praat TextGrid.
 }
 \examples{
-time_start <-  c(0.00000000,0.01246583,0.24781914,0.39552363,0.51157715)
-time_end <-  c(0.01246583,0.24781914,0.39552363,0.51157715,0.65267574)
-content = c("", "T", "E", "S", "T")
+time_start <- c(0.00000000, 0.01246583, 0.24781914, 0.39552363, 0.51157715)
+time_end <- c(0.01246583, 0.24781914, 0.39552363, 0.51157715, 0.65267574)
+content <- c("", "T", "E", "S", "T")
 df_to_tier(my_df <- data.frame(id = 1:5, time_start, time_end, content),
-           system.file("extdata", "test.TextGrid",
-                       package = "phonfieldwork"),
-           overwrite = FALSE)
-
+  system.file("extdata", "test.TextGrid",
+    package = "phonfieldwork"
+  ),
+  overwrite = FALSE
+)
 }
 \author{
 George Moroz <agricolamz@gmail.com>

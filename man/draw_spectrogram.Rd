@@ -92,7 +92,8 @@ Argument description is copied from \code{phonTools::spectrogram()}.
 \examples{
 \dontrun{
 draw_spectrogram(system.file("extdata", "test.wav",
-                             package = "phonfieldwork"))
+  package = "phonfieldwork"
+))
 }
 
 }

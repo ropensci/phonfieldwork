@@ -24,7 +24,6 @@ Convert a Praat Pitch tier to a dataframe.
 }
 \examples{
 pitch_to_df(system.file("extdata", "test.Pitch", package = "phonfieldwork"))
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

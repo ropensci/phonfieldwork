@@ -18,7 +18,6 @@ for sorting names.
 }
 \examples{
 add_leading_symbols(1:200)
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

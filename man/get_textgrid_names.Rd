@@ -17,8 +17,8 @@ Extract TextGrid names.
 }
 \examples{
 get_textgrid_names(system.file("extdata", "test.TextGrid",
-                               package = "phonfieldwork"))
-
+  package = "phonfieldwork"
+))
 }
 \author{
 George Moroz <agricolamz@gmail.com>

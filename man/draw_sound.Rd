@@ -141,25 +141,35 @@ Create oscilogram and spectrogram plot.
 \dontrun{
 draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"))
 
-draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
-           system.file("extdata", "test.TextGrid",
-                       package = "phonfieldwork"))
+draw_sound(
+  system.file("extdata", "test.wav", package = "phonfieldwork"),
+  system.file("extdata", "test.TextGrid",
+    package = "phonfieldwork"
+  )
+)
 
 draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
-           system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
-           pitch = system.file("extdata", "test.Pitch",
-                               package = "phonfieldwork"),
-           pitch_range = c(50, 200))
+  system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+  pitch = system.file("extdata", "test.Pitch",
+    package = "phonfieldwork"
+  ),
+  pitch_range = c(50, 200)
+)
 draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
-           system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
-           pitch = system.file("extdata", "test.Pitch",
-                               package = "phonfieldwork"),
-           pitch_range = c(50, 200),
-           intensity = intensity_to_df(system.file("extdata", "test.Intensity",
-                                                   package = "phonfieldwork")))
+  system.file("extdata", "test.TextGrid", package = "phonfieldwork"),
+  pitch = system.file("extdata", "test.Pitch",
+    package = "phonfieldwork"
+  ),
+  pitch_range = c(50, 200),
+  intensity = intensity_to_df(system.file("extdata", "test.Intensity",
+    package = "phonfieldwork"
+  ))
+)
 draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
-                 formant_df = formant_to_df(system.file("extdata", "e.Formant",
-                                                        package = "phonfieldwork")))
+  formant_df = formant_to_df(system.file("extdata", "e.Formant",
+    package = "phonfieldwork"
+  ))
+)
 }
 }
 \author{

@@ -21,9 +21,9 @@ dataframe.
 }
 \examples{
 audacity_to_df(system.file("extdata",
-                           "test_audacity.txt",
-                           package = "phonfieldwork"))
-
+  "test_audacity.txt",
+  package = "phonfieldwork"
+))
 }
 \author{
 George Moroz <agricolamz@gmail.com>

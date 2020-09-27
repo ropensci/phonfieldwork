@@ -18,7 +18,6 @@ Convert subtitles .srt file to a dataframe.
 }
 \examples{
 srt_to_df(system.file("extdata", "test.srt", package = "phonfieldwork"))
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

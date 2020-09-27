@@ -42,9 +42,10 @@ Create boundaries in a texgrid tier
 }
 \examples{
 create_subannotation(system.file("extdata", "test.TextGrid",
-                                 package = "phonfieldwork"),
-                     tier = 1, overwrite = FALSE)
-
+  package = "phonfieldwork"
+),
+tier = 1, overwrite = FALSE
+)
 }
 \author{
 George Moroz <agricolamz@gmail.com>
