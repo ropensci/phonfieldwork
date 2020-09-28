@@ -62,6 +62,7 @@
 #' @importFrom grDevices colorRampPalette
 #' @importFrom graphics image
 #' @importFrom graphics rect
+#' @importFrom tools file_ext
 #'
 
 draw_spectrogram <- function(sound,
@@ -87,8 +88,7 @@ draw_spectrogram <- function(sound,
   # by Santiago Barreda <sbarreda@ucdavis.edu>
 
   if (class(sound) != "integer" & class(sound) != "numeric") {
-    ext <- unlist(strsplit(normalizePath(sound), "\\."))
-    ext <- ext[length(ext)]
+    ext <- tolower(tools::file_ext(sound))
 
     if (ext == "wave" | ext == "wav") {
       s <- tuneR::readWave(sound)

@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'df_to_tier()' functions")
-
 time_start <- c(0.00000000, 0.01246583, 0.24781914, 0.39552363, 0.51157715)
 time_end <- c(0.01246583, 0.24781914, 0.39552363, 0.51157715, 0.65267574)
 content <- c("", "T", "E", "S", "T")
@@ -23,5 +20,5 @@ test_that("df_to_tier", {
       '"time_start" and "time_end"'
     )
   )
-  expect_true(length(tg) == 104)
+  expect_length(tg, 104)
 })

@@ -1,5 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'eaf_to_df()' functions")
 file_name <- system.file("extdata", "test.eaf", package = "phonfieldwork")
 df1 <- eaf_to_df(file_name)
 df2 <- eaf_to_df(

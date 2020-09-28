@@ -1,5 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'get_sound_duration()' functions")
 d1 <- get_sound_duration(
   sounds_from_folder = system.file("extdata", package = "phonfieldwork")
 )

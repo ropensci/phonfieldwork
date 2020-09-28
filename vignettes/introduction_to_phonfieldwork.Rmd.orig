@@ -94,6 +94,7 @@ Most phonetic research consists of the following steps:
 The `phonfieldwork` package is created for helping with items 3, partially with 4, and 5 and 8.
 
 To make the automatic annotation of data easier, I usually record each stimulus as a separate file.  While recording, I carefully listen to my consultants to make sure that they are producing the kind of speech I want: three isolated pronunciations of the same stimulus, separated by a pause and contained in a carrier phrase. In case a speaker does not produce three clear repetitions, I ask them to repeat the task, so that as a result of my fieldwork session I will have:
+
 * a collection of small soundfiles (video) with the same sampling rate, resolution (bit), and number of channels
 * a list of succesful and unsuccesful attempts to produce a stimulus according to my requirements (usually I keep this list in a regular notebook)
 

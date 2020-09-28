@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'draw_spectrogram()' functions")
-
 test_that("draw_spectrogram_general", {
   skip_on_cran()
   tdir <- tempdir()

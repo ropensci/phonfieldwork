@@ -34,6 +34,7 @@
 #' @importFrom tuneR readMP3
 #' @importFrom tuneR bind
 #' @importFrom tuneR writeWave
+#' @importFrom tools file_ext
 #'
 
 concatenate_soundfiles <- function(path,
@@ -52,8 +53,7 @@ concatenate_soundfiles <- function(path,
   }
 
   list <- lapply(paste0(normalizePath(path), "/", files), function(file_name) {
-    ext <- unlist(strsplit(file_name, "\\."))
-    ext <- tolower(ext[length(ext)])
+    ext <- tolower(tools::file_ext(file_name))
     if (ext == "wave" | ext == "wav") {
       s <- tuneR::readWave(file_name)
     } else if (ext == "mp3") {
@@ -80,7 +80,7 @@ concatenate_soundfiles <- function(path,
   if (TRUE %in% problems[-1]) {
     pos_probs <- c("channel representation", "sampling rate", "bit rate")
     problem_text <- paste(pos_probs[unlist(problems)[-1]], collapse = ", and ")
-    print(sound_attributes[, unlist(problems)])
+    message(sound_attributes[, unlist(problems)])
     stop(paste0(
       "You have a problem with ",
       problem_text, ". Sampling rate, resolution (bit), and number of
@@ -137,9 +137,9 @@ concatenate_soundfiles <- function(path,
       paste0(path, "/", result_file_name, ".TextGrid")
     )
   } else if (annotation == "eaf") {
-    print("Will be done in the future")
+    warning("Will be done in the future")
   } else if (annotation == "exb") {
-    print("Will be done in the future")
+    warning("Will be done in the future")
   } else if (annotation != "exb" &
     annotation != "eaf" &
     annotation != "TextGrid" &

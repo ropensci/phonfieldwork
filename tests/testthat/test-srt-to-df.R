@@ -1,5 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'srt_to_df()' functions")
 t <- srt_to_df(system.file("extdata", "test.srt", package = "phonfieldwork"))
 
 test_that("srt_to_df", {

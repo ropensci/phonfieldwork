@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'intensity_to_df()' function")
-
 file1 <- system.file("extdata", "test.Intensity", package = "phonfieldwork")
 file2 <- readLines(file1)
 

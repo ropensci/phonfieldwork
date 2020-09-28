@@ -11,7 +11,8 @@ Imports:
     graphics,
     rmarkdown,
     xml2,
-    uchardet
+    uchardet,
+    tools
 Authors@R: c(person("George", "Moroz",
              role = c("aut", "cre"),
              email = "agricolamz@gmail.com",
@@ -33,3 +34,4 @@ Suggests:
     DT,
     lingtypology
 Language: en-US
+Config/testthat/parallel: true

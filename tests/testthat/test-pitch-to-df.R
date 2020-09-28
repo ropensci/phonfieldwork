@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'pitch_to_df()' function")
-
 file1 <- system.file("extdata", "test.Pitch", package = "phonfieldwork")
 file2 <- readLines(file1)
 

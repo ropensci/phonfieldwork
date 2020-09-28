@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'create_subannotation()' functions")
-
 tg <- system.file("extdata", "test.TextGrid", package = "phonfieldwork")
 tg1 <- create_subannotation(tg, tier = 1, overwrite = FALSE)
 tg2 <- create_subannotation(readLines(tg), tier = 1, overwrite = FALSE)

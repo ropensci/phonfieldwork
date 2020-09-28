@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'annotate_textgrid()' and 'tier_to_df()' functions")
-
 textgrid <- system.file("extdata", "test.TextGrid", package = "phonfieldwork")
 textgrid2 <- readLines(textgrid)
 

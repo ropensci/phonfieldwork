@@ -17,6 +17,7 @@
 #'
 #' @importFrom tuneR readWave
 #' @importFrom tuneR readMP3
+#' @importFrom tools file_ext
 
 get_sound_duration <- function(file_name,
                                sounds_from_folder = NULL) {
@@ -26,8 +27,7 @@ get_sound_duration <- function(file_name,
       source <- "custom_file"
       duration <- length(s@left) / s@samp.rate
     } else {
-      ext <- unlist(strsplit(file_name, "\\."))
-      ext <- ext[length(ext)]
+      ext <- tolower(tools::file_ext(file_name))
 
       if (ext == "wave" | ext == "wav") {
         s <- tuneR::readWave(file_name, header = TRUE)

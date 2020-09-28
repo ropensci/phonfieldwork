@@ -1,5 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'textgrid_to_df()' functions")
 file_name1 <- system.file("extdata", "test.TextGrid", package = "phonfieldwork")
 file_name2 <- system.file("extdata", "test_short.TextGrid", package = "phonfieldwork")
 t1 <- textgrid_to_df(file_name1)

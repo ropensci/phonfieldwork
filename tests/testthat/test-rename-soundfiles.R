@@ -1,5 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'rename_soundfiles()' functions")
 s1 <- system.file("extdata", "test.wav", package = "phonfieldwork")
 s2 <- system.file("extdata", "post.wav", package = "phonfieldwork")
 tdir <- tempdir()

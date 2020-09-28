@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'set_textgrid_names()' function")
-
 file1 <- system.file("extdata", "test.TextGrid", package = "phonfieldwork")
 file2 <- readLines(file1)
 

@@ -141,8 +141,11 @@
   <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>suffix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>missing</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>path</span>,
-  <span class='kw'>backup</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>autonumber</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>backup</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>logging</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -154,7 +157,7 @@
     </tr>
     <tr>
       <th>translations</th>
-      <td><p>character vector of translations (optonal)</p></td>
+      <td><p>character vector of translations (optonal). This values are added after stimuli to the new files' names so the result will be <code>...stimulus_translation...</code>.</p></td>
     </tr>
     <tr>
       <th>prefix</th>
@@ -170,13 +173,25 @@
 order of the stimuli is taken.</p></td>
     </tr>
     <tr>
+      <th>missing</th>
+      <td><p>numeric vector that define missing stimuli in case when some stimuli are not recorded.</p></td>
+    </tr>
+    <tr>
       <th>path</th>
       <td><p>path to the directory with soundfiles.</p></td>
+    </tr>
+    <tr>
+      <th>autonumber</th>
+      <td><p>logical. If TRUE, function creates an automatic numbering of files.</p></td>
     </tr>
     <tr>
       <th>backup</th>
       <td><p>logical. If TRUE, function creates backup folder with all
 files. By default is TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>logging</th>
+      <td><p>logical. If TRUE creates a .csv file with the correspondences of old names and new names. This could be useful for restoring in case something goes wrong.</p></td>
     </tr>
     </table>
 

@@ -49,10 +49,11 @@ srt_to_df <- function(file_name) {
   result <- do.call(rbind, result)
   result <- cbind(result, do.call(rbind, strsplit(result[, "times"], " --> ")))
   result <- result[, -2]
+  names(result)[3:4] <- c("time_start", "time_end")
 
   # convert time to seconds
 
-  l <- lapply(3:4, function(i) {
+  l <- lapply(c("time_start", "time_end"), function(i) {
     do.call(rbind, lapply(
       strsplit(result[, i], ":|,"),
       as.double
@@ -60,7 +61,7 @@ srt_to_df <- function(file_name) {
   })
 
   result <- cbind(result, as.data.frame(l))
-  result <- result[, -c(3:4)]
+  result <- result[, -which(names(result) %in% c("time_start", "time_end"))]
   names(result)[3:4] <- c("time_start", "time_end")
   result$source <- basename(file_name)
   return(result)

@@ -32,12 +32,13 @@
 #' )
 #'
 #' list.files(tdir)
-#' # [1] "e-2.wav" "s-3.wav" "t-1.wav" "t-4.wav" "test.TextGrid" "test.wav"
+#' # [1] "e-2.wav" "s-3.wav" "t-1.wav" "t-4.wav" "test.wav"
 #' @export
 #' @importFrom tuneR readWave
 #' @importFrom tuneR readMP3
 #' @importFrom tuneR bind
 #' @importFrom tuneR writeWave
+#' @importFrom tools file_ext
 #'
 
 extract_intervals <- function(file_name,
@@ -47,7 +48,7 @@ extract_intervals <- function(file_name,
                               suffix = NULL,
                               autonumber = TRUE,
                               path) {
-  ext <- tolower(substring(file_name, regexpr("\\..*$", file_name) + 1))
+  ext <- tolower(tools::file_ext(file_name))
 
   if (ext == "wave" | ext == "wav") {
     s <- tuneR::readWave(file_name)

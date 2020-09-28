@@ -20,7 +20,7 @@ rename_soundfiles(
 \arguments{
 \item{stimuli}{character vector of stimuli}
 
-\item{translations}{character vector of translations (optonal)}
+\item{translations}{character vector of translations (optonal). This values are added after stimuli to the new files' names so the result will be \code{...stimulus_translation...}.}
 
 \item{prefix}{character vector of length one containing prefix for file names}
 

@@ -1,5 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'exb_to_df()' functions")
 file_name <- system.file("extdata", "test.exb", package = "phonfieldwork")
 df1 <- exb_to_df(file_name)
 df2 <- exb_to_df(

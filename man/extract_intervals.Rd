@@ -54,7 +54,7 @@ extract_intervals(
 )
 
 list.files(tdir)
-# [1] "e-2.wav" "s-3.wav" "t-1.wav" "t-4.wav" "test.TextGrid" "test.wav"
+# [1] "e-2.wav" "s-3.wav" "t-1.wav" "t-4.wav" "test.wav"
 }
 \author{
 George Moroz <agricolamz@gmail.com>

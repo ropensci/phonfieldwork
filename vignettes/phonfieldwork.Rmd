@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2020-08-27"
+date: "2020-09-28"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -62,8 +62,8 @@ citation("phonfieldwork")
 
 ```
 ## 
-## Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork package_. <URL:
-## https://CRAN.R-project.org/package=phonfieldwork>.
+## Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork
+## package_. <URL: https://CRAN.R-project.org/package=phonfieldwork>.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -94,10 +94,11 @@ Most phonetic research consists of the following steps:
 The `phonfieldwork` package is created for helping with items 3, partially with 4, and 5 and 8.
 
 To make the automatic annotation of data easier, I usually record each stimulus as a separate file.  While recording, I carefully listen to my consultants to make sure that they are producing the kind of speech I want: three isolated pronunciations of the same stimulus, separated by a pause and contained in a carrier phrase. In case a speaker does not produce three clear repetitions, I ask them to repeat the task, so that as a result of my fieldwork session I will have:
+
 * a collection of small soundfiles (video) with the same sampling rate, resolution (bit), and number of channels
 * a list of succesful and unsuccesful attempts to produce a stimulus according to my requirements (usually I keep this list in a regular notebook)
 
-There are some phoneticians who prefer to record everything, for language documentation purposes. I think that should be a separate task: you can’t have your cake and eat it too. But if you insist on recording everything, it is possible to run two recorders at the same time: one could run during the whole session, while the other is used to produce small audio files. You can also use special software to record your stimuli automatically on a computer (e.g. [PsychoPy](https://www.psychopy.org/)).
+There are some phoneticians who prefer to record everything, for language documentation purposes. I think that should be a separate task: you can’t have your cake and eat it too. But if you insist on recording everything, it is possible to run two recorders at the same time: one could run during the whole session, while the other is used to produce small audio files. You can also use special software to record your stimuli automatically on a computer (e.g. [SpeechRecorder](https://www.bas.uni-muenchen.de/Bas/software/speechrecorder/) or [PsychoPy](https://www.psychopy.org/)).
 
 You can show a native speaker your stimuli one by one or not show them the stimule but ask them to pronounce a certain stimulus or its translation. I use presentations to collect all stimuli in a particular order without the risk of omissions.
 
@@ -196,14 +197,14 @@ After collecting data and removing soundfiles with unsuccesful elicitations, one
 
 
 ```
-## ├── s1
-## │   ├── 01.wav
-## │   ├── 02.wav
-## │   └── 03.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ## ├── s2
-## │   ├── 01.wav
-## │   ├── 02.wav
-## │   └── 03.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ```
 
 For each speaker `s1` and `s2` there is a folder that containes three audiofiles. Now let's rename the files.
@@ -215,22 +216,27 @@ rename_soundfiles(stimuli = my_stimuli_df$stimuli,
                   path = "s1/")
 ```
 
+```
+## Error in rename_soundfiles(stimuli = my_stimuli_df$stimuli, prefix = "s1_", : There are some non-wav files:
+## logging.csv
+```
+
 As a result, you obtain the following structure:
 
 
 ```
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   └── 03.wav
-## │   ├── s1_tap.wav
-## │   ├── s1_tip.wav
-## │   └── s1_top.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ## ├── s2
-## │   ├── 01.wav
-## │   ├── 02.wav
-## │   └── 03.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ```
 
 The `rename_soundfiles()` function created a backup folder with all of the unrenamed files, and renamed all files using the prefix provided in the `prefix` argument. There is an additional argument `backup` that can be set to `FALSE` (it is `TRUE` by default), in case you are sure that the renaming function will work properly with your files and stimuli, and you do not need a backup of the unrenamed files.
@@ -244,20 +250,25 @@ rename_soundfiles(stimuli = my_stimuli_df$stimuli,
                   backup = FALSE)
 ```
 
+```
+## Error in rename_soundfiles(stimuli = my_stimuli_df$stimuli, prefix = "s2_", : There are some non-wav files:
+## logging.csv
+```
+
 
 ```
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   └── 03.wav
-## │   ├── s1_tap.wav
-## │   ├── s1_tip.wav
-## │   └── s1_top.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ## ├── s2
-## │   ├── s2_tap_2.wav
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ```
 
 The last command renamed the soundfiles in the `s2` folder, adding the prefix `s2` as in the previous example, and the suffix `1`-`3`. On most operating systems it is impossible to create two files with the same name, so sometimes it can be useful to add some kind of index at the end of the files.
@@ -270,8 +281,7 @@ get_sound_duration("s1/s1_tap.wav")
 ```
 
 ```
-##         file  duration
-## 1 s1_tap.wav 0.4299093
+## Error in tuneR::readWave(file_name, header = TRUE): File 's1/s1_tap.wav' does not exist.
 ```
 
 It is also possible to analyze the whole folder:
@@ -282,10 +292,10 @@ get_sound_duration(sounds_from_folder = "s2/")
 ```
 
 ```
-##           file  duration
-## 1 s2_tap_2.wav 0.5343991
-## 2 s2_tip_1.wav 0.5866440
-## 3 s2_top_3.wav 0.6650113
+##       file  duration
+## 1 1_02.wav 0.5343991
+## 2 2_01.wav 0.5866440
+## 3 3_03.wav 0.6650113
 ```
 
 For now `phonfieldwork` works only with `.wav(e)` and `.mp3` sound files and several video formats (`.mp4`, `.avi` and `.mov`).
@@ -304,20 +314,20 @@ This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid
 
 
 ```
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   └── 03.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   ├── logging.csv
 ## │   ├── s1_all.TextGrid
-## │   ├── s1_all.wav
-## │   ├── s1_tap.wav
-## │   ├── s1_tip.wav
-## │   └── s1_top.wav
+## │   └── s1_all.wav
 ## ├── s2
-## │   ├── s2_tap_2.wav
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ```
 
 The resulting file can be parsed with Praat (subscripted *t* is the result of Praat's conversion):
@@ -398,24 +408,24 @@ extract_intervals(file_name = "s1/s1_all.wav",
 
 
 ```
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   └── 03.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   ├── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
-## │   ├── s1_sounds
-## │   │   ├── 1_s1_æ.wav
-## │   │   ├── 2_s1_ı.wav
-## │   │   └── 3_s1_ɒ.wav
-## │   ├── s1_tap.wav
-## │   ├── s1_tip.wav
-## │   └── s1_top.wav
+## │   └── s1_sounds
+## │       ├── 1_s1_æ.wav
+## │       ├── 2_s1_ı.wav
+## │       └── 3_s1_ɒ.wav
 ## ├── s2
-## │   ├── s2_tap_2.wav
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ```
 
 
@@ -483,25 +493,25 @@ draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav",
 
 
 ```
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   └── 03.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   ├── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_sounds
 ## │   │   ├── 1_s1_æ.wav
 ## │   │   ├── 2_s1_ı.wav
 ## │   │   └── 3_s1_ɒ.wav
-## │   ├── s1_tap.wav
-## │   ├── s1_tip.png
-## │   ├── s1_tip.wav
-## │   └── s1_top.wav
+## │   └── s1_tip.png
 ## ├── s2
-## │   ├── s2_tap_2.wav
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ```
 
 It is also possible to create visualizations of all sound files in a folder. For this purpose you need to specify a source folder with the argument `sounds_from_folder` and a target folder for the images (`pic_folder_name`). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.
@@ -514,11 +524,13 @@ draw_sound(sounds_from_folder = "s1/s1_sounds/",
 
 
 ```
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   └── 03.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   ├── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_pics
@@ -529,14 +541,12 @@ draw_sound(sounds_from_folder = "s1/s1_sounds/",
 ## │   │   ├── 1_s1_æ.wav
 ## │   │   ├── 2_s1_ı.wav
 ## │   │   └── 3_s1_ɒ.wav
-## │   ├── s1_tap.wav
-## │   ├── s1_tip.png
-## │   ├── s1_tip.wav
-## │   └── s1_top.wav
+## │   └── s1_tip.png
 ## ├── s2
-## │   ├── s2_tap_2.wav
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ```
 
 It is also possible to use the argument `textgrid_from_folder` in order to specify the folder where .TextGrids for annotation are (could be the same folder as the sound one). By default the `draw_sound()` function with the `sounds_from_folder` argument adds a title with the file name to each pictures' title, but it is possible to turn it off using the argument `title_as_filename = FALSE`.
@@ -634,15 +644,24 @@ exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 ```
 
 ```
-##   tier id content tier_name tier_type tier_category tier_speaker time_start  time_end   source
-## 3    1  1       t     X [v]         t             v         SPK0 0.06908955 0.2498984 test.exb
-## 1    1  2       e     X [v]         t             v         SPK0 0.24989836 0.3807275 test.exb
-## 5    1  3       s     X [v]         t             v         SPK0 0.38072750 0.4042473 test.exb
-## 7    1  4       t     X [v]         t             v         SPK0 0.40424735 0.6526757 test.exb
-## 4    2  1       C     X [v]         a             v         SPK0 0.06908955 0.2498984 test.exb
-## 2    2  2       V     X [v]         a             v         SPK0 0.24989836 0.3807275 test.exb
-## 6    2  3       C     X [v]         a             v         SPK0 0.38072750 0.4042473 test.exb
-## 8    2  4       C     X [v]         a             v         SPK0 0.40424735 0.6526757 test.exb
+##   tier id content tier_name tier_type tier_category tier_speaker time_start
+## 3    1  1       t     X [v]         t             v         SPK0 0.06908955
+## 1    1  2       e     X [v]         t             v         SPK0 0.24989836
+## 5    1  3       s     X [v]         t             v         SPK0 0.38072750
+## 7    1  4       t     X [v]         t             v         SPK0 0.40424735
+## 4    2  1       C     X [v]         a             v         SPK0 0.06908955
+## 2    2  2       V     X [v]         a             v         SPK0 0.24989836
+## 6    2  3       C     X [v]         a             v         SPK0 0.38072750
+## 8    2  4       C     X [v]         a             v         SPK0 0.40424735
+##    time_end   source
+## 3 0.2498984 test.exb
+## 1 0.3807275 test.exb
+## 5 0.4042473 test.exb
+## 7 0.6526757 test.exb
+## 4 0.2498984 test.exb
+## 2 0.3807275 test.exb
+## 6 0.4042473 test.exb
+## 8 0.6526757 test.exb
 ```
 
 It is possible to read multiple `.exb` files using the `exbs_from_folder` argument.
@@ -684,34 +703,41 @@ head(flextext_to_df("files/zilo_test.flextext"))
 ```
 
 ```
-##   p_id s_id w_id    txt     cf hn     gls                   msa                free_trans
-## 1    1    1    1     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
-## 2    1    1    1    ик1    ик1  1    быть                    гл Жил-был (у Гъули?) петух.
-## 3    1    1    1     -о     -о  1     pst               гл:Past Жил-был (у Гъули?) петух.
-## 4    1    1    1     -й     -й  5 cvb(pf)    гл:Converb/Perfect Жил-был (у Гъули?) петух.
-## 5    1    1    1 =гъоди =гъоди  1    =rep                  част Жил-был (у Гъули?) петух.
-## 6    1    1    2     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
-##                            text_title                                morph
-## 1 2017.04 Fairytale about the rooster d7f713db-e8cf-11d3-9764-00c04f186933
-## 2 2017.04 Fairytale about the rooster d7f713e8-e8cf-11d3-9764-00c04f186933
-## 3 2017.04 Fairytale about the rooster d7f713dd-e8cf-11d3-9764-00c04f186933
-## 4 2017.04 Fairytale about the rooster d7f713dd-e8cf-11d3-9764-00c04f186933
-## 5 2017.04 Fairytale about the rooster d7f713e1-e8cf-11d3-9764-00c04f186933
-## 6 2017.04 Fairytale about the rooster d7f713db-e8cf-11d3-9764-00c04f186933
-##                                   word                               phrase
-## 1 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-## 2 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-## 3 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-## 4 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-## 5 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-## 6 c76d26b7-b84a-42a8-ba34-38e712b1db13 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-##                              paragraph                                 text
-## 1 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
-## 2 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
-## 3 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
-## 4 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
-## 5 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
-## 6 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+##   p_id s_id w_id    txt     cf hn     gls                   msa
+## 1    1    1    1     б-     б-  1      an Inflects any category
+## 2    1    1    1    ик1    ик1  1    быть                    гл
+## 3    1    1    1     -о     -о  1     pst               гл:Past
+## 4    1    1    1     -й     -й  5 cvb(pf)    гл:Converb/Perfect
+## 5    1    1    1 =гъоди =гъоди  1    =rep                  част
+## 6    1    1    2     б-     б-  1      an Inflects any category
+##                  free_trans                          text_title
+## 1 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+## 2 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+## 3 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+## 4 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+## 5 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+## 6 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+##                                  morph                                 word
+## 1 d7f713db-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
+## 2 d7f713e8-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
+## 3 d7f713dd-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
+## 4 d7f713dd-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
+## 5 d7f713e1-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
+## 6 d7f713db-e8cf-11d3-9764-00c04f186933 c76d26b7-b84a-42a8-ba34-38e712b1db13
+##                                 phrase                            paragraph
+## 1 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+## 2 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+## 3 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+## 4 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+## 5 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+## 6 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+##                                   text
+## 1 f08dd466-fca6-4597-925c-c46309387ef7
+## 2 f08dd466-fca6-4597-925c-c46309387ef7
+## 3 f08dd466-fca6-4597-925c-c46309387ef7
+## 4 f08dd466-fca6-4597-925c-c46309387ef7
+## 5 f08dd466-fca6-4597-925c-c46309387ef7
+## 6 f08dd466-fca6-4597-925c-c46309387ef7
 ```
 
 There is also an additional function for working with the `.flextext` format that convert it to a glossed document in a `docx` or `.html` format (see examples: [`.docx`](https://github.com/agricolamz/phonfieldwork/raw/master/docs/additional/glossed_document.docx), [`.html`](https://agricolamz.github.io/phonfieldwork/additional/glossed_document.html)):
@@ -754,11 +780,13 @@ We will start with the previous folder structure:
 
 
 ```
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   └── 03.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   ├── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_pics
@@ -769,14 +797,12 @@ We will start with the previous folder structure:
 ## │   │   ├── 1_s1_æ.wav
 ## │   │   ├── 2_s1_ı.wav
 ## │   │   └── 3_s1_ɒ.wav
-## │   ├── s1_tap.wav
-## │   ├── s1_tip.png
-## │   ├── s1_tip.wav
-## │   └── s1_top.wav
+## │   └── s1_tip.png
 ## ├── s2
-## │   ├── s2_tap_2.wav
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ```
 
 We have all folders:
@@ -837,11 +863,13 @@ As a result, a `stimuli_viewer.html` was created in the `s1` folder.
 
 
 ```
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   └── 03.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   ├── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_pics
@@ -852,15 +880,13 @@ As a result, a `stimuli_viewer.html` was created in the `s1` folder.
 ## │   │   ├── 1_s1_æ.wav
 ## │   │   ├── 2_s1_ı.wav
 ## │   │   └── 3_s1_ɒ.wav
-## │   ├── s1_tap.wav
 ## │   ├── s1_tip.png
-## │   ├── s1_tip.wav
-## │   ├── s1_top.wav
 ## │   └── stimuli_viewer.html
 ## ├── s2
-## │   ├── s2_tap_2.wav
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav
+## │   ├── 1_02.wav
+## │   ├── 2_01.wav
+## │   ├── 3_03.wav
+## │   └── logging.csv
 ```
 
 You can find the created example [here](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html).

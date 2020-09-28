@@ -1,5 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'create_glossed_document()' functions")
 test_that("create_glossed_document", {
   skip_on_cran()
   file_name <- "https://raw.githubusercontent.com/agricolamz/phonfieldwork/master/vignettes/files/zilo_test.flextext"

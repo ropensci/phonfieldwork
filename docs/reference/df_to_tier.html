@@ -167,13 +167,15 @@ vector of strings with a TextGrid. If <code>overwrite</code> is <code>TRUE</code
 no output.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>time_start</span> <span class='kw'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.00000000</span>,<span class='fl'>0.01246583</span>,<span class='fl'>0.24781914</span>,<span class='fl'>0.39552363</span>,<span class='fl'>0.51157715</span>)
-<span class='no'>time_end</span> <span class='kw'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01246583</span>,<span class='fl'>0.24781914</span>,<span class='fl'>0.39552363</span>,<span class='fl'>0.51157715</span>,<span class='fl'>0.65267574</span>)
-<span class='no'>content</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>, <span class='st'>"T"</span>, <span class='st'>"E"</span>, <span class='st'>"S"</span>, <span class='st'>"T"</span>)
+    <pre class="examples"><div class='input'><span class='no'>time_start</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.00000000</span>, <span class='fl'>0.01246583</span>, <span class='fl'>0.24781914</span>, <span class='fl'>0.39552363</span>, <span class='fl'>0.51157715</span>)
+<span class='no'>time_end</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01246583</span>, <span class='fl'>0.24781914</span>, <span class='fl'>0.39552363</span>, <span class='fl'>0.51157715</span>, <span class='fl'>0.65267574</span>)
+<span class='no'>content</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>, <span class='st'>"T"</span>, <span class='st'>"E"</span>, <span class='st'>"S"</span>, <span class='st'>"T"</span>)
 <span class='fu'>df_to_tier</span>(<span class='no'>my_df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>, <span class='no'>time_start</span>, <span class='no'>time_end</span>, <span class='no'>content</span>),
-           <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>,
-                       <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>),
-           <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;   [1] "File type = \"ooTextFile\""                
+  <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>,
+    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>
+  ),
+  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</div><div class='output co'>#&gt;   [1] "File type = \"ooTextFile\""                
 #&gt;   [2] "Object class = \"TextGrid\""               
 #&gt;   [3] ""                                          
 #&gt;   [4] "xmin = 0 "                                 
@@ -276,8 +278,7 @@ no output.</p>
 #&gt; [101] "        intervals [5]:"                    
 #&gt; [102] "            xmin = 0.51157715"             
 #&gt; [103] "            xmax = 0.65267574"             
-#&gt; [104] "            text = \"T\" "                 </div><div class='input'>
-</div></pre>
+#&gt; [104] "            text = \"T\" "                 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

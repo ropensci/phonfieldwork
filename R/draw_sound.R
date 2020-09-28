@@ -158,8 +158,7 @@ draw_sound <- function(file_name,
       if (class(file_name) == "Wave") {
         s <- file_name
       } else {
-        ext <- unlist(strsplit(file_name, "\\."))
-        ext <- ext[length(ext)]
+        ext <- tolower(tools::file_ext(file_name))
 
         if (ext == "wave" | ext == "wav") {
           s <- tuneR::readWave(file_name)

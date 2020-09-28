@@ -200,17 +200,23 @@ temporary file. If <code>render</code> is <code>TRUE</code>, there is no output 
 function.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>create_presentation</span>(<span class='kw'>stimuli</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rzeka"</span>, <span class='st'>"drzewo"</span>),
-                    <span class='kw'>translations</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"river"</span>, <span class='st'>"tree"</span>),
-                    <span class='kw'>render</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "/tmp/Rtmp94wxrO/stimuli_presentation2fe664e0f871.Rmd"</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>create_presentation</span>(
+  <span class='kw'>stimuli</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rzeka"</span>, <span class='st'>"drzewo"</span>),
+  <span class='kw'>translations</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"river"</span>, <span class='st'>"tree"</span>),
+  <span class='kw'>render</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</div><div class='output co'>#&gt; [1] "/tmp/Rtmp7FqOkS/stimuli_presentationa2d8b366ea.Rmd"</div><div class='input'>
 <span class='co'># with image</span>
-<span class='fu'>create_presentation</span>(<span class='kw'>stimuli</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rzeka"</span>, <span class='st'>"drzewo"</span>,
-                               <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"r-logo.png"</span>,
-                                           <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>)),
-                   <span class='kw'>translations</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"river"</span>, <span class='st'>"tree"</span>, <span class='st'>""</span>),
-                   <span class='kw'>external</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-                   <span class='kw'>render</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "/tmp/Rtmp94wxrO/stimuli_presentation2fe675e70868.Rmd"</div><div class='input'>
-</div></pre>
+<span class='fu'>create_presentation</span>(
+  <span class='kw'>stimuli</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+    <span class='st'>"rzeka"</span>, <span class='st'>"drzewo"</span>,
+    <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"r-logo.png"</span>,
+      <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>
+    )
+  ),
+  <span class='kw'>translations</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"river"</span>, <span class='st'>"tree"</span>, <span class='st'>""</span>),
+  <span class='kw'>external</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>render</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</div><div class='output co'>#&gt; [1] "/tmp/Rtmp7FqOkS/stimuli_presentationa2d145eedcb.Rmd"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

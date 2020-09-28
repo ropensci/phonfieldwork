@@ -1,5 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'flextext_to_df()' functions")
 test_that("flextext_to_df_general", {
   skip_on_cran()
   file_name <- "https://raw.githubusercontent.com/agricolamz/phonfieldwork/master/vignettes/files/zilo_test.flextext"

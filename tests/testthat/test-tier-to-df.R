@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'tier_to_df()' function")
-
 file_1 <- system.file("extdata", "test.TextGrid", package = "phonfieldwork")
 file_2 <- readLines(system.file("extdata", "test.TextGrid",
   package = "phonfieldwork"

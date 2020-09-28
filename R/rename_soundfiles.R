@@ -5,7 +5,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param stimuli character vector of stimuli
-#' @param translations character vector of translations (optonal)
+#' @param translations character vector of translations (optonal). This values are added after stimuli to the new files' names so the result will be \code{...stimulus_translation...}.
 #' @param prefix character vector of length one containing prefix for file names
 #' @param suffix character vector of length one containing suffix for file names
 #' @param order numeric vector that define the order of stimuli. By default the

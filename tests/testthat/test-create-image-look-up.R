@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'create_image_look_up()' function")
-
 test_that("create_image_look_up", {
   expect_equal(nchar(create_image_look_up("a.png")), 121)
   expect_error(

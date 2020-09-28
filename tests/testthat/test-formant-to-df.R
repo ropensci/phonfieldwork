@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'formant_to_df()' function")
-
 file1 <- system.file("extdata", "e.Formant", package = "phonfieldwork")
 file2 <- readLines(file1)
 

@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'create_viewer()' functions")
-
 test_that("create_viewer_general", {
   skip_on_cran()
   tmp <- tempdir()

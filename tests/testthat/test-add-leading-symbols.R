@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'add_leading_symbols()' function")
-
 test_that("add_leading_symbols", {
   expect_equal(
     add_leading_symbols(1:10),

@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'draw_sound()' functions")
-
 test_that("draw_sound_general", {
   skip_on_cran()
   tdir <- tempdir()

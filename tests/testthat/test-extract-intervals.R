@@ -1,6 +1,3 @@
-library(phonfieldwork)
-context("Tests for 'extract_intervals()' functions")
-
 tdir <- tempdir()
 file.copy(system.file("extdata", "test.wav", package = "phonfieldwork"), tdir)
 
