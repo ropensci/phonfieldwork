@@ -29,8 +29,7 @@ Suggests:
     knitr,
     testthat,
     covr,
-    dplyr,
-    tidyr,
+    tidyverse,
     DT,
     lingtypology
 Language: en-US

@@ -1,0 +1,115 @@
+---
+title: "Manipulating `phonfieldwork` data with `tidyverse`"
+author: "George Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Manipulating `phonfieldwork` data with `tidyverse`}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(phonfieldwork)
+```
+
+## Introduction
+
+The output tables from the `phonfieldwork`'s functions (e. g. `textgrid_to_df()`, `eaf_to_df()`, `exb_to_df()`, `flextext_to_df()` etc.) is hard to interpret since each row is a separate morpheme/observation or aother unit. In order to merge it to a more common representation we will use `tidyverse` functions (mainly `dplyr` and `tidyr` packages). This text will help you to achieve some results, but it is better to spend some times learning data manipulation with `dplyr` and `tidyr`.
+
+If you do not have `tidyverse` installed run:
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+```
+
+Let's load the package:
+
+```{r, message=FALSE}
+library("tidyverse")
+```
+
+
+## .TextGrid, .eaf, .exb formats
+The standard sound annotation formats consisnt of tiers with parallel annotation:
+
+![](unnamed-chunk-31-1.png)
+
+If we convert this file to R we will achieve something like this:
+
+```{r}
+textgrid_to_df("s1/s1_all.TextGrid")
+```
+
+As we see this table has a long format structure: each observation has its own row. We can select the first two rows with the `filter()` function, remove all unnecessary columns with the `select()` function and spread everything in a table with the `pivot_wider()` function:
+
+```{r}
+textgrid_to_df("s1/s1_all.TextGrid") %>% 
+  filter(tier %in% 1:2) %>% 
+  select(-time_start, -time_end, -tier_name) %>% 
+  pivot_wider(names_from = tier, values_from = content)
+```
+
+## .flextext format
+
+Imagine that we obtained the first result from `flextext_to_df()`:
+
+```{r}
+df <- flextext_to_df("files/zilo_test.flextext")
+head(df)
+```
+
+As we can see from `df` print there are three indices in the dataset: `p_id` -- paragraph id, `s_id` -- sentence id and `w_id` -- word id.
+
+```{r}
+df %>% 
+  filter(free_trans != "") %>% 
+  select(p_id, s_id, w_id, txt, gls, free_trans) %>% 
+  group_by(p_id, s_id, free_trans, w_id) %>% 
+  summarise(txt = str_c(txt, collapse = ""),
+         gls = str_c(gls, collapse = "-"))
+```
+
+The first `filter()` removes some garbage rows that are present in our example flextext. The `select()` function selects only six important columns from 15 presented in the dataset. The `group_by()` and `summarise()` merge all text from `txt` variable and all glosses from `gls` variable together. Pipe operater `%>% ` make it possible to pass the result from the previous funstion as an input to the following one.
+
+So now we can use the same code in order to merge everything into sentences:
+
+```{r}
+df %>% 
+  filter(free_trans != "") %>% 
+  select(p_id, s_id, w_id, txt, gls, free_trans) %>% 
+  group_by(p_id, s_id, free_trans, w_id) %>% 
+  summarise(txt = str_c(txt, collapse = ""),
+         gls = str_c(gls, collapse = "-")) %>% 
+  group_by(p_id, s_id, free_trans) %>% 
+  summarise(txt = str_c(txt, collapse = " "),
+         gls = str_c(gls, collapse = " "))
+```
+
+It is also very easy to get some simple statistics from the data:
+
+```{r}
+df %>% 
+  filter(gls != "") %>% 
+  count(gls) %>% 
+  top_n(6)
+```
+
+Here with the `filter()` function we remove all empty glosses, then we calculate and sort them according to frequency, and in the end we take top six glosses with the `top_n()` function. We can even visualis it with the `ggplot2` package:
+
+```{r, fig.width=7, fig.height=5}
+df %>% 
+  filter(gls != "") %>% 
+  count(gls) %>% 
+  top_n(11) %>% 
+  ggplot(aes(n, fct_reorder(gls, n)))+
+  geom_col()+
+  labs(x = "count", y = "gloss")
+```
+

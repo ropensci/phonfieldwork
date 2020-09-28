@@ -214,6 +214,14 @@ tree | tail -n 16 | head -n 13
 
 The last command renamed the soundfiles in the `s2` folder, adding the prefix `s2` as in the previous example, and the suffix `1`-`3`. On most operating systems it is impossible to create two files with the same name, so sometimes it can be useful to add some kind of index at the end of the files.
 
+There is also a possible scenario, that not all stimuli are retrieved from informant. So in order to deal with that case there is an additional argument `missing`, where user can put id numbers of stimuli that are not present in audiofiles:
+
+```{r, eval = FALSE}
+rename_soundfiles(stimuli = my_stimuli_df$stimuli,
+                  path = "s3/",
+                  missing = c(1, 3))
+```
+
 Sometimes it is useful to get information about sound duration:
 
 ```{r}
@@ -486,7 +494,7 @@ create_glossed_document(flextext = "files/zilo_test.flextext",
 file.copy("files/glossed_document.html", to = "glossed_document.html", overwrite = TRUE)
 ```
 
-It is also possible to convert to LaTeX examples format using the `example_pkg` argument (possible values are: `gb4e`, `langsci`, `expex`, `philex`).
+It is also possible to convert to LaTeX examples format using the `example_pkg` argument (possible values are: `gb4e`, `langsci`, `expex`, `philex`). There is also an additional [text](https://agricolamz.github.io/phonfieldwork/articles/manipulating_with_flextext_fo_df.html) about manipulation with `flextext_to_df()` output.
 
 All those functions (`tier_to_df()`, `textgrid_to_df()`, `eaf_to_df()`, `exb_to_df()`, `audacity_to_df()`, `srt_to_df()`) except `flextext_to_df()` can be used in order to visualise sound annotation:
 

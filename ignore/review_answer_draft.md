@@ -26,3 +26,14 @@ I added `autonumber` and `loging` arguments to `rename_soundfiles()` function. T
 I added SpeechRecorder (for some reason, I can't install it on my PC) to the vignette. It would be nice to add once an R function that will create a recording script for them.
 
 I added `missing` argument -- this is really nice thought.
+
+
+## Processing data
+
+I added a function `create_empty_textgrid()`.
+
+## Reading data into R
+
+I fixed `exb_to_df()`, so your example now parsed into table. 
+
+I added a new vignette about manipulating with tables with `tidyvers`. Grammar and spelling will be corrected soon.

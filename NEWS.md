@@ -7,9 +7,10 @@
 - add the `intensity_to_df()` function
 - add an argument `external` to the `create_presentation()` function in order to mark external images or gifs
 - remove all `encoding` arguments and replace it with encoding autodetection from `uchardet` (thanks to Artem Klevtsov for help)
-- add `autonumber` and `loging` arguments to `rename_soundfiles()` function (thanks to Niko Partanen)
+- add `autonumber`, `loging` and `missing` arguments to `rename_soundfiles()` function (thanks to Niko Partanen)
 - a lot of minor style changes (tnaks to Jonathan Keane)
-- add the 
+- add the `create_empty_textgrid()` function (thanks to Niko Partanen)
+- add the `data_manipulation_with_tidyverse` vignette (thanks to Niko Partanen)
 
 # phonfieldwork 0.0.7
 
