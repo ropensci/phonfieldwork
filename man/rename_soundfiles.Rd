@@ -12,7 +12,7 @@ rename_soundfiles(
   order = NULL,
   missing = NULL,
   path,
-  autonumber = TRUE,
+  autonumbering = TRUE,
   backup = TRUE,
   logging = TRUE
 )
@@ -33,7 +33,7 @@ order of the stimuli is taken.}
 
 \item{path}{path to the directory with soundfiles.}
 
-\item{autonumber}{logical. If TRUE, function creates an automatic numbering of files.}
+\item{autonumbering}{logical. If TRUE, function creates an automatic numbering of files.}
 
 \item{backup}{logical. If TRUE, function creates backup folder with all
 files. By default is TRUE.}

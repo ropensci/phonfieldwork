@@ -55,7 +55,6 @@ packageVersion("phonfieldwork")
 
 This tutorial can be cited as follows:
 
-
 ```r
 citation("phonfieldwork")
 ```
@@ -197,14 +196,14 @@ After collecting data and removing soundfiles with unsuccesful elicitations, one
 
 
 ```
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## ├── s1
+## │   ├── 01.wav
+## │   ├── 02.wav
+## │   └── 03.wav
 ## ├── s2
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## │   ├── 01.wav
+## │   ├── 02.wav
+## │   └── 03.wav
 ```
 
 For each speaker `s1` and `s2` there is a folder that containes three audiofiles. Now let's rename the files.
@@ -217,29 +216,40 @@ rename_soundfiles(stimuli = my_stimuli_df$stimuli,
 ```
 
 ```
-## Error in rename_soundfiles(stimuli = my_stimuli_df$stimuli, prefix = "s1_", : There are some non-wav files:
-## logging.csv
+## You can find change correspondences in the following file:
+## /home/agricolamz/work/packages/phonfieldwork/vignettes/s1/backup/logging.csv
 ```
 
 As a result, you obtain the following structure:
 
 
 ```
-## ├── my_stimuli_df.xlsx
-## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## │   ├── 1_s1_tip.wav
+## │   ├── 2_s1_tap.wav
+## │   ├── 3_s1_top.wav
+## │   └── backup
+## │       ├── 01.wav
+## │       ├── 02.wav
+## │       ├── 03.wav
+## │       └── logging.csv
 ## ├── s2
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## │   ├── 01.wav
+## │   ├── 02.wav
+## │   └── 03.wav
 ```
 
-The `rename_soundfiles()` function created a backup folder with all of the unrenamed files, and renamed all files using the prefix provided in the `prefix` argument. There is an additional argument `backup` that can be set to `FALSE` (it is `TRUE` by default), in case you are sure that the renaming function will work properly with your files and stimuli, and you do not need a backup of the unrenamed files.
+The `rename_soundfiles()` function created a backup folder with all of the unrenamed files, and renamed all files using the prefix provided in the `prefix` argument. There is an additional argument `backup` that can be set to `FALSE` (it is `TRUE` by default), in case you are sure that the renaming function will work properly with your files and stimuli, and you do not need a backup of the unrenamed files. There is also an additional argument `logging` (`TRUE` by default) that creates a `logging.csv` file in the `backup` folder (or in the original folder if the `backup` argument has value `FALSE`) with the correspondences between old and new names of the files. Here is the contence of the `logging.csv`:
+
+
+```
+##     from           to
+## 1 01.wav 1_s1_tip.wav
+## 2 02.wav 2_s1_tap.wav
+## 3 03.wav 3_s1_top.wav
+```
+
+To each name was added an additional prefix with number that make it easear to keep the original sorting of the stimuli. If you do not want this autonumbering turn the `autonumbering` to `FALSE`:
 
 
 ```r
@@ -247,28 +257,26 @@ rename_soundfiles(stimuli = my_stimuli_df$stimuli,
                   prefix = "s2_",
                   suffix = paste0("_", 1:3),
                   path = "s2/",
-                  backup = FALSE)
-```
-
-```
-## Error in rename_soundfiles(stimuli = my_stimuli_df$stimuli, prefix = "s2_", : There are some non-wav files:
-## logging.csv
+                  backup = FALSE,
+                  logging = FALSE,
+                  autonumbering = FALSE)
 ```
 
 
 ```
-## ├── my_stimuli_df.xlsx
-## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## │   ├── 1_s1_tip.wav
+## │   ├── 2_s1_tap.wav
+## │   ├── 3_s1_top.wav
+## │   └── backup
+## │       ├── 01.wav
+## │       ├── 02.wav
+## │       ├── 03.wav
+## │       └── logging.csv
 ## ├── s2
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## │   ├── s2_tap_2.wav
+## │   ├── s2_tip_1.wav
+## │   └── s2_top_3.wav
 ```
 
 The last command renamed the soundfiles in the `s2` folder, adding the prefix `s2` as in the previous example, and the suffix `1`-`3`. On most operating systems it is impossible to create two files with the same name, so sometimes it can be useful to add some kind of index at the end of the files.
@@ -277,11 +285,12 @@ Sometimes it is useful to get information about sound duration:
 
 
 ```r
-get_sound_duration("s1/s1_tap.wav")
+get_sound_duration("s1/2_s1_tap.wav")
 ```
 
 ```
-## Error in tuneR::readWave(file_name, header = TRUE): File 's1/s1_tap.wav' does not exist.
+##           file  duration
+## 1 2_s1_tap.wav 0.4299093
 ```
 
 It is also possible to analyze the whole folder:
@@ -292,10 +301,10 @@ get_sound_duration(sounds_from_folder = "s2/")
 ```
 
 ```
-##       file  duration
-## 1 1_02.wav 0.5343991
-## 2 2_01.wav 0.5866440
-## 3 3_03.wav 0.6650113
+##           file  duration
+## 1 s2_tap_2.wav 0.5343991
+## 2 s2_tip_1.wav 0.5866440
+## 3 s2_top_3.wav 0.6650113
 ```
 
 For now `phonfieldwork` works only with `.wav(e)` and `.mp3` sound files and several video formats (`.mp4`, `.avi` and `.mov`).
@@ -314,29 +323,30 @@ This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid
 
 
 ```
-## ├── my_stimuli_df.xlsx
-## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   ├── logging.csv
+## │   ├── 1_s1_tip.wav
+## │   ├── 2_s1_tap.wav
+## │   ├── 3_s1_top.wav
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   ├── 03.wav
+## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   └── s1_all.wav
 ## ├── s2
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## │   ├── s2_tap_2.wav
+## │   ├── s2_tip_1.wav
+## │   └── s2_top_3.wav
 ```
 
 The resulting file can be parsed with Praat (subscripted *t* is the result of Praat's conversion):
 
-![](unnamed-chunk-21-1.png)
+![](unnamed-chunk-22-1.png)
 
 ## Annotate your data
 
-It is possible to annotate words using an existing annotation (since file concatination is made according to files sorted on the comuter I use the `sort()` function in order to make correct annotation):
+It is possible to annotate words using an existing annotation:
 
 
 ```r
@@ -348,11 +358,11 @@ my_stimuli_df$stimuli
 ```
 
 ```r
-annotate_textgrid(annotation =  sort(my_stimuli_df$stimuli),
+annotate_textgrid(annotation =  my_stimuli_df$stimuli,
                   textgrid = "s1/s1_all.TextGrid")
 ```
 
-![](unnamed-chunk-23-1.png)
+![](unnamed-chunk-24-1.png)
 
 As you can see in the example, the `annotate_textgrid()` function creates a backup of the tier and adds a new tier on top of the previous one. It is possible to prevent the function from doing so by setting the `backup` argument to `FALSE`.
 
@@ -365,27 +375,54 @@ create_subannotation(textgrid = "s1/s1_all.TextGrid",
                      n_of_annotations = 3) # how many empty annotations per unit?
 ```
 
-![](unnamed-chunk-25-1.png)
+![](unnamed-chunk-26-1.png)
 
 Now we can annotate created tier:
 
 
 ```r
-annotate_textgrid(annotation = c("", "æ", "", "", "ı", "", "", "ɒ", ""),
+annotate_textgrid(annotation = c("", "ı", "", "", "æ", "", "", "ɒ", ""),
                   textgrid = "s1/s1_all.TextGrid",
                   tier = 3,
                   backup = FALSE)
 ```
 
-![](unnamed-chunk-27-1.png)
+![](unnamed-chunk-28-1.png)
 
 You can see that we created a third tier with annotation. The only thing left is to move annotation boundaries in Praat (this can not be automated):
 
 
 
-![](unnamed-chunk-29-1.png)
+![](unnamed-chunk-30-1.png)
 
 You can see from the last figure that no backup tier was created (`backup = FALSE`), that the third tier was annotated (`tier = 3`).
+
+In case you want to create an empty TextGrid it is possible to use a `create_empty_textgrid()` function that takes some soundfile as a refence and creates
+
+
+```r
+create_empty_textgrid("s2/s2_tip_1.wav", tiers = c("a", "b"))
+```
+![](unnamed-chunk-32-1.png)
+
+```
+## ├── s1
+## │   ├── 1_s1_tip.wav
+## │   ├── 2_s1_tap.wav
+## │   ├── 3_s1_top.wav
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   ├── 03.wav
+## │   │   └── logging.csv
+## │   ├── s1_all.TextGrid
+## │   └── s1_all.wav
+## ├── s2
+## │   ├── s2_tap_2.wav
+## │   ├── s2_tip_1.TextGrid
+## │   ├── s2_tip_1.wav
+## │   └── s2_top_3.wav
+```
 
 ## Extracting your data
 
@@ -408,26 +445,27 @@ extract_intervals(file_name = "s1/s1_all.wav",
 
 
 ```
-## ├── my_stimuli_df.xlsx
-## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   ├── logging.csv
+## │   ├── 1_s1_tip.wav
+## │   ├── 2_s1_tap.wav
+## │   ├── 3_s1_top.wav
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   ├── 03.wav
+## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   └── s1_sounds
-## │       ├── 1_s1_æ.wav
-## │       ├── 2_s1_ı.wav
+## │       ├── 1_s1_ı.wav
+## │       ├── 2_s1_æ.wav
 ## │       └── 3_s1_ɒ.wav
 ## ├── s2
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## │   ├── s2_tap_2.wav
+## │   ├── s2_tip_1.TextGrid
+## │   ├── s2_tip_1.wav
+## │   └── s2_top_3.wav
 ```
-
 
 ## Visualizing your data
 It is possible to view an oscilogram and spetrogram of any soundfile:
@@ -437,7 +475,9 @@ It is possible to view an oscilogram and spetrogram of any soundfile:
 draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav")
 ```
 
-![](unnamed-chunk-33-1.png)
+```
+## Error in tuneR::readWave(file_name): File 's1/s1_sounds/2_s1_ı.wav' does not exist.
+```
 
 There are additional parameters:
 
@@ -469,7 +509,7 @@ draw_sound("s1/s1_all.wav",
            to = 0.95)
 ```
 
-![](unnamed-chunk-34-1.png)
+![](unnamed-chunk-38-1.png)
 
 It is also possible using the `zoom` argument to show the part of the spectrogram keeping the broader oscilogram context:
 
@@ -480,38 +520,40 @@ draw_sound("s1/s1_all.wav",
            zoom = c(0.4, 0.95))
 ```
 
-![](unnamed-chunk-35-1.png)
+![](unnamed-chunk-39-1.png)
 
 If the `output_file` argument is provided, R will save the plot in your directory instead of displaying it.
 
 
 ```r
-draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav",
+draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav",
            output_file = "s1/s1_tip",
            title = "s1 tip")
 ```
 
 
 ```
-## ├── my_stimuli_df.xlsx
-## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   ├── logging.csv
+## │   ├── 1_s1_tip.wav
+## │   ├── 2_s1_tap.wav
+## │   ├── 3_s1_top.wav
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   ├── 03.wav
+## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_sounds
-## │   │   ├── 1_s1_æ.wav
-## │   │   ├── 2_s1_ı.wav
+## │   │   ├── 1_s1_ı.wav
+## │   │   ├── 2_s1_æ.wav
 ## │   │   └── 3_s1_ɒ.wav
 ## │   └── s1_tip.png
 ## ├── s2
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## │   ├── s2_tap_2.wav
+## │   ├── s2_tip_1.TextGrid
+## │   ├── s2_tip_1.wav
+## │   └── s2_top_3.wav
 ```
 
 It is also possible to create visualizations of all sound files in a folder. For this purpose you need to specify a source folder with the argument `sounds_from_folder` and a target folder for the images (`pic_folder_name`). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.
@@ -524,29 +566,31 @@ draw_sound(sounds_from_folder = "s1/s1_sounds/",
 
 
 ```
-## ├── my_stimuli_df.xlsx
-## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   ├── logging.csv
+## │   ├── 1_s1_tip.wav
+## │   ├── 2_s1_tap.wav
+## │   ├── 3_s1_top.wav
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   ├── 03.wav
+## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_pics
-## │   │   ├── 1_s1_æ.png
-## │   │   ├── 2_s1_ı.png
+## │   │   ├── 1_s1_ı.png
+## │   │   ├── 2_s1_æ.png
 ## │   │   └── 3_s1_ɒ.png
 ## │   ├── s1_sounds
-## │   │   ├── 1_s1_æ.wav
-## │   │   ├── 2_s1_ı.wav
+## │   │   ├── 1_s1_ı.wav
+## │   │   ├── 2_s1_æ.wav
 ## │   │   └── 3_s1_ɒ.wav
 ## │   └── s1_tip.png
 ## ├── s2
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## │   ├── s2_tap_2.wav
+## │   ├── s2_tip_1.TextGrid
+## │   ├── s2_tip_1.wav
+## │   └── s2_top_3.wav
 ```
 
 It is also possible to use the argument `textgrid_from_folder` in order to specify the folder where .TextGrids for annotation are (could be the same folder as the sound one). By default the `draw_sound()` function with the `sounds_from_folder` argument adds a title with the file name to each pictures' title, but it is possible to turn it off using the argument `title_as_filename = FALSE`.
@@ -564,7 +608,7 @@ draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
            raven_annotation = raven_an)
 ```
 
-![](unnamed-chunk-40-1.png)
+![](unnamed-chunk-44-1.png)
 
 It is also possible to use multiple values, colors (adding `colors` column) and annotation (adding `content` column):
 
@@ -581,7 +625,7 @@ draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"),
            raven_annotation = raven_an)
 ```
 
-![](unnamed-chunk-41-1.png)
+![](unnamed-chunk-45-1.png)
 
 # Read linguistic files into R
 
@@ -764,7 +808,7 @@ draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwo
            annotation = eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork")))
 ```
 
-![](unnamed-chunk-50-1.png)
+![](unnamed-chunk-54-1.png)
 
 # Create a viewer
 
@@ -780,29 +824,31 @@ We will start with the previous folder structure:
 
 
 ```
-## ├── my_stimuli_df.xlsx
-## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   ├── logging.csv
+## │   ├── 1_s1_tip.wav
+## │   ├── 2_s1_tap.wav
+## │   ├── 3_s1_top.wav
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   ├── 03.wav
+## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_pics
-## │   │   ├── 1_s1_æ.png
-## │   │   ├── 2_s1_ı.png
+## │   │   ├── 1_s1_ı.png
+## │   │   ├── 2_s1_æ.png
 ## │   │   └── 3_s1_ɒ.png
 ## │   ├── s1_sounds
-## │   │   ├── 1_s1_æ.wav
-## │   │   ├── 2_s1_ı.wav
+## │   │   ├── 1_s1_ı.wav
+## │   │   ├── 2_s1_æ.wav
 ## │   │   └── 3_s1_ɒ.wav
 ## │   └── s1_tip.png
 ## ├── s2
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## │   ├── s2_tap_2.wav
+## │   ├── s2_tip_1.TextGrid
+## │   ├── s2_tip_1.wav
+## │   └── s2_top_3.wav
 ```
 
 We have all folders:
@@ -813,7 +859,7 @@ list.files("s1/s1_sounds/") # sounds
 ```
 
 ```
-## [1] "1_s1_æ.wav" "2_s1_ı.wav" "3_s1_ɒ.wav"
+## [1] "1_s1_ı.wav" "2_s1_æ.wav" "3_s1_ɒ.wav"
 ```
 
 ```r
@@ -821,7 +867,7 @@ list.files("s1/s1_pics/") # pictures
 ```
 
 ```
-## [1] "1_s1_æ.png" "2_s1_ı.png" "3_s1_ɒ.png"
+## [1] "1_s1_ı.png" "2_s1_æ.png" "3_s1_ɒ.png"
 ```
 
 So what is left is the table. It is possible to create manually (or upload it form .csv or .xlsx files, see section 4.1):
@@ -863,30 +909,32 @@ As a result, a `stimuli_viewer.html` was created in the `s1` folder.
 
 
 ```
-## ├── my_stimuli_df.xlsx
-## ├── phonfieldwork.Rmd
 ## ├── s1
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   ├── logging.csv
+## │   ├── 1_s1_tip.wav
+## │   ├── 2_s1_tap.wav
+## │   ├── 3_s1_top.wav
+## │   ├── backup
+## │   │   ├── 01.wav
+## │   │   ├── 02.wav
+## │   │   ├── 03.wav
+## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_pics
-## │   │   ├── 1_s1_æ.png
-## │   │   ├── 2_s1_ı.png
+## │   │   ├── 1_s1_ı.png
+## │   │   ├── 2_s1_æ.png
 ## │   │   └── 3_s1_ɒ.png
 ## │   ├── s1_sounds
-## │   │   ├── 1_s1_æ.wav
-## │   │   ├── 2_s1_ı.wav
+## │   │   ├── 1_s1_ı.wav
+## │   │   ├── 2_s1_æ.wav
 ## │   │   └── 3_s1_ɒ.wav
 ## │   ├── s1_tip.png
 ## │   └── stimuli_viewer.html
 ## ├── s2
-## │   ├── 1_02.wav
-## │   ├── 2_01.wav
-## │   ├── 3_03.wav
-## │   └── logging.csv
+## │   ├── s2_tap_2.wav
+## │   ├── s2_tip_1.TextGrid
+## │   ├── s2_tip_1.wav
+## │   └── s2_top_3.wav
 ```
 
 You can find the created example [here](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html).
@@ -899,22 +947,22 @@ textgrid_to_df("s1/s1_all.TextGrid")
 ```
 
 ```
-##    id time_start   time_end    content tier     tier_name          source
-## 1   1 0.00000000 0.42990930        tap    1        labels s1_all.TextGrid
-## 4   1 0.00000000 0.42990930 s1_tap.wav    2 backup labels s1_all.TextGrid
-## 7   1 0.00000000 0.09510719               3               s1_all.TextGrid
-## 8   2 0.09510719 0.20259200          æ    3               s1_all.TextGrid
-## 9   3 0.20259200 0.42990930               3               s1_all.TextGrid
-## 2   2 0.42990930 0.91206349        tip    1        labels s1_all.TextGrid
-## 5   2 0.42990930 0.91206349 s1_tip.wav    2 backup labels s1_all.TextGrid
-## 10  4 0.42990930 0.53544821               3               s1_all.TextGrid
-## 11  5 0.53544821 0.61606182          ı    3               s1_all.TextGrid
-## 12  6 0.61606182 0.91206349               3               s1_all.TextGrid
-## 3   3 0.91206349 1.39421769        top    1        labels s1_all.TextGrid
-## 6   3 0.91206349 1.39421769 s1_top.wav    2 backup labels s1_all.TextGrid
-## 13  7 0.91206349 1.03559934               3               s1_all.TextGrid
-## 14  8 1.03559934 1.13354921          ɒ    3               s1_all.TextGrid
-## 15  9 1.13354921 1.39421769               3               s1_all.TextGrid
+##    id time_start  time_end      content tier     tier_name          source
+## 1   1  0.0000000 0.4821542          tip    1        labels s1_all.TextGrid
+## 4   1  0.0000000 0.4821542 1_s1_tip.wav    2 backup labels s1_all.TextGrid
+## 7   1  0.0000000 0.1063758                 3               s1_all.TextGrid
+## 8   2  0.1063758 0.1843889            ı    3               s1_all.TextGrid
+## 9   3  0.1843889 0.4821542                 3               s1_all.TextGrid
+## 2   2  0.4821542 0.9120635          tap    1        labels s1_all.TextGrid
+## 5   2  0.4821542 0.9120635 2_s1_tap.wav    2 backup labels s1_all.TextGrid
+## 10  4  0.4821542 0.5805225                 3               s1_all.TextGrid
+## 11  5  0.5805225 0.6784724            æ    3               s1_all.TextGrid
+## 12  6  0.6784724 0.9120635                 3               s1_all.TextGrid
+## 3   3  0.9120635 1.3942177          top    1        labels s1_all.TextGrid
+## 6   3  0.9120635 1.3942177 3_s1_top.wav    2 backup labels s1_all.TextGrid
+## 13  7  0.9120635 1.0390666                 3               s1_all.TextGrid
+## 14  8  1.0390666 1.1300820            ɒ    3               s1_all.TextGrid
+## 15  9  1.1300820 1.3942177                 3               s1_all.TextGrid
 ```
 
 So in order to create desired table we can use `tier_to_df()` function:
@@ -927,8 +975,8 @@ t1
 
 ```
 ##   id time_start  time_end content tier tier_name          source
-## 1  1  0.0000000 0.4299093     tap    1    labels s1_all.TextGrid
-## 2  2  0.4299093 0.9120635     tip    1    labels s1_all.TextGrid
+## 1  1  0.0000000 0.4821542     tip    1    labels s1_all.TextGrid
+## 2  2  0.4821542 0.9120635     tap    1    labels s1_all.TextGrid
 ## 3  3  0.9120635 1.3942177     top    1    labels s1_all.TextGrid
 ```
 
@@ -938,16 +986,16 @@ t3
 ```
 
 ```
-##    id time_start   time_end content tier tier_name          source
-## 7   1 0.00000000 0.09510719            3           s1_all.TextGrid
-## 8   2 0.09510719 0.20259200       æ    3           s1_all.TextGrid
-## 9   3 0.20259200 0.42990930            3           s1_all.TextGrid
-## 10  4 0.42990930 0.53544821            3           s1_all.TextGrid
-## 11  5 0.53544821 0.61606182       ı    3           s1_all.TextGrid
-## 12  6 0.61606182 0.91206349            3           s1_all.TextGrid
-## 13  7 0.91206349 1.03559934            3           s1_all.TextGrid
-## 14  8 1.03559934 1.13354921       ɒ    3           s1_all.TextGrid
-## 15  9 1.13354921 1.39421769            3           s1_all.TextGrid
+##    id time_start  time_end content tier tier_name          source
+## 7   1  0.0000000 0.1063758            3           s1_all.TextGrid
+## 8   2  0.1063758 0.1843889       ı    3           s1_all.TextGrid
+## 9   3  0.1843889 0.4821542            3           s1_all.TextGrid
+## 10  4  0.4821542 0.5805225            3           s1_all.TextGrid
+## 11  5  0.5805225 0.6784724       æ    3           s1_all.TextGrid
+## 12  6  0.6784724 0.9120635            3           s1_all.TextGrid
+## 13  7  0.9120635 1.0390666            3           s1_all.TextGrid
+## 14  8  1.0390666 1.1300820       ɒ    3           s1_all.TextGrid
+## 15  9  1.1300820 1.3942177            3           s1_all.TextGrid
 ```
 
 As we see the first tier is ready, but the third tier contains empty annotations. Let's remove them:
@@ -960,9 +1008,9 @@ t3
 
 ```
 ##    id time_start  time_end content tier tier_name          source
-## 8   2 0.09510719 0.2025920       æ    3           s1_all.TextGrid
-## 11  5 0.53544821 0.6160618       ı    3           s1_all.TextGrid
-## 14  8 1.03559934 1.1335492       ɒ    3           s1_all.TextGrid
+## 8   2  0.1063758 0.1843889       ı    3           s1_all.TextGrid
+## 11  5  0.5805225 0.6784724       æ    3           s1_all.TextGrid
+## 14  8  1.0390666 1.1300820       ɒ    3           s1_all.TextGrid
 ```
 
 So from this point it is possible to create the table that we wanted:
@@ -976,8 +1024,8 @@ new_df
 
 ```
 ##   words sounds
-## 1   tap      æ
-## 2   tip      ı
+## 1   tip      ı
+## 2   tap      æ
 ## 3   top      ɒ
 ```
 

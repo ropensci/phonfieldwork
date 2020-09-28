@@ -9,6 +9,7 @@
 - remove all `encoding` arguments and replace it with encoding autodetection from `uchardet` (thanks to Artem Klevtsov for help)
 - add `autonumber` and `loging` arguments to `rename_soundfiles()` function (thanks to Niko Partanen)
 - a lot of minor style changes (tnaks to Jonathan Keane)
+- add the 
 
 # phonfieldwork 0.0.7
 

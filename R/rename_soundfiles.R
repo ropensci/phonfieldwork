@@ -12,7 +12,7 @@
 #' order of the stimuli is taken.
 #' @param missing numeric vector that define missing stimuli in case when some stimuli are not recorded.
 #' @param path path to the directory with soundfiles.
-#' @param autonumber logical. If TRUE, function creates an automatic numbering of files.
+#' @param autonumbering logical. If TRUE, function creates an automatic numbering of files.
 #' @param backup logical. If TRUE, function creates backup folder with all
 #' files. By default is TRUE.
 #' @param logging logical. If TRUE creates a .csv file with the correspondences of old names and new names. This could be useful for restoring in case something goes wrong.
@@ -28,7 +28,7 @@ rename_soundfiles <- function(stimuli,
                               order = NULL,
                               missing = NULL,
                               path,
-                              autonumber = TRUE,
+                              autonumbering = TRUE,
                               backup = TRUE,
                               logging = TRUE) {
   path <- normalizePath(path)
@@ -73,7 +73,7 @@ rename_soundfiles <- function(stimuli,
     stimuli[order]
   }
 
-  if (autonumber) {
+  if (autonumbering) {
     prefix <- paste0(add_leading_symbols(medial_part), "_", prefix)
   }
 
