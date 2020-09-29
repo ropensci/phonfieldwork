@@ -14,12 +14,12 @@ item []:
         intervals: size = 3 
         intervals [1]:
             xmin = 0 
-            xmax = 0.429909297052154 
-            text = "tap" 
-        intervals [2]:
-            xmin = 0.429909297052154 
-            xmax = 0.912063492063492 
+            xmax = 0.482154195011338 
             text = "tip" 
+        intervals [2]:
+            xmin = 0.482154195011338 
+            xmax = 0.912063492063492 
+            text = "tap" 
         intervals [3]:
             xmin = 0.912063492063492 
             xmax = 1.39421768707483 
@@ -32,16 +32,16 @@ item []:
         intervals: size = 3 
         intervals [1]:
             xmin = 0 
-            xmax = 0.429909297052154 
-            text = "s1_tap.wav" 
+            xmax = 0.482154195011338 
+            text = "1_s1_tip.wav" 
         intervals [2]:
-            xmin = 0.429909297052154 
+            xmin = 0.482154195011338 
             xmax = 0.912063492063492 
-            text = "s1_tip.wav" 
+            text = "2_s1_tap.wav" 
         intervals [3]:
             xmin = 0.912063492063492 
             xmax = 1.39421768707483 
-            text = "s1_top.wav" 
+            text = "3_s1_top.wav" 
     item [3]:
         class = "IntervalTier" 
         name = "" 
@@ -50,37 +50,37 @@ item []:
         intervals: size = 9 
         intervals [1]:
             xmin = 0 
-            xmax = 0.09510718804565937 
+            xmax = 0.10637575755090463 
             text = "" 
         intervals [2]:
-            xmin = 0.09510718804565937 
-            xmax = 0.2025920048649217 
-            text = "æ" 
+            xmin = 0.10637575755090463 
+            xmax = 0.1843889310487563 
+            text = "ı" 
         intervals [3]:
-            xmin = 0.2025920048649217 
-            xmax = 0.429909297052154 
+            xmin = 0.1843889310487563 
+            xmax = 0.482154195011338 
             text = "" 
         intervals [4]:
-            xmin = 0.429909297052154 
-            xmax = 0.535448211789089 
+            xmin = 0.482154195011338 
+            xmax = 0.5805224898100699 
             text = "" 
         intervals [5]:
-            xmin = 0.535448211789089 
-            xmax = 0.6160618244035357 
-            text = "ı" 
+            xmin = 0.5805224898100699 
+            xmax = 0.678472363201817 
+            text = "æ" 
         intervals [6]:
-            xmin = 0.6160618244035357 
+            xmin = 0.678472363201817 
             xmax = 0.912063492063492 
             text = "" 
         intervals [7]:
             xmin = 0.912063492063492 
-            xmax = 1.0355993352142048 
+            xmax = 1.039066587369665 
             text = "" 
         intervals [8]:
-            xmin = 1.0355993352142048 
-            xmax = 1.133549208605952 
+            xmin = 1.039066587369665 
+            xmax = 1.1300819564504918 
             text = "ɒ" 
         intervals [9]:
-            xmin = 1.133549208605952 
+            xmin = 1.1300819564504918 
             xmax = 1.39421768707483 
             text = "" 

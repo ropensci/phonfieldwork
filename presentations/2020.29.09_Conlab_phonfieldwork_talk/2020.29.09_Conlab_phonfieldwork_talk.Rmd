@@ -5,8 +5,8 @@ institute: "Linguistic Convergence Laboratory, NRU HSE"
 date: |
     | 28 September 2020
     |
-    | Presentation is available here: \alert{tinyurl.com/y6lf5ch4}
-    | ![](images/01_qrcode.png)'
+    | Presentation is available here: \alert{tinyurl.com/y2x8ppnl}
+    | ![](images/00_qrcode.png)'
 output: 
   beamer_presentation:
     latex_engine: xelatex
@@ -23,8 +23,8 @@ editor_options:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 # library(qrcode)
-# png(filename="images/01_qrcode.png", width = 200, height = 200)
-# qrcode_gen("https://github.com/agricolamz/phonfieldwork/raw/master/presentations/2020.08.08_Grupo_de_estad%C3%ADstica_para_el_estudio_del_lenguaje/2020.08.08_Grupo_de_estad%C3%ADstica_para_el_estudio_del_lenguaje_moroz_phonfieldwork.pdf")
+# png(filename="images/00_qrcode.png", width = 200, height = 200)
+# qrcode_gen("https://github.com/agricolamz/phonfieldwork/raw/master/presentations/2020.29.09_Conlab_phonfieldwork_talk/2020.29.09_Conlab_phonfieldwork_talk.pdf")
 # dev.off()
 
 unlink("data", recursive = TRUE)
@@ -34,6 +34,34 @@ dir.create("data/s2")
 file.copy(paste0("../backup/s1/", list.files("../backup/s1/")), "data/s1/")
 file.copy(paste0("../backup/s2/", list.files("../backup/s2/")), "data/s2/")
 file.copy(paste0("../backup/", list.files("../backup/", pattern = "test")), "data/")
+```
+
+# About `phonfieldwork`
+
+## About `phonfieldwork`
+
+This package was started as a help for our guest student Margaux Dubuis from Switzerland, who was going to study New Caledonian language Vamale (`vama1243`).
+
+```{r, echo=FALSE, out.width = '60%'}
+knitr::include_graphics("images/01_Margaux.jpg")
+```
+
+## About `phonfieldwork`
+
+* 2019-08-24 --- first release on CRAN
+* Now there is a v0.0.7 on CRAN, and total 6363 downloads
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("images/02_commits.png")
+```
+
+## About `phonfieldwork`
+
+* On June 20 I have made [a submission](https://github.com/ropensci/software-review/issues/385) to [rOpenSci](https://ropensci.org/).
+* Here are my reviewers:
+
+```{r, echo=FALSE, out.width = '90%'}
+knitr::include_graphics("images/03_Niko_Jonathan.png")
 ```
 
 # Introduction
@@ -60,7 +88,7 @@ These ideal plan hides some technical subtasks:
 * renaming and concatenating multiple sound files
 * automatic annotation in Praat TextGrids [@boersma19]
 * creating a searchable `.html` table with annotations, spectrograms and ability to hear sound
-* converting multiple formats (Praat, ELAN [@brugman04] and EXMARaLDA [@schmidt09]) \pause
+* converting multiple formats (Praat, ELAN [@brugman04] and EXMARaLDA [@schmidt09], .srt and some others) \pause
 
 All of these tasks can be solved by a mixture of different tools:
 
@@ -75,7 +103,7 @@ All of these tasks can be solved by a mixture of different tools:
 * researcher carefully listens to consultants to make sure that they are producing the kind of speech they wanted
 * in case a speaker does not produce clear repetitions, researcher ask them to repeat the task
 
-There are some phoneticians who prefer to record everything for language documentation purposes. I think that should be a separate task. If you insist on recording everything, it is possible to run two recorders at the same time: one could run during the whole session, while the other is used to produce small audio files. You can also use special software to record your stimuli automatically on a computer (e.g. `PsychoPy` [@peirce19]).
+There are some phoneticians who prefer to record everything for language documentation purposes. I think that should be a separate task. If you insist on recording everything, it is possible to run two recorders at the same time: one could run during the whole session, while the other is used to produce small audio files. You can also use special software to record your stimuli automatically on a computer (e.g. [`SpeechRecorder`](https://www.bas.uni-muenchen.de/Bas/software/speechrecorder/) [@draxler04],  `PsychoPy` [@peirce19]).
    
 # Installation of the package
 
@@ -174,8 +202,18 @@ rename_soundfiles(stimuli = my_stimuli, # it is "tip" "tap" "top"
 ```
 
 ```{bash, echo = FALSE}
-tree data | tail -n 17 | head -n 12
+tree data | tail -n 18 | head -n 13
 ```
+
+## Rename collected data
+
+Here is the contents of `logging.csv`:
+
+```{r}
+read.csv("data/s1/backup/logging.csv")
+```
+
+Niko Partanen also nicely suggested to have a `missing` argument for `rename_soundfiles()` in order to make handling missing soundfiles easier.
 
 ## Rename collected data
 
@@ -190,7 +228,7 @@ rename_soundfiles(stimuli = my_stimuli, # it is "tip" "tap" "top"
 ```
 
 ```{bash, echo = FALSE}
-tree data | tail -n 17 | head -n 12
+tree data | tail -n 9 | head -n 4
 ```
 
 ## Get sound duration
@@ -217,7 +255,7 @@ concatenate_soundfiles(path = "data/s1/",
 ```
 
 ```{bash, echo = FALSE}
-tree data/s1 | head -n 10
+tree data/s1 | head -n 11
 ```
 
 ## Merge all data together
@@ -230,10 +268,10 @@ draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all")
 
 ## Annotate your data
 
-It is possible to create annotation in advance (since file concatination is made according to files sorted on the comuter I use the `sort()` function in order to make correct annotation):
+It is possible to create annotation in advance:
 
 ```{r}
-annotate_textgrid(annotation =  sort(my_stimuli),
+annotate_textgrid(annotation = my_stimuli,
                   textgrid = "data/s1/s1_all.TextGrid")
 ```
 
@@ -263,7 +301,7 @@ draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all")
 
 Now we can annotate created tier:
 ```{r}
-annotate_textgrid(annotation = c("", "æ", "", "", "ı", "", "", "ɒ", ""),
+annotate_textgrid(annotation = c("", "ı", "", "", "æ", "", "", "ɒ", ""),
                   textgrid = "data/s1/s1_all.TextGrid",
                   tier = 3,
                   backup = FALSE)
@@ -271,18 +309,20 @@ annotate_textgrid(annotation = c("", "æ", "", "", "ı", "", "", "ɒ", ""),
 
 List annotations by hand is a boring task, so if you have a prepared list of annotations, the merege could be done with the following code:
 ```{r}
-vowels <- c("æ", "ı", "ɒ")
+vowels <- c("ı", "æ", "ɒ")
 unlist(lapply(vowels, function(x){c("", x, "")}))
 ```
 
 
 ## Create subannotation
 
-```{r, echo=FALSE, eval = FALSE}
-draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all", output_file = "images/02_subannotation")
+```{r, echo=FALSE, eval=FALSE}
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all", output_file = "images/04_subannotation")
 ```
 
-![](images/02_subannotation.png)
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("images/04_subannotation.png")
+```
 
 ## The only thing left is to move annotation boundaries
 
@@ -291,10 +331,12 @@ file.copy("../backup/s1_all.TextGrid", to = "data/s1/s1_all.TextGrid", overwrite
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
-draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all", output_file = "images/03_subannotation")
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all", output_file = "images/05_subannotation")
 ```
 
-![](images/03_subannotation.png)
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("images/05_subannotation.png")
+```
 
 # Data extraction
 ## Data viewer
@@ -329,7 +371,7 @@ extract_intervals(file_name = "data/s1/s1_all.wav",
 After those commands, one could end up with the following structure:
 
 ```{bash, echo = FALSE}
-tree data/s1 | head -n 14
+tree data/s1 | head -n 15
 ```
 
 # Data visulization
@@ -337,7 +379,7 @@ tree data/s1 | head -n 14
 ## Sound visulization in `phonfieldwork`
 
 The easiest way to visualise sound in phonfieldwork:
-```{r}
+```{r, fig.height=6}
 draw_sound(file_name = "data/s1/2_s1_tap.wav")
 ```
 
@@ -351,11 +393,12 @@ draw_sound(file_name = "data/s1/s1_all.wav",
 ```{r, include=FALSE, eval=FALSE}
 draw_sound(file_name = "data/s1/s1_all.wav", 
            annotation = "data/s1/s1_all.TextGrid", 
-           output_file = "images/04_sound_visualisation.png")
+           output_file = "images/06_sound_visualisation")
 ```
 
-![](images/04_sound_visualisation.png)
-
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("images/06_sound_visualisation.png")
+```
 
 ```{r, eval = FALSE}
 draw_sound("data/s1/s1_all.wav",
@@ -366,10 +409,14 @@ draw_sound("data/s1/s1_all.wav",
 ```{r, include=FALSE, eval = FALSE}
 draw_sound(file_name = "data/s1/s1_all.wav", 
            annotation = "data/s1/s1_all.TextGrid", 
-           output_file = "images/05_sound_visualisation.png")
+           output_file = "images/07_sound_visualisation")
 ```
 
-![](images/05_sound_visualisation.png)
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("images/07_sound_visualisation.png")
+```
+
 
 ## Create multiple spectrograms
 
