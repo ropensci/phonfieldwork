@@ -98,6 +98,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/data_manipulation_with_tidyverse.html">Manipulating `phonfieldwork` data with `tidyverse`</a>
+    </li>
+    <li>
       <a href="../articles/ethical_research_with_phonfieldwork.html">Ethical Research with `phonfieldwork`</a>
     </li>
   </ul>
@@ -127,7 +130,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create image look_up objects for html viewer</h1>
-    <small class="dont-index">Source: <a href='https://github.com/agricolamz/phonfieldwork/blob/master/R/create_image_look_up.R'><code>R/create_image_look_up.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/agricolamz/phonfieldwork/blob/master/R/utils.r'><code>R/utils.r</code></a></small>
     <div class="hidden name"><code>create_image_look_up.Rd</code></div>
     </div>
 
@@ -160,8 +163,6 @@ By default it is eye emoji (&amp;#x1f441;).</p></td>
 
     <p>a string or vector of strings</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>create_image_look_up</span>(<span class='st'>"path/to/your/file"</span>)</div><div class='output co'>#&gt; [1] "&lt;a onmouseover=\"resize(this, '200%')\" onmouseout=\"resize(this, '100%')\" onclick = 'pic_appear(\"path/to/your/file\", \"\")'&gt; &amp;#x1f441;&lt;a&gt;"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -42,6 +42,7 @@ Use the `library()` command to load the package:
 ```r
 library("phonfieldwork")
 ```
+In order to work with some `rmarkdown` functions you will need to install `pandoc`, see `vignette("pandoc")` for the details.
 
 This tutorial was made using the following version of `phonfieldwork`:
 

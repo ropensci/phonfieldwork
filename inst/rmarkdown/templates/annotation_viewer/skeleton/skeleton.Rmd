@@ -46,9 +46,9 @@ editor_options:
 df <- read.csv(params$data, stringsAsFactors = FALSE)
 
 df$viewer <- 
-  paste(phonfieldwork::create_image_look_up(img_src = df$pictures,
+  paste(create_image_look_up(img_src = df$pictures,
                                             img_caption = params$captions),
-        phonfieldwork::create_sound_play(snd_src = df$audio))
+        create_sound_play(snd_src = df$audio))
 
 df <- df[, -which(colnames(df) %in% c("audio", "pictures"))]
 ```

@@ -61,8 +61,10 @@ annotate_textgrid <- function(annotation,
       )
     )
     if (!(tier %in% names)) {
-      stop(paste0("It looks like there is no any tier with a name '", tier,
-                  "'"))
+      stop(paste0(
+        "It looks like there is no any tier with a name '", tier,
+        "'"
+      ))
     }
     tier_number <- which(names %in% tier)
   }

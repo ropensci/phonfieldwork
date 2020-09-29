@@ -47,6 +47,8 @@ Load a library:
 library(phonfieldwork)
 ```
 
+In order to work with some `rmarkdown` functions you will need to install `pandoc`, see `vignette("pandoc")` for the details.
+
 ## To do:
 
 * export to ELAN and EXMARALDA files

@@ -19,11 +19,11 @@ create_empty_textgrid <- function(file_name,
 
   # in case of empty tiers and point tiers ----------------------------------
 
-  if(is.null(tiers) & is.null(point_tiers)){
+  if (is.null(tiers) & is.null(point_tiers)) {
     tiers <- "1"
   }
 
-  if(is.null(tiers) & !is.null(point_tiers)){
+  if (is.null(tiers) & !is.null(point_tiers)) {
     tiers <- as.character(seq_along(point_tiers))
   }
 
@@ -104,16 +104,16 @@ create_empty_textgrid <- function(file_name,
     length(tiers),
     "\nitem []:\n",
     paste0(textgrid_df$item,
-           textgrid_df$class_line,
-           textgrid_df$name_line,
-           textgrid_df$xmin,
-           textgrid_df$xmax,
-           textgrid_df$interval_size,
-           textgrid_df$intervals,
-           textgrid_df$intervals_xmin,
-           textgrid_df$intervals_xmax,
-           textgrid_df$intervals_text,
-           collapse = ""
+      textgrid_df$class_line,
+      textgrid_df$name_line,
+      textgrid_df$xmin,
+      textgrid_df$xmax,
+      textgrid_df$interval_size,
+      textgrid_df$intervals,
+      textgrid_df$intervals_xmin,
+      textgrid_df$intervals_xmax,
+      textgrid_df$intervals_text,
+      collapse = ""
     )
   )
   writeLines(text, textgrid_path)

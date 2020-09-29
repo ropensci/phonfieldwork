@@ -41,7 +41,7 @@ draw_sound(
 \arguments{
 \item{file_name}{a sound file}
 
-\item{annotation}{a source for annotation files (e. g. TextGrid)}
+\item{annotation}{a source for annotation files (path to TextGrid file or dataframe created from other linguistic types, e. g. via \code{textgrid_to_df()}, \code{eaf_to_df()} or other functions)}
 
 \item{from}{Time in seconds at which to start extraction.}
 

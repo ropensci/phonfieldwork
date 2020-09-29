@@ -5,7 +5,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param file_name a sound file
-#' @param annotation a source for annotation files (e. g. TextGrid)
+#' @param annotation a source for annotation files (path to TextGrid file or dataframe created from other linguistic types, e. g. via \code{textgrid_to_df()}, \code{eaf_to_df()} or other functions)
 #' @param from Time in seconds at which to start extraction.
 #' @param to Time in seconds at which to stop extraction.
 #' @param zoom numeric vector of zoom window time (in seconds). It will draw
@@ -467,8 +467,8 @@ draw_sound <- function(file_name,
           y0 = df$tier - 0.5, y1 = df$tier + 0.5
         )
         graphics::points(
-          x = df[df$content != "", "mid_point"],
-          y = df[df$content != "", "tier"],
+          x = df[df$content != "", ]$mid_point,
+          y = df[df$content != "", ]$tier,
           col = "white", pch = 19, cex = text_size + 1.5
         )
         graphics::text(
@@ -555,7 +555,7 @@ draw_sound <- function(file_name,
 
     if (isTRUE(autonumber)) {
       prefix <- paste0(
-        phonfieldwork::add_leading_symbols(seq_along(sounds)),
+        add_leading_symbols(seq_along(sounds)),
         "_", prefix
       )
     }

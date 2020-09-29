@@ -3,3 +3,45 @@ url: https://agricolamz.github.io/phonfieldwork/
 template:
   params:
     bootswatch: readable
+
+reference:
+- title: Create a presentation
+  desc: Create a presentation based on a list of stimuli
+- contents:
+  - create_presentation
+- title: Sound data wrangling
+  desc: Rename, merge and annotate gathered data
+- contents:
+  - annotate_textgrid
+  - concatenate_soundfiles
+  - create_empty_textgrid
+  - create_subannotation
+  - get_sound_duration
+  - rename_soundfiles
+  - set_textgrid_names
+  - get_textgrid_names
+  - df_to_tier
+  - extract_intervals
+- title: Sound data visualisation
+  desc: Create an oscilogram, spectrogram and annotations
+- contents:
+  - draw_sound
+  - draw_spectrogram
+- title:  Read linguistic files into R
+  desc: Convert multiple linguistic data types to R
+- contents:
+  - textgrid_to_df
+  - tier_to_df
+  - eaf_to_df
+  - exb_to_df
+  - srt_to_df
+  - audacity_to_df
+  - flextext_to_df
+  - pitch_to_df
+  - intensity_to_df
+  - formant_to_df
+- title:  Read linguistic files into R
+  desc: Convert multiple linguistic data types to R
+- contents:
+  - extract_intervals
+  - create_glossed_document

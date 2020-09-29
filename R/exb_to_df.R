@@ -42,9 +42,15 @@ exb_to_df <- function(file_name, exbs_from_folder = NULL) {
       ts1 <- xml2::xml_attr(xml2::xml_children(t[[i]]), "start")
       ts2 <- xml2::xml_attr(xml2::xml_children(t[[i]]), "end")
 
-      if(length(content) == 0){content <- ""}
-      if(length(ts1) == 0){ts1 <- ""}
-      if(length(ts2) == 0){ts2 <- ""}
+      if (length(content) == 0) {
+        content <- ""
+      }
+      if (length(ts1) == 0) {
+        ts1 <- ""
+      }
+      if (length(ts2) == 0) {
+        ts2 <- ""
+      }
 
       data.frame(
         tier = i,

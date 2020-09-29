@@ -26,6 +26,9 @@ flextext_to_df <- function(file_name) {
       l[[i]],
       "paragraphs/paragraph/phrases/phrase/words/word"
     )
+    if (length(t) == 0) {
+      stop("It looks like this .flextext doesn't have any word-level annotations.")
+    }
     result_df <- lapply(seq_along(t), function(j) {
       word <- xml2::xml_attr(t[[j]], "guid")
       p_at <- xml2::xml_attr(
