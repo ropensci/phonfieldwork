@@ -1,0 +1,436 @@
+---
+title: "Phonetic fieldwork and experiments with the `phonfieldwork` package for R"
+author: "George Moroz"
+institute: "Linguistic Convergence Laboratory, NRU HSE"
+date: |
+    | 28 September 2020
+    |
+    | Presentation is available here: \alert{tinyurl.com/y6lf5ch4}
+    | ![](images/01_qrcode.png)'
+output: 
+  beamer_presentation:
+    latex_engine: xelatex
+    citation_package: natbib
+    keep_tex: false
+    includes:
+      in_header: "config/presento.sty"
+bibliography: bibliography.bib
+biblio-style: "apalike"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+# library(qrcode)
+# png(filename="images/01_qrcode.png", width = 200, height = 200)
+# qrcode_gen("https://github.com/agricolamz/phonfieldwork/raw/master/presentations/2020.08.08_Grupo_de_estad%C3%ADstica_para_el_estudio_del_lenguaje/2020.08.08_Grupo_de_estad%C3%ADstica_para_el_estudio_del_lenguaje_moroz_phonfieldwork.pdf")
+# dev.off()
+
+unlink("data", recursive = TRUE)
+dir.create("data")
+dir.create("data/s1")
+dir.create("data/s2")
+file.copy(paste0("../backup/s1/", list.files("../backup/s1/")), "data/s1/")
+file.copy(paste0("../backup/s2/", list.files("../backup/s2/")), "data/s2/")
+file.copy(paste0("../backup/", list.files("../backup/", pattern = "test")), "data/")
+```
+
+# Introduction
+
+## Most phonetic research consists of the following steps:
+
+1. Formulate a research question. Think of what kind of data is necessary to answer this question, what is the appropriate amount of data, what kind of annotation you will do, what kind of statistical models and visualizations you will use, etc.
+2. Create a list of stimuli.
+3. Elicite list of stimuli from speakers who signed an Informed Consent statement, agreeing to participate in the experiment to be recorded on audio and/or video.
+4. Annotate the collected data.
+5. Extract the information from annotated data.
+6. Create visualizations.
+7. Evaluate your statistical models.
+8. Report your results.
+9. Publish your data. \pause
+
+The `phonfieldwork` package is created for helping with items 3, 4 (partially), 5, 6, and 9.
+
+## Why/when do you need the phonfieldwork package?
+
+These ideal plan hides some technical subtasks:
+
+* creating a presentation for elicitation task
+* renaming and concatenating multiple sound files
+* automatic annotation in Praat TextGrids [@boersma19]
+* creating a searchable `.html` table with annotations, spectrograms and ability to hear sound
+* converting multiple formats (Praat, ELAN [@brugman04] and EXMARaLDA [@schmidt09]) \pause
+
+All of these tasks can be solved by a mixture of different tools:
+
+* any programming language can handle automatic file renaming
+* Praat contains scripts for concatenating and renaming files \pause
+
+`phonfieldwork` provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other packages: `rPraat` [@borzil16], `textgRid` [@reidy16], `pympi` [@lubbers13]
+
+## Philosophy of the `phonfieldwork` package
+
+* each stimulus is a separate file
+* researcher carefully listens to consultants to make sure that they are producing the kind of speech they wanted
+* in case a speaker does not produce clear repetitions, researcher ask them to repeat the task
+
+There are some phoneticians who prefer to record everything for language documentation purposes. I think that should be a separate task. If you insist on recording everything, it is possible to run two recorders at the same time: one could run during the whole session, while the other is used to produce small audio files. You can also use special software to record your stimuli automatically on a computer (e.g. `PsychoPy` [@peirce19]).
+   
+# Installation of the package
+
+## Install `phonfieldwork`
+
+`phonfieldwork` is an R package, so you need to install [R](https://cloud.r-project.org/), [RStudio](https://rstudio.com/products/rstudio/download/#download) (optional) or use [rstudio.cloud](rstudio.cloud). There are two possibilities for installing package in R:
+
+* official version from CRAN
+
+```{r, eval = FALSE}
+install.packages("phonfieldwork")
+```
+
+* development version from GitHub
+
+```{r, eval = FALSE}
+devtools::install_github("agricolamz/phonfieldwork")
+```
+
+\pause
+
+Since this package is under [rOpenSci review](https://github.com/ropensci/software-review/issues/385) there is a chance that in couple months the adress could be changed to `ropensci/phonfieldwork`, and documentation page will be moved from [agricolamz.github.io/phonfieldwork](agricolamz.github.io/phonfieldwork) to
+[docs.ropensci.org/phonfieldwork](docs.ropensci.org/phonfieldwork).
+
+```{r}
+library("phonfieldwork")
+packageVersion("phonfieldwork") # Unreleased version
+```
+
+# Creating your presentation
+
+##   Make a list of your stimuli
+
+There are several ways to enter information about a list of stimuli into R:
+
+* list them with the `c()` command
+
+```{r}
+my_stimuli <- c("tip", "tap", "top")
+```
+
+* read from `.csv` file with the `read.csv()` function:
+
+```{r, eval = FALSE}
+my_stimuli_df <- read.csv("my_stimuli_df.csv")
+```
+
+* read from `.xls` or `.xlsx` file with the `read_xls()` or `read_xlsx()` function from the `readxl` package (run `install.packages("readxl")` in case you don't have it installed):
+
+```{r, eval = FALSE}
+library("readxl")
+my_stimuli_df <- read_xlsx("my_stimuli_df.xlsx")
+```
+
+
+##  Create a presentation based on a list of stimuli
+
+```{r}
+create_presentation(stimuli = my_stimuli, # it is "tip" "tap" "top"
+                    output_file = "first_example",
+                    output_dir = "data/")
+```
+
+Here is [the result](https://agricolamz.github.io/phonfieldwork/additional/first_example.html). \pause
+
+It is also possible to use images (or `.gif`) as a stimuli:
+
+```{r}
+my_image <- system.file("extdata", "r-logo.png", package = "phonfieldwork")
+my_image
+
+create_presentation(stimuli = c("rzeka", "drzewo", my_image),
+                    external = 3,
+                    output_file = "second_example",
+                    output_dir = "data/")
+```
+
+Here is [the result](https://agricolamz.github.io/phonfieldwork/additional/second_example.html).
+
+# Data renaming
+
+## Obtained data
+
+After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure:
+
+```{bash, echo = FALSE}
+tree data | tail -n 13 | head -n 8
+```
+
+## Rename collected data
+
+```{r}
+rename_soundfiles(stimuli = my_stimuli, # it is "tip" "tap" "top"
+                  prefix = "s1_",
+                  path = "data/s1/")
+```
+
+```{bash, echo = FALSE}
+tree data | tail -n 17 | head -n 12
+```
+
+## Rename collected data
+
+```{r}
+rename_soundfiles(stimuli = my_stimuli, # it is "tip" "tap" "top"
+                  prefix = paste0(1:3, "_"),
+                  suffix = "_s2",
+                  path = "data/s2/",
+                  backup = FALSE,
+                  logging = FALSE,
+                  autonumbering = FALSE)
+```
+
+```{bash, echo = FALSE}
+tree data | tail -n 17 | head -n 12
+```
+
+## Get sound duration
+
+Sometimes it is useful to get information about sound duration:
+
+```{r}
+get_sound_duration("data/s1/2_s1_tap.wav")
+```
+
+```{r}
+get_sound_duration(sounds_from_folder = "data/s2/")
+```
+
+# Data merging
+
+## Merge all data together
+
+After all the files are renamed, you can merge them into one:
+
+```{r}
+concatenate_soundfiles(path = "data/s1/",
+                       result_file_name = "s1_all")
+```
+
+```{bash, echo = FALSE}
+tree data/s1 | head -n 10
+```
+
+## Merge all data together
+
+```{r, echo=FALSE}
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all")
+```
+
+# Data annotation
+
+## Annotate your data
+
+It is possible to create annotation in advance (since file concatination is made according to files sorted on the comuter I use the `sort()` function in order to make correct annotation):
+
+```{r}
+annotate_textgrid(annotation =  sort(my_stimuli),
+                  textgrid = "data/s1/s1_all.TextGrid")
+```
+
+## Annotate your data
+
+```{r, echo=FALSE}
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all")
+```
+
+## Create subannotation
+
+Imagine that we are interested in annotation of vowels. The most common solution will be open Praat and create new annotations. But it is also possible to create them in advance. The idea that you choose some baseline tier that later will be automatically cutted into smaller pieces on the other tier.
+
+```{r}
+create_subannotation(textgrid = "data/s1/s1_all.TextGrid",
+                     tier = 1, # this is a baseline tier
+                     n_of_annotations = 3) # how many empty annotations per unit?
+```
+
+## Annotate subannotation in advance
+
+```{r, echo=FALSE}
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all")
+```
+
+## Annotate subannotation in advance
+
+Now we can annotate created tier:
+```{r}
+annotate_textgrid(annotation = c("", "æ", "", "", "ı", "", "", "ɒ", ""),
+                  textgrid = "data/s1/s1_all.TextGrid",
+                  tier = 3,
+                  backup = FALSE)
+```
+
+List annotations by hand is a boring task, so if you have a prepared list of annotations, the merege could be done with the following code:
+```{r}
+vowels <- c("æ", "ı", "ɒ")
+unlist(lapply(vowels, function(x){c("", x, "")}))
+```
+
+
+## Create subannotation
+
+```{r, echo=FALSE, eval = FALSE}
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all", output_file = "images/02_subannotation")
+```
+
+![](images/02_subannotation.png)
+
+## The only thing left is to move annotation boundaries
+
+```{r, include=FALSE}
+file.copy("../backup/s1_all.TextGrid", to = "data/s1/s1_all.TextGrid", overwrite = TRUE)
+```
+
+```{r, echo=FALSE, eval=FALSE}
+draw_sound("data/s1/s1_all.wav", "data/s1/s1_all.TextGrid", title = "s1_all", output_file = "images/03_subannotation")
+```
+
+![](images/03_subannotation.png)
+
+# Data extraction
+## Data viewer
+
+Sound viewer (here is an [example](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html)) is a useful tool that combine together your annotations and make it searchable. It is also produce a ready to go .html file that could be uploaded on the server (e. g. to Github Pages) and be availible for anyone in the world.
+
+In order to do that we need:
+
+* seperate folder with soundfiles
+* separate folder with spectorgrams (optional)
+* `data.frame` with data about utterances or speakers
+
+## Data extraction
+First, it is important to create a folder where all of the extracted files will be stored:
+
+```{r}
+dir.create("data/s1/s1_sounds")
+```
+
+It is possible extract to extract all annotated files based on an annotation tier:
+
+```{r}
+extract_intervals(file_name = "data/s1/s1_all.wav",
+                  textgrid = "data/s1/s1_all.TextGrid",
+                  tier = 3,
+                  path = "data/s1/s1_sounds/",
+                  prefix = "s1_")
+```
+
+## Data extraction
+
+After those commands, one could end up with the following structure:
+
+```{bash, echo = FALSE}
+tree data/s1 | head -n 14
+```
+
+# Data visulization
+
+## Sound visulization in `phonfieldwork`
+
+The easiest way to visualise sound in phonfieldwork:
+```{r}
+draw_sound(file_name = "data/s1/2_s1_tap.wav")
+```
+
+## Sound visulization in `phonfieldwork`
+
+```{r, eval=FALSE}
+draw_sound(file_name = "data/s1/s1_all.wav", 
+           annotation = "data/s1/s1_all.TextGrid")
+```
+
+```{r, include=FALSE, eval=FALSE}
+draw_sound(file_name = "data/s1/s1_all.wav", 
+           annotation = "data/s1/s1_all.TextGrid", 
+           output_file = "images/04_sound_visualisation.png")
+```
+
+![](images/04_sound_visualisation.png)
+
+
+```{r, eval = FALSE}
+draw_sound("data/s1/s1_all.wav",
+           "data/s1/s1_all.TextGrid",
+           from = 0.4, to = 0.95)
+```
+
+```{r, include=FALSE, eval = FALSE}
+draw_sound(file_name = "data/s1/s1_all.wav", 
+           annotation = "data/s1/s1_all.TextGrid", 
+           output_file = "images/05_sound_visualisation.png")
+```
+
+![](images/05_sound_visualisation.png)
+
+## Create multiple spectrograms
+
+```{r}
+draw_sound(sounds_from_folder = "data/s1/s1_sounds/",
+           pic_folder_name = "s1_pics")
+```
+
+```{bash, echo = FALSE}
+tree data/s1 head -n 18
+```
+
+# Creating a data viewer -- template for the data sharing
+
+## Create a [viewer](https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html)
+
+* seperate folder with soundfiles 
+* separate folder with spectorgrams (optional) 
+* \alert{→ data.frame with data about utterances or speakers}
+
+```{r}
+df <- data.frame(word  = c("tap", "tip", "top"),
+                 sounds = c("æ", "ı", "ɒ"))
+df
+
+create_viewer(audio_dir = "data/s1/s1_sounds/",
+              picture_dir = "data/s1/s1_pics/",
+              table = df,
+              output_dir = "data/s1/",
+              output_file = "stimuli_viewer")
+```
+
+# Reading data from different linguistic sources
+
+##  Read linguistic files into R
+
+* `textgrid_to_df()` (Praat)
+* `eaf_to_df()` (ELAN)
+* `exb_to_df()` (EXMARaLDA)
+* `srt_to_df()` (subtitle file)
+* `audacity_to_df()` (Audacity)
+* `flextext_to_df()` (FieldWorks)
+
+##  Read linguistic files into R
+
+```{r}
+draw_sound(file_name = "data/test.wav",
+           annotation = eaf_to_df("data/test.eaf"))
+```
+
+
+# Get help and cite
+
+## Get help and cite
+
+You can always write an email or open an [issue on GitHub](https://github.com/agricolamz/phonfieldwork/issues), asking some questions.
+
+The most recent citation information is avalible with this command:
+
+```{r}
+citation("phonfieldwork")
+```
+
+# References {.allowframebreaks}
