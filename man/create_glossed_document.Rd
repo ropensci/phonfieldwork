@@ -9,7 +9,7 @@ create_glossed_document(
   rows = c("gls"),
   output_dir,
   output_file = "glossed_document",
-  output_format = "docx",
+  output_format = c("docx", "html"),
   example_pkg = NULL
 )
 }

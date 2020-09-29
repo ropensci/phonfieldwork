@@ -30,6 +30,8 @@ Suggests:
     testthat,
     covr,
     tidyverse,
+    dplyr,
+    tidyr,
     DT,
     lingtypology
 Language: en-US

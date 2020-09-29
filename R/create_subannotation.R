@@ -34,7 +34,7 @@ create_subannotation <- function(textgrid,
                                  each = 1,
                                  omit_blank = TRUE,
                                  overwrite = TRUE) {
-  df <- phonfieldwork::tier_to_df(textgrid, tier = tier)
+  df <- tier_to_df(textgrid, tier = tier)
 
   if (omit_blank) {
     df <- df[df$content != "", ]

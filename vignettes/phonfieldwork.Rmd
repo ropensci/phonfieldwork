@@ -300,7 +300,7 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4299093
+## 1 2_s1_tap.wav 0.4821542
 ```
 
 It is also possible to analyze the whole folder:
@@ -800,6 +800,11 @@ There is also an additional function for working with the `.flextext` format tha
 ```r
 create_glossed_document(flextext = "files/zilo_test.flextext",
                         output_dir = ".") # you need to specify the path to the output folder
+```
+
+```
+## Warning in if (!(output_format %in% c("html", "docx"))) {: the condition has length
+## > 1 and only the first element will be used
 ```
 
 ```

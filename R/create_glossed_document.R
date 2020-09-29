@@ -32,20 +32,22 @@ create_glossed_document <- function(flextext = NULL,
                                     rows = c("gls"),
                                     output_dir,
                                     output_file = "glossed_document",
-                                    output_format = "docx",
+                                    output_format = c("docx", "html"),
                                     example_pkg = NULL) {
-  if (!("dplyr" %in% utils::installed.packages()[, "Package"])) {
+  if (!requireNamespace("dplyr", quietly = TRUE)) {
     stop(paste0(
       "For this function you need to install dplyr package with a",
       ' command install.packages("dplyr").'
     ))
   }
-  if (!("tidyr" %in% utils::installed.packages()[, "Package"])) {
+  if (!requireNamespace("tidyr", quietly = TRUE)) {
     stop(paste0(
       "For this function you need to install tidyr package with a",
       ' command install.packages("tidyr").'
     ))
   }
+  match.arg(output_format)
+
   if (!(output_format %in% c("html", "docx"))) {
     stop('The output_format can be only "html" or "docx"')
   }
@@ -53,26 +55,23 @@ create_glossed_document <- function(flextext = NULL,
   if (class(flextext) != "data.frame") {
     flextext <- flextext_to_df(flextext)
   }
-
   tmp1 <- tempfile(fileext = ".csv")
+  on.exit(file.remove(tmp1))
   utils::write.csv(flextext, tmp1, row.names = FALSE)
   output_format2 <- ifelse(output_format == "docx", "word", output_format)
-  rmarkdown::render(paste0(
-    .libPaths()[1],
-    "/phonfieldwork/rmarkdown/templates/glossed_document/skeleton/skeleton.Rmd"
-  ),
-  params = list(
-    data = tmp1, rows = rows,
-    example_pkg = example_pkg
-  ),
-  output_dir = output_dir,
-  output_format = paste0(output_format2[1], "_document"),
-  quiet = TRUE,
-  output_file = output_file
+  rmarkdown::render(
+    system.file("rmarkdown", "templates", "glossed_document", "skeleton",
+      "skeleton.Rmd",
+      package = "phonfieldwork"
+    ),
+    params = list(data = tmp1, rows = rows, example_pkg = example_pkg),
+    output_dir = output_dir,
+    output_format = paste0(output_format2[1], "_document"),
+    quiet = TRUE,
+    output_file = output_file
   )
   message(paste0(
     "Output created: ", normalizePath(output_dir), "/",
     output_file, ".", output_format[1]
   ))
-  suppress_message <- file.remove(tmp1)
 }

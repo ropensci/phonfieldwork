@@ -32,12 +32,12 @@ create_viewer <- function(audio_dir,
                           output_dir,
                           output_file = "stimuli_viewer",
                           render = TRUE) {
-  if (!("DT" %in% utils::installed.packages()[, "Package"])) {
+  if (!requireNamespace("DT", quietly = TRUE)) {
     stop('For this function you need to install DT package with a command install.packages("DT").')
   }
 
   if (isTRUE(map)) {
-    if (!("lingtypology" %in% utils::installed.packages()[, "Package"])) {
+    if (!requireNamespace("lingtypology", quietly = TRUE)) {
       stop('If you want to create a map in a viewer, you need to install lingtypology package with a command install.packages("lingtypology").')
     }
 
@@ -90,6 +90,9 @@ create_viewer <- function(audio_dir,
 
   # create a .csv file ------------------------------------------------------
   tmp1 <- tempfile(fileext = ".csv")
+  if (render == TRUE) {
+    on.exit(file.remove(tmp1))
+  }
   utils::write.csv(table, tmp1, row.names = FALSE)
 
   # create about file -------------------------------------------------------
@@ -99,10 +102,13 @@ create_viewer <- function(audio_dir,
     tmp2 <- tempfile(fileext = ".Rmd")
     writeLines(about, tmp2)
   }
-
+  on.exit(file.remove(tmp2))
 
   # create map file ---------------------------------------------------------
   tmp3 <- tempfile(fileext = ".Rmd")
+  if (isTRUE(map)) {
+    on.exit(file.remove(tmp3))
+  }
   if (isTRUE(map)) {
     writeLines(
       '## map
@@ -150,16 +156,7 @@ map.feature(languages = df$language_for_lingtypology,
     output_file = output_file
     )
     message(paste0("Output created: ", output_dir, output_file, ".html"))
-    suppress_message <- file.remove(tmp1)
-    suppress_message <- file.remove(tmp2)
-    if (isTRUE(map)) {
-      suppress_message <- file.remove(tmp3)
-    }
   } else {
     return(tmp1)
-    suppress_message <- file.remove(tmp2)
-    if (isTRUE(map)) {
-      suppress_message <- file.remove(tmp3)
-    }
   }
 }

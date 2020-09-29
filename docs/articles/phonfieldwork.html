@@ -291,7 +291,7 @@ Your browser does not support iframes :(
 <p>Sometimes it is useful to get information about sound duration:</p>
 <div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="../reference/get_sound_duration.html">get_sound_duration</a></span>(<span class="st">"s1/2_s1_tap.wav"</span>)</pre></body></html></div>
 <pre><code>##           file  duration
-## 1 2_s1_tap.wav 0.4299093</code></pre>
+## 1 2_s1_tap.wav 0.4821542</code></pre>
 <p>It is also possible to analyze the whole folder:</p>
 <div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="../reference/get_sound_duration.html">get_sound_duration</a></span>(<span class="kw">sounds_from_folder</span> <span class="kw">=</span> <span class="st">"s2/"</span>)</pre></body></html></div>
 <pre><code>##           file  duration
@@ -653,10 +653,12 @@ Your browser does not support iframes :(
 <p>There is also an additional function for working with the <code>.flextext</code> format that convert it to a glossed document in a <code>docx</code> or <code>.html</code> format (see examples: <a href="https://github.com/agricolamz/phonfieldwork/raw/master/docs/additional/glossed_document.docx"><code>.docx</code></a>, <a href="https://agricolamz.github.io/phonfieldwork/additional/glossed_document.html"><code>.html</code></a>):</p>
 <div class="sourceCode" id="cb63"><html><body><pre class="r"><span class="fu"><a href="../reference/create_glossed_document.html">create_glossed_document</a></span>(<span class="kw">flextext</span> <span class="kw">=</span> <span class="st">"files/zilo_test.flextext"</span>,
                         <span class="kw">output_dir</span> <span class="kw">=</span> <span class="st">"."</span>) <span class="co"># you need to specify the path to the output folder</span></pre></body></html></div>
+<pre><code>## Warning in if (!(output_format %in% c("html", "docx"))) {: the condition has length
+## &gt; 1 and only the first element will be used</code></pre>
 <pre><code>## Output created: /home/agricolamz/work/packages/phonfieldwork/vignettes/glossed_document.docx</code></pre>
 <p>It is also possible to convert to LaTeX examples format using the <code>example_pkg</code> argument (possible values are: <code>gb4e</code>, <code>langsci</code>, <code>expex</code>, <code>philex</code>). There is also an additional <a href="https://agricolamz.github.io/phonfieldwork/articles/manipulating_with_flextext_fo_df.html">text</a> about manipulation with <code><a href="../reference/flextext_to_df.html">flextext_to_df()</a></code> output.</p>
 <p>All those functions (<code><a href="../reference/tier_to_df.html">tier_to_df()</a></code>, <code><a href="../reference/textgrid_to_df.html">textgrid_to_df()</a></code>, <code><a href="../reference/eaf_to_df.html">eaf_to_df()</a></code>, <code><a href="../reference/exb_to_df.html">exb_to_df()</a></code>, <code><a href="../reference/audacity_to_df.html">audacity_to_df()</a></code>, <code><a href="../reference/srt_to_df.html">srt_to_df()</a></code>) except <code><a href="../reference/flextext_to_df.html">flextext_to_df()</a></code> can be used in order to visualise sound annotation:</p>
-<div class="sourceCode" id="cb65"><html><body><pre class="r"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span>(<span class="kw">file_name</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test.wav"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"phonfieldwork"</span>),
+<div class="sourceCode" id="cb66"><html><body><pre class="r"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span>(<span class="kw">file_name</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test.wav"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"phonfieldwork"</span>),
            <span class="kw">annotation</span> <span class="kw">=</span> <span class="fu"><a href="../reference/eaf_to_df.html">eaf_to_df</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test.eaf"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"phonfieldwork"</span>)))</pre></body></html></div>
 <p><img src="unnamed-chunk-55-1.png"></p>
 </div>
@@ -697,12 +699,12 @@ Your browser does not support iframes :(
 ## │   ├── s2_tip_1.wav
 ## │   └── s2_top_3.wav</code></pre>
 <p>We have all folders:</p>
-<div class="sourceCode" id="cb67"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="st">"s1/s1_sounds/"</span>) <span class="co"># sounds</span></pre></body></html></div>
+<div class="sourceCode" id="cb68"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="st">"s1/s1_sounds/"</span>) <span class="co"># sounds</span></pre></body></html></div>
 <pre><code>## [1] "1_s1_ı.wav" "2_s1_æ.wav" "3_s1_ɒ.wav"</code></pre>
-<div class="sourceCode" id="cb69"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="st">"s1/s1_pics/"</span>) <span class="co"># pictures</span></pre></body></html></div>
+<div class="sourceCode" id="cb70"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="st">"s1/s1_pics/"</span>) <span class="co"># pictures</span></pre></body></html></div>
 <pre><code>## [1] "1_s1_ı.png" "2_s1_æ.png" "3_s1_ɒ.png"</code></pre>
 <p>So what is left is the table. It is possible to create manually (or upload it form .csv or .xlsx files, see section 4.1):</p>
-<div class="sourceCode" id="cb71"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">word</span>  <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"tap"</span>, <span class="st">"tip"</span>, <span class="st">"top"</span>),
+<div class="sourceCode" id="cb72"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">word</span>  <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"tap"</span>, <span class="st">"tip"</span>, <span class="st">"top"</span>),
                  <span class="kw">sounds</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"æ"</span>, <span class="st">"ı"</span>, <span class="st">"ɒ"</span>))
 <span class="no">df</span></pre></body></html></div>
 <pre><code>##   word sounds
@@ -710,7 +712,7 @@ Your browser does not support iframes :(
 ## 2  tip      ı
 ## 3  top      ɒ</code></pre>
 <p>This table could be used in order to create an annotation viewer:</p>
-<div class="sourceCode" id="cb73"><html><body><pre class="r"><span class="fu"><a href="../reference/create_viewer.html">create_viewer</a></span>(<span class="kw">audio_dir</span> <span class="kw">=</span> <span class="st">"s1/s1_sounds/"</span>,
+<div class="sourceCode" id="cb74"><html><body><pre class="r"><span class="fu"><a href="../reference/create_viewer.html">create_viewer</a></span>(<span class="kw">audio_dir</span> <span class="kw">=</span> <span class="st">"s1/s1_sounds/"</span>,
               <span class="kw">picture_dir</span> <span class="kw">=</span> <span class="st">"s1/s1_pics/"</span>,
               <span class="kw">table</span> <span class="kw">=</span> <span class="no">df</span>,
               <span class="kw">output_dir</span> <span class="kw">=</span> <span class="st">"s1/"</span>,
@@ -746,7 +748,7 @@ Your browser does not support iframes :(
 ## │   └── s2_top_3.wav</code></pre>
 <p>You can find the created example <a href="https://agricolamz.github.io/phonfieldwork/additional/stimuli_viewer.html">here</a>.</p>
 <p>Unfortunately, the way of table creation for the annotation viewer presented in this section is not a good solution for the huge amount of sounds. It is possible to derive such a table from annotation TextGrid, that we have created earlier. Here is a TextGrid:</p>
-<div class="sourceCode" id="cb77"><html><body><pre class="r"><span class="fu"><a href="../reference/textgrid_to_df.html">textgrid_to_df</a></span>(<span class="st">"s1/s1_all.TextGrid"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb78"><html><body><pre class="r"><span class="fu"><a href="../reference/textgrid_to_df.html">textgrid_to_df</a></span>(<span class="st">"s1/s1_all.TextGrid"</span>)</pre></body></html></div>
 <pre><code>##    id time_start  time_end      content tier     tier_name          source
 ## 1   1  0.0000000 0.4821542          tip    1        labels s1_all.TextGrid
 ## 4   1  0.0000000 0.4821542 1_s1_tip.wav    2 backup labels s1_all.TextGrid
@@ -764,13 +766,13 @@ Your browser does not support iframes :(
 ## 14  8  1.0390666 1.1300820            ɒ    3               s1_all.TextGrid
 ## 15  9  1.1300820 1.3942177                 3               s1_all.TextGrid</code></pre>
 <p>So in order to create desired table we can use <code><a href="../reference/tier_to_df.html">tier_to_df()</a></code> function:</p>
-<div class="sourceCode" id="cb79"><html><body><pre class="r"><span class="no">t1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/tier_to_df.html">tier_to_df</a></span>(<span class="st">"s1/s1_all.TextGrid"</span>, <span class="kw">tier</span> <span class="kw">=</span> <span class="fl">1</span>)
+<div class="sourceCode" id="cb80"><html><body><pre class="r"><span class="no">t1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/tier_to_df.html">tier_to_df</a></span>(<span class="st">"s1/s1_all.TextGrid"</span>, <span class="kw">tier</span> <span class="kw">=</span> <span class="fl">1</span>)
 <span class="no">t1</span></pre></body></html></div>
 <pre><code>##   id time_start  time_end content tier tier_name          source
 ## 1  1  0.0000000 0.4821542     tip    1    labels s1_all.TextGrid
 ## 2  2  0.4821542 0.9120635     tap    1    labels s1_all.TextGrid
 ## 3  3  0.9120635 1.3942177     top    1    labels s1_all.TextGrid</code></pre>
-<div class="sourceCode" id="cb81"><html><body><pre class="r"><span class="no">t3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/tier_to_df.html">tier_to_df</a></span>(<span class="st">"s1/s1_all.TextGrid"</span>, <span class="kw">tier</span> <span class="kw">=</span> <span class="fl">3</span>)
+<div class="sourceCode" id="cb82"><html><body><pre class="r"><span class="no">t3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/tier_to_df.html">tier_to_df</a></span>(<span class="st">"s1/s1_all.TextGrid"</span>, <span class="kw">tier</span> <span class="kw">=</span> <span class="fl">3</span>)
 <span class="no">t3</span></pre></body></html></div>
 <pre><code>##    id time_start  time_end content tier tier_name          source
 ## 7   1  0.0000000 0.1063758            3           s1_all.TextGrid
@@ -783,14 +785,14 @@ Your browser does not support iframes :(
 ## 14  8  1.0390666 1.1300820       ɒ    3           s1_all.TextGrid
 ## 15  9  1.1300820 1.3942177            3           s1_all.TextGrid</code></pre>
 <p>As we see the first tier is ready, but the third tier contains empty annotations. Let’s remove them:</p>
-<div class="sourceCode" id="cb83"><html><body><pre class="r"><span class="no">t3</span> <span class="kw">&lt;-</span> <span class="no">t3</span>[<span class="no">t3</span>$<span class="no">content</span> <span class="kw">!=</span> <span class="st">""</span>,]
+<div class="sourceCode" id="cb84"><html><body><pre class="r"><span class="no">t3</span> <span class="kw">&lt;-</span> <span class="no">t3</span>[<span class="no">t3</span>$<span class="no">content</span> <span class="kw">!=</span> <span class="st">""</span>,]
 <span class="no">t3</span></pre></body></html></div>
 <pre><code>##    id time_start  time_end content tier tier_name          source
 ## 8   2  0.1063758 0.1843889       ı    3           s1_all.TextGrid
 ## 11  5  0.5805225 0.6784724       æ    3           s1_all.TextGrid
 ## 14  8  1.0390666 1.1300820       ɒ    3           s1_all.TextGrid</code></pre>
 <p>So from this point it is possible to create the table that we wanted:</p>
-<div class="sourceCode" id="cb85"><html><body><pre class="r"><span class="no">new_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">words</span> <span class="kw">=</span> <span class="no">t1</span>$<span class="no">content</span>,
+<div class="sourceCode" id="cb86"><html><body><pre class="r"><span class="no">new_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">words</span> <span class="kw">=</span> <span class="no">t1</span>$<span class="no">content</span>,
                      <span class="kw">sounds</span> <span class="kw">=</span> <span class="no">t3</span>$<span class="no">content</span>)
 <span class="no">new_df</span></pre></body></html></div>
 <pre><code>##   words sounds
@@ -798,7 +800,7 @@ Your browser does not support iframes :(
 ## 2   tap      æ
 ## 3   top      ɒ</code></pre>
 <p>So now we are ready to run our code for creating an annotation viewer:</p>
-<div class="sourceCode" id="cb87"><html><body><pre class="r"><span class="fu"><a href="../reference/create_viewer.html">create_viewer</a></span>(<span class="kw">audio_dir</span> <span class="kw">=</span> <span class="st">"s1/s1_sounds/"</span>,
+<div class="sourceCode" id="cb88"><html><body><pre class="r"><span class="fu"><a href="../reference/create_viewer.html">create_viewer</a></span>(<span class="kw">audio_dir</span> <span class="kw">=</span> <span class="st">"s1/s1_sounds/"</span>,
               <span class="kw">picture_dir</span> <span class="kw">=</span> <span class="st">"s1/s1_pics/"</span>,
               <span class="kw">table</span> <span class="kw">=</span> <span class="no">new_df</span>,
               <span class="kw">output_dir</span> <span class="kw">=</span> <span class="st">"s1/"</span>,
@@ -813,7 +815,7 @@ Your browser does not support iframes :(
 <li>add <code>map = TRUE</code> argument to <code><a href="../reference/create_viewer.html">create_viewer()</a></code> function.</li>
 </ul>
 <p>I will add some glottocodes for Russian, Polish and Czech to the dataframe that we have already worked with (for those data it doesn’t make any sense, I just giving an example of usage):</p>
-<div class="sourceCode" id="cb90"><html><body><pre class="r"><span class="no">new_df</span>$<span class="no">glottocode</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"russ1263"</span>, <span class="st">"poli1260"</span>, <span class="st">"czec1258"</span>)
+<div class="sourceCode" id="cb91"><html><body><pre class="r"><span class="no">new_df</span>$<span class="no">glottocode</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"russ1263"</span>, <span class="st">"poli1260"</span>, <span class="st">"czec1258"</span>)
 <span class="fu"><a href="../reference/create_viewer.html">create_viewer</a></span>(<span class="kw">audio_dir</span> <span class="kw">=</span> <span class="st">"s1/s1_sounds/"</span>,
               <span class="kw">picture_dir</span> <span class="kw">=</span> <span class="st">"s1/s1_pics/"</span>,
               <span class="kw">table</span> <span class="kw">=</span> <span class="no">new_df</span>,

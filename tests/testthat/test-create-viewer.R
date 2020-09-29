@@ -3,15 +3,15 @@ test_that("create_viewer_general", {
   tmp <- tempdir()
   dir.create(paste0(tmp, "/result"))
   create_viewer(
-    audio_dir = "../audio",
-    picture_dir = "../pic",
+    audio_dir = "additional_file/audio",
+    picture_dir = "additional_file/pic",
     table = data.frame(id = 1:2),
     output_dir = paste0(tmp, "/result")
   )
 
   create_viewer(
-    audio_dir = paste0(tmp, "/audio"),
-    picture_dir = paste0(tmp, "/pic"),
+    audio_dir = "additional_file/audio",
+    picture_dir = "additional_file/pic",
     table = data.frame(glottocode = c("stan1293", "russ1263")),
     output_file = "with_a_map",
     output_dir = paste0(tmp, "/result"),
@@ -22,8 +22,8 @@ test_that("create_viewer_general", {
     expect_true(length(list.files(paste0(tmp, "/result"), "\\.html$")) == 2)
     expect_error(
       create_viewer(
-        audio_dir = paste0(tmp, "/audio"),
-        picture_dir = paste0(tmp, "/pic"),
+        audio_dir = "additional_file/audio",
+        picture_dir = "additional_file/pic",
         table = data.frame(id = 1:2),
         output_file = "with_a_map",
         output_dir = paste0(tmp, "/result"),

@@ -25,7 +25,7 @@
 #'
 
 tier_to_df <- function(file_name, tier = 1) {
-  df <- phonfieldwork::textgrid_to_df(file_name = file_name)
+  df <- textgrid_to_df(file_name = file_name)
 
   if (is.numeric(tier)) {
     if (tier > max(df$tier)) {
