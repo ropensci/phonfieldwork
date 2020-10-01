@@ -1,0 +1,78 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.6362131519274377 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "intervals" 
+        xmin = 0 
+        xmax = 0.6362131519274377 
+        intervals: size = 5 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.009927879214197743 
+            text = "" 
+        intervals [2]:
+            xmin = 0.009927879214197743 
+            xmax = 0.16485517570700836 
+            text = "p" 
+        intervals [3]:
+            xmin = 0.16485517570700836 
+            xmax = 0.40246001984742463 
+            text = "o" 
+        intervals [4]:
+            xmin = 0.40246001984742463 
+            xmax = 0.5354144545780337 
+            text = "s" 
+        intervals [5]:
+            xmin = 0.5354144545780337 
+            xmax = 0.6362131519274377 
+            text = "t" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "empty_intervals" 
+        xmin = 0 
+        xmax = 0.6362131519274377 
+        intervals: size = 5 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.009927879214197743 
+            text = "" 
+        intervals [2]:
+            xmin = 0.009927879214197743 
+            xmax = 0.16485517570700836 
+            text = "" 
+        intervals [3]:
+            xmin = 0.16485517570700836 
+            xmax = 0.40246001984742463 
+            text = "" 
+        intervals [4]:
+            xmin = 0.40246001984742463 
+            xmax = 0.5354144545780337 
+            text = "" 
+        intervals [5]:
+            xmin = 0.5354144545780337 
+            xmax = 0.6362131519274377 
+            text = "" 
+    item [3]:
+        class = "TextTier" 
+        name = "points" 
+        xmin = 0 
+        xmax = 0.6362131519274377 
+        points: size = 4 
+        points [1]:
+            number = 0.009927879214197743 
+            mark = "p" 
+        points [2]:
+            number = 0.16485517570700836 
+            mark = "o" 
+        points [3]:
+            number = 0.40246001984742463 
+            mark = "s" 
+        points [4]:
+            number = 0.5354144545780337 
+            mark = "t" 

@@ -14,6 +14,7 @@ reference:
 - contents:
   - annotate_textgrid
   - concatenate_soundfiles
+  - concatenate_textgrids
   - create_empty_textgrid
   - create_subannotation
   - get_sound_duration

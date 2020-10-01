@@ -98,10 +98,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ethical_research_with_phonfieldwork.html">Ethical Research with `phonfieldwork`</a>
+      <a href="../articles/data_manipulation_with_tidyverse.html">Manipulating `phonfieldwork` data with `tidyverse`</a>
     </li>
     <li>
-      <a href="../articles/manipulating_with_flextext_fo_df.html">Manipulating with `flextext_to_df()` output</a>
+      <a href="../articles/ethical_research_with_phonfieldwork.html">Ethical Research with `phonfieldwork`</a>
     </li>
   </ul>
 </li>
@@ -138,14 +138,20 @@
     <p>Creates an empty Praat TextGrid in the same folder as a reference sound file. It is possible to manage with predefined number of tiers, their names and their types.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_empty_textgrid</span>(<span class='no'>file_name</span>, <span class='kw'>tiers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>point_tiers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>create_empty_textgrid</span>(
+  <span class='no'>duration</span>,
+  <span class='kw'>tiers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>point_tiers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>path</span>,
+  <span class='kw'>result_file_name</span> <span class='kw'>=</span> <span class='st'>"new_textgrid"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file_name</th>
-      <td><p>a reference sound file.</p></td>
+      <th>duration</th>
+      <td><p>integer. Duration of the textgrid. If you do not know the duration of your audio file use the <code><a href='get_sound_duration.html'>get_sound_duration()</a></code> function.</p></td>
     </tr>
     <tr>
       <th>tiers</th>
@@ -154,6 +160,14 @@
     <tr>
       <th>point_tiers</th>
       <td><p>a vector that defines which tiers should be made point tiers. This argument excepts numeric values (e. g. <code><a href='https://rdrr.io/r/base/c.html'>c(2, 4)</a></code> means second and forth tiers) or character (e. g. <code><a href='https://rdrr.io/r/base/c.html'>c("a", "b")</a></code> means tiers with names "a" and "b")</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>path to the directory with soundfiles.</p></td>
+    </tr>
+    <tr>
+      <th>result_file_name</th>
+      <td><p>name of the result and annotation files.</p></td>
     </tr>
     </table>
 

@@ -300,7 +300,7 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4299093
+## 1 2_s1_tap.wav 0.4821542
 ```
 
 It is also possible to analyze the whole folder:
@@ -353,6 +353,8 @@ This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid
 The resulting file can be parsed with Praat (subscripted *t* is the result of Praat's conversion):
 
 ![](unnamed-chunk-23-1.png)
+
+It is not kind of task that could accure within phonfieldwork phylosophy, but it also possible to merge multiple `.TextGrid`s with the same tier structure using `concatente_textgrids()` function.
 
 ## Annotate your data
 
@@ -407,12 +409,20 @@ You can see that we created a third tier with annotation. The only thing left is
 
 You can see from the last figure that no backup tier was created (`backup = FALSE`), that the third tier was annotated (`tier = 3`).
 
-In case you want to create an empty TextGrid it is possible to use a `create_empty_textgrid()` function that takes some soundfile as a refence and creates
+In case you want to create an empty TextGrid it is possible to use a `create_empty_textgrid()` function that takes a duration as an argument:
 
 
 ```r
-create_empty_textgrid("s2/s2_tip_1.wav", tiers = c("a", "b"))
+create_empty_textgrid(get_sound_duration("s2/s2_tip_1.wav"), 
+                      tiers = c("a", "b"),
+                      path = "s2", 
+                      result_file_name = "s2_tip_1")
 ```
+
+```
+## Error in plot.window(...): need finite 'ylim' values
+```
+
 ![](unnamed-chunk-33-1.png)
 
 ```

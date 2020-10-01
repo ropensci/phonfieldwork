@@ -7,7 +7,6 @@
 #' @param path path to the directory with soundfiles.
 #' @param result_file_name name of the result and annotation files.
 #' @param annotation character. There are several variants: "textgrid" for Praat TextGrid, "eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file. It is also possible to use \code{NULL} in order to prevent the creation of the annotation file.
-#' @return
 #'
 #' @examples
 #' # create two files in a temprary folder "test_folder"
@@ -26,7 +25,6 @@
 #'
 #' list.files(tdir)
 #' # [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
-#'
 #' @return no output
 #' @export
 #' @importFrom tuneR readWave
@@ -90,7 +88,7 @@ concatenate_soundfiles <- function(path,
   tuneR::writeWave(sound, paste0(path, "/", result_file_name, ".wav"))
 
   # create an annotation ----------------------------------------------------
-  if (!is.null(annotation)){
+  if (!is.null(annotation)) {
     if (annotation[1] == "textgrid") {
       duration <- unlist(lapply(list, function(i) {
         length(i@left) / i@samp.rate
@@ -124,14 +122,14 @@ concatenate_soundfiles <- function(path,
           paste0("        xmax = ", end_time[length(end_time)]),
           paste0("        intervals: size = ", length(duration)),
           paste0(paste0("        intervals [", my_textgrid$Index, "]:"),
-                 "\n",
-                 paste0("            xmin = ", my_textgrid$StartTime),
-                 "\n",
-                 paste0("            xmax = ", my_textgrid$EndTime),
-                 "\n",
-                 paste0('            text = "', my_textgrid$Label, '"'),
-                 "\n",
-                 collapse = ""
+            "\n",
+            paste0("            xmin = ", my_textgrid$StartTime),
+            "\n",
+            paste0("            xmax = ", my_textgrid$EndTime),
+            "\n",
+            paste0('            text = "', my_textgrid$Label, '"'),
+            "\n",
+            collapse = ""
           )
         ),
         paste0(path, "/", result_file_name, ".TextGrid")

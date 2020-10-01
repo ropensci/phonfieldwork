@@ -12,5 +12,5 @@ test_that("textgrid_to_df", {
   expect_true(nrow(t1) == 14)
   expect_true(nrow(t2) == 14)
   expect_true(nrow(t3) == 14)
-  expect_true(nrow(t4) == 28)
+  expect_true(nrow(t4) == 42)
 })

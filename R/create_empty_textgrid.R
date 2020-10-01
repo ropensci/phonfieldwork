@@ -4,18 +4,22 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param file_name a reference sound file.
+#' @param duration integer. Duration of the textgrid. If you do not know the duration of your audio file use the \code{get_sound_duration()} function.
 #' @param tiers a vector that contain tier names.
 #' @param point_tiers a vector that defines which tiers should be made point tiers. This argument excepts numeric values (e. g. \code{c(2, 4)} means second and forth tiers) or character (e. g. \code{c("a", "b")} means tiers with names "a" and "b")
+#' @param path path to the directory with soundfiles.
+#' @param result_file_name name of the result and annotation files.
 #'
 #' @return The function returns no output, just creates a Praat TextGrid in the same folder as a reference sound file.
 #'
 #' @export
 #'
 
-create_empty_textgrid <- function(file_name,
+create_empty_textgrid <- function(duration,
                                   tiers = NULL,
-                                  point_tiers = NULL) {
+                                  point_tiers = NULL,
+                                  path,
+                                  result_file_name = "new_textgrid") {
 
   # in case of empty tiers and point tiers ----------------------------------
 
@@ -29,17 +33,12 @@ create_empty_textgrid <- function(file_name,
 
 
   # get path to the file ----------------------------------------------------
-  file_name <- normalizePath(file_name)
-  spl <- unlist(strsplit(basename(file_name), "\\."))
-  name <- substring(
-    basename(file_name),
-    1,
-    nchar(basename(file_name)) - nchar(spl[length(spl)]) - 1
+  textgrid_path <- paste0(
+    normalizePath(path),
+    "/",
+    result_file_name,
+    ".TextGrid"
   )
-  textgrid_path <- paste0(dirname(file_name), "/", name, ".TextGrid")
-
-  # get duration of the sound -----------------------------------------------
-  dur <- get_sound_duration(file_name)
 
   # get info about which tiers are point tiers ------------------------------
   if (typeof(point_tiers) == "character") {
@@ -76,13 +75,13 @@ create_empty_textgrid <- function(file_name,
     class_line = '        class = "IntervalTier"\n',
     name_line = paste0('        name = "', tiers, '"\n'),
     xmin = "        xmin = 0\n",
-    xmax = paste0("        xmax = ", dur$duration, "\n"),
+    xmax = paste0("        xmax = ", duration, "\n"),
     interval_size = "        intervals: size = 1\n",
     intervals = paste0("        intervals [1]:\n"),
     intervals_xmin = "            xmin = 0\n",
     intervals_xmax = paste0(
       "            xmax = ",
-      dur$duration, "\n"
+      duration, "\n"
     ),
     intervals_text = '            text = ""\n'
   )
@@ -98,7 +97,7 @@ create_empty_textgrid <- function(file_name,
   text <- paste0(
     'File type = "ooTextFile"\nObject class = "TextGrid"\n\nxmin = 0\n',
     "xmax = ",
-    dur$duration,
+    duration,
     "\ntiers? <exists>\n",
     "size = ",
     length(tiers),

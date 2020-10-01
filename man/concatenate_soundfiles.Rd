@@ -18,8 +18,6 @@ concatenate_soundfiles(
 \item{annotation}{character. There are several variants: "textgrid" for Praat TextGrid, "eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file. It is also possible to use \code{NULL} in order to prevent the creation of the annotation file.}
 }
 \value{
-
-
 no output
 }
 \description{
@@ -42,7 +40,6 @@ concatenate_soundfiles(path = tdir, result_file_name = "concatenated")
 
 list.files(tdir)
 # [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
-
 }
 \author{
 George Moroz <agricolamz@gmail.com>

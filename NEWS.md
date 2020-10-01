@@ -11,6 +11,7 @@
 - a lot of minor style changes (tnaks to Jonathan Keane)
 - add the `create_empty_textgrid()` function (thanks to Niko Partanen)
 - add the `data_manipulation_with_tidyverse` vignette (thanks to Niko Partanen)
+- add the `concatenate_textgrids()` function
 
 # phonfieldwork 0.0.7
 

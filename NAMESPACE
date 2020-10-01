@@ -3,6 +3,7 @@
 export(annotate_textgrid)
 export(audacity_to_df)
 export(concatenate_soundfiles)
+export(concatenate_textgrids)
 export(create_empty_textgrid)
 export(create_glossed_document)
 export(create_presentation)

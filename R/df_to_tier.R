@@ -4,7 +4,7 @@
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
-#' @param df an R dataframe object that contains columns named "annotation",
+#' @param df an R dataframe object that contains columns named "content",
 #' "time_start" and "time_end"
 #' @param textgrid a character with a filename or path to the TextGrid
 #' @param tier_name a vector that contain a name for a created tier
@@ -81,8 +81,8 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE) {
     paste0("    item [", n_tiers + 1, "]:"),
     tier_class,
     paste0('        name = "', tier_name, '" '),
-    tg[grep("item", tg)[2] + 3],
-    tg[grep("item", tg)[2] + 4],
+    paste0("        ", tg[4]),
+    paste0("        ", tg[5]),
     paste0(tier_type, ": size = ", nrow(df), " "),
     unlist(all_annotations)
   )

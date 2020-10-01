@@ -7,7 +7,7 @@
 df_to_tier(df, textgrid, tier_name = "", overwrite = TRUE)
 }
 \arguments{
-\item{df}{an R dataframe object that contains columns named "annotation",
+\item{df}{an R dataframe object that contains columns named "content",
 "time_start" and "time_end"}
 
 \item{textgrid}{a character with a filename or path to the TextGrid}
