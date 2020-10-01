@@ -40,8 +40,7 @@
 
 
 <meta property="og:title" content="Concatenate sounds — concatenate_soundfiles" />
-<meta property="og:description" content="Creates a sound file and a Praat TextGrid whose interval labels are the
-original names of the sound" />
+<meta property="og:description" content="Creates a merged sound file from old sound files in a folder. If the annotation argument is not equal to NULL, it creates an annotation file (Praat .TextGrid, ELAN .eaf or EXMARaLDA .exb) with original sound names annotation." />
 
 
 
@@ -99,6 +98,9 @@ original names of the sound" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/data_manipulation_with_tidyverse.html">Manipulating `phonfieldwork` data with `tidyverse`</a>
+    </li>
+    <li>
       <a href="../articles/ethical_research_with_phonfieldwork.html">Ethical Research with `phonfieldwork`</a>
     </li>
   </ul>
@@ -133,8 +135,7 @@ original names of the sound" />
     </div>
 
     <div class="ref-description">
-    <p>Creates a sound file and a Praat TextGrid whose interval labels are the
-original names of the sound</p>
+    <p>Creates a merged sound file from old sound files in a folder. If the annotation argument is not equal to <code>NULL</code>, it creates an annotation file (Praat .TextGrid, ELAN .eaf or EXMARaLDA .exb) with original sound names annotation.</p>
     </div>
 
     <pre class="usage"><span class='fu'>concatenate_soundfiles</span>(
@@ -156,8 +157,7 @@ original names of the sound</p>
     </tr>
     <tr>
       <th>annotation</th>
-      <td><p>there are several variants: "textgrid" for Praat TextGrid,
-"eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file</p></td>
+      <td><p>character. There are several variants: "textgrid" for Praat TextGrid, "eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file. It is also possible to use <code>NULL</code> in order to prevent the creation of the annotation file.</p></td>
     </tr>
     </table>
 
@@ -175,18 +175,19 @@ original names of the sound</p>
 <span class='no'>tdir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.copy</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>s1</span>, <span class='no'>s2</span>), <span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] TRUE TRUE</div><div class='input'>
 <span class='co'># here are two .wav files in a folder</span>
-<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] "filea2d4c26d21a.so"              "libloc_169_8f48fc7d1db1bb3e.rds"
-#&gt; [3] "libloc_190_21b4fc5121622cdd.rds" "libloc_201_40b5ab1406ba8155.rds"
-#&gt; [5] "post.wav"                        "test.wav"                       </div><div class='input'><span class='co'># [1] "post.wav" "test.wav"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] "file1f437eeabddb.so"             "libloc_169_8f48fc7d1db1bb3e.rds"
+#&gt; [3] "libloc_191_65bbdd11b5e815a7.rds" "libloc_201_40b5ab1406ba8155.rds"
+#&gt; [5] "post.wav"                        "test.wav"                       </div><div class='input'><span class='co'># [1] "post.wav" "test.wav" ...</span>
 
 <span class='co'># Concatenate all files from the folder into concatenated.wav and create</span>
 <span class='co'># corresponding TextGrid</span>
 <span class='fu'>concatenate_soundfiles</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>tdir</span>, <span class='kw'>result_file_name</span> <span class='kw'>=</span> <span class='st'>"concatenated"</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] "concatenated.TextGrid"           "concatenated.wav"               
-#&gt; [3] "filea2d4c26d21a.so"              "libloc_169_8f48fc7d1db1bb3e.rds"
-#&gt; [5] "libloc_190_21b4fc5121622cdd.rds" "libloc_201_40b5ab1406ba8155.rds"
+#&gt; [3] "file1f437eeabddb.so"             "libloc_169_8f48fc7d1db1bb3e.rds"
+#&gt; [5] "libloc_191_65bbdd11b5e815a7.rds" "libloc_201_40b5ab1406ba8155.rds"
 #&gt; [7] "post.wav"                        "test.wav"                       </div><div class='input'># [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

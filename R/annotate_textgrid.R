@@ -17,14 +17,14 @@
 #' then no output.
 #'
 #' @examples
-# annotate_textgrid(
-#   annotation = c("", "t", "e", "s", "t"),
-#   textgrid = system.file("extdata",
-#     "test.TextGrid",
-#     package = "phonfieldwork"
-#   ),
-#   tier = 2, write = FALSE
-# )
+#' annotate_textgrid(
+#'   annotation = c("", "t", "e", "s", "t"),
+#'   textgrid = system.file("extdata",
+#'     "test.TextGrid",
+#'     package = "phonfieldwork"
+#'   ),
+#'   tier = 2, write = FALSE
+#' )
 #' @export
 #'
 

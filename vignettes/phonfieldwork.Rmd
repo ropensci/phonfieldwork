@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2020-09-29"
+date: "2020-10-01"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -300,7 +300,7 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4821542
+## 1 2_s1_tap.wav 0.4299093
 ```
 
 It is also possible to analyze the whole folder:
@@ -803,12 +803,7 @@ create_glossed_document(flextext = "files/zilo_test.flextext",
 ```
 
 ```
-## Warning in if (!(output_format %in% c("html", "docx"))) {: the condition has length
-## > 1 and only the first element will be used
-```
-
-```
-## Output created: /home/agricolamz/work/packages/phonfieldwork/vignettes/glossed_document.docx
+## Output created: /home/agricolamz/work/packages/phonfieldwork/vignettes/glossed_document.html
 ```
 
 

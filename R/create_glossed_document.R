@@ -32,7 +32,7 @@ create_glossed_document <- function(flextext = NULL,
                                     rows = c("gls"),
                                     output_dir,
                                     output_file = "glossed_document",
-                                    output_format = c("docx", "html"),
+                                    output_format = "html",
                                     example_pkg = NULL) {
   if (!requireNamespace("dplyr", quietly = TRUE)) {
     stop(paste0(
@@ -46,11 +46,8 @@ create_glossed_document <- function(flextext = NULL,
       ' command install.packages("tidyr").'
     ))
   }
-  match.arg(output_format)
 
-  if (!(output_format %in% c("html", "docx"))) {
-    stop('The output_format can be only "html" or "docx"')
-  }
+  match.arg(output_format, c("docx", "html"))
 
   if (class(flextext) != "data.frame") {
     flextext <- flextext_to_df(flextext)
