@@ -7,9 +7,6 @@ notifications:
 
 r_packages:
   - covr
-  - dplyr
-  - tidyr
-  - DT
 
 after_success:
 - Rscript -e 'covr::codecov()'

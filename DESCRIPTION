@@ -29,7 +29,6 @@ Suggests:
     knitr,
     testthat,
     covr,
-    tidyverse,
     dplyr,
     tidyr,
     DT,
