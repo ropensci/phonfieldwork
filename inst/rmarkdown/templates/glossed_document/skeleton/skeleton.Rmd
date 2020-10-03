@@ -13,6 +13,8 @@ df <- read.csv(params$data, stringsAsFactors = FALSE)
 
 all_rows <- c("cf", "hn", "gls", "msa")
 
+na_to_empty_string <- function(h){ifelse(is.na(h), "", h)}
+
 library(dplyr, warn.conflicts = FALSE)
 library(tidyr, warn.conflicts = FALSE)
 

@@ -54,7 +54,7 @@ create_glossed_document <- function(flextext = NULL,
   }
   tmp1 <- tempfile(fileext = ".csv")
   on.exit(file.remove(tmp1))
-  utils::write.csv(flextext, tmp1, row.names = FALSE)
+  utils::write.csv(flextext, tmp1, row.names = FALSE, na = "")
   output_format2 <- ifelse(output_format == "docx", "word", output_format)
   rmarkdown::render(
     system.file("rmarkdown", "templates", "glossed_document", "skeleton",
@@ -63,12 +63,12 @@ create_glossed_document <- function(flextext = NULL,
     ),
     params = list(data = tmp1, rows = rows, example_pkg = example_pkg),
     output_dir = output_dir,
-    output_format = paste0(output_format2[1], "_document"),
+    output_format = paste0(output_format2, "_document"),
     quiet = TRUE,
     output_file = output_file
   )
   message(paste0(
     "Output created: ", normalizePath(output_dir), "/",
-    output_file, ".", output_format[1]
+    output_file, ".", output_format
   ))
 }
