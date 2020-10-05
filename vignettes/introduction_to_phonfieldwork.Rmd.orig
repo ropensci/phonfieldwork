@@ -229,10 +229,10 @@ Sometimes it is useful to get information about sound duration:
 get_sound_duration("s1/2_s1_tap.wav")
 ```
 
-It is also possible to analyze the whole folder:
+It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the function name (without quotation marks) that should get information:
 
 ```{r}
-get_sound_duration(sounds_from_folder = "s2/")
+read_from_folder(path = "s2/", get_sound_duration)
 ```
 
 For now `phonfieldwork` works only with `.wav(e)` and `.mp3` sound files and several video formats (`.mp4`, `.avi` and `.mov`).
@@ -316,9 +316,9 @@ You can see from the last figure that no backup tier was created (`backup = FALS
 In case you want to create an empty TextGrid it is possible to use a `create_empty_textgrid()` function that takes a duration as an argument:
 
 ```{r}
-create_empty_textgrid(get_sound_duration("s2/s2_tip_1.wav"), 
+create_empty_textgrid(get_sound_duration("s2/s2_tip_1.wav"),
                       tiers = c("a", "b"),
-                      path = "s2", 
+                      path = "s2",
                       result_file_name = "s2_tip_1")
 ```
 ```{r, echo=FALSE}
@@ -453,21 +453,16 @@ The `phonfieldwork` package provides also several methods for reading different 
 textgrid_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
 ```
 
-It is possible to read multiple `.TextGrid` files using the `textgrids_from_folder` argument.
-
 * file `.eaf` from ELAN  (just change the `system.file()` function to path to the file); see also the [FRelan](https://github.com/langdoc/FRelan) package by Niko Partanen
+
 ```{r}
 eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 ```
-
-It is possible to read multiple `.eaf` files using the `eafs_from_folder` argument.
 
 * file `.exb` from EXMARaLDA  (just change the `system.file()` function to path to the file)
 ```{r}
 exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 ```
-
-It is possible to read multiple `.exb` files using the `exbs_from_folder` argument.
 
 * subtitles file `.srt` (just change the `system.file()` function to path to the file)
 
@@ -508,6 +503,8 @@ All those functions (`tier_to_df()`, `textgrid_to_df()`, `eaf_to_df()`, `exb_to_
 draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwork"),
            annotation = eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork")))
 ```
+
+All those functions (`tier_to_df()`, `textgrid_to_df()`, `eaf_to_df()`, `exb_to_df()`, `audacity_to_df()`, `srt_to_df()`) except `flextext_to_df()` can be used within the `read_from_folder()` funtion in order to read multiple files of a certain type from some folder. The first argument is the path to the folder. The second argument is the function name (without quotation marks) that should get information.
 
 # Create a viewer
 

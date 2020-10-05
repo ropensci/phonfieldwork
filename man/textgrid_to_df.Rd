@@ -4,14 +4,10 @@
 \alias{textgrid_to_df}
 \title{TextGrid to dataframe}
 \usage{
-textgrid_to_df(file_name, textgrids_from_folder = NULL)
+textgrid_to_df(file_name)
 }
 \arguments{
 \item{file_name}{string with a filename or path to the TextGrid}
-
-\item{textgrids_from_folder}{path to a folder with multiple .TextGrid files.
-If this argument is not \code{NULL}, then the function goes through all files
-and create a merged dataframe for all of them.}
 }
 \value{
 a dataframe with columns:  \code{id}, \code{time_start},

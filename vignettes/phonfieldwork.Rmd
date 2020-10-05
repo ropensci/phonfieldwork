@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2020-10-01"
+date: "2020-10-05"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -300,14 +300,14 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4821542
+## 1 2_s1_tap.wav 0.4299093
 ```
 
-It is also possible to analyze the whole folder:
+It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the function name (without quotation marks) that should get information:
 
 
 ```r
-get_sound_duration(sounds_from_folder = "s2/")
+read_from_folder(path = "s2/", get_sound_duration)
 ```
 
 ```
@@ -413,9 +413,9 @@ In case you want to create an empty TextGrid it is possible to use a `create_emp
 
 
 ```r
-create_empty_textgrid(get_sound_duration("s2/s2_tip_1.wav"), 
+create_empty_textgrid(get_sound_duration("s2/s2_tip_1.wav"),
                       tiers = c("a", "b"),
-                      path = "s2", 
+                      path = "s2",
                       result_file_name = "s2_tip_1")
 ```
 
@@ -675,9 +675,8 @@ textgrid_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"
 ## 14  4 0.51157715 0.51157715       t    3          points test.TextGrid
 ```
 
-It is possible to read multiple `.TextGrid` files using the `textgrids_from_folder` argument.
-
 * file `.eaf` from ELAN  (just change the `system.file()` function to path to the file); see also the [FRelan](https://github.com/langdoc/FRelan) package by Niko Partanen
+
 
 ```r
 eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
@@ -698,8 +697,6 @@ eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 ## 7     1  6               intervals     praat      0.652  300.000 test.eaf
 ## 8     2  6         empty_intervals     praat      0.652  300.000 test.eaf
 ```
-
-It is possible to read multiple `.eaf` files using the `eafs_from_folder` argument.
 
 * file `.exb` from EXMARaLDA  (just change the `system.file()` function to path to the file)
 
@@ -727,8 +724,6 @@ exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 ## 6 0.4042473 test.exb
 ## 8 0.6526757 test.exb
 ```
-
-It is possible to read multiple `.exb` files using the `exbs_from_folder` argument.
 
 * subtitles file `.srt` (just change the `system.file()` function to path to the file)
 
@@ -829,6 +824,8 @@ draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwo
 ```
 
 ![](unnamed-chunk-55-1.png)
+
+All those functions (`tier_to_df()`, `textgrid_to_df()`, `eaf_to_df()`, `exb_to_df()`, `audacity_to_df()`, `srt_to_df()`) except `flextext_to_df()` can be used within the `read_from_folder()` funtion in order to read multiple files of a certain type from some folder. The first argument is the path to the folder. The second argument is the function name (without quotation marks) that should get information.
 
 # Create a viewer
 

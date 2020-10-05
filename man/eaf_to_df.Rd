@@ -4,14 +4,10 @@
 \alias{eaf_to_df}
 \title{ELAN's .eaf file to dataframe}
 \usage{
-eaf_to_df(file_name, eafs_from_folder = NULL)
+eaf_to_df(file_name)
 }
 \arguments{
 \item{file_name}{string with a filename or path to the .eaf file}
-
-\item{eafs_from_folder}{path to a folder with multiple .eaf files. If this
-argument is not \code{NULL}, then the function goes through all files and
-create a merged dataframe for all of them.}
 }
 \value{
 a dataframe with columns:  \code{tier}, \code{id}, \code{content},

@@ -7,7 +7,6 @@
 #' @param file_name string with a filename or path to the Pitch tier
 #' @param candidates Praat Pitch tier contains multiple candidates for each
 #' time slice, use the value \code{"all"} if you want to get them all
-#' @param encoding Pitch tier encoding. Import from \code{readLines()} function.
 #'
 #' @return a dataframe with columns:  \code{time_start}, \code{time_end},
 #' \code{frequency} and, if \code{candidates} = \code{"all"},
@@ -21,7 +20,6 @@
 #'
 
 pitch_to_df <- function(file_name,
-                        encoding = "unknown",
                         candidates = "") {
   # read file ---------------------------------------------------------------
   if (grepl("Pitch", file_name[2])) {

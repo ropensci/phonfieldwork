@@ -41,6 +41,7 @@ reference:
   - pitch_to_df
   - intensity_to_df
   - formant_to_df
+  - read_from_folder
 - title:  Create an interactive viewer
   desc: Extracct sound and spectrograms from your data and merge them into the interactive table
 - contents:

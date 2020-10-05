@@ -12,6 +12,7 @@
 - add the `create_empty_textgrid()` function (thanks to Niko Partanen)
 - add the `data_manipulation_with_tidyverse` vignette (thanks to Niko Partanen)
 - add the `concatenate_textgrids()` function
+- add the `read_from_folder()` function and remove `..._from_folder` arguments
 
 # phonfieldwork 0.0.7
 

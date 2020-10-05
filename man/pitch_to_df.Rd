@@ -4,12 +4,10 @@
 \alias{pitch_to_df}
 \title{Praat Pitch tier to dataframe}
 \usage{
-pitch_to_df(file_name, encoding = "unknown", candidates = "")
+pitch_to_df(file_name, candidates = "")
 }
 \arguments{
 \item{file_name}{string with a filename or path to the Pitch tier}
-
-\item{encoding}{Pitch tier encoding. Import from \code{readLines()} function.}
 
 \item{candidates}{Praat Pitch tier contains multiple candidates for each
 time slice, use the value \code{"all"} if you want to get them all}
