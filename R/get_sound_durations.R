@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' get_sound_duration(
-#'   sounds_from_folder = system.file("extdata", package = "phonfieldwork")
+#'   system.file("extdata", "test.wav", package = "phonfieldwork")
 #' )
 #' @export
 #'
