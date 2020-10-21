@@ -29,3 +29,4 @@ codemeta.json
 ^pkgdown$
 ^vignettes/COMPILE_vignettes_and_site.R
 ^vignettes/.*\.orig
+^codemeta\.json$
