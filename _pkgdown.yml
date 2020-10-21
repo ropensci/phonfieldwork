@@ -1,5 +1,5 @@
 destination: docs
-url: https://agricolamz.github.io/phonfieldwork/
+url: https://ropensci.github.io/phonfieldwork/
 template:
   params:
     bootswatch: readable

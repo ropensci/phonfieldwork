@@ -111,7 +111,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/agricolamz/phonfieldwork/">
+  <a href="https://github.com/ropensci/phonfieldwork/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -130,7 +130,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Concatenate sounds</h1>
-    <small class="dont-index">Source: <a href='https://github.com/agricolamz/phonfieldwork/blob/master/R/concatenate_textgrids.R'><code>R/concatenate_textgrids.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/phonfieldwork/blob/master/R/concatenate_textgrids.R'><code>R/concatenate_textgrids.R</code></a></small>
     <div class="hidden name"><code>concatenate_textgrids.Rd</code></div>
     </div>
 
@@ -164,17 +164,20 @@
 <span class='no'>tdir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.copy</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>t1</span>, <span class='no'>t2</span>), <span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] TRUE TRUE</div><div class='input'>
 <span class='co'># here are two .wav files in a folder</span>
-<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] "file5cbd3e6c4e0b.so"             "libloc_169_8f48fc7d1db1bb3e.rds"
-#&gt; [3] "libloc_191_d4eb1ff9dae0ed9d.rds" "libloc_201_40b5ab1406ba8155.rds"
-#&gt; [5] "post.TextGrid"                   "test.TextGrid"                  </div><div class='input'><span class='co'># [1] "post.TextGrid" "test.TextGrid" ...</span>
+<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt;  [1] "concatenated.TextGrid"           "concatenated.wav"               
+#&gt;  [3] "file8431537ba2f.so"              "libloc_169_8f48fc7d1db1bb3e.rds"
+#&gt;  [5] "libloc_191_ec655bd44ff422f6.rds" "libloc_201_40b5ab1406ba8155.rds"
+#&gt;  [7] "post.TextGrid"                   "post.wav"                       
+#&gt;  [9] "test.TextGrid"                   "test.wav"                       </div><div class='input'><span class='co'># [1] "post.TextGrid" "test.TextGrid" ...</span>
 
 <span class='co'># Concatenate all TextGrids from the folder into concatenated.TextGrid</span>
 <span class='fu'>concatenate_textgrids</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>tdir</span>, <span class='kw'>result_file_name</span> <span class='kw'>=</span> <span class='st'>"concatenated"</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt; [1] "concatenated.TextGrid"           "file5cbd3e6c4e0b.so"            
-#&gt; [3] "libloc_169_8f48fc7d1db1bb3e.rds" "libloc_191_d4eb1ff9dae0ed9d.rds"
-#&gt; [5] "libloc_201_40b5ab1406ba8155.rds" "post.TextGrid"                  
-#&gt; [7] "test.TextGrid"                  </div><div class='input'># [1] "concatenated.TextGrid" "post.TextGrid" "test.TextGrid" ...
+<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt;  [1] "concatenated.TextGrid"           "concatenated.wav"               
+#&gt;  [3] "file8431537ba2f.so"              "libloc_169_8f48fc7d1db1bb3e.rds"
+#&gt;  [5] "libloc_191_ec655bd44ff422f6.rds" "libloc_201_40b5ab1406ba8155.rds"
+#&gt;  [7] "post.TextGrid"                   "post.wav"                       
+#&gt;  [9] "test.TextGrid"                   "test.wav"                       </div><div class='input'># [1] "concatenated.TextGrid" "post.TextGrid" "test.TextGrid" ...
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

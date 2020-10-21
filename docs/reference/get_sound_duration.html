@@ -111,7 +111,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/agricolamz/phonfieldwork/">
+  <a href="https://github.com/ropensci/phonfieldwork/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -130,7 +130,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get file(s) duration</h1>
-    <small class="dont-index">Source: <a href='https://github.com/agricolamz/phonfieldwork/blob/master/R/get_sound_durations.R'><code>R/get_sound_durations.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/phonfieldwork/blob/master/R/get_sound_durations.R'><code>R/get_sound_durations.R</code></a></small>
     <div class="hidden name"><code>get_sound_duration.Rd</code></div>
     </div>
 
@@ -152,8 +152,9 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>get_sound_duration</span>(
-  <span class='kw'>sounds_from_folder</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>)
-)</div><div class='output co'>#&gt; <span class='error'>Error in get_sound_duration(sounds_from_folder = system.file("extdata",     package = "phonfieldwork")): unused argument (sounds_from_folder = system.file("extdata", package = "phonfieldwork"))</span></div></pre>
+  <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.wav"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>)
+)</div><div class='output co'>#&gt;       file  duration
+#&gt; 1 test.wav 0.6526757</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
