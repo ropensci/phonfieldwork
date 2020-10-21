@@ -3,8 +3,8 @@
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![CRAN version](http://www.r-pkg.org/badges/version/phonfieldwork)](https://cran.r-project.org/package=phonfieldwork)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/phonfieldwork)](https://CRAN.R-project.org/package=phonfieldwork)
-[![](https://travis-ci.org/agricolamz/phonfieldwork.svg?branch=master)](https://travis-ci.org/github/agricolamz/phonfieldwork)
-[![Coverage Status](https://img.shields.io/codecov/c/github/agricolamz/phonfieldwork/master.svg)](https://codecov.io/github/agricolamz/phonfieldwork?branch=master)
+[![](https://travis-ci.org/ropensci/phonfieldwork.svg?branch=master)](https://travis-ci.org/github/ropensci/phonfieldwork)
+[![Coverage Status](https://img.shields.io/codecov/c/github/ropensci/phonfieldwork/master.svg)](https://codecov.io/github/agricolamz/phonfieldwork?branch=master)
 [![DOI](https://zenodo.org/badge/194053227.svg)](https://zenodo.org/badge/latestdoi/194053227)
 
 `phonfieldwork` is a package for phonetic fieldwork research and experiments. This package make it easier:
@@ -15,9 +15,9 @@
 - extracting sounds according to annotation
 - extracting annotation from multiple linguistic formats (Praat `.TextGrid`, ELAN `.eaf`, EXMARaLDA `.exb`, Audacity `.txt` and subtitles `.srt`)
 - visualising an oscilogram, a spectrogram and an annotation
-- creating an html viewer [like this](https://agricolamz.github.io/phonfieldwork/s1/stimuli_viewer.html), ethical problems of this kind of viewer in linguistic research are covered in the vignette `vignette("ethical_research_with_phonfieldwork")`.
+- creating an html viewer [like this](https://ropensci.github.io/phonfieldwork/s1/stimuli_viewer.html), ethical problems of this kind of viewer in linguistic research are covered in the vignette `vignette("ethical_research_with_phonfieldwork")`.
 
-For more ditails see [tutorial](https://agricolamz.github.io/phonfieldwork/).
+For more ditails see [tutorial](https://ropensci.github.io/phonfieldwork/).
 
 The main goal of the `phonfieldwork` package is to make a full research workflow from data collection to data extraction and data representation easier for people that are not familiar with programming. Hovewer most of the `phonfieldwork` funnctionality can be found in other software and packages:
 
@@ -40,7 +40,7 @@ Get the development version from GitHub:
 
 ```
 install.packages("remotes")
-remotes::install_github("agricolamz/phonfieldwork")
+remotes::install_github("ropensi/phonfieldwork")
 ```
 Load a library:
 ```
