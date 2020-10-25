@@ -11,6 +11,7 @@
   "relatedLink": [
     {},
     "https://CRAN.R-project.org/package=phonfieldwork",
+    {},
     null
   ],
   "issueTracker": "https://github.com/ropensci/phonfieldwork/issues",
@@ -210,11 +211,15 @@
       "@type": "SoftwareApplication",
       "identifier": "tools",
       "name": "tools"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "https://sysreqs.r-hub.io/get/pandoc"
     }
   ],
   "releaseNotes": "https://github.com/ropensci/phonfieldwork/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/phonfieldwork/blob/master/README.md",
-  "fileSize": "1715.901KB",
+  "fileSize": "1715.908KB",
   "contIntegration": [
     "https://travis-ci.org/github/ropensci/phonfieldwork",
     "https://codecov.io/github/ropensci/phonfieldwork?branch=master"
