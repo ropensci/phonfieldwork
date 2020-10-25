@@ -2,7 +2,7 @@
 #'
 #' Creates an html or powerpoint presentation in a working directory from list
 #' of words and translations.
-#' \href{https://agricolamz.github.io/phonfieldwork/additional/first_example.html}{Here}
+#' \href{https://ropensci.github.io/phonfieldwork/additional/first_example.html}{Here}
 #' is an example of such presentation.
 #'
 #' @author George Moroz <agricolamz@gmail.com>

@@ -13,7 +13,7 @@
 - add the `data_manipulation_with_tidyverse` vignette (thanks to Niko Partanen)
 - add the `concatenate_textgrids()` function
 - add the `read_from_folder()` function and remove `..._from_folder` arguments
-- pass rOpenSci review!
+- pass rOpenSci review! Move tutorial to <https://ropensci.github.io/phonfieldwork/>
 
 # phonfieldwork 0.0.7
 
@@ -74,7 +74,7 @@
 - add a new function `create_viewer()` for creating an html viewer with sound and spectrograms
 - correct work of `autonumbering` function in `extract_intervals()` function
 - add new functions  `get_textgrid_names()` and `set_textgrid_names()`
-- finish tutorial <https://agricolamz.github.io/phonfieldwork/>
+- finish tutorial <https://ropensci.github.io/phonfieldwork/>
 
 # phonfieldwork 0.0.1
 

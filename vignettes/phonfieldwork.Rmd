@@ -102,7 +102,7 @@ There are some phoneticians who prefer to record everything, for language docume
 
 You can show a native speaker your stimuli one by one or not show them the stimule but ask them to pronounce a certain stimulus or its translation. I use presentations to collect all stimuli in a particular order without the risk of omissions.
 
-Since each stimulus is recorded as a separate audiofile, it is possible to merge them into one file automatically and make an annotation in a Praat TextGrid (the same result can be achieved with the `Concatenate recoverably` command in Praat). After this step, the user needs to do some annotation of her/his own. When the annotation part is finished, it is possible to extract the annotated parts to a table, where each annotated object is a row characterised by some features (stimulus, repetition, speaker, etc...). You can play the soundfile and view its oscilogram and spectrogram. Here is [an example of such a file](https://ropensci.github.io/from_sound_to_html_viewer/create_html.html) and [instruction for doing it](https://github.com/ropensci/from_sound_to_html_viewer).
+Since each stimulus is recorded as a separate audiofile, it is possible to merge them into one file automatically and make an annotation in a Praat TextGrid (the same result can be achieved with the `Concatenate recoverably` command in Praat). After this step, the user needs to do some annotation of her/his own. When the annotation part is finished, it is possible to extract the annotated parts to a table, where each annotated object is a row characterised by some features (stimulus, repetition, speaker, etc...). You can play the soundfile and view its oscilogram and spectrogram. Here is [an example of such a file](https://ropensci.github.io/phonfieldwork/additional/stimuli_viewer.html) and [instruction for doing it](https://ropensci.github.io/phonfieldwork/articles/phonfieldwork.html#create-a-viewer-1).
 
 # The `phonfieldwork` package in use
 ## Make a list of your stimuli
@@ -797,7 +797,7 @@ create_glossed_document(flextext = "files/zilo_test.flextext",
 
 
 
-It is also possible to convert to LaTeX examples format using the `example_pkg` argument (possible values are: `gb4e`, `langsci`, `expex`, `philex`). There is also an additional [text](https://ropensci.github.io/phonfieldwork/articles/manipulating_with_flextext_fo_df.html) about manipulation with `flextext_to_df()` output.
+It is also possible to convert to LaTeX examples format using the `example_pkg` argument (possible values are: `gb4e`, `langsci`, `expex`, `philex`). There is also an additional [text](https://ropensci.github.io/phonfieldwork/articles/data_manipulation_with_tidyverse.html) about manipulation with `flextext_to_df()` output.
 
 All those functions (`tier_to_df()`, `textgrid_to_df()`, `eaf_to_df()`, `exb_to_df()`, `audacity_to_df()`, `srt_to_df()`) except `flextext_to_df()` can be used in order to visualise sound annotation:
 
