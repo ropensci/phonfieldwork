@@ -93,7 +93,7 @@
                         <h4 class="author">George Moroz, <a href="https://ilcl.hse.ru/en/">NRU HSE Linguistic Convergence Laboratory</a>
 </h4>
             
-            <h4 class="date">2020-10-21</h4>
+            <h4 class="date">2020-10-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/phonfieldwork/blob/master/vignettes/data_manipulation_with_tidyverse.Rmd"><code>vignettes/data_manipulation_with_tidyverse.Rmd</code></a></small>
       <div class="hidden name"><code>data_manipulation_with_tidyverse.Rmd</code></div>
@@ -218,27 +218,27 @@
 <span class="co">#&gt; `summarise()` regrouping output by 'p_id', 's_id' (override with `.groups` argument)</span>
 <span class="co">#&gt; # A tibble: 19 x 5</span>
 <span class="co">#&gt; # Groups:   p_id, s_id [19]</span>
-<span class="co">#&gt;     p_id  s_id free_trans                      txt                         gls                       </span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                           &lt;chr&gt;                       &lt;chr&gt;                     </span>
-<span class="co">#&gt;  1     1     1 "Жил-был (у Гъули?) петух."     б-ик1-о-й=гъоди б--о-ч1игу… "an-быть-pst-cvb(pf)-=rep…</span>
-<span class="co">#&gt;  2     2     2 "Он грелся на улице(?)."        къват1и-ла=гъоди б-ик1-о-j… "улица-in-=rep an-быть-ps…</span>
-<span class="co">#&gt;  3     2     3 "[Ему в ногу] воткнулась колюч… къинни-й=гъоди ццана .      "втыкаться-cvb(pf)-=rep к…</span>
-<span class="co">#&gt;  4     3     4 "Когда колючка воткнулась, [он… ццана къинни-рбигьи б-uʔ-o… "колючка втыкаться-pst.pt…</span>
-<span class="co">#&gt;  5     4     5 "Гъули не обнаружил дома Бихта… бихьтай=ло ишуишу й-ис-он-… "Бихтай-=add дома-дома f-…</span>
-<span class="co">#&gt;  6     5     6 "Оттуда пошел к Умалаю, "       б-uʔ-oн-ни=гъоди гьербади … "an-идти-pst-pst(aor)-=re…</span>
-<span class="co">#&gt;  7     6     7 "Оттуда петух пошел к Патимат." х1елеко гье-лъу-кку б-ел1-… "петух dem-dat-el an-go-p…</span>
-<span class="co">#&gt;  8     8    10 "Оттуда [петух] пошел к Ханича… гье-лъу-кку б--и-й б-uʔ-oн… "dem-dat-el an--pst(aor)-…</span>
-<span class="co">#&gt;  9     9    11 "Иди к Хурмат, ..."             хъаничай-ди=ло ен-л1и бежу… "Ханичай-erg-=add rfl-gen…</span>
-<span class="co">#&gt; 10    10    12 "Когда дошёл до двора Хурмат, … рул1-и-й Х1урмати-л1и рей-… "говорить--cvb(pf) Хурмат…</span>
-<span class="co">#&gt; 11    11    13 "Три дня не ели, мы с ней не з… рул1-и-й лъоб-гу зубу в-ук… "говорить--cvb(pf) три-nu…</span>
-<span class="co">#&gt; 12    12    14 "Оттуда он ушёл и дошёл до Айш… гье-лъу-кку б--и-йб--и-й б… "dem-dat-el an--pst(aor)-…</span>
-<span class="co">#&gt; 13    13    15 "Захраил …?"                    й--и-й Загьраъил-ди=ло б-у… "f--pst(aor)-cvb(pf) Захр…</span>
-<span class="co">#&gt; 14    14    16 "И он пошел в село. Захраил ск… б-укъ-и-й гьеге-б=ло гьон-… "an-гнать-pst-pf dem-an-=…</span>
-<span class="co">#&gt; 15    15    17 "Оттуда снизу вверх к Исрапилу… гьегелъу-кку гьикьу=ло лъо… "там-el внизу-=add вверх …</span>
-<span class="co">#&gt; 16    16    18 "Шли-шли и пришли к Гаджи."     гье-лъу-кку б--и-йб--и-й б… "dem-dat-el an--pst(aor)-…</span>
-<span class="co">#&gt; 17    17    19 "Они поссорились (?) и прогнал… й-ейхъ-у й-ах-о-й дунял б-… "f-ругать-pst f-драться-p…</span>
-<span class="co">#&gt; 18    18    20 "Когда закончили ссориться, [п… джид-ия сабаб=ло б-ул1-и-й… "делать-fut причина-=add …</span>
-<span class="co">#&gt; 19    19    21 "На воротах Забита петух обнар… х1елеко б--и-й забити-б ка… "петух an--pst(aor)-cvb(p…</span></pre></body></html></div>
+<span class="co">#&gt;     p_id  s_id free_trans                      txt                         gls                        </span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                           &lt;chr&gt;                       &lt;chr&gt;                      </span>
+<span class="co">#&gt;  1     1     1 "Жил-был (у Гъули?) петух."     б-ик1-о-й=гъоди б--о-ч1игу… "an-быть-pst-cvb(pf)-=rep …</span>
+<span class="co">#&gt;  2     2     2 "Он грелся на улице(?)."        къват1и-ла=гъоди б-ик1-о-j… "улица-in-=rep an-быть-pst…</span>
+<span class="co">#&gt;  3     2     3 "[Ему в ногу] воткнулась колюч… къинни-й=гъоди ццана .      "втыкаться-cvb(pf)-=rep ко…</span>
+<span class="co">#&gt;  4     3     4 "Когда колючка воткнулась, [он… ццана къинни-рбигьи б-uʔ-o… "колючка втыкаться-pst.ptc…</span>
+<span class="co">#&gt;  5     4     5 "Гъули не обнаружил дома Бихта… бихьтай=ло ишуишу й-ис-он-… "Бихтай-=add дома-дома f-н…</span>
+<span class="co">#&gt;  6     5     6 "Оттуда пошел к Умалаю, "       б-uʔ-oн-ни=гъоди гьербади … "an-идти-pst-pst(aor)-=rep…</span>
+<span class="co">#&gt;  7     6     7 "Оттуда петух пошел к Патимат." х1елеко гье-лъу-кку б-ел1-… "петух dem-dat-el an-go-ps…</span>
+<span class="co">#&gt;  8     8    10 "Оттуда [петух] пошел к Ханича… гье-лъу-кку б--и-й б-uʔ-oн… "dem-dat-el an--pst(aor)-c…</span>
+<span class="co">#&gt;  9     9    11 "Иди к Хурмат, ..."             хъаничай-ди=ло ен-л1и бежу… "Ханичай-erg-=add rfl-gen.…</span>
+<span class="co">#&gt; 10    10    12 "Когда дошёл до двора Хурмат, … рул1-и-й Х1урмати-л1и рей-… "говорить--cvb(pf) Хурмат-…</span>
+<span class="co">#&gt; 11    11    13 "Три дня не ели, мы с ней не з… рул1-и-й лъоб-гу зубу в-ук… "говорить--cvb(pf) три-num…</span>
+<span class="co">#&gt; 12    12    14 "Оттуда он ушёл и дошёл до Айш… гье-лъу-кку б--и-йб--и-й б… "dem-dat-el an--pst(aor)-c…</span>
+<span class="co">#&gt; 13    13    15 "Захраил …?"                    й--и-й Загьраъил-ди=ло б-у… "f--pst(aor)-cvb(pf) Захра…</span>
+<span class="co">#&gt; 14    14    16 "И он пошел в село. Захраил ск… б-укъ-и-й гьеге-б=ло гьон-… "an-гнать-pst-pf dem-an-=a…</span>
+<span class="co">#&gt; 15    15    17 "Оттуда снизу вверх к Исрапилу… гьегелъу-кку гьикьу=ло лъо… "там-el внизу-=add вверх -…</span>
+<span class="co">#&gt; 16    16    18 "Шли-шли и пришли к Гаджи."     гье-лъу-кку б--и-йб--и-й б… "dem-dat-el an--pst(aor)-c…</span>
+<span class="co">#&gt; 17    17    19 "Они поссорились (?) и прогнал… й-ейхъ-у й-ах-о-й дунял б-… "f-ругать-pst f-драться-ps…</span>
+<span class="co">#&gt; 18    18    20 "Когда закончили ссориться, [п… джид-ия сабаб=ло б-ул1-и-й… "делать-fut причина-=add a…</span>
+<span class="co">#&gt; 19    19    21 "На воротах Забита петух обнар… х1елеко б--и-й забити-б ка… "петух an--pst(aor)-cvb(pf…</span></pre></body></html></div>
 <p>It is also very easy to get some simple statistics from the data:</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">df</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">gls</span> <span class="kw">!=</span> <span class="st">""</span>) <span class="kw">%&gt;%</span>

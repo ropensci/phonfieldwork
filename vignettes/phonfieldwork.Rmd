@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2020-10-21"
+date: "2020-10-25"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -300,14 +300,14 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4821542
+## 1 2_s1_tap.wav 0.4299093
 ```
 
-It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the function name (without quotation marks) that should get information:
+It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: "audacity", "duration", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"):
 
 
 ```r
-read_from_folder(path = "s2/", get_sound_duration)
+read_from_folder(path = "s2/", "duration")
 ```
 
 ```
@@ -317,7 +317,7 @@ read_from_folder(path = "s2/", get_sound_duration)
 ## 3 s2_top_3.wav 0.6650113
 ```
 
-For now `phonfieldwork` works only with `.wav(e)` and `.mp3` sound files and several video formats (`.mp4`, `.avi` and `.mov`).
+For now `phonfieldwork` works only with `.wav(e)` and `.mp3` sound files.
 
 ## Merge all data together
 
@@ -809,7 +809,7 @@ draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwo
 
 ![](unnamed-chunk-55-1.png)
 
-All those functions (`tier_to_df()`, `textgrid_to_df()`, `eaf_to_df()`, `exb_to_df()`, `audacity_to_df()`, `srt_to_df()`) except `flextext_to_df()` can be used within the `read_from_folder()` funtion in order to read multiple files of a certain type from some folder. The first argument is the path to the folder. The second argument is the function name (without quotation marks) that should get information.
+Remmember that it is also possible to read multiple files with the `read_from_folder()` funtion.
 
 # Create a viewer
 

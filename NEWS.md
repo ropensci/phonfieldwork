@@ -13,6 +13,7 @@
 - add the `data_manipulation_with_tidyverse` vignette (thanks to Niko Partanen)
 - add the `concatenate_textgrids()` function
 - add the `read_from_folder()` function and remove `..._from_folder` arguments
+- pass rOpenSci review!
 
 # phonfieldwork 0.0.7
 

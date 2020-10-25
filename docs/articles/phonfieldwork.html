@@ -92,7 +92,7 @@
                         <h4 class="author">G. Moroz, <a href="https://ilcl.hse.ru/en/">NRU HSE Linguistic Convergence Laboratory</a>
 </h4>
             
-            <h4 class="date">2020-10-21</h4>
+            <h4 class="date">2020-10-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/phonfieldwork/blob/master/vignettes/phonfieldwork.Rmd"><code>vignettes/phonfieldwork.Rmd</code></a></small>
       <div class="hidden name"><code>phonfieldwork.Rmd</code></div>
@@ -291,14 +291,14 @@ Your browser does not support iframes :(
 <p>Sometimes it is useful to get information about sound duration:</p>
 <div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="../reference/get_sound_duration.html">get_sound_duration</a></span>(<span class="st">"s1/2_s1_tap.wav"</span>)</pre></body></html></div>
 <pre><code>##           file  duration
-## 1 2_s1_tap.wav 0.4821542</code></pre>
-<p>It is also possible to analyze the whole folder using the <code><a href="../reference/read_from_folder.html">read_from_folder()</a></code> function. The first argument is the path to the folder. The second argument is the function name (without quotation marks) that should get information:</p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="../reference/read_from_folder.html">read_from_folder</a></span>(<span class="kw">path</span> <span class="kw">=</span> <span class="st">"s2/"</span>, <span class="no">get_sound_duration</span>)</pre></body></html></div>
+## 1 2_s1_tap.wav 0.4299093</code></pre>
+<p>It is also possible to analyze the whole folder using the <code><a href="../reference/read_from_folder.html">read_from_folder()</a></code> function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: “audacity”, “duration”, “eaf”, “exb”, “flextext”, “formant”, “intensity”, “picth”, “srt”, “textgrid”):</p>
+<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="../reference/read_from_folder.html">read_from_folder</a></span>(<span class="kw">path</span> <span class="kw">=</span> <span class="st">"s2/"</span>, <span class="st">"duration"</span>)</pre></body></html></div>
 <pre><code>##           file  duration
 ## 1 s2_tap_2.wav 0.5343991
 ## 2 s2_tip_1.wav 0.5866440
 ## 3 s2_top_3.wav 0.6650113</code></pre>
-<p>For now <code>phonfieldwork</code> works only with <code>.wav(e)</code> and <code>.mp3</code> sound files and several video formats (<code>.mp4</code>, <code>.avi</code> and <code>.mov</code>).</p>
+<p>For now <code>phonfieldwork</code> works only with <code>.wav(e)</code> and <code>.mp3</code> sound files.</p>
 </div>
 <div id="merge-all-data-together" class="section level2">
 <h2 class="hasAnchor">
@@ -645,7 +645,7 @@ Your browser does not support iframes :(
 <div class="sourceCode" id="cb66"><html><body><pre class="r"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span>(<span class="kw">file_name</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test.wav"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"phonfieldwork"</span>),
            <span class="kw">annotation</span> <span class="kw">=</span> <span class="fu"><a href="../reference/eaf_to_df.html">eaf_to_df</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test.eaf"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"phonfieldwork"</span>)))</pre></body></html></div>
 <p><img src="unnamed-chunk-55-1.png"></p>
-<p>All those functions (<code><a href="../reference/tier_to_df.html">tier_to_df()</a></code>, <code><a href="../reference/textgrid_to_df.html">textgrid_to_df()</a></code>, <code><a href="../reference/eaf_to_df.html">eaf_to_df()</a></code>, <code><a href="../reference/exb_to_df.html">exb_to_df()</a></code>, <code><a href="../reference/audacity_to_df.html">audacity_to_df()</a></code>, <code><a href="../reference/srt_to_df.html">srt_to_df()</a></code>) except <code><a href="../reference/flextext_to_df.html">flextext_to_df()</a></code> can be used within the <code><a href="../reference/read_from_folder.html">read_from_folder()</a></code> funtion in order to read multiple files of a certain type from some folder. The first argument is the path to the folder. The second argument is the function name (without quotation marks) that should get information.</p>
+<p>Remmember that it is also possible to read multiple files with the <code><a href="../reference/read_from_folder.html">read_from_folder()</a></code> funtion.</p>
 </div>
 <div id="create-a-viewer" class="section level1">
 <h1 class="hasAnchor">

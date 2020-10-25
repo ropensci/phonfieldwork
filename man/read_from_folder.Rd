@@ -4,19 +4,19 @@
 \alias{read_from_folder}
 \title{Read multiple files from the folder}
 \usage{
-read_from_folder(path, FUN)
+read_from_folder(path, type)
 }
 \arguments{
 \item{path}{to a folder with multiple sound files.}
 
-\item{FUN}{should be one of the following functions: \code{\link{get_sound_duration}}, \code{\link{audacity_to_df}}, \code{\link{eaf_to_df}}, \code{\link{exb_to_df}}, \code{\link{flextext_to_df}}, \code{\link{formant_to_df}}, \code{\link{intensity_to_df}}, \code{\link{pitch_to_df}}, \code{\link{srt_to_df}}, \code{\link{textgrid_to_df}}}
+\item{type}{should be one of the following: "duration", "audacity", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"}
 }
 \description{
-This function reads multiple files from the folder. The first argument is the path, the second argument is the phonfieldwork function that define the type of files.
+This function reads multiple files from the folder. The first argument is the path, the second argument is the type of files to read.
 }
 \examples{
 
-read_from_folder(system.file("extdata", package = "phonfieldwork"), get_sound_duration)
+read_from_folder(system.file("extdata", package = "phonfieldwork"), "eaf")
 
 }
 \author{

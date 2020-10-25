@@ -229,13 +229,13 @@ Sometimes it is useful to get information about sound duration:
 get_sound_duration("s1/2_s1_tap.wav")
 ```
 
-It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the function name (without quotation marks) that should get information:
+It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: "audacity", "duration", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"):
 
 ```{r}
-read_from_folder(path = "s2/", get_sound_duration)
+read_from_folder(path = "s2/", "duration")
 ```
 
-For now `phonfieldwork` works only with `.wav(e)` and `.mp3` sound files and several video formats (`.mp4`, `.avi` and `.mov`).
+For now `phonfieldwork` works only with `.wav(e)` and `.mp3` sound files.
 
 ## Merge all data together
 
@@ -504,7 +504,7 @@ draw_sound(file_name = system.file("extdata", "test.wav", package = "phonfieldwo
            annotation = eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork")))
 ```
 
-All those functions (`tier_to_df()`, `textgrid_to_df()`, `eaf_to_df()`, `exb_to_df()`, `audacity_to_df()`, `srt_to_df()`) except `flextext_to_df()` can be used within the `read_from_folder()` funtion in order to read multiple files of a certain type from some folder. The first argument is the path to the folder. The second argument is the function name (without quotation marks) that should get information.
+Remmember that it is also possible to read multiple files with the `read_from_folder()` funtion.
 
 # Create a viewer
 

@@ -1,32 +1,53 @@
 #' Read multiple files from the folder
 #'
-#' This function reads multiple files from the folder. The first argument is the path, the second argument is the phonfieldwork function that define the type of files.
+#' This function reads multiple files from the folder. The first argument is the path, the second argument is the type of files to read.
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
 #' @param path to a folder with multiple sound files.
-#' @param FUN should be one of the following functions: \code{\link{get_sound_duration}}, \code{\link{audacity_to_df}}, \code{\link{eaf_to_df}}, \code{\link{exb_to_df}}, \code{\link{flextext_to_df}}, \code{\link{formant_to_df}}, \code{\link{intensity_to_df}}, \code{\link{pitch_to_df}}, \code{\link{srt_to_df}}, \code{\link{textgrid_to_df}}
+#' @param type should be one of the following: "duration", "audacity", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"
 #'
 #' @examples
 #'
-#' read_from_folder(system.file("extdata", package = "phonfieldwork"), get_sound_duration)
+#' read_from_folder(system.file("extdata", package = "phonfieldwork"), "eaf")
 #'
 #' @export
 
-read_from_folder <- function(path, FUN) {
-  phonfieldwork_functions <- c(
-    "get_sound_duration", "audacity_to_df", "eaf_to_df", "exb_to_df",
-    "flextext_to_df", "formant_to_df", "intensity_to_df", "pitch_to_df",
-    "srt_to_df", "textgrid_to_df"
-  )
-  exts <- c(
-    ".wav$", ".txt$", ".eaf$", ".exb$", ".flextext$", ".Formant$",
-    ".Intensity$", ".Pitch$", ".srt$", ".TextGrid$"
-  )
-  input_function <- as.character(substitute(FUN))
-  match.arg(input_function, phonfieldwork_functions)
-  ext <- exts[phonfieldwork_functions %in% input_function]
+read_from_folder <- function(path, type) {
+
+
+# check for correct type --------------------------------------------------
+  possible_types <- c("duration", "audacity", "eaf", "exb", "flextext",
+                      "formant", "intensity", "picth", "srt", "textgrid")
+  match.arg(type, possible_types, several.ok = FALSE)
+
+# get extension -----------------------------------------------------------
+  ext <- switch(type,
+                 duration = ".wav$",
+                 audacity = ".txt$",
+                 eaf = ".eaf$",
+                 exb = ".exb$",
+                 flextext = ".flextext$",
+                 formant = ".Formant$",
+                 intensity = ".Intensity$",
+                 picth = ".Pitch$",
+                 srt = ".srt$",
+                 textgrid = ".TextGrid$")
+
+# get apropriate function -------------------------------------------------
+  FUN <- switch(type,
+         duration = "get_sound_duration",
+         audacity = "audacity_to_df",
+         eaf = "eaf_to_df",
+         exb = "exb_to_df",
+         flextext = "flextext_to_df",
+         formant = "formant_to_df",
+         intensity = "intensity_to_df",
+         picth = "pitch_to_df",
+         srt = "srt_to_df",
+         textgrid = "textgrid_to_df")
+
   path <- normalizePath(path)
   files <- list.files(path, pattern = ext, full.names = TRUE)
-  do.call(rbind, lapply(files, FUN = FUN))
+  do.call(rbind, lapply(files, FUN = eval(parse(text = FUN))))
 }
