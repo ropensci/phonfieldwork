@@ -16,7 +16,7 @@
   ],
   "issueTracker": "https://github.com/ropensci/phonfieldwork/issues",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -219,7 +219,6 @@
   ],
   "releaseNotes": "https://github.com/ropensci/phonfieldwork/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/phonfieldwork/blob/master/README.md",
-  "fileSize": "1715.9KB",
   "contIntegration": [
     "https://travis-ci.org/github/ropensci/phonfieldwork",
     "https://codecov.io/github/ropensci/phonfieldwork?branch=master"

@@ -1,3 +1,7 @@
+# phonfieldwork 0.0.10
+
+- add tryCatch to the `read_from_folder()` function
+
 # phonfieldwork 0.0.8
 
 - add possibility to read short format of `.TextGrid`s and fix `textgrid_to_df()` and `tier_to_df()` functions
