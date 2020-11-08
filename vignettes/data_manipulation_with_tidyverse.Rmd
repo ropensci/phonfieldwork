@@ -1,7 +1,7 @@
 ---
 title: "Manipulating `phonfieldwork` data with `tidyverse`"
 author: "George Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
-date: "2020-11-07"
+date: "2020-11-08"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Manipulating `phonfieldwork` data with `tidyverse`}

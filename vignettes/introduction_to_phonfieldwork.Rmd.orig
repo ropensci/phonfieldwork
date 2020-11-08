@@ -252,7 +252,7 @@ This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid
 tree | tail -n 18 | head -n 15
 ```
 
-The resulting file can be parsed with Praat (subscripted *t* is the result of Praat's conversion):
+The resulting file can be parsed with Praat:
 
 ```{r, echo=FALSE}
 draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
@@ -335,7 +335,7 @@ First, it is important to create a folder where all of the extracted files will 
 dir.create("s1/s1_sounds")
 ```
 
-It is possible extract to extract all annotated files based on an annotation tier:
+It is possible to extract all annotated files based on an annotation tier:
 
 ```{r}
 extract_intervals(file_name = "s1/s1_all.wav",

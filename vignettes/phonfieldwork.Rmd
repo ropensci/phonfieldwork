@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2020-11-07"
+date: "2020-11-08"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -300,7 +300,7 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4821542
+## 1 2_s1_tap.wav 0.4299093
 ```
 
 It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: "audacity", "duration", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"):
@@ -350,7 +350,7 @@ This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid
 ## │   └── s2_top_3.wav
 ```
 
-The resulting file can be parsed with Praat (subscripted *t* is the result of Praat's conversion):
+The resulting file can be parsed with Praat:
 
 ![](unnamed-chunk-23-1.png)
 
@@ -452,7 +452,7 @@ First, it is important to create a folder where all of the extracted files will 
 dir.create("s1/s1_sounds")
 ```
 
-It is possible extract to extract all annotated files based on an annotation tier:
+It is possible to extract all annotated files based on an annotation tier:
 
 
 ```r

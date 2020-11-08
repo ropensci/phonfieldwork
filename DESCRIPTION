@@ -50,4 +50,3 @@ Suggests:
     lingtypology,
     testthat
 Language: en-US
-Config/testthat/parallel: true

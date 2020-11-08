@@ -93,7 +93,7 @@
                         <h4 class="author">G. Moroz, <a href="https://ilcl.hse.ru/en/">NRU HSE Linguistic Convergence Laboratory</a>
 </h4>
             
-            <h4 class="date">2020-11-07</h4>
+            <h4 class="date">2020-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/phonfieldwork/blob/master/vignettes/phonfieldwork.Rmd"><code>vignettes/phonfieldwork.Rmd</code></a></small>
       <div class="hidden name"><code>phonfieldwork.Rmd</code></div>
@@ -307,7 +307,7 @@ Your browser does not support iframes :(
 <div class="sourceCode" id="cb25"><pre class="downlit">
 <span class="fu"><a href="../reference/get_sound_duration.html">get_sound_duration</a></span><span class="op">(</span><span class="st">"s1/2_s1_tap.wav"</span><span class="op">)</span></pre></div>
 <pre><code>##           file  duration
-## 1 2_s1_tap.wav 0.4821542</code></pre>
+## 1 2_s1_tap.wav 0.4299093</code></pre>
 <p>It is also possible to analyze the whole folder using the <code><a href="../reference/read_from_folder.html">read_from_folder()</a></code> function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: “audacity”, “duration”, “eaf”, “exb”, “flextext”, “formant”, “intensity”, “picth”, “srt”, “textgrid”):</p>
 <div class="sourceCode" id="cb27"><pre class="downlit">
 <span class="fu"><a href="../reference/read_from_folder.html">read_from_folder</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"s2/"</span>, <span class="st">"duration"</span><span class="op">)</span></pre></div>
@@ -340,7 +340,7 @@ Your browser does not support iframes :(
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.wav
 ## │   └── s2_top_3.wav</code></pre>
-<p>The resulting file can be parsed with Praat (subscripted <em>t</em> is the result of Praat’s conversion):</p>
+<p>The resulting file can be parsed with Praat:</p>
 <p><img src="unnamed-chunk-23-1.png"></p>
 <p>It is not kind of task that could accure within phonfieldwork phylosophy, but it also possible to merge multiple <code>.TextGrid</code>s with the same tier structure using <code>concatente_textgrids()</code> function.</p>
 </div>
@@ -403,7 +403,7 @@ Your browser does not support iframes :(
 <p>First, it is important to create a folder where all of the extracted files will be stored:</p>
 <div class="sourceCode" id="cb39"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"s1/s1_sounds"</span><span class="op">)</span></pre></div>
-<p>It is possible extract to extract all annotated files based on an annotation tier:</p>
+<p>It is possible to extract all annotated files based on an annotation tier:</p>
 <div class="sourceCode" id="cb40"><pre class="downlit">
 <span class="fu"><a href="../reference/extract_intervals.html">extract_intervals</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="st">"s1/s1_all.wav"</span>,
                   textgrid <span class="op">=</span> <span class="st">"s1/s1_all.TextGrid"</span>,
