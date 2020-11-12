@@ -154,6 +154,8 @@ draw_sound <- function(file_name,
                        autonumber = FALSE) {
   if (is.null(sounds_from_folder)) {
     if (is.null(output_file)) {
+      oldpar <- graphics::par(no.readonly = TRUE)
+      on.exit(graphics::par(oldpar))
       # read file and convert to phonTools format -------------------------------
       if (class(file_name) == "Wave") {
         s <- file_name
@@ -425,18 +427,16 @@ draw_sound <- function(file_name,
         }
 
         if (from != 0) {
-          lapply(unique(df$tier), function(i) {
             extended <- data.frame(
               id = NA,
               time_start = 0,
-              time_end = min(df[df$tier == i, ]$time_start),
+              time_end = min(df[df$tier == unique(df$tier), ]$time_start),
               content = "",
-              tier = i,
+              tier = unique(df$tier),
               tier_name = "",
               source = unique(df$source)
             )
-            df <<- rbind(extended, df)
-          })
+            df <- rbind(extended, df)
         }
         df <- df[order(df$tier), ]
         df$mid_point <- df$time_start + (df$time_end - df$time_start) / 2
@@ -477,12 +477,6 @@ draw_sound <- function(file_name,
         )
         graphics::axis(1, cex.axis = text_size)
       }
-      # reset graphical parameters to default -----------------------------------
-      graphics::par(
-        oma = c(0, 0, 0, 0),
-        mai = c(1.02, 0.82, 0.82, 0.42),
-        fig = c(0, 1, 0, 1)
-      )
     } else {
       # save a file -------------------------------------------------------------
       grDevices::png(

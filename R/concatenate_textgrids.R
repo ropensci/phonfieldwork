@@ -47,7 +47,7 @@ concatenate_textgrids <- function(path,
       df <- textgrid_to_df(file_name = i)
       df$time_start <- df$time_start + start
       df$time_end <- df$time_end + start
-      start <<- max(df$time_end)
+      assign("start", max(df$time_end), parent.frame(n = 2))
       return(df)
     })
   )

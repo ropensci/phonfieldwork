@@ -31,13 +31,7 @@ set_textgrid_names <- function(textgrid,
 
   # rewrite names in TextGrid -----------------------------------------------
   change <- grep('name = ".*"', tg)[tiers]
-  result <- lapply(seq_along(change), function(i) {
-    tg[change[i]] <<- paste0(
-      '        name = "',
-      names[i],
-      '"'
-    )
-  })
+  tg[change] <- paste0('        name = "', names, '"')
 
   # write the result TextGrid -----------------------------------------------
   if (isTRUE(write)) {

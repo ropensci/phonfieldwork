@@ -130,24 +130,19 @@ draw_spectrogram <- function(sound,
   }
   N <- n + padding
 
-  spect <- matrix(
-    nrow = length(spots),
-    ncol = (N / 2 + 1)
-  )
-
-  lapply(spots, function(x) {
-    tmp <- sound[x:(x + n - 1)] * phonTools::windowfunc(
-      sound[x:(x + n - 1)],
-      window,
-      windowparameter
-    )
-    tmp <- c(tmp, rep(0, padding))
-    tmp <- tmp - mean(tmp)
-    tmp <- stats::fft(tmp)[1:(N / 2 + 1)]
-    tmp <- abs(tmp)^2
-    tmp <- log(tmp, 10) * 10
-    spect[which(spots == x), ] <<- tmp
-  })
+  spect <- do.call(rbind,
+                   lapply(spots, function(x) {
+                     tmp <- sound[x:(x + n - 1)] * phonTools::windowfunc(
+                       sound[x:(x + n - 1)],
+                       window,
+                       windowparameter)
+                     tmp <- c(tmp, rep(0, padding))
+                     tmp <- tmp - mean(tmp)
+                     tmp <- stats::fft(tmp)[1:(N / 2 + 1)]
+                     tmp <- abs(tmp) ^ 2
+                     tmp <- log(tmp, 10) * 10
+                     tmp
+                   }))
 
   for (i in seq_along(spots)) {
     spect[i, 1] <- min(spect[i, -1])
