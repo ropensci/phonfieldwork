@@ -1,6 +1,7 @@
 # phonfieldwork
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![](https://badges.ropensci.org/385_status.svg)](https://github.com/ropensci/software-review/issues/385)
 [![CRAN version](http://www.r-pkg.org/badges/version/phonfieldwork)](https://cran.r-project.org/package=phonfieldwork)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/phonfieldwork)](https://CRAN.R-project.org/package=phonfieldwork)
 [![](https://travis-ci.org/ropensci/phonfieldwork.svg?branch=master)](https://travis-ci.org/github/ropensci/phonfieldwork)
@@ -55,3 +56,5 @@ In order to work with some `rmarkdown` functions you will need to install `pando
 * use ELAN and EXMARALDA files in the whole pipline discribed in docs
 * use the same pipline with video (for Sign Languages)
 * make [TECkit](https://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=BeyondUTR22_pdf&filename=BeyondUTR22_pdf.pdf) to df and back
+
+[![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
