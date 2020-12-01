@@ -2,26 +2,19 @@
 title: "Phonetic fieldwork and experiments with the `phonfieldwork` package for R"
 author: "G. Moroz"
 date: "10/27/2020"
-output: html_document
+output:
+  html_document:
+bibliography: bibliography.bib
+biblio-style: "apalike"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Science craft
+## Science methodology
 
-Science become data-driven in many fields. The more we go this direction, the more clear you can see a split of a scince into three parts: 
-
-* **theoretical**, where previously and newly obtained results are used to invent and prove theories;
-* **applied**, where previously obtained results are used to solve some practical problems;
-* **science craft**, which could be summarised in one question: "How obtain scintific results?".
-
-Since the last part is out of wedlock, contributers in that field are underestimated: the software recieve less citations, the methodological articles are less wanted by scintific journals. It is possible that some desciplines have some standards and tutorials that list all necessary steps.
-
-I am a field linguist, so I have spent a lot of time working at the Caucasus villages collecting audio from speakers of indigenous languages. Theoretical linguists will be interested for example in whether [ejective consonants](https://en.wikipedia.org/wiki/Ejective_consonant) (the special type of consonants, you can hear them on wikipedia page) and their acoustic characteristics are common for all three endemic language families of the Caucasus. Applied linguists will be ineterested for example in creation of the sound generation system for some of those languages. Linguistic crafters should be interested in how to collect data in a way that both theoretical and applied linguists can do their job. I have wrote *should*, because I have never seen any linguistic crafters -- in most cases there functions were carried out by the linguist whoever is in a field.
-
-During my fieldtrips I created my own pipeline of collecting data. That were a combination of different scripts written using different programming languages and without any future thinking. What they were doing was not any scince at all: automatic renaming, merging, automatic preannotation of files, making backups, visualising some data etc. The problem started, when I tried to pass knowledge to my students. Not all of my students were familiar with all programing languages, some of the code become outdated, some of the code not worked properly on all operational systems. That is why I decided to create a package that become a toolkit for a phonetic researcher: writen using one programming language, simple for non-coders or people that are not familiar with R.
+I am a field linguist, so I have spent a lot of time working at the Caucasus villages collecting audio from speakers of indigenous languages. During my fieldtrips I created my own pipeline of collecting data. That were a combination of different scripts written using different programming languages and without any future thinking. What they were doing was not any scince at all: automatic renaming, merging, automatic preannotation of files, making backups, visualising some data etc. The problem started, when I tried to pass knowledge to my students. Not all of my students were familiar with all programing languages, some of the code become outdated, some of the code not worked properly on all operational systems. That is why I decided to create a package that become a toolkit for a phonetic researcher: writen using one programming language, simple for non-coders or people that are not familiar with R.
 
 ## `phonfieldwork`
 
@@ -137,4 +130,4 @@ Dear all,
 It’s my pleasure to announce a new stable release of phonfieldwork v. 0.0.10 package for R that just passed the rOpenSci review. The main goal of this package is to provide a huge variety of tools that can be used by phonetic researchers in the field and laboratories. The package helps collect, annotate and convert different sound annotation formats to tables. It is also possible to create sound viewers (like [this](https://ropensci.github.io/phonfieldwork/additional/stimuli_viewer.html)) that can be a handy tool for data analysis and data sharing process in phonetics. The process of work with this package is documented [here](https://ropensci.github.io/phonfieldwork/), but I would be happy to answer you questions via github issues or mail.
 
 George Moroz,
- Linguistic convergence laboratory, HSE
+Linguistic convergence laboratory, HSE
