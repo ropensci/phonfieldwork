@@ -12,9 +12,19 @@ biblio-style: "apalike"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Science methodology
+## Science craft
 
-I am a field linguist, so I have spent a lot of time working at the Caucasus villages collecting audio from speakers of indigenous languages. During my fieldtrips I created my own pipeline of collecting data. That were a combination of different scripts written using different programming languages and without any future thinking. What they were doing was not any scince at all: automatic renaming, merging, automatic preannotation of files, making backups, visualising some data etc. The problem started, when I tried to pass knowledge to my students. Not all of my students were familiar with all programing languages, some of the code become outdated, some of the code not worked properly on all operational systems. That is why I decided to create a package that become a toolkit for a phonetic researcher: writen using one programming language, simple for non-coders or people that are not familiar with R.
+As a field linguist, I have spent a lot of time working in villages in the Caucasus, collecting audio from speakers of indigenous languages. The processing of such data involves a lot of time-consuming tasks, so during my field trips I created my own pipeline for data collection. I wrote a number of scripts using different programming languages for automatic renaming, merging, and preannotation of files, making backups, visualizing some data, etc. My method consisted of a combination of solutions developed on the fly to solve specific, independent tasks, without thinking of the future.
+
+This became a problem when I wanted to pass on my knowledge to my students. Not all of them were familiar with all of the programming languages I used, some of the code had become outdated, and some code did not work properly on all operating systems.
+
+The practical side of linguistic research is often neglected. Linguists rely on manual and makeshift solutions for working with data and simultaneously write similar scripts, reinventing the same wheel as part of the process. The few existing software programs are undercited: there are a lot of papers presenting data processed in R [@r], Praat [@boersma20], ELAN [@brugman04] or other software do not cite them, and methodologically oriented papers are valued mainly for their theoretical implications.
+
+Recent years have seen increased attention to best practices in linguistic data management, for example through the introduction of [Cross-Linguistic Data Formats](https://cldf.clld.org/) [@forkel18]. I think the time is also ripe to pay more attention to what I like to call **science craft** -- improving the methods for creating linguistic data, and allowing future generations of linguists to benefit from our experience.
+
+That is why I decided to create a toolkit for phonetic researchers in the form of an R package: it is written using one programming language, and easy to use for non-coders and people who are not familiar with R.
+
+Below is an overview of its main functions.
 
 ## `phonfieldwork`
 
