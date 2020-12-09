@@ -48,5 +48,6 @@ Suggests:
     tidyr,
     DT,
     lingtypology,
-    testthat
+    testthat,
+    readxl
 Language: en-US
