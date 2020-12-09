@@ -45,6 +45,8 @@ VignetteBuilder: knitr
 Suggests: 
     knitr,
     tidyverse,
+    tidyr,
+    dplyr,
     DT,
     lingtypology,
     testthat,
