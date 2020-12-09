@@ -44,8 +44,7 @@ RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Suggests: 
     knitr,
-    dplyr,
-    tidyr,
+    tidyverse,
     DT,
     lingtypology,
     testthat,
