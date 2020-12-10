@@ -18,7 +18,7 @@
 - visualising an oscilogram, a spectrogram and an annotation
 - creating an html viewer [like this](https://ropensci.github.io/phonfieldwork/s1/stimuli_viewer.html), ethical problems of this kind of viewer in linguistic research are covered in the vignette `vignette("ethical_research_with_phonfieldwork")`.
 
-For more ditails see [tutorial](https://ropensci.github.io/phonfieldwork/).
+For more ditails see [tutorial](https://docs.ropensci.org/phonfieldwork/).
 
 The main goal of the `phonfieldwork` package is to make a full research workflow from data collection to data extraction and data representation easier for people that are not familiar with programming. Hovewer most of the `phonfieldwork` funnctionality can be found in other software and packages:
 
