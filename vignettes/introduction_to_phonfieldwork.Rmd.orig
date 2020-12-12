@@ -316,7 +316,7 @@ You can see from the last figure that no backup tier was created (`backup = FALS
 In case you want to create an empty TextGrid it is possible to use a `create_empty_textgrid()` function that takes a duration as an argument:
 
 ```{r}
-create_empty_textgrid(get_sound_duration("s2/s2_tip_1.wav"),
+create_empty_textgrid(get_sound_duration("s2/s2_tip_1.wav")$duration,
                       tiers = c("a", "b"),
                       path = "s2",
                       result_file_name = "s2_tip_1")

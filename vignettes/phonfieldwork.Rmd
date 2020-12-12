@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2020-12-10"
+date: "2020-12-12"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -300,7 +300,7 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4821542
+## 1 2_s1_tap.wav 0.4299093
 ```
 
 It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: "audacity", "duration", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"):
@@ -413,16 +413,11 @@ In case you want to create an empty TextGrid it is possible to use a `create_emp
 
 
 ```r
-create_empty_textgrid(get_sound_duration("s2/s2_tip_1.wav"),
+create_empty_textgrid(get_sound_duration("s2/s2_tip_1.wav")$duration,
                       tiers = c("a", "b"),
                       path = "s2",
                       result_file_name = "s2_tip_1")
 ```
-
-```
-## Error in plot.window(...): need finite 'ylim' values
-```
-
 ![](unnamed-chunk-33-1.png)
 
 ```
@@ -970,19 +965,19 @@ textgrid_to_df("s1/s1_all.TextGrid")
 ##    id time_start  time_end      content tier     tier_name          source
 ## 1   1  0.0000000 0.4821542          tip    1        labels s1_all.TextGrid
 ## 4   1  0.0000000 0.4821542 1_s1_tip.wav    2 backup labels s1_all.TextGrid
-## 7   1  0.0000000 0.1063758                 3               s1_all.TextGrid
-## 8   2  0.1063758 0.1843889            ı    3               s1_all.TextGrid
-## 9   3  0.1843889 0.4821542                 3               s1_all.TextGrid
+## 7   1  0.0000000 0.1072426                 3               s1_all.TextGrid
+## 8   2  0.1072426 0.1887230            ı    3               s1_all.TextGrid
+## 9   3  0.1887230 0.4821542                 3               s1_all.TextGrid
 ## 2   2  0.4821542 0.9120635          tap    1        labels s1_all.TextGrid
 ## 5   2  0.4821542 0.9120635 2_s1_tap.wav    2 backup labels s1_all.TextGrid
-## 10  4  0.4821542 0.5805225                 3               s1_all.TextGrid
-## 11  5  0.5805225 0.6784724            æ    3               s1_all.TextGrid
-## 12  6  0.6784724 0.9120635                 3               s1_all.TextGrid
+## 10  4  0.4821542 0.5770552                 3               s1_all.TextGrid
+## 11  5  0.5770552 0.6793392            æ    3               s1_all.TextGrid
+## 12  6  0.6793392 0.9120635                 3               s1_all.TextGrid
 ## 3   3  0.9120635 1.3942177          top    1        labels s1_all.TextGrid
 ## 6   3  0.9120635 1.3942177 3_s1_top.wav    2 backup labels s1_all.TextGrid
-## 13  7  0.9120635 1.0390666                 3               s1_all.TextGrid
-## 14  8  1.0390666 1.1300820            ɒ    3               s1_all.TextGrid
-## 15  9  1.1300820 1.3942177                 3               s1_all.TextGrid
+## 13  7  0.9120635 1.0364661                 3               s1_all.TextGrid
+## 14  8  1.0364661 1.1066780            ɒ    3               s1_all.TextGrid
+## 15  9  1.1066780 1.3942177                 3               s1_all.TextGrid
 ```
 
 So in order to create desired table we can use `tier_to_df()` function:
@@ -1007,15 +1002,15 @@ t3
 
 ```
 ##    id time_start  time_end content tier tier_name          source
-## 7   1  0.0000000 0.1063758            3           s1_all.TextGrid
-## 8   2  0.1063758 0.1843889       ı    3           s1_all.TextGrid
-## 9   3  0.1843889 0.4821542            3           s1_all.TextGrid
-## 10  4  0.4821542 0.5805225            3           s1_all.TextGrid
-## 11  5  0.5805225 0.6784724       æ    3           s1_all.TextGrid
-## 12  6  0.6784724 0.9120635            3           s1_all.TextGrid
-## 13  7  0.9120635 1.0390666            3           s1_all.TextGrid
-## 14  8  1.0390666 1.1300820       ɒ    3           s1_all.TextGrid
-## 15  9  1.1300820 1.3942177            3           s1_all.TextGrid
+## 7   1  0.0000000 0.1072426            3           s1_all.TextGrid
+## 8   2  0.1072426 0.1887230       ı    3           s1_all.TextGrid
+## 9   3  0.1887230 0.4821542            3           s1_all.TextGrid
+## 10  4  0.4821542 0.5770552            3           s1_all.TextGrid
+## 11  5  0.5770552 0.6793392       æ    3           s1_all.TextGrid
+## 12  6  0.6793392 0.9120635            3           s1_all.TextGrid
+## 13  7  0.9120635 1.0364661            3           s1_all.TextGrid
+## 14  8  1.0364661 1.1066780       ɒ    3           s1_all.TextGrid
+## 15  9  1.1066780 1.3942177            3           s1_all.TextGrid
 ```
 
 As we see the first tier is ready, but the third tier contains empty annotations. Let's remove them:
@@ -1028,9 +1023,9 @@ t3
 
 ```
 ##    id time_start  time_end content tier tier_name          source
-## 8   2  0.1063758 0.1843889       ı    3           s1_all.TextGrid
-## 11  5  0.5805225 0.6784724       æ    3           s1_all.TextGrid
-## 14  8  1.0390666 1.1300820       ɒ    3           s1_all.TextGrid
+## 8   2  0.1072426 0.1887230       ı    3           s1_all.TextGrid
+## 11  5  0.5770552 0.6793392       æ    3           s1_all.TextGrid
+## 14  8  1.0364661 1.1066780       ɒ    3           s1_all.TextGrid
 ```
 
 So from this point it is possible to create the table that we wanted:
