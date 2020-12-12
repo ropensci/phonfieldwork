@@ -4,7 +4,7 @@
 [![](https://badges.ropensci.org/385_status.svg)](https://github.com/ropensci/software-review/issues/385)
 [![CRAN version](http://www.r-pkg.org/badges/version/phonfieldwork)](https://cran.r-project.org/package=phonfieldwork)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/phonfieldwork)](https://CRAN.R-project.org/package=phonfieldwork)
-[![](https://travis-ci.org/ropensci/phonfieldwork.svg?branch=master)](https://travis-ci.org/github/ropensci/phonfieldwork)
+[![R build status](https://github.com/ropensci/phonfieldwork/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/phonfieldwork/actions)
 [![Coverage Status](https://img.shields.io/codecov/c/github/ropensci/phonfieldwork/master.svg)](https://codecov.io/github/ropensci/phonfieldwork?branch=master)
 [![DOI](https://zenodo.org/badge/194053227.svg)](https://zenodo.org/badge/latestdoi/194053227)
 

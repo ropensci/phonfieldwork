@@ -30,3 +30,4 @@ codemeta.json
 ^vignettes/COMPILE_vignettes_and_site.R
 ^vignettes/.*\.orig
 ^codemeta\.json$
+^\.github$
