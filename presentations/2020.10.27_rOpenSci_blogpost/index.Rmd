@@ -123,25 +123,25 @@ There was a goal to be able to convert multiple sound annotation formats into da
 textgrid_to_df(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
 ```
 
-* file `.eaf` from ELAN; see also the [FRelan](https://github.com/langdoc/FRelan) package by Niko Partanen
+* convert ELAN `.eaf` files; see also the [FRelan](https://github.com/langdoc/FRelan) package by Niko Partanen
 
 ```{r eaf_to_df_example}
 eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 ```
 
-* file `.exb` from EXMARaLDA
+* convert EXMARaLDA `.exb` files
 
 ```{r exb_to_df_example}
 exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 ```
 
-* subtitles file `.srt`
+* convert subtitles `.srt` file
 
 ```{r srt_to_df_example}
 srt_to_df(system.file("extdata", "test.srt", package = "phonfieldwork"))
 ```
 
-* file `.txt` from Audacity
+* convert Audacity `.txt` file
 
 ```{r audacity_to_df_example}
 audacity_to_df(system.file("extdata", "test_audacity.txt", package = "phonfieldwork"))
@@ -163,7 +163,7 @@ image_animate(image_scale(c(im1, im2, im3, im4), "700"), fps = 0.5, dispose = "p
 ```
 
 <!--html_preserve-->
-{{< figure src = "annotation_in_phonfieldwork.gif" width = "400" alt = "Sound preannotation with phonfieldwork" >}}
+{{< figure src = "annotation_in_phonfieldwork.gif" width = "700" alt = "Oscillogram and spectrogram with text annotations below. GIF shows how phonfieldwork can add preannotations to a recording" >}}
 <!--/html_preserve-->
 
 As you can see, it is possible to create all the annotations in advance and leave the annotators with one task only: to move boundaries.
@@ -183,7 +183,7 @@ A feature specific to phonfieldwork, is that it is possible to zoom in to some p
 draw_sound(file, zoom = c(0.2, 0.4))
 ```
 
-It is also possible to visualize any sound annotation format that was converted to dataframe in the previous section:
+It is also possible to visualize any sound annotation format that was converted to dataframe:
 
 ```{r spec_annotation_example, hugoopts=list(alt="Oscillogram and spectrogram with text annotations below the figures, illustrating usage of the annotation argument", caption="Usage of the annotation argument", width=600)}
 our_textgrid <- system.file("extdata", "test.TextGrid", package = "phonfieldwork")
@@ -213,10 +213,10 @@ It is only a brief introduction into the phonfieldwork functionality, for more d
 
 I would like to thank
 
-* [my rOpenSci reviewers](https://github.com/ropensci/software-review/issues/385) [Jonathan Keane](author/jonathan-keane/) and [Niko Partanen](https://github.com/nikopartanen) for their interesting comments and ideas;
-* [Melina Vidoni](author/melina-vidoni/) for being the package review editor;
+* [my rOpenSci reviewers](https://github.com/ropensci/software-review/issues/385) [Jonathan Keane](/author/jonathan-keane/) and [Niko Partanen](https://github.com/nikopartanen) for their interesting comments and ideas;
+* [Melina Vidoni](/author/melina-vidoni/) for being the package review editor;
 * participants of seminars at the School of linguistics and Linguistic Convergence Laboratory at HSE, Moscow, where I first presented this package;
-* my friends [Neige Rochant](https://github.com/Neigelily) and [Samira Verhees](https://github.com/sverhees/) for sharing their data and problems with me, which has made phonfieldwork better.
+* my friends [Vanya Kapitonov](https://github.com/vkusvody), [Neige Rochant](https://github.com/Neigelily), and [Samira Verhees](https://github.com/sverhees/) for sharing their data and problems with me, which has made phonfieldwork better.
 
 [^1]: R Core Team. 2020. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. <https://www.R-project.org/>.
 [^2]: Boersma, P., and D. Weenink. 2020. "Praat: Doing Phonetics by Computer [Computer Program]. Version 6.1.35, Retrieved 5 December 2020 from https://Www.praat.org/."
