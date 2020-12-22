@@ -36,7 +36,7 @@ pitch_to_df <- function(file_name,
   time_end <- as.numeric(gsub("[^0-9\\.]", "", pitch[grep("xmax =", pitch)]))
 
   # get all frames ----------------------------------------------------------
-  s <- split(seq_along(pitch), cumsum(grepl("frame \\[\\d{1,}\\]", pitch)))
+  s <- split(seq_along(pitch), cumsum(grepl("frames? \\[\\d{1,}\\]", pitch)))
   s <- s[-1]
   result <- lapply(seq_along(s), function(i) {
     data.frame(
