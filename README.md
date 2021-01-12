@@ -25,7 +25,8 @@ The main goal of the `phonfieldwork` package is to make a full research workflow
 * stimuli presentation creation could be done with any programming language and probably without them
 * automatic file renaming and automatic merge could be done with any programming language
 * Praat `.TextGrid` manipulation could be done with Praat, R packages [`rPraat`](https://cran.r-project.org/package=rPraat) and [`textgRid`](https://cran.r-project.org/package=textgRid), the Python package ['pympi'](https://dopefishh.github.io/pympi/index.html))
-* ELAN `.eaf` manipulationcould be done with ELAN, the R package [`FRelan`](https://github.com/langdoc/FRelan) and the Python package ['pympi'](https://dopefishh.github.io/pympi/index.html)
+* ELAN `.eaf` manipulationcould be done with ELAN, the R package [`FRelan`](https://github.com/langdoc/FRelan) and the Python package [`pympi`](https://dopefishh.github.io/pympi/index.html)
+* Praat `.TextGrid`, ELAN `.eaf`, and 'EXMARaLDA .exb import and export could be done with the R package [`act`](https://cran.r-project.org/package=act)
 * cut sounds according to annotation could be done with Praat and the R package`tuneR`
 * spectrogram visualisation could be done with multiple R packages [`signal`](https://cran.r-project.org/package=signal), [`tuneR`](https://cran.r-project.org/package=tuneR), [`seewave`](https://cran.r-project.org/package=seewave), [`phonTools`](https://cran.r-project.org/package=phonTools), [`monitor`](https://cran.r-project.org/package=monitor), [`warbleR`](https://cran.r-project.org/package=warbleR), [`soundgen`](https://cran.r-project.org/package=soundgen) and many others
 

@@ -5,7 +5,7 @@ articles:
   data_manipulation_with_tidyverse: data_manipulation_with_tidyverse.html
   ethical_research_with_phonfieldwork: ethical_research_with_phonfieldwork.html
   phonfieldwork: phonfieldwork.html
-last_built: 2020-12-12T08:26Z
+last_built: 2021-01-12T07:17Z
 urls:
   reference: https://ropensci.github.io/phonfieldwork//reference
   article: https://ropensci.github.io/phonfieldwork//articles

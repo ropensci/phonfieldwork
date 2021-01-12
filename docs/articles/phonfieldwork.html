@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,7 +71,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ropensci/phonfieldwork/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,15 +85,14 @@
 
       
 
-      </header><script src="phonfieldwork_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="phonfieldwork_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="phonfieldwork_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="phonfieldwork_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Phonetic fieldwork and experiments with <code>phonfieldwork</code> package</h1>
                         <h4 class="author">G. Moroz, <a href="https://ilcl.hse.ru/en/">NRU HSE Linguistic Convergence Laboratory</a>
 </h4>
             
-            <h4 class="date">2020-12-12</h4>
+            <h4 class="date">2021-01-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/phonfieldwork/blob/master/vignettes/phonfieldwork.Rmd"><code>vignettes/phonfieldwork.Rmd</code></a></small>
       <div class="hidden name"><code>phonfieldwork.Rmd</code></div>
@@ -131,8 +130,8 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"phonfieldwork"</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
-## Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork package_.
-## &lt;URL: https://CRAN.R-project.org/package=phonfieldwork&gt;.
+## Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork
+## package_. &lt;URL: https://CRAN.R-project.org/package=phonfieldwork&gt;.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -307,7 +306,7 @@ Your browser does not support iframes :(
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_sound_duration.html">get_sound_duration</a></span><span class="op">(</span><span class="st">"s1/2_s1_tap.wav"</span><span class="op">)</span></code></pre></div>
 <pre><code>##           file  duration
-## 1 2_s1_tap.wav 0.4299093</code></pre>
+## 1 2_s1_tap.wav 0.4821542</code></pre>
 <p>It is also possible to analyze the whole folder using the <code><a href="../reference/read_from_folder.html">read_from_folder()</a></code> function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: “audacity”, “duration”, “eaf”, “exb”, “flextext”, “formant”, “intensity”, “picth”, “srt”, “textgrid”):</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/read_from_folder.html">read_from_folder</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"s2/"</span>, <span class="st">"duration"</span><span class="op">)</span></code></pre></div>
@@ -480,16 +479,16 @@ Your browser does not support iframes :(
            <span class="st">"s1/s1_all.TextGrid"</span>,
            from <span class="op">=</span> <span class="fl">0.4</span>,
            to <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter
-## object length</code></pre>
+<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of
+## shorter object length</code></pre>
 <p><img src="unnamed-chunk-39-1.png"></p>
 <p>It is also possible using the <code>zoom</code> argument to show the part of the spectrogram keeping the broader oscilogram context:</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span><span class="st">"s1/s1_all.wav"</span>,
            <span class="st">"s1/s1_all.TextGrid"</span>,
            zoom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter
-## object length</code></pre>
+<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of
+## shorter object length</code></pre>
 <p><img src="unnamed-chunk-40-1.png"></p>
 <p>If the <code>output_file</code> argument is provided, R will save the plot in your directory instead of displaying it.</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
@@ -658,34 +657,41 @@ Your browser does not support iframes :(
 </ul>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/flextext_to_df.html">flextext_to_df</a></span><span class="op">(</span><span class="st">"files/zilo_test.flextext"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>##   p_id s_id w_id    txt     cf hn     gls                   msa                free_trans
-## 1    1    1    1     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
-## 2    1    1    1    ик1    ик1  1    быть                    гл Жил-был (у Гъули?) петух.
-## 3    1    1    1     -о     -о  1     pst               гл:Past Жил-был (у Гъули?) петух.
-## 4    1    1    1     -й     -й  5 cvb(pf)    гл:Converb/Perfect Жил-был (у Гъули?) петух.
-## 5    1    1    1 =гъоди =гъоди  1    =rep                  част Жил-был (у Гъули?) петух.
-## 6    1    1    2     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
-##                            text_title                                morph
-## 1 2017.04 Fairytale about the rooster d7f713db-e8cf-11d3-9764-00c04f186933
-## 2 2017.04 Fairytale about the rooster d7f713e8-e8cf-11d3-9764-00c04f186933
-## 3 2017.04 Fairytale about the rooster d7f713dd-e8cf-11d3-9764-00c04f186933
-## 4 2017.04 Fairytale about the rooster d7f713dd-e8cf-11d3-9764-00c04f186933
-## 5 2017.04 Fairytale about the rooster d7f713e1-e8cf-11d3-9764-00c04f186933
-## 6 2017.04 Fairytale about the rooster d7f713db-e8cf-11d3-9764-00c04f186933
-##                                   word                               phrase
-## 1 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-## 2 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-## 3 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-## 4 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-## 5 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-## 6 c76d26b7-b84a-42a8-ba34-38e712b1db13 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
-##                              paragraph                                 text
-## 1 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
-## 2 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
-## 3 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
-## 4 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
-## 5 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
-## 6 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7</code></pre>
+<pre><code>##   p_id s_id w_id    txt     cf hn     gls                   msa
+## 1    1    1    1     б-     б-  1      an Inflects any category
+## 2    1    1    1    ик1    ик1  1    быть                    гл
+## 3    1    1    1     -о     -о  1     pst               гл:Past
+## 4    1    1    1     -й     -й  5 cvb(pf)    гл:Converb/Perfect
+## 5    1    1    1 =гъоди =гъоди  1    =rep                  част
+## 6    1    1    2     б-     б-  1      an Inflects any category
+##                  free_trans                          text_title
+## 1 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+## 2 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+## 3 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+## 4 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+## 5 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+## 6 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
+##                                  morph                                 word
+## 1 d7f713db-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
+## 2 d7f713e8-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
+## 3 d7f713dd-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
+## 4 d7f713dd-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
+## 5 d7f713e1-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
+## 6 d7f713db-e8cf-11d3-9764-00c04f186933 c76d26b7-b84a-42a8-ba34-38e712b1db13
+##                                 phrase                            paragraph
+## 1 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+## 2 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+## 3 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+## 4 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+## 5 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+## 6 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
+##                                   text
+## 1 f08dd466-fca6-4597-925c-c46309387ef7
+## 2 f08dd466-fca6-4597-925c-c46309387ef7
+## 3 f08dd466-fca6-4597-925c-c46309387ef7
+## 4 f08dd466-fca6-4597-925c-c46309387ef7
+## 5 f08dd466-fca6-4597-925c-c46309387ef7
+## 6 f08dd466-fca6-4597-925c-c46309387ef7</code></pre>
 <p>There is also an additional function for working with the <code>.flextext</code> format that convert it to a glossed document in a <code>docx</code> or <code>.html</code> format (see examples: <a href="https://github.com/ropensci/phonfieldwork/raw/master/docs/additional/glossed_document.docx"><code>.docx</code></a>, <a href="https://ropensci.github.io/phonfieldwork/additional/glossed_document.html"><code>.html</code></a>):</p>
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/create_glossed_document.html">create_glossed_document</a></span><span class="op">(</span>flextext <span class="op">=</span> <span class="st">"files/zilo_test.flextext"</span>,
