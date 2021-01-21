@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2021-01-12"
+date: "2021-01-21"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -51,7 +51,7 @@ packageVersion("phonfieldwork")
 ```
 
 ```
-## [1] '0.0.10'
+## [1] '0.0.11'
 ```
 
 This tutorial can be cited as follows:
@@ -300,7 +300,7 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4821542
+## 1 2_s1_tap.wav 0.4299093
 ```
 
 It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: "audacity", "duration", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"):
@@ -525,8 +525,8 @@ draw_sound("s1/s1_all.wav",
 ```
 
 ```
-## Warning in df$tier == unique(df$tier): longer object length is not a multiple of
-## shorter object length
+## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter
+## object length
 ```
 
 ![](unnamed-chunk-39-1.png)
@@ -541,8 +541,8 @@ draw_sound("s1/s1_all.wav",
 ```
 
 ```
-## Warning in df$tier == unique(df$tier): longer object length is not a multiple of
-## shorter object length
+## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter
+## object length
 ```
 
 ![](unnamed-chunk-40-1.png)

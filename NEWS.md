@@ -1,3 +1,7 @@
+# phonfieldwork 0.0.11
+
+- correct empty tiers behavior #34 (thanks to Shungo Suzuki)
+
 # phonfieldwork 0.0.10
 
 - add tryCatch to the `read_from_folder()` function

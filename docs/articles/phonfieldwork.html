@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phonfieldwork</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.11</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@
                         <h4 class="author">G. Moroz, <a href="https://ilcl.hse.ru/en/">NRU HSE Linguistic Convergence Laboratory</a>
 </h4>
             
-            <h4 class="date">2021-01-12</h4>
+            <h4 class="date">2021-01-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/phonfieldwork/blob/master/vignettes/phonfieldwork.Rmd"><code>vignettes/phonfieldwork.Rmd</code></a></small>
       <div class="hidden name"><code>phonfieldwork.Rmd</code></div>
@@ -125,7 +125,7 @@
 <p>This tutorial was made using the following version of <code>phonfieldwork</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span><span class="op">(</span><span class="st">"phonfieldwork"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] '0.0.10'</code></pre>
+<pre><code>## [1] '0.0.11'</code></pre>
 <p>This tutorial can be cited as follows:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"phonfieldwork"</span><span class="op">)</span></code></pre></div>
@@ -306,7 +306,7 @@ Your browser does not support iframes :(
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_sound_duration.html">get_sound_duration</a></span><span class="op">(</span><span class="st">"s1/2_s1_tap.wav"</span><span class="op">)</span></code></pre></div>
 <pre><code>##           file  duration
-## 1 2_s1_tap.wav 0.4821542</code></pre>
+## 1 2_s1_tap.wav 0.4299093</code></pre>
 <p>It is also possible to analyze the whole folder using the <code><a href="../reference/read_from_folder.html">read_from_folder()</a></code> function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: “audacity”, “duration”, “eaf”, “exb”, “flextext”, “formant”, “intensity”, “picth”, “srt”, “textgrid”):</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/read_from_folder.html">read_from_folder</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"s2/"</span>, <span class="st">"duration"</span><span class="op">)</span></code></pre></div>
@@ -479,16 +479,16 @@ Your browser does not support iframes :(
            <span class="st">"s1/s1_all.TextGrid"</span>,
            from <span class="op">=</span> <span class="fl">0.4</span>,
            to <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of
-## shorter object length</code></pre>
+<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter
+## object length</code></pre>
 <p><img src="unnamed-chunk-39-1.png"></p>
 <p>It is also possible using the <code>zoom</code> argument to show the part of the spectrogram keeping the broader oscilogram context:</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span><span class="st">"s1/s1_all.wav"</span>,
            <span class="st">"s1/s1_all.TextGrid"</span>,
            zoom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of
-## shorter object length</code></pre>
+<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter
+## object length</code></pre>
 <p><img src="unnamed-chunk-40-1.png"></p>
 <p>If the <code>output_file</code> argument is provided, R will save the plot in your directory instead of displaying it.</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">

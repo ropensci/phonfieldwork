@@ -54,20 +54,24 @@ textgrid_to_df <- function(file_name) {
       class <- unlist(strsplit(tg[i[2 - correction]], '"'))[2]
       step_by <- ifelse(class == "IntervalTier", 4, 3) - correction
       start_max <- ifelse(class == "IntervalTier", 9, 8) - correction * 2
-      data.frame(
-        id = 0,
-        time_start = gsub("[^0-9.]", "", tg[i[seq(8 - correction * 2,
-                                                  length(i),
+      tg[i[2 - correction]]
+      n_objects <- gsub("[^0-9.]", "", tg[i[6-correction]])
+      if(n_objects > 0){
+        data.frame(
+          id = 0,
+          time_start = gsub("[^0-9.]", "", tg[i[seq(8 - correction * 2,
+                                                    length(i),
+                                                    by = step_by
+          )]]),
+          time_end = gsub("[^0-9.]", "", tg[i[seq(start_max, length(i),
                                                   by = step_by
-        )]]),
-        time_end = gsub("[^0-9.]", "", tg[i[seq(start_max, length(i),
-                                                by = step_by
-        )]]),
-        content = tg[i[seq(start_max + 1, length(i), by = step_by)]],
-        tier = 0,
-        tier_name = unlist(strsplit(tg[i[3 - correction]], '"'))[2],
-        stringsAsFactors = FALSE
-      )
+          )]]),
+          content = tg[i[seq(start_max + 1, length(i), by = step_by)]],
+          tier = 0,
+          tier_name = unlist(strsplit(tg[i[3 - correction]], '"'))[2],
+          stringsAsFactors = FALSE
+        )
+      }
     }
   )
 
