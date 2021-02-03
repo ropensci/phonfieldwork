@@ -33,7 +33,7 @@ read_from_folder <- function(path, type) {
   # get extension -----------------------------------------------------------
   ext <- switch(
     type,
-    duration = ".wav$",
+    duration = "(.wave?$)|(.WAVE?$)",
     audacity = ".txt$",
     eaf = ".eaf$",
     exb = ".exb$",
