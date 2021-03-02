@@ -1,7 +1,7 @@
 # phonfieldwork 0.0.11
 
 - correct empty tiers behavior #34 (thanks to Shungo Suzuki)
-- add possibility to have different values in the `n_of_annotations` argument of `create_subannotation()` (thanks to Zhenya Korovina for the idea)
+- add possibility to have different values in the `n_of_annotations` argument of `create_subannotation()` (thanks to Jenya Korovina for the idea)
 - rename `tier` argument of the `create_empty_textgrid()` to `tier_name`.
 - create the `remove_textgrid_tier()` function.
 
