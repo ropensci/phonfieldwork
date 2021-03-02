@@ -25,13 +25,12 @@
 #' )
 #' @export
 #'
-#' @importFrom uchardet detect_file_enc
 #'
 
 df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE) {
   if (!("time_start" %in% names(df)) |
-    !("time_end" %in% names(df)) |
-    !("content" %in% names(df))) {
+      !("time_end" %in% names(df)) |
+      !("content" %in% names(df))) {
     stop(paste0(
       'df columns should have the folowing names: "content"',
       '"time_start" and "time_end"'
@@ -48,13 +47,13 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE) {
   }
 
   tier_class <- ifelse("time_end" %in% names(df),
-    '        class = "IntervalTier" ',
-    '        class = "TextTier" '
+                       '        class = "IntervalTier" ',
+                       '        class = "TextTier" '
   )
 
   tier_type <- ifelse("time_end" %in% names(df),
-    paste0("        intervals"),
-    paste0("        points")
+                      paste0("        intervals"),
+                      paste0("        points")
   )
 
 
@@ -62,8 +61,8 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE) {
     all_annotations <- lapply(seq_along(df$time_start), function(i) {
       c(
         paste0(tier_type, " [", i, "]:"),
-        paste0("            xmin = ", df$time_start[i]),
-        paste0("            xmax = ", df$time_end[i]),
+        paste0("            xmin = ", df$time_start[i], " "),
+        paste0("            xmax = ", df$time_end[i], " "),
         paste0('            text = "', df$content[i], '" ')
       )
     })
@@ -71,7 +70,7 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE) {
     all_annotations <- lapply(seq_along(df$time_start), function(i) {
       c(
         paste0(tier_type, "[", i, "]:"),
-        paste0("            number = ", df$time_start[i]),
+        paste0("            number = ", df$time_start[i], " "),
         paste0('            mark = "', df$content[i], '" ')
       )
     })

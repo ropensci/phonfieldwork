@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phonfieldwork</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.11</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -112,7 +112,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ropensci/phonfieldwork/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -138,15 +138,15 @@
     <p>Create boundaries in a texgrid tier</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_subannotation</span>(
-  <span class='no'>textgrid</span>,
-  <span class='kw'>tier</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>new_tier_name</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>n_of_annotations</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>each</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>omit_blank</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>create_subannotation</span><span class='op'>(</span>
+  <span class='va'>textgrid</span>,
+  tier <span class='op'>=</span> <span class='fl'>1</span>,
+  new_tier_name <span class='op'>=</span> <span class='st'>""</span>,
+  n_of_annotations <span class='op'>=</span> <span class='fl'>4</span>,
+  each <span class='op'>=</span> <span class='fl'>1</span>,
+  omit_blank <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  overwrite <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,13 +189,17 @@ tier.</p></td>
 
     <p>a string that contain TextGrid. If argument write is <code>TRUE</code>,
 then no output.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>George Moroz &lt;agricolamz@gmail.com&gt;</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>create_subannotation</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>,
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"phonfieldwork"</span>
-),
-<span class='kw'>tier</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</div><div class='output co'>#&gt;   [1] "File type = \"ooTextFile\""                
+    <pre class="examples"><div class='input'><span class='fu'>create_subannotation</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"test.TextGrid"</span>,
+  package <span class='op'>=</span> <span class='st'>"phonfieldwork"</span>
+<span class='op'>)</span>,
+tier <span class='op'>=</span> <span class='fl'>1</span>, overwrite <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt;   [1] "File type = \"ooTextFile\""                
 #&gt;   [2] "Object class = \"TextGrid\""               
 #&gt;   [3] ""                                          
 #&gt;   [4] "xmin = 0 "                                 
@@ -280,68 +284,68 @@ then no output.</p>
 #&gt;  [83] "        xmax = 0.6526757369614512 "        
 #&gt;  [84] "        intervals: size = 16 "             
 #&gt;  [85] "        intervals [1]:"                    
-#&gt;  [86] "            xmin = 0.0124658257689472"     
-#&gt;  [87] "            xmax = 0.0713041531034111"     
+#&gt;  [86] "            xmin = 0.0124658257689472 "    
+#&gt;  [87] "            xmax = 0.0713041531034111 "    
 #&gt;  [88] "            text = \"\" "                  
 #&gt;  [89] "        intervals [2]:"                    
-#&gt;  [90] "            xmin = 0.0713041531034111"     
-#&gt;  [91] "            xmax = 0.130142480437875"      
+#&gt;  [90] "            xmin = 0.0713041531034111 "    
+#&gt;  [91] "            xmax = 0.130142480437875 "     
 #&gt;  [92] "            text = \"\" "                  
 #&gt;  [93] "        intervals [3]:"                    
-#&gt;  [94] "            xmin = 0.130142480437875"      
-#&gt;  [95] "            xmax = 0.188980807772339"      
+#&gt;  [94] "            xmin = 0.130142480437875 "     
+#&gt;  [95] "            xmax = 0.188980807772339 "     
 #&gt;  [96] "            text = \"\" "                  
 #&gt;  [97] "        intervals [4]:"                    
-#&gt;  [98] "            xmin = 0.188980807772339"      
-#&gt;  [99] "            xmax = 0.247819135106803"      
+#&gt;  [98] "            xmin = 0.188980807772339 "     
+#&gt;  [99] "            xmax = 0.247819135106803 "     
 #&gt; [100] "            text = \"\" "                  
 #&gt; [101] "        intervals [5]:"                    
-#&gt; [102] "            xmin = 0.247819135106803"      
-#&gt; [103] "            xmax = 0.284745257778777"      
+#&gt; [102] "            xmin = 0.247819135106803 "     
+#&gt; [103] "            xmax = 0.284745257778777 "     
 #&gt; [104] "            text = \"\" "                  
 #&gt; [105] "        intervals [6]:"                    
-#&gt; [106] "            xmin = 0.284745257778777"      
-#&gt; [107] "            xmax = 0.321671380450751"      
+#&gt; [106] "            xmin = 0.284745257778777 "     
+#&gt; [107] "            xmax = 0.321671380450751 "     
 #&gt; [108] "            text = \"\" "                  
 #&gt; [109] "        intervals [7]:"                    
-#&gt; [110] "            xmin = 0.321671380450751"      
-#&gt; [111] "            xmax = 0.358597503122725"      
+#&gt; [110] "            xmin = 0.321671380450751 "     
+#&gt; [111] "            xmax = 0.358597503122725 "     
 #&gt; [112] "            text = \"\" "                  
 #&gt; [113] "        intervals [8]:"                    
-#&gt; [114] "            xmin = 0.358597503122725"      
-#&gt; [115] "            xmax = 0.395523625794699"      
+#&gt; [114] "            xmin = 0.358597503122725 "     
+#&gt; [115] "            xmax = 0.395523625794699 "     
 #&gt; [116] "            text = \"\" "                  
 #&gt; [117] "        intervals [9]:"                    
-#&gt; [118] "            xmin = 0.395523625794699"      
-#&gt; [119] "            xmax = 0.424537007894107"      
+#&gt; [118] "            xmin = 0.395523625794699 "     
+#&gt; [119] "            xmax = 0.424537007894107 "     
 #&gt; [120] "            text = \"\" "                  
 #&gt; [121] "        intervals [10]:"                   
-#&gt; [122] "            xmin = 0.424537007894107"      
-#&gt; [123] "            xmax = 0.453550389993515"      
+#&gt; [122] "            xmin = 0.424537007894107 "     
+#&gt; [123] "            xmax = 0.453550389993515 "     
 #&gt; [124] "            text = \"\" "                  
 #&gt; [125] "        intervals [11]:"                   
-#&gt; [126] "            xmin = 0.453550389993515"      
-#&gt; [127] "            xmax = 0.482563772092923"      
+#&gt; [126] "            xmin = 0.453550389993515 "     
+#&gt; [127] "            xmax = 0.482563772092923 "     
 #&gt; [128] "            text = \"\" "                  
 #&gt; [129] "        intervals [12]:"                   
-#&gt; [130] "            xmin = 0.482563772092923"      
-#&gt; [131] "            xmax = 0.511577154192331"      
+#&gt; [130] "            xmin = 0.482563772092923 "     
+#&gt; [131] "            xmax = 0.511577154192331 "     
 #&gt; [132] "            text = \"\" "                  
 #&gt; [133] "        intervals [13]:"                   
-#&gt; [134] "            xmin = 0.511577154192331"      
-#&gt; [135] "            xmax = 0.546851799884611"      
+#&gt; [134] "            xmin = 0.511577154192331 "     
+#&gt; [135] "            xmax = 0.546851799884611 "     
 #&gt; [136] "            text = \"\" "                  
 #&gt; [137] "        intervals [14]:"                   
-#&gt; [138] "            xmin = 0.546851799884611"      
-#&gt; [139] "            xmax = 0.582126445576891"      
+#&gt; [138] "            xmin = 0.546851799884611 "     
+#&gt; [139] "            xmax = 0.582126445576891 "     
 #&gt; [140] "            text = \"\" "                  
 #&gt; [141] "        intervals [15]:"                   
-#&gt; [142] "            xmin = 0.582126445576891"      
-#&gt; [143] "            xmax = 0.617401091269171"      
+#&gt; [142] "            xmin = 0.582126445576891 "     
+#&gt; [143] "            xmax = 0.617401091269171 "     
 #&gt; [144] "            text = \"\" "                  
 #&gt; [145] "        intervals [16]:"                   
-#&gt; [146] "            xmin = 0.617401091269171"      
-#&gt; [147] "            xmax = 0.652675736961451"      
+#&gt; [146] "            xmin = 0.617401091269171 "     
+#&gt; [147] "            xmax = 0.652675736961451 "     
 #&gt; [148] "            text = \"\" "                  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -358,7 +362,7 @@ then no output.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

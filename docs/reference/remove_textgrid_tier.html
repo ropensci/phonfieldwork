@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create an empty TextGrid — create_empty_textgrid • phonfieldwork</title>
+<title>Remove tier from texgrid — remove_textgrid_tier • phonfieldwork</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Create an empty TextGrid — create_empty_textgrid" />
-<meta property="og:description" content="Creates an empty Praat TextGrid in the same folder as a reference sound file. It is possible to manage with predefined number of tiers, their names and their types." />
+<meta property="og:title" content="Remove tier from texgrid — remove_textgrid_tier" />
+<meta property="og:description" content="Remove tier from texgrid" />
 
 
 
@@ -129,60 +129,41 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create an empty TextGrid</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/phonfieldwork/blob/master/R/create_empty_textgrid.R'><code>R/create_empty_textgrid.R</code></a></small>
-    <div class="hidden name"><code>create_empty_textgrid.Rd</code></div>
+    <h1>Remove tier from texgrid</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/phonfieldwork/blob/master/R/remove_textgrid_tier.R'><code>R/remove_textgrid_tier.R</code></a></small>
+    <div class="hidden name"><code>remove_textgrid_tier.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Creates an empty Praat TextGrid in the same folder as a reference sound file. It is possible to manage with predefined number of tiers, their names and their types.</p>
+    <p>Remove tier from texgrid</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_empty_textgrid</span><span class='op'>(</span>
-  <span class='va'>duration</span>,
-  tier_name <span class='op'>=</span> <span class='cn'>NULL</span>,
-  point_tier <span class='op'>=</span> <span class='cn'>NULL</span>,
-  <span class='va'>path</span>,
-  result_file_name <span class='op'>=</span> <span class='st'>"new_textgrid"</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>remove_textgrid_tier</span><span class='op'>(</span><span class='va'>textgrid</span>, <span class='va'>tier</span>, overwrite <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>duration</th>
-      <td><p>integer. Duration of the textgrid. If you do not know the duration of your audio file use the <code><a href='get_sound_duration.html'>get_sound_duration()</a></code> function.</p></td>
+      <th>textgrid</th>
+      <td><p>character with a filename or path to the TextGrid</p></td>
     </tr>
     <tr>
-      <th>tier_name</th>
-      <td><p>a vector that contain tier names.</p></td>
+      <th>tier</th>
+      <td><p>value that could be either ordinal number of the tier either name
+of the tier</p></td>
     </tr>
     <tr>
-      <th>point_tier</th>
-      <td><p>a vector that defines which tiers should be made point tiers. This argument excepts numeric values (e. g. <code><a href='https://rdrr.io/r/base/c.html'>c(2, 4)</a></code> means second and forth tiers) or character (e. g. <code><a href='https://rdrr.io/r/base/c.html'>c("a", "b")</a></code> means tiers with names "a" and "b")</p></td>
-    </tr>
-    <tr>
-      <th>path</th>
-      <td><p>path to the directory with soundfiles.</p></td>
-    </tr>
-    <tr>
-      <th>result_file_name</th>
-      <td><p>name of the result and annotation files.</p></td>
+      <th>overwrite</th>
+      <td><p>logical. If TRUE (by dafault) it overwrites an existing
+tier.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The function returns no output, just creates a Praat TextGrid in the same folder as a reference sound file.</p>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <p>a string that contain TextGrid. If argument write is <code>TRUE</code>,
+then no output.</p>
 
-    <p>George Moroz &lt;agricolamz@gmail.com&gt;</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span>fileext <span class='op'>=</span> <span class='st'>".TextGrid"</span><span class='op'>)</span>
-<span class='fu'>create_empty_textgrid</span><span class='op'>(</span><span class='fl'>1</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>dirname</a></span><span class='op'>(</span><span class='va'>tmp</span><span class='op'>)</span>, result_file_name <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>tmp</span><span class='op'>)</span><span class='op'>)</span>
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

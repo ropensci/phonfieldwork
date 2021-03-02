@@ -288,7 +288,9 @@ create_subannotation(textgrid = "s1/s1_all.TextGrid",
 draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
 ```
 
-Now we can annotate created tier:
+It is worth mentioning that if you want to have different number of subannotation per unit, you can pass a vector of required numbers to `n_of_annotations` argument.
+
+After the creation of subannotations, we can annotate created tier:
 
 ```{r}
 annotate_textgrid(annotation = c("", "ı", "", "", "æ", "", "", "ɒ", ""),
@@ -317,7 +319,7 @@ In case you want to create an empty TextGrid it is possible to use a `create_emp
 
 ```{r}
 create_empty_textgrid(get_sound_duration("s2/s2_tip_1.wav")$duration,
-                      tiers = c("a", "b"),
+                      tier_name = c("a", "b"),
                       path = "s2",
                       result_file_name = "s2_tip_1")
 ```
@@ -326,6 +328,15 @@ draw_sound("s2/s2_tip_1.wav", "s2/s2_tip_1.TextGrid")
 ```
 ```{bash, echo = FALSE}
 tree | tail -n 19 | head -n 16
+```
+
+It is also possible to remove some tier from textgrid. For instance, we can remove one tier from the previously created file:
+
+```{r}
+remove_textgrid_tier(textgrid = "s2/s2_tip_1.TextGrid", tier = 2)
+```
+```{r, echo=FALSE}
+draw_sound("s2/s2_tip_1.wav", "s2/s2_tip_1.TextGrid")
 ```
 
 ## Extracting your data

@@ -1,7 +1,7 @@
 ---
 title: "Manipulating `phonfieldwork` data with `tidyverse`"
 author: "George Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
-date: "2021-01-21"
+date: "2021-03-02"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Manipulating `phonfieldwork` data with `tidyverse`}
@@ -84,41 +84,34 @@ Imagine that we obtained the first result from `flextext_to_df()`:
 ```r
 df <- flextext_to_df("files/zilo_test.flextext")
 head(df)
-#>   p_id s_id w_id    txt     cf hn     gls                   msa
-#> 1    1    1    1     б-     б-  1      an Inflects any category
-#> 2    1    1    1    ик1    ик1  1    быть                    гл
-#> 3    1    1    1     -о     -о  1     pst               гл:Past
-#> 4    1    1    1     -й     -й  5 cvb(pf)    гл:Converb/Perfect
-#> 5    1    1    1 =гъоди =гъоди  1    =rep                  част
-#> 6    1    1    2     б-     б-  1      an Inflects any category
-#>                  free_trans                          text_title
-#> 1 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-#> 2 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-#> 3 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-#> 4 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-#> 5 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-#> 6 Жил-был (у Гъули?) петух. 2017.04 Fairytale about the rooster
-#>                                  morph                                 word
-#> 1 d7f713db-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
-#> 2 d7f713e8-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
-#> 3 d7f713dd-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
-#> 4 d7f713dd-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
-#> 5 d7f713e1-e8cf-11d3-9764-00c04f186933 efafb420-e203-4685-9be2-1b7810f10a70
-#> 6 d7f713db-e8cf-11d3-9764-00c04f186933 c76d26b7-b84a-42a8-ba34-38e712b1db13
-#>                                 phrase                            paragraph
-#> 1 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-#> 2 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-#> 3 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-#> 4 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-#> 5 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-#> 6 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13 0c9ffe63-b4bf-4af3-a1da-f68567e03513
-#>                                   text
-#> 1 f08dd466-fca6-4597-925c-c46309387ef7
-#> 2 f08dd466-fca6-4597-925c-c46309387ef7
-#> 3 f08dd466-fca6-4597-925c-c46309387ef7
-#> 4 f08dd466-fca6-4597-925c-c46309387ef7
-#> 5 f08dd466-fca6-4597-925c-c46309387ef7
-#> 6 f08dd466-fca6-4597-925c-c46309387ef7
+#>   p_id s_id w_id    txt     cf hn     gls                   msa                free_trans
+#> 1    1    1    1     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
+#> 2    1    1    1    ик1    ик1  1    быть                    гл Жил-был (у Гъули?) петух.
+#> 3    1    1    1     -о     -о  1     pst               гл:Past Жил-был (у Гъули?) петух.
+#> 4    1    1    1     -й     -й  5 cvb(pf)    гл:Converb/Perfect Жил-был (у Гъули?) петух.
+#> 5    1    1    1 =гъоди =гъоди  1    =rep                  част Жил-был (у Гъули?) петух.
+#> 6    1    1    2     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
+#>                            text_title                                morph
+#> 1 2017.04 Fairytale about the rooster d7f713db-e8cf-11d3-9764-00c04f186933
+#> 2 2017.04 Fairytale about the rooster d7f713e8-e8cf-11d3-9764-00c04f186933
+#> 3 2017.04 Fairytale about the rooster d7f713dd-e8cf-11d3-9764-00c04f186933
+#> 4 2017.04 Fairytale about the rooster d7f713dd-e8cf-11d3-9764-00c04f186933
+#> 5 2017.04 Fairytale about the rooster d7f713e1-e8cf-11d3-9764-00c04f186933
+#> 6 2017.04 Fairytale about the rooster d7f713db-e8cf-11d3-9764-00c04f186933
+#>                                   word                               phrase
+#> 1 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+#> 2 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+#> 3 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+#> 4 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+#> 5 efafb420-e203-4685-9be2-1b7810f10a70 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+#> 6 c76d26b7-b84a-42a8-ba34-38e712b1db13 1cbadc4f-4051-4783-a0d8-bfeee2d2fb13
+#>                              paragraph                                 text
+#> 1 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+#> 2 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+#> 3 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+#> 4 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+#> 5 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
+#> 6 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7
 ```
 
 As we can see from `df` print there are three indices in the dataset: `p_id` -- paragraph id, `s_id` -- sentence id and `w_id` -- word id.
@@ -131,21 +124,21 @@ df %>%
   group_by(p_id, s_id, free_trans, w_id) %>% 
   summarise(txt = str_c(txt, collapse = ""),
          gls = str_c(gls, collapse = "-"))
-#> `summarise()` regrouping output by 'p_id', 's_id', 'free_trans' (override with `.groups` argument)
+#> `summarise()` has grouped output by 'p_id', 's_id', 'free_trans'. You can override using the `.groups` argument.
 #> # A tibble: 136 x 6
 #> # Groups:   p_id, s_id, free_trans [19]
-#>     p_id  s_id free_trans                     w_id txt            gls                   
-#>    <dbl> <dbl> <chr>                         <dbl> <chr>          <chr>                 
-#>  1     1     1 Жил-был (у Гъули?) петух.         1 б-ик1-о-й=гъо… "an-быть-pst-cvb(pf)-…
-#>  2     1     1 Жил-был (у Гъули?) петух.         2 б--о-ч1игу=гъ… "an--pst-neg.cvb-=rep"
-#>  3     1     1 Жил-был (у Гъули?) петух.         3 Гъули-б        "Гъули-an(gen)"       
-#>  4     1     1 Жил-был (у Гъули?) петух.         4 х1елеко        "петух"               
-#>  5     1     1 Жил-был (у Гъули?) петух.         5 .              ""                    
-#>  6     2     2 Он грелся на улице(?).            6 къват1и-ла=гъ… "улица-in-=rep"       
-#>  7     2     2 Он грелся на улице(?).            7 б-ик1-о-j      "an-быть-pst-cvb(pf)" 
-#>  8     2     2 Он грелся на улице(?).            8 букьир-ъа      "Букир-sup"           
-#>  9     2     2 Он грелся на улице(?).            9 .              ""                    
-#> 10     2     3 [Ему в ногу] воткнулась колю…    10 къинни-й=гъоди "втыкаться-cvb(pf)-=r…
+#>     p_id  s_id free_trans                        w_id txt              gls                       
+#>    <dbl> <dbl> <chr>                            <dbl> <chr>            <chr>                     
+#>  1     1     1 Жил-был (у Гъули?) петух.            1 б-ик1-о-й=гъоди  "an-быть-pst-cvb(pf)-=rep"
+#>  2     1     1 Жил-был (у Гъули?) петух.            2 б--о-ч1игу=гъоди "an--pst-neg.cvb-=rep"    
+#>  3     1     1 Жил-был (у Гъули?) петух.            3 Гъули-б          "Гъули-an(gen)"           
+#>  4     1     1 Жил-был (у Гъули?) петух.            4 х1елеко          "петух"                   
+#>  5     1     1 Жил-был (у Гъули?) петух.            5 .                ""                        
+#>  6     2     2 Он грелся на улице(?).               6 къват1и-ла=гъоди "улица-in-=rep"           
+#>  7     2     2 Он грелся на улице(?).               7 б-ик1-о-j        "an-быть-pst-cvb(pf)"     
+#>  8     2     2 Он грелся на улице(?).               8 букьир-ъа        "Букир-sup"               
+#>  9     2     2 Он грелся на улице(?).               9 .                ""                        
+#> 10     2     3 [Ему в ногу] воткнулась колючка.    10 къинни-й=гъоди   "втыкаться-cvb(pf)-=rep"  
 #> # … with 126 more rows
 ```
 
@@ -164,31 +157,31 @@ df %>%
   group_by(p_id, s_id, free_trans) %>% 
   summarise(txt = str_c(txt, collapse = " "),
          gls = str_c(gls, collapse = " "))
-#> `summarise()` regrouping output by 'p_id', 's_id', 'free_trans' (override with `.groups` argument)
-#> `summarise()` regrouping output by 'p_id', 's_id' (override with `.groups` argument)
+#> `summarise()` has grouped output by 'p_id', 's_id', 'free_trans'. You can override using the `.groups` argument.
+#> `summarise()` has grouped output by 'p_id', 's_id'. You can override using the `.groups` argument.
 #> # A tibble: 19 x 5
 #> # Groups:   p_id, s_id [19]
-#>     p_id  s_id free_trans                  txt                    gls                   
-#>    <dbl> <dbl> <chr>                       <chr>                  <chr>                 
-#>  1     1     1 "Жил-был (у Гъули?) петух." б-ик1-о-й=гъоди б--о-… "an-быть-pst-cvb(pf)-…
-#>  2     2     2 "Он грелся на улице(?)."    къват1и-ла=гъоди б-ик… "улица-in-=rep an-быт…
-#>  3     2     3 "[Ему в ногу] воткнулась к… къинни-й=гъоди ццана . "втыкаться-cvb(pf)-=r…
-#>  4     3     4 "Когда колючка воткнулась,… ццана къинни-рбигьи б… "колючка втыкаться-ps…
-#>  5     4     5 "Гъули не обнаружил дома Б… бихьтай=ло ишуишу й-и… "Бихтай-=add дома-дом…
-#>  6     5     6 "Оттуда пошел к Умалаю, "   б-uʔ-oн-ни=гъоди гьер… "an-идти-pst-pst(aor)…
-#>  7     6     7 "Оттуда петух пошел к Пати… х1елеко гье-лъу-кку б… "петух dem-dat-el an-…
-#>  8     8    10 "Оттуда [петух] пошел к Ха… гье-лъу-кку б--и-й б-… "dem-dat-el an--pst(a…
-#>  9     9    11 "Иди к Хурмат, ..."         хъаничай-ди=ло ен-л1и… "Ханичай-erg-=add rfl…
-#> 10    10    12 "Когда дошёл до двора Хурм… рул1-и-й Х1урмати-л1и… "говорить--cvb(pf) Ху…
-#> 11    11    13 "Три дня не ели, мы с ней … рул1-и-й лъоб-гу зубу… "говорить--cvb(pf) тр…
-#> 12    12    14 "Оттуда он ушёл и дошёл до… гье-лъу-кку б--и-йб--… "dem-dat-el an--pst(a…
-#> 13    13    15 "Захраил …?"                й--и-й Загьраъил-ди=л… "f--pst(aor)-cvb(pf) …
-#> 14    14    16 "И он пошел в село. Захраи… б-укъ-и-й гьеге-б=ло … "an-гнать-pst-pf dem-…
-#> 15    15    17 "Оттуда снизу вверх к Исра… гьегелъу-кку гьикьу=л… "там-el внизу-=add вв…
-#> 16    16    18 "Шли-шли и пришли к Гаджи." гье-лъу-кку б--и-йб--… "dem-dat-el an--pst(a…
-#> 17    17    19 "Они поссорились (?) и про… й-ейхъ-у й-ах-о-й дун… "f-ругать-pst f-драть…
-#> 18    18    20 "Когда закончили ссориться… джид-ия сабаб=ло б-ул… "делать-fut причина-=…
-#> 19    19    21 "На воротах Забита петух о… х1елеко б--и-й забити… "петух an--pst(aor)-c…
+#>     p_id  s_id free_trans                       txt                           gls                         
+#>    <dbl> <dbl> <chr>                            <chr>                         <chr>                       
+#>  1     1     1 "Жил-был (у Гъули?) петух."      б-ик1-о-й=гъоди б--о-ч1игу=г… "an-быть-pst-cvb(pf)-=rep a…
+#>  2     2     2 "Он грелся на улице(?)."         къват1и-ла=гъоди б-ик1-о-j б… "улица-in-=rep an-быть-pst-…
+#>  3     2     3 "[Ему в ногу] воткнулась колючк… къинни-й=гъоди ццана .        "втыкаться-cvb(pf)-=rep кол…
+#>  4     3     4 "Когда колючка воткнулась, [он]… ццана къинни-рбигьи б-uʔ-oн-… "колючка втыкаться-pst.ptcp…
+#>  5     4     5 "Гъули не обнаружил дома Бихтай… бихьтай=ло ишуишу й-ис-он-ч1… "Бихтай-=add дома-дома f-на…
+#>  6     5     6 "Оттуда пошел к Умалаю, "        б-uʔ-oн-ни=гъоди гьербади гь… "an-идти-pst-pst(aor)-=rep …
+#>  7     6     7 "Оттуда петух пошел к Патимат."  х1елеко гье-лъу-кку б-ел1-и-… "петух dem-dat-el an-go-pst…
+#>  8     8    10 "Оттуда [петух] пошел к Ханичай… гье-лъу-кку б--и-й б-uʔ-oн-н… "dem-dat-el an--pst(aor)-cv…
+#>  9     9    11 "Иди к Хурмат, ..."              хъаничай-ди=ло ен-л1и бежун … "Ханичай-erg-=add rfl-gen.s…
+#> 10    10    12 "Когда дошёл до двора Хурмат, и… рул1-и-й Х1урмати-л1и рей-ди… "говорить--cvb(pf) Хурмат-g…
+#> 11    11    13 "Три дня не ели, мы с ней не зн… рул1-и-й лъоб-гу зубу в-укк-… "говорить--cvb(pf) три-num …
+#> 12    12    14 "Оттуда он ушёл и дошёл до Айша… гье-лъу-кку б--и-йб--и-й б-о… "dem-dat-el an--pst(aor)-cv…
+#> 13    13    15 "Захраил …?"                     й--и-й Загьраъил-ди=ло б-укъ… "f--pst(aor)-cvb(pf) Захрай…
+#> 14    14    16 "И он пошел в село. Захраил ска… б-укъ-и-й гьеге-б=ло гьон-л1… "an-гнать-pst-pf dem-an-=ad…
+#> 15    15    17 "Оттуда снизу вверх к Исрапилу … гьегелъу-кку гьикьу=ло лъоба… "там-el внизу-=add вверх -a…
+#> 16    16    18 "Шли-шли и пришли к Гаджи."      гье-лъу-кку б--и-йб--и-й б-о… "dem-dat-el an--pst(aor)-cv…
+#> 17    17    19 "Они поссорились (?) и прогнали… й-ейхъ-у й-ах-о-й дунял б-ед… "f-ругать-pst f-драться-pst…
+#> 18    18    20 "Когда закончили ссориться, [по… джид-ия сабаб=ло б-ул1-и-й б… "делать-fut причина-=add an…
+#> 19    19    21 "На воротах Забита петух обнару… х1елеко б--и-й забити-б кауд… "петух an--pst(aor)-cvb(pf)…
 ```
 
 It is also very easy to get some simple statistics from the data:

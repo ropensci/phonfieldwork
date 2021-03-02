@@ -40,10 +40,23 @@ create_subannotation <- function(textgrid,
     df <- df[df$content != "", ]
   }
 
+  if(length(n_of_annotations) == 1){
+    n_of_annotations <- rep(n_of_annotations, nrow(df))
+  }
+
+  if(nrow(df) != length(n_of_annotations)){
+    stop(paste0("Length of the n_of_annotations vector should be either 1 ",
+                "or number of units in textgrid:",
+                "\nn_of_annotations arguemnt's length is ",
+                length(n_of_annotations),
+                "\ntextgrid unit's number is ",
+                nrow(df)))
+  }
+
   l <- lapply(seq_along(df$content), function(i) {
     t <- seq(df$time_start[i],
       df$time_end[i],
-      length.out = each * (n_of_annotations + 1)
+      length.out = each * (n_of_annotations[i] + 1)
     )
     data.frame(
       time_start = t[-length(t)],

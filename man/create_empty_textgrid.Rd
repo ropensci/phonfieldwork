@@ -6,8 +6,8 @@
 \usage{
 create_empty_textgrid(
   duration,
-  tiers = NULL,
-  point_tiers = NULL,
+  tier_name = NULL,
+  point_tier = NULL,
   path,
   result_file_name = "new_textgrid"
 )
@@ -15,9 +15,9 @@ create_empty_textgrid(
 \arguments{
 \item{duration}{integer. Duration of the textgrid. If you do not know the duration of your audio file use the \code{get_sound_duration()} function.}
 
-\item{tiers}{a vector that contain tier names.}
+\item{tier_name}{a vector that contain tier names.}
 
-\item{point_tiers}{a vector that defines which tiers should be made point tiers. This argument excepts numeric values (e. g. \code{c(2, 4)} means second and forth tiers) or character (e. g. \code{c("a", "b")} means tiers with names "a" and "b")}
+\item{point_tier}{a vector that defines which tiers should be made point tiers. This argument excepts numeric values (e. g. \code{c(2, 4)} means second and forth tiers) or character (e. g. \code{c("a", "b")} means tiers with names "a" and "b")}
 
 \item{path}{path to the directory with soundfiles.}
 
@@ -28,6 +28,11 @@ The function returns no output, just creates a Praat TextGrid in the same folder
 }
 \description{
 Creates an empty Praat TextGrid in the same folder as a reference sound file. It is possible to manage with predefined number of tiers, their names and their types.
+}
+\examples{
+tmp <- tempfile(fileext = ".TextGrid")
+create_empty_textgrid(1, path = dirname(tmp), result_file_name = basename(tmp))
+
 }
 \author{
 George Moroz <agricolamz@gmail.com>
