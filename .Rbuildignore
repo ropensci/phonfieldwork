@@ -31,3 +31,4 @@ codemeta.json
 ^vignettes/.*\.orig
 ^codemeta\.json$
 ^\.github$
+sound_backup/*
