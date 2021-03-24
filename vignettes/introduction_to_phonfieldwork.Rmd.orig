@@ -29,16 +29,20 @@ file.remove(c(paste0("s1/backup/", list.files("s1/backup/")),
               "glossed_document.docx",
               "glossed_document.html",
               list.files(pattern = "unnamed-chunk")))
+if(sum(list.files("s2") == c("01.wav", "02.wav", "03.wav")) != 3){
 rename_soundfiles(stimuli = c("02", "01", "03"),
                   path = "s2/",
                   backup = FALSE,
                   logging = FALSE,
                   autonumber = FALSE)
+}
+if(sum(list.files("s1") == c("01.wav", "02.wav", "03.wav")) != 3){
 rename_soundfiles(stimuli = c("02", "01", "03"),
                   path = "s1/",
                   backup = FALSE,
                   logging = FALSE,
                   autonumber = FALSE)
+  }
 ```
 
 # Introduction
@@ -174,7 +178,7 @@ create_presentation(stimuli = c("rzeka", "drzewo", my_image),
 After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure:
 
 ```{bash, echo = FALSE}
-tree | tail -n 11 | head -n 8
+tree | tail -n 11 | head -n 8 | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'
 ```
 
 For each speaker `s1` and `s2` there is a folder that containes three audiofiles. Now let's rename the files.
@@ -188,7 +192,7 @@ rename_soundfiles(stimuli = my_stimuli_df$stimuli,
 As a result, you obtain the following structure:
 
 ```{bash, echo = FALSE}
-tree | tail -n 16 | head -n 13
+tree | tail -n 16 | head -n 13 | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'
 ```
 
 The `rename_soundfiles()` function created a backup folder with all of the unrenamed files, and renamed all files using the prefix provided in the `prefix` argument. There is an additional argument `backup` that can be set to `FALSE` (it is `TRUE` by default), in case you are sure that the renaming function will work properly with your files and stimuli, and you do not need a backup of the unrenamed files. There is also an additional argument `logging` (`TRUE` by default) that creates a `logging.csv` file in the `backup` folder (or in the original folder if the `backup` argument has value `FALSE`) with the correspondences between old and new names of the files. Here is the contence of the `logging.csv`:
@@ -210,7 +214,7 @@ rename_soundfiles(stimuli = my_stimuli_df$stimuli,
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 16 | head -n 13
+tree | tail -n 16 | head -n 13 | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'
 ```
 
 The last command renamed the soundfiles in the `s2` folder, adding the prefix `s2` as in the previous example, and the suffix `1`-`3`. On most operating systems it is impossible to create two files with the same name, so sometimes it can be useful to add some kind of index at the end of the files.
@@ -249,7 +253,7 @@ concatenate_soundfiles(path = "s1/",
 This comand creates a new soundfile `s1_all.wav` and an asociated Praat TextGrid `s1_all.TextGrid`:
 
 ```{bash, echo = FALSE}
-tree | tail -n 18 | head -n 15
+tree | tail -n 18 | head -n 15 | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'
 ```
 
 The resulting file can be parsed with Praat:
@@ -329,7 +333,7 @@ create_empty_textgrid(get_sound_duration("s2/s2_tip_1.wav")$duration,
 draw_sound("s2/s2_tip_1.wav", "s2/s2_tip_1.TextGrid")
 ```
 ```{bash, echo = FALSE}
-tree | tail -n 19 | head -n 16
+tree | tail -n 19 | head -n 16 | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'
 ```
 
 It is also possible to remove some tier from textgrid. For instance, we can remove one tier from the previously created file:
@@ -359,14 +363,14 @@ extract_intervals(file_name = "s1/s1_all.wav",
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 23 | head -n 20
+tree | tail -n 23 | head -n 20 | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'
 ```
 
 ## Visualizing your data
 It is possible to view an oscilogram and spetrogram of any soundfile:
 
 ```{r}
-draw_sound(file_name = "s1/s1_sounds/2_s1_ı.wav")
+draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav")
 ```
 
 There are additional parameters:
@@ -415,7 +419,7 @@ draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav",
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 24 | head -n 21
+tree | tail -n 24 | head -n 21 | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'
 ```
 
 It is also possible to create visualizations of all sound files in a folder. For this purpose you need to specify a source folder with the argument `sounds_from_folder` and a target folder for the images (`pic_folder_name`). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.
@@ -426,7 +430,7 @@ draw_sound(sounds_from_folder = "s1/s1_sounds/",
 ```
 
 ```{bash, echo = FALSE}
-tree | tail -n 28 | head -n 25
+tree | tail -n 28 | head -n 25 | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'
 ```
 
 It is also possible to use the argument `textgrid_from_folder` in order to specify the folder where .TextGrids for annotation are (could be the same folder as the sound one). By default the `draw_sound()` function with the `sounds_from_folder` argument adds a title with the file name to each pictures' title, but it is possible to turn it off using the argument `title_as_filename = FALSE`.
@@ -532,7 +536,7 @@ In order to create a sound viewer you need three things:
 We will start with the previous folder structure:
 
 ```{bash, echo = FALSE}
-tree | tail -n 28 | head -n 25
+tree | tail -n 28 | head -n 25 | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'
 ```
 
 We have all folders:
@@ -563,7 +567,7 @@ create_viewer(audio_dir = "s1/s1_sounds/",
 As a result, a `stimuli_viewer.html` was created in the `s1` folder.
 
 ```{bash, echo = FALSE}
-tree | tail -n 29 | head -n 26
+tree | tail -n 29 | head -n 26 | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g'
 ```
 
 You can find the created example [here](https://ropensci.github.io/phonfieldwork/additional/stimuli_viewer.html).
