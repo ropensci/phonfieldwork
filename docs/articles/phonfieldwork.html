@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phonfieldwork</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.12</span>
       </span>
     </div>
 
@@ -85,14 +85,14 @@
 
       
 
-      </header><script src="phonfieldwork_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><script src="phonfieldwork_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Phonetic fieldwork and experiments with <code>phonfieldwork</code> package</h1>
                         <h4 class="author">G. Moroz, <a href="https://ilcl.hse.ru/en/">NRU HSE Linguistic Convergence Laboratory</a>
 </h4>
             
-            <h4 class="date">2021-03-02</h4>
+            <h4 class="date">2021-03-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/phonfieldwork/blob/master/vignettes/phonfieldwork.Rmd"><code>vignettes/phonfieldwork.Rmd</code></a></small>
       <div class="hidden name"><code>phonfieldwork.Rmd</code></div>
@@ -125,7 +125,7 @@
 <p>This tutorial was made using the following version of <code>phonfieldwork</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span><span class="op">(</span><span class="st">"phonfieldwork"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] '0.0.11'</code></pre>
+<pre><code>## [1] '0.0.12'</code></pre>
 <p>This tutorial can be cited as follows:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"phonfieldwork"</span><span class="op">)</span></code></pre></div>
@@ -240,14 +240,14 @@ Your browser does not support iframes :(
 <h2 class="hasAnchor">
 <a href="#rename-collected-data" class="anchor"></a>Rename collected data</h2>
 <p>After collecting data and removing soundfiles with unsuccesful elicitations, one could end up with the following structure:</p>
-<pre><code>## ├── s1
-## │   ├── 01.wav
-## │   ├── 02.wav
-## │   └── 03.wav
-## ├── s2
-## │   ├── 01.wav
-## │   ├── 02.wav
-## │   └── 03.wav</code></pre>
+<pre><code>## ├── [01;34ms1[00m
+## │   ├── [01;35m01.wav[00m
+## │   ├── [01;35m02.wav[00m
+## │   └── [01;35m03.wav[00m
+## ├── [01;34ms2[00m
+## │   ├── [01;35m01.wav[00m
+## │   ├── [01;35m02.wav[00m
+## │   └── [01;35m03.wav[00m</code></pre>
 <p>For each speaker <code>s1</code> and <code>s2</code> there is a folder that containes three audiofiles. Now let’s rename the files.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/rename_soundfiles.html">rename_soundfiles</a></span><span class="op">(</span>stimuli <span class="op">=</span> <span class="va">my_stimuli_df</span><span class="op">$</span><span class="va">stimuli</span>,
@@ -256,19 +256,19 @@ Your browser does not support iframes :(
 <pre><code>## You can find change correspondences in the following file:
 ## /home/agricolamz/work/packages/phonfieldwork/vignettes/s1/backup/logging.csv</code></pre>
 <p>As a result, you obtain the following structure:</p>
-<pre><code>## ├── s1
-## │   ├── 1_s1_tip.wav
-## │   ├── 2_s1_tap.wav
-## │   ├── 3_s1_top.wav
-## │   └── backup
-## │       ├── 01.wav
-## │       ├── 02.wav
-## │       ├── 03.wav
+<pre><code>## ├── [01;34ms1[00m
+## │   ├── [01;35m1_s1_tip.wav[00m
+## │   ├── [01;35m2_s1_tap.wav[00m
+## │   ├── [01;35m3_s1_top.wav[00m
+## │   └── [01;34mbackup[00m
+## │       ├── [01;35m01.wav[00m
+## │       ├── [01;35m02.wav[00m
+## │       ├── [01;35m03.wav[00m
 ## │       └── logging.csv
-## ├── s2
-## │   ├── 01.wav
-## │   ├── 02.wav
-## │   └── 03.wav</code></pre>
+## ├── [01;34ms2[00m
+## │   ├── [01;35m01.wav[00m
+## │   ├── [01;35m02.wav[00m
+## │   └── [01;35m03.wav[00m</code></pre>
 <p>The <code><a href="../reference/rename_soundfiles.html">rename_soundfiles()</a></code> function created a backup folder with all of the unrenamed files, and renamed all files using the prefix provided in the <code>prefix</code> argument. There is an additional argument <code>backup</code> that can be set to <code>FALSE</code> (it is <code>TRUE</code> by default), in case you are sure that the renaming function will work properly with your files and stimuli, and you do not need a backup of the unrenamed files. There is also an additional argument <code>logging</code> (<code>TRUE</code> by default) that creates a <code>logging.csv</code> file in the <code>backup</code> folder (or in the original folder if the <code>backup</code> argument has value <code>FALSE</code>) with the correspondences between old and new names of the files. Here is the contence of the <code>logging.csv</code>:</p>
 <pre><code>##     from           to
 ## 1 01.wav 1_s1_tip.wav
@@ -283,19 +283,19 @@ Your browser does not support iframes :(
                   backup <span class="op">=</span> <span class="cn">FALSE</span>,
                   logging <span class="op">=</span> <span class="cn">FALSE</span>,
                   autonumbering <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<pre><code>## ├── s1
-## │   ├── 1_s1_tip.wav
-## │   ├── 2_s1_tap.wav
-## │   ├── 3_s1_top.wav
-## │   └── backup
-## │       ├── 01.wav
-## │       ├── 02.wav
-## │       ├── 03.wav
+<pre><code>## ├── [01;34ms1[00m
+## │   ├── [01;35m1_s1_tip.wav[00m
+## │   ├── [01;35m2_s1_tap.wav[00m
+## │   ├── [01;35m3_s1_top.wav[00m
+## │   └── [01;34mbackup[00m
+## │       ├── [01;35m01.wav[00m
+## │       ├── [01;35m02.wav[00m
+## │       ├── [01;35m03.wav[00m
 ## │       └── logging.csv
-## ├── s2
-## │   ├── s2_tap_2.wav
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav</code></pre>
+## ├── [01;34ms2[00m
+## │   ├── [01;35ms2_tap_2.wav[00m
+## │   ├── [01;35ms2_tip_1.wav[00m
+## │   └── [01;35ms2_top_3.wav[00m</code></pre>
 <p>The last command renamed the soundfiles in the <code>s2</code> folder, adding the prefix <code>s2</code> as in the previous example, and the suffix <code>1</code>-<code>3</code>. On most operating systems it is impossible to create two files with the same name, so sometimes it can be useful to add some kind of index at the end of the files.</p>
 <p>There is also a possible scenario, that not all stimuli are retrieved from informant. So in order to deal with that case there is an additional argument <code>missing</code>, where user can put id numbers of stimuli that are not present in audiofiles:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
@@ -324,24 +324,25 @@ Your browser does not support iframes :(
 <code class="sourceCode R"><span class="fu"><a href="../reference/concatenate_soundfiles.html">concatenate_soundfiles</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"s1/"</span>,
                        result_file_name <span class="op">=</span> <span class="st">"s1_all"</span><span class="op">)</span></code></pre></div>
 <p>This comand creates a new soundfile <code>s1_all.wav</code> and an asociated Praat TextGrid <code>s1_all.TextGrid</code>:</p>
-<pre><code>## ├── s1
-## │   ├── 1_s1_tip.wav
-## │   ├── 2_s1_tap.wav
-## │   ├── 3_s1_top.wav
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   ├── 03.wav
+<pre><code>## ├── [01;34ms1[00m
+## │   ├── [01;35m1_s1_tip.wav[00m
+## │   ├── [01;35m2_s1_tap.wav[00m
+## │   ├── [01;35m3_s1_top.wav[00m
+## │   ├── [01;34mbackup[00m
+## │   │   ├── [01;35m01.wav[00m
+## │   │   ├── [01;35m02.wav[00m
+## │   │   ├── [01;35m03.wav[00m
 ## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
-## │   └── s1_all.wav
-## ├── s2
-## │   ├── s2_tap_2.wav
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav</code></pre>
+## │   └── [01;35ms1_all.wav[00m
+## ├── [01;34ms2[00m
+## │   ├── [01;35ms2_tap_2.wav[00m
+## │   ├── [01;35ms2_tip_1.wav[00m
+## │   └── [01;35ms2_top_3.wav[00m</code></pre>
 <p>The resulting file can be parsed with Praat:</p>
 <p><img src="unnamed-chunk-23-1.png"></p>
-<p>It is not kind of task that could accure within phonfieldwork phylosophy, but it also possible to merge multiple <code>.TextGrid</code>s with the same tier structure using <code>concatente_textgrids()</code> function.</p>
+<p>Sometimes recorded sounds do not have any silence at the beginning or the end, so after the merging the result utterances will too close to each other. It is possible to fix using the argument <code>separate_duration</code> of the <code><a href="../reference/concatenate_soundfiles.html">concatenate_soundfiles()</a></code> function: just put the desired duration of the separator in seconds.</p>
+<p>It is not kind of task that could occur within phonfieldwork philosophy, but it also possible to merge multiple <code>.TextGrid</code>s with the same tier structure using <code>concatente_textgrids()</code> function.</p>
 </div>
 <div id="annotate-your-data" class="section level2">
 <h2 class="hasAnchor">
@@ -379,22 +380,22 @@ Your browser does not support iframes :(
                       path <span class="op">=</span> <span class="st">"s2"</span>,
                       result_file_name <span class="op">=</span> <span class="st">"s2_tip_1"</span><span class="op">)</span></code></pre></div>
 <p><img src="unnamed-chunk-33-1.png"></p>
-<pre><code>## ├── s1
-## │   ├── 1_s1_tip.wav
-## │   ├── 2_s1_tap.wav
-## │   ├── 3_s1_top.wav
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   ├── 03.wav
+<pre><code>## ├── [01;34ms1[00m
+## │   ├── [01;35m1_s1_tip.wav[00m
+## │   ├── [01;35m2_s1_tap.wav[00m
+## │   ├── [01;35m3_s1_top.wav[00m
+## │   ├── [01;34mbackup[00m
+## │   │   ├── [01;35m01.wav[00m
+## │   │   ├── [01;35m02.wav[00m
+## │   │   ├── [01;35m03.wav[00m
 ## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
-## │   └── s1_all.wav
-## ├── s2
-## │   ├── s2_tap_2.wav
+## │   └── [01;35ms1_all.wav[00m
+## ├── [01;34ms2[00m
+## │   ├── [01;35ms2_tap_2.wav[00m
 ## │   ├── s2_tip_1.TextGrid
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav</code></pre>
+## │   ├── [01;35ms2_tip_1.wav[00m
+## │   └── [01;35ms2_top_3.wav[00m</code></pre>
 <p>It is also possible to remove some tier from textgrid. For instance, we can remove one tier from the previously created file:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/remove_textgrid_tier.html">remove_textgrid_tier</a></span><span class="op">(</span>textgrid <span class="op">=</span> <span class="st">"s2/s2_tip_1.TextGrid"</span>, tier <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
@@ -413,26 +414,26 @@ Your browser does not support iframes :(
                   tier <span class="op">=</span> <span class="fl">3</span>,
                   path <span class="op">=</span> <span class="st">"s1/s1_sounds/"</span>,
                   prefix <span class="op">=</span> <span class="st">"s1_"</span><span class="op">)</span></code></pre></div>
-<pre><code>## ├── s1
-## │   ├── 1_s1_tip.wav
-## │   ├── 2_s1_tap.wav
-## │   ├── 3_s1_top.wav
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   ├── 03.wav
+<pre><code>## ├── [01;34ms1[00m
+## │   ├── [01;35m1_s1_tip.wav[00m
+## │   ├── [01;35m2_s1_tap.wav[00m
+## │   ├── [01;35m3_s1_top.wav[00m
+## │   ├── [01;34mbackup[00m
+## │   │   ├── [01;35m01.wav[00m
+## │   │   ├── [01;35m02.wav[00m
+## │   │   ├── [01;35m03.wav[00m
 ## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
-## │   ├── s1_all.wav
-## │   └── s1_sounds
-## │       ├── 1_s1_ı.wav
-## │       ├── 2_s1_æ.wav
-## │       └── 3_s1_ɒ.wav
-## ├── s2
-## │   ├── s2_tap_2.wav
+## │   ├── [01;35ms1_all.wav[00m
+## │   └── [01;34ms1_sounds[00m
+## │       ├── [01;35m1_s1_ı.wav[00m
+## │       ├── [01;35m2_s1_æ.wav[00m
+## │       └── [01;35m3_s1_ɒ.wav[00m
+## ├── [01;34ms2[00m
+## │   ├── [01;35ms2_tap_2.wav[00m
 ## │   ├── s2_tip_1.TextGrid
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav</code></pre>
+## │   ├── [01;35ms2_tip_1.wav[00m
+## │   └── [01;35ms2_top_3.wav[00m</code></pre>
 </div>
 <div id="visualizing-your-data" class="section level2">
 <h2 class="hasAnchor">
@@ -484,70 +485,72 @@ Your browser does not support iframes :(
            <span class="st">"s1/s1_all.TextGrid"</span>,
            from <span class="op">=</span> <span class="fl">0.4</span>,
            to <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object length</code></pre>
+<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object
+## length</code></pre>
 <p><img src="unnamed-chunk-41-1.png"></p>
 <p>It is also possible using the <code>zoom</code> argument to show the part of the spectrogram keeping the broader oscilogram context:</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span><span class="st">"s1/s1_all.wav"</span>,
            <span class="st">"s1/s1_all.TextGrid"</span>,
            zoom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object length</code></pre>
+<pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object
+## length</code></pre>
 <p><img src="unnamed-chunk-42-1.png"></p>
 <p>If the <code>output_file</code> argument is provided, R will save the plot in your directory instead of displaying it.</p>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="st">"s1/s1_sounds/1_s1_ı.wav"</span>,
            output_file <span class="op">=</span> <span class="st">"s1/s1_tip"</span>,
            title <span class="op">=</span> <span class="st">"s1 tip"</span><span class="op">)</span></code></pre></div>
-<pre><code>## ├── s1
-## │   ├── 1_s1_tip.wav
-## │   ├── 2_s1_tap.wav
-## │   ├── 3_s1_top.wav
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   ├── 03.wav
+<pre><code>## ├── [01;34ms1[00m
+## │   ├── [01;35m1_s1_tip.wav[00m
+## │   ├── [01;35m2_s1_tap.wav[00m
+## │   ├── [01;35m3_s1_top.wav[00m
+## │   ├── [01;34mbackup[00m
+## │   │   ├── [01;35m01.wav[00m
+## │   │   ├── [01;35m02.wav[00m
+## │   │   ├── [01;35m03.wav[00m
 ## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
-## │   ├── s1_all.wav
-## │   ├── s1_sounds
-## │   │   ├── 1_s1_ı.wav
-## │   │   ├── 2_s1_æ.wav
-## │   │   └── 3_s1_ɒ.wav
+## │   ├── [01;35ms1_all.wav[00m
+## │   ├── [01;34ms1_sounds[00m
+## │   │   ├── [01;35m1_s1_ı.wav[00m
+## │   │   ├── [01;35m2_s1_æ.wav[00m
+## │   │   └── [01;35m3_s1_ɒ.wav[00m
 ## │   └── s1_tip.png
-## ├── s2
-## │   ├── s2_tap_2.wav
+## ├── [01;34ms2[00m
+## │   ├── [01;35ms2_tap_2.wav[00m
 ## │   ├── s2_tip_1.TextGrid
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav</code></pre>
+## │   ├── [01;35ms2_tip_1.wav[00m
+## │   └── [01;35ms2_top_3.wav[00m</code></pre>
 <p>It is also possible to create visualizations of all sound files in a folder. For this purpose you need to specify a source folder with the argument <code>sounds_from_folder</code> and a target folder for the images (<code>pic_folder_name</code>). The new image folder is automatically created in the upper level folder, so that sound and image folders are on the same level in the tree structure of your directory.</p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span>sounds_from_folder <span class="op">=</span> <span class="st">"s1/s1_sounds/"</span>,
            pic_folder_name <span class="op">=</span> <span class="st">"s1_pics"</span><span class="op">)</span></code></pre></div>
-<pre><code>## ├── s1
-## │   ├── 1_s1_tip.wav
-## │   ├── 2_s1_tap.wav
-## │   ├── 3_s1_top.wav
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   ├── 03.wav
+<pre><code>## ├── [01;34ms1[00m
+## │   ├── [01;35m1_s1_tip.wav[00m
+## │   ├── [01;35m2_s1_tap.wav[00m
+## │   ├── [01;35m3_s1_top.wav[00m
+## │   ├── [01;34mbackup[00m
+## │   │   ├── [01;35m01.wav[00m
+## │   │   ├── [01;35m02.wav[00m
+## │   │   ├── [01;35m03.wav[00m
 ## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
-## │   ├── s1_all.wav
-## │   ├── s1_pics
+## │   ├── [01;35ms1_all.wav[00m
+## │   ├── [01;34ms1_pics[00m
 ## │   │   ├── 1_s1_ı.png
 ## │   │   ├── 2_s1_æ.png
 ## │   │   └── 3_s1_ɒ.png
-## │   ├── s1_sounds
-## │   │   ├── 1_s1_ı.wav
-## │   │   ├── 2_s1_æ.wav
-## │   │   └── 3_s1_ɒ.wav
+## │   ├── [01;34ms1_sounds[00m
+## │   │   ├── [01;35m1_s1_ı.wav[00m
+## │   │   ├── [01;35m2_s1_æ.wav[00m
+## │   │   └── [01;35m3_s1_ɒ.wav[00m
 ## │   └── s1_tip.png
-## ├── s2
-## │   ├── s2_tap_2.wav
+## ├── [01;34ms2[00m
+## │   ├── [01;35ms2_tap_2.wav[00m
 ## │   ├── s2_tip_1.TextGrid
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav</code></pre>
+## │   ├── [01;35ms2_tip_1.wav[00m
+## │   └── [01;35ms2_top_3.wav[00m</code></pre>
 <p>It is also possible to use the argument <code>textgrid_from_folder</code> in order to specify the folder where .TextGrids for annotation are (could be the same folder as the sound one). By default the <code><a href="../reference/draw_sound.html">draw_sound()</a></code> function with the <code>sounds_from_folder</code> argument adds a title with the file name to each pictures’ title, but it is possible to turn it off using the argument <code>title_as_filename = FALSE</code>.</p>
 <p>If you are familiar with the Raven program for bioacoustics, you probably miss an ability to annotate not only time, but also a frequency range. In order to do it you need to create a dataframe with the columns <code>time_start</code>, <code>time_end</code>, <code>freq_low</code> and <code>freq_high</code>:</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
@@ -703,31 +706,31 @@ Your browser does not support iframes :(
 <li>dataframe with some details (e. g. annotation, utterance number etc.)</li>
 </ul>
 <p>We will start with the previous folder structure:</p>
-<pre><code>## ├── s1
-## │   ├── 1_s1_tip.wav
-## │   ├── 2_s1_tap.wav
-## │   ├── 3_s1_top.wav
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   ├── 03.wav
+<pre><code>## ├── [01;34ms1[00m
+## │   ├── [01;35m1_s1_tip.wav[00m
+## │   ├── [01;35m2_s1_tap.wav[00m
+## │   ├── [01;35m3_s1_top.wav[00m
+## │   ├── [01;34mbackup[00m
+## │   │   ├── [01;35m01.wav[00m
+## │   │   ├── [01;35m02.wav[00m
+## │   │   ├── [01;35m03.wav[00m
 ## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
-## │   ├── s1_all.wav
-## │   ├── s1_pics
+## │   ├── [01;35ms1_all.wav[00m
+## │   ├── [01;34ms1_pics[00m
 ## │   │   ├── 1_s1_ı.png
 ## │   │   ├── 2_s1_æ.png
 ## │   │   └── 3_s1_ɒ.png
-## │   ├── s1_sounds
-## │   │   ├── 1_s1_ı.wav
-## │   │   ├── 2_s1_æ.wav
-## │   │   └── 3_s1_ɒ.wav
+## │   ├── [01;34ms1_sounds[00m
+## │   │   ├── [01;35m1_s1_ı.wav[00m
+## │   │   ├── [01;35m2_s1_æ.wav[00m
+## │   │   └── [01;35m3_s1_ɒ.wav[00m
 ## │   └── s1_tip.png
-## ├── s2
-## │   ├── s2_tap_2.wav
+## ├── [01;34ms2[00m
+## │   ├── [01;35ms2_tap_2.wav[00m
 ## │   ├── s2_tip_1.TextGrid
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav</code></pre>
+## │   ├── [01;35ms2_tip_1.wav[00m
+## │   └── [01;35ms2_top_3.wav[00m</code></pre>
 <p>We have all folders:</p>
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="st">"s1/s1_sounds/"</span><span class="op">)</span> <span class="co"># sounds</span></code></pre></div>
@@ -754,32 +757,32 @@ Your browser does not support iframes :(
 <pre><code>## Since the result .html file possibly containes some vulnerable data, researcher(s) bear the whole responsibility for the publishing of the result. Run vignette("ethical_research_with_phonfieldwork") for more details.</code></pre>
 <pre><code>## Output created: s1/stimuli_viewer.html</code></pre>
 <p>As a result, a <code>stimuli_viewer.html</code> was created in the <code>s1</code> folder.</p>
-<pre><code>## ├── s1
-## │   ├── 1_s1_tip.wav
-## │   ├── 2_s1_tap.wav
-## │   ├── 3_s1_top.wav
-## │   ├── backup
-## │   │   ├── 01.wav
-## │   │   ├── 02.wav
-## │   │   ├── 03.wav
+<pre><code>## ├── [01;34ms1[00m
+## │   ├── [01;35m1_s1_tip.wav[00m
+## │   ├── [01;35m2_s1_tap.wav[00m
+## │   ├── [01;35m3_s1_top.wav[00m
+## │   ├── [01;34mbackup[00m
+## │   │   ├── [01;35m01.wav[00m
+## │   │   ├── [01;35m02.wav[00m
+## │   │   ├── [01;35m03.wav[00m
 ## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
-## │   ├── s1_all.wav
-## │   ├── s1_pics
+## │   ├── [01;35ms1_all.wav[00m
+## │   ├── [01;34ms1_pics[00m
 ## │   │   ├── 1_s1_ı.png
 ## │   │   ├── 2_s1_æ.png
 ## │   │   └── 3_s1_ɒ.png
-## │   ├── s1_sounds
-## │   │   ├── 1_s1_ı.wav
-## │   │   ├── 2_s1_æ.wav
-## │   │   └── 3_s1_ɒ.wav
+## │   ├── [01;34ms1_sounds[00m
+## │   │   ├── [01;35m1_s1_ı.wav[00m
+## │   │   ├── [01;35m2_s1_æ.wav[00m
+## │   │   └── [01;35m3_s1_ɒ.wav[00m
 ## │   ├── s1_tip.png
 ## │   └── stimuli_viewer.html
-## ├── s2
-## │   ├── s2_tap_2.wav
+## ├── [01;34ms2[00m
+## │   ├── [01;35ms2_tap_2.wav[00m
 ## │   ├── s2_tip_1.TextGrid
-## │   ├── s2_tip_1.wav
-## │   └── s2_top_3.wav</code></pre>
+## │   ├── [01;35ms2_tip_1.wav[00m
+## │   └── [01;35ms2_top_3.wav[00m</code></pre>
 <p>You can find the created example <a href="https://ropensci.github.io/phonfieldwork/additional/stimuli_viewer.html">here</a>.</p>
 <p>Unfortunately, the way of table creation for the annotation viewer presented in this section is not a good solution for the huge amount of sounds. It is possible to derive such a table from annotation TextGrid, that we have created earlier. Here is a TextGrid:</p>
 <div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">

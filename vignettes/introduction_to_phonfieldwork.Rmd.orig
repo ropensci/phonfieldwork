@@ -258,7 +258,9 @@ The resulting file can be parsed with Praat:
 draw_sound("s1/s1_all.wav", "s1/s1_all.TextGrid")
 ```
 
-It is not kind of task that could accure within phonfieldwork phylosophy, but it also possible to merge multiple `.TextGrid`s with the same tier structure using `concatente_textgrids()` function.
+Sometimes recorded sounds do not have any silence at the beginning or the end, so after the merging the result utterances will too close to each other. It is possible to fix using the argument `separate_duration` of the `concatenate_soundfiles()` function: just put the desired duration of the separator in seconds.
+
+It is not kind of task that could occur within phonfieldwork philosophy, but it also possible to merge multiple `.TextGrid`s with the same tier structure using `concatente_textgrids()` function.
 
 ## Annotate your data
 

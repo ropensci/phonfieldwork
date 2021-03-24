@@ -1,3 +1,7 @@
+# phonfieldwork 0.0.12
+
+- add a `separate_duration` argument to the `concatenate_soundfiles()` function that makes it possible to use some silent separator during the file concatenation.
+
 # phonfieldwork 0.0.11
 
 - correct empty tiers behavior #34 (thanks to Shungo Suzuki)

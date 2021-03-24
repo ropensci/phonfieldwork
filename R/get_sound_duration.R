@@ -31,7 +31,7 @@ get_sound_duration <- function(file_name) {
       s <- tuneR::readMP3(file_name)
       duration <- length(s@left) / s@samp.rate
     } else {
-      stop("The get_sound_durations() functions works only with .wav(e)
+      stop("The get_sound_duration() functions works only with .wav(e)
              or .mp3 formats")
     }
     source <- basename(file_name)

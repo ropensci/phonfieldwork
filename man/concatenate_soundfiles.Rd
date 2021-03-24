@@ -7,7 +7,8 @@
 concatenate_soundfiles(
   path,
   result_file_name = "concatenated",
-  annotation = "textgrid"
+  annotation = "textgrid",
+  separate_duration = 0
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ concatenate_soundfiles(
 \item{result_file_name}{name of the result and annotation files.}
 
 \item{annotation}{character. There are several variants: "textgrid" for Praat TextGrid, "eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file. It is also possible to use \code{NULL} in order to prevent the creation of the annotation file.}
+
+\item{separate_duration}{double. It is possible to add some silence between concatenated sounds. This variable denotes duration of this soundless separator.}
 }
 \value{
 no output

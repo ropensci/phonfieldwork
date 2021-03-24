@@ -7,6 +7,7 @@
 #' @param path path to the directory with soundfiles.
 #' @param result_file_name name of the result and annotation files.
 #' @param annotation character. There are several variants: "textgrid" for Praat TextGrid, "eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file. It is also possible to use \code{NULL} in order to prevent the creation of the annotation file.
+#' @param separate_duration double. It is possible to add some silence between concatenated sounds. This variable denotes duration of this soundless separator in seconds.
 #'
 #' @examples
 #' # create two files in a temprary folder "test_folder"
@@ -31,12 +32,14 @@
 #' @importFrom tuneR readMP3
 #' @importFrom tuneR bind
 #' @importFrom tuneR writeWave
+#' @importFrom tuneR Wave
 #' @importFrom tools file_ext
 #'
 
 concatenate_soundfiles <- function(path,
                                    result_file_name = "concatenated",
-                                   annotation = "textgrid") {
+                                   annotation = "textgrid",
+                                   separate_duration = 0) {
   match.arg(annotation, c("textgrid", "eaf", "exb"))
 
   # concatenate sounds ------------------------------------------------------
@@ -84,6 +87,20 @@ concatenate_soundfiles <- function(path,
                 channels should be the same across all recordings."
     ))
   }
+
+  # merge with silence separator
+  if (separate_duration > 0) {
+    silence <- tuneR::Wave(left = rep(0, sound_attributes$samp.rate[1]*separate_duration),
+                           samp.rate = sound_attributes$samp.rate[1],
+                           bit = sound_attributes$bit[1])
+    list <- unlist(lapply(list, function(x){list(x, silence)}),
+                   recursive = FALSE)
+    list <- list[-length(list)]
+    # for annotation
+    files <- unlist(lapply(files, function(x){list(x, "")}))
+    files <- files[-length(files)]
+  }
+
   sound <- do.call(tuneR::bind, list)
   tuneR::writeWave(sound, paste0(path, "/", result_file_name, ".wav"))
 
@@ -102,7 +119,7 @@ concatenate_soundfiles <- function(path,
         Index = seq_along(files),
         StartTime = start_time,
         EndTime = end_time,
-        Label = sort(files),
+        Label = files,
         stringsAsFactors = FALSE
       )
       writeLines(
