@@ -18,7 +18,7 @@ concatenate_soundfiles(
 
 \item{annotation}{character. There are several variants: "textgrid" for Praat TextGrid, "eaf" for ELAN's .eaf file, or "exb" for EXMARaLDA's .exb file. It is also possible to use \code{NULL} in order to prevent the creation of the annotation file.}
 
-\item{separate_duration}{double. It is possible to add some silence between concatenated sounds. This variable denotes duration of this soundless separator.}
+\item{separate_duration}{double. It is possible to add some silence between concatenated sounds. This variable denotes duration of this soundless separator in seconds.}
 }
 \value{
 no output

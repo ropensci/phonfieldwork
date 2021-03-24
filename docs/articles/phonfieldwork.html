@@ -306,7 +306,7 @@ Your browser does not support iframes :(
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_sound_duration.html">get_sound_duration</a></span><span class="op">(</span><span class="st">"s1/2_s1_tap.wav"</span><span class="op">)</span></code></pre></div>
 <pre><code>##           file  duration
-## 1 2_s1_tap.wav 0.4299093</code></pre>
+## 1 2_s1_tap.wav 0.4821542</code></pre>
 <p>It is also possible to analyze the whole folder using the <code><a href="../reference/read_from_folder.html">read_from_folder()</a></code> function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: “audacity,” “duration,” “eaf,” “exb,” “flextext,” “formant,” “intensity,” “picth,” “srt,” “textgrid”):</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/read_from_folder.html">read_from_folder</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"s2/"</span>, <span class="st">"duration"</span><span class="op">)</span></code></pre></div>
@@ -340,7 +340,7 @@ Your browser does not support iframes :(
 ## │   ├── s2_tip_1.wav
 ## │   └── s2_top_3.wav</code></pre>
 <p>The resulting file can be parsed with Praat:</p>
-<p><img src="unnamed-chunk-24-1.png"></p>
+<p><img src="unnamed-chunk-23-1.png"></p>
 <p>Sometimes recorded sounds do not have any silence at the beginning or the end, so after the merging the result utterances will too close to each other. It is possible to fix using the argument <code>separate_duration</code> of the <code><a href="../reference/concatenate_soundfiles.html">concatenate_soundfiles()</a></code> function: just put the desired duration of the separator in seconds.</p>
 <p>It is not kind of task that could occur within phonfieldwork philosophy, but it also possible to merge multiple <code>.TextGrid</code>s with the same tier structure using <code>concatente_textgrids()</code> function.</p>
 </div>
@@ -354,14 +354,14 @@ Your browser does not support iframes :(
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/annotate_textgrid.html">annotate_textgrid</a></span><span class="op">(</span>annotation <span class="op">=</span>  <span class="va">my_stimuli_df</span><span class="op">$</span><span class="va">stimuli</span>,
                   textgrid <span class="op">=</span> <span class="st">"s1/s1_all.TextGrid"</span><span class="op">)</span></code></pre></div>
-<p><img src="unnamed-chunk-26-1.png"></p>
+<p><img src="unnamed-chunk-25-1.png"></p>
 <p>As you can see in the example, the <code><a href="../reference/annotate_textgrid.html">annotate_textgrid()</a></code> function creates a backup of the tier and adds a new tier on top of the previous one. It is possible to prevent the function from doing so by setting the <code>backup</code> argument to <code>FALSE</code>.</p>
 <p>Imagine that we are interested in annotation of vowels. The most common solution will be open Praat and create new annotations. But it is also possible to create them in advance using subannotations. The idea that you choose some baseline tier that later will be automatically cutted into smaller pieces on the other tier.</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/create_subannotation.html">create_subannotation</a></span><span class="op">(</span>textgrid <span class="op">=</span> <span class="st">"s1/s1_all.TextGrid"</span>,
                      tier <span class="op">=</span> <span class="fl">1</span>, <span class="co"># this is a baseline tier</span>
                      n_of_annotations <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># how many empty annotations per unit?</span></code></pre></div>
-<p><img src="unnamed-chunk-28-1.png"></p>
+<p><img src="unnamed-chunk-27-1.png"></p>
 <p>It is worth mentioning that if you want to have different number of subannotation per unit, you can pass a vector of required numbers to <code>n_of_annotations</code> argument.</p>
 <p>After the creation of subannotations, we can annotate created tier:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
@@ -369,9 +369,9 @@ Your browser does not support iframes :(
                   textgrid <span class="op">=</span> <span class="st">"s1/s1_all.TextGrid"</span>,
                   tier <span class="op">=</span> <span class="fl">3</span>,
                   backup <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p><img src="unnamed-chunk-30-1.png"></p>
+<p><img src="unnamed-chunk-29-1.png"></p>
 <p>You can see that we created a third tier with annotation. The only thing left is to move annotation boundaries in Praat (this can not be automated):</p>
-<p><img src="unnamed-chunk-32-1.png"></p>
+<p><img src="unnamed-chunk-31-1.png"></p>
 <p>You can see from the last figure that no backup tier was created (<code>backup = FALSE</code>), that the third tier was annotated (<code>tier = 3</code>).</p>
 <p>In case you want to create an empty TextGrid it is possible to use a <code><a href="../reference/create_empty_textgrid.html">create_empty_textgrid()</a></code> function that takes a duration as an argument:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
@@ -379,7 +379,7 @@ Your browser does not support iframes :(
                       tier_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>,
                       path <span class="op">=</span> <span class="st">"s2"</span>,
                       result_file_name <span class="op">=</span> <span class="st">"s2_tip_1"</span><span class="op">)</span></code></pre></div>
-<p><img src="unnamed-chunk-34-1.png"></p>
+<p><img src="unnamed-chunk-33-1.png"></p>
 <pre><code>## ├── s1
 ## │   ├── 1_s1_tip.wav
 ## │   ├── 2_s1_tap.wav
@@ -399,7 +399,7 @@ Your browser does not support iframes :(
 <p>It is also possible to remove some tier from textgrid. For instance, we can remove one tier from the previously created file:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/remove_textgrid_tier.html">remove_textgrid_tier</a></span><span class="op">(</span>textgrid <span class="op">=</span> <span class="st">"s2/s2_tip_1.TextGrid"</span>, tier <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
-<p><img src="unnamed-chunk-37-1.png"></p>
+<p><img src="unnamed-chunk-36-1.png"></p>
 </div>
 <div id="extracting-your-data" class="section level2">
 <h2 class="hasAnchor">
@@ -441,7 +441,7 @@ Your browser does not support iframes :(
 <p>It is possible to view an oscilogram and spetrogram of any soundfile:</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="st">"s1/s1_sounds/1_s1_ı.wav"</span><span class="op">)</span></code></pre></div>
-<p><img src="unnamed-chunk-41-1.png"></p>
+<p><img src="unnamed-chunk-40-1.png"></p>
 <p>There are additional parameters:</p>
 <ul>
 <li>
@@ -487,7 +487,7 @@ Your browser does not support iframes :(
            to <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object
 ## length</code></pre>
-<p><img src="unnamed-chunk-42-1.png"></p>
+<p><img src="unnamed-chunk-41-1.png"></p>
 <p>It is also possible using the <code>zoom</code> argument to show the part of the spectrogram keeping the broader oscilogram context:</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span><span class="st">"s1/s1_all.wav"</span>,
@@ -495,7 +495,7 @@ Your browser does not support iframes :(
            zoom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object
 ## length</code></pre>
-<p><img src="unnamed-chunk-43-1.png"></p>
+<p><img src="unnamed-chunk-42-1.png"></p>
 <p>If the <code>output_file</code> argument is provided, R will save the plot in your directory instead of displaying it.</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="st">"s1/s1_sounds/1_s1_ı.wav"</span>,
@@ -561,7 +561,7 @@ Your browser does not support iframes :(
 
 <span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test.wav"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span>,
            raven_annotation <span class="op">=</span> <span class="va">raven_an</span><span class="op">)</span></code></pre></div>
-<p><img src="unnamed-chunk-48-1.png"></p>
+<p><img src="unnamed-chunk-47-1.png"></p>
 <p>It is also possible to use multiple values, colors (adding <code>colors</code> column) and annotation (adding <code>content</code> column):</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">raven_an</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>time_start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">250</span>, <span class="fl">450</span><span class="op">)</span>,
@@ -573,7 +573,7 @@ Your browser does not support iframes :(
 
 <span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test.wav"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span>,
            raven_annotation <span class="op">=</span> <span class="va">raven_an</span><span class="op">)</span></code></pre></div>
-<p><img src="unnamed-chunk-49-1.png"></p>
+<p><img src="unnamed-chunk-48-1.png"></p>
 </div>
 </div>
 <div id="read-linguistic-files-into-r" class="section level1">
@@ -692,7 +692,7 @@ Your browser does not support iframes :(
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test.wav"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span>,
            annotation <span class="op">=</span> <span class="fu"><a href="../reference/eaf_to_df.html">eaf_to_df</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test.eaf"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="unnamed-chunk-58-1.png"></p>
+<p><img src="unnamed-chunk-57-1.png"></p>
 <p>Remmember that it is also possible to read multiple files with the <code><a href="../reference/read_from_folder.html">read_from_folder()</a></code> funtion.</p>
 </div>
 <div id="create-a-viewer" class="section level1">

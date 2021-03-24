@@ -162,7 +162,7 @@
     </tr>
     <tr>
       <th>separate_duration</th>
-      <td><p>double. It is possible to add some silence between concatenated sounds. This variable denotes duration of this soundless separator.</p></td>
+      <td><p>double. It is possible to add some silence between concatenated sounds. This variable denotes duration of this soundless separator in seconds.</p></td>
     </tr>
     </table>
 
@@ -182,7 +182,7 @@
 </div><div class='output co'>#&gt; [1] TRUE TRUE</div><div class='input'>
 <span class='co'># here are two .wav files in a folder</span>
 <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span><span class='va'>tdir</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "downlit"             "file424d4a6e367d.so" "post.wav"           
+</div><div class='output co'>#&gt; [1] "downlit"             "filecf7f54166c32.so" "post.wav"           
 #&gt; [4] "test.wav"           </div><div class='input'><span class='co'># [1] "post.wav" "test.wav" ...</span>
 
 <span class='co'># Concatenate all files from the folder into concatenated.wav and create</span>
@@ -191,7 +191,7 @@
 
 <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span><span class='va'>tdir</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "concatenated.TextGrid" "concatenated.wav"      "downlit"              
-#&gt; [4] "file424d4a6e367d.so"   "post.wav"              "test.wav"             </div><div class='input'><span class='co'># [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...</span>
+#&gt; [4] "filecf7f54166c32.so"   "post.wav"              "test.wav"             </div><div class='input'><span class='co'># [1] "concatenated.TextGrid" "concatenated.wav" "post.wav" "test.wav" ...</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
