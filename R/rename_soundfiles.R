@@ -20,6 +20,7 @@
 #' @export
 #'
 #' @importFrom utils write.csv
+#' @importFrom tools file_ext
 
 rename_soundfiles <- function(stimuli,
                               translations = NULL,
@@ -37,17 +38,13 @@ rename_soundfiles <- function(stimuli,
     stimuli <- stimuli[-missing]
   }
 
-  extension <- unlist(
-    lapply(seq_along(files), function(x) {
-      res <- unlist(strsplit(files[x], "\\."))
-      res[length(res)]
-    })
-  )
+
+  extension <- tools::file_ext(files)
 
 
-  not_wav <- which(!(tolower(extension) %in% "wav"))
+  not_wav <- which(!(tolower(extension) %in% c("wav", "wave", "mp3")))
   if (length(not_wav) > 0) {
-    stop(paste0(c("There are some non-wav files:", files[not_wav]),
+    stop(paste0(c("These function works with wav and mp3 sounds, see the folowing files:", files[not_wav]),
       collapse = "\n"
     ))
   }
