@@ -80,8 +80,10 @@ textgrid_to_df <- function(file_name) {
   result$id <- as.numeric(gsub("\\d{1,}\\.", "", rownames(result)))
   result$tier <- as.numeric(gsub("\\.\\d{1,}", "", rownames(result)))
 
+  # extract first and last " in the entity
   result$content <- unlist(lapply(result$content, function(j) {
-    unlist(strsplit(j, '"'))[2]
+    all_pieces <- gregexpr('"', j)[[1]]
+    substr(j, all_pieces[1]+1, all_pieces[length(all_pieces)]-1)
   }))
   result$time_start <- as.numeric(result$time_start)
   result$time_end <- as.numeric(result$time_end)
