@@ -1,4 +1,4 @@
-#' Crocodile's roar
+#' creates crocodile's roar
 #'
 #' Creates a crocodile's roar for a given number of times.
 #'
@@ -7,8 +7,6 @@
 #' @param iterations integer numeric value
 #'
 #' @return a string with crocodile's roar
-#'
-#' @examples crocodile(4)
 #'
 
 crocodile <- function(iterations) {
@@ -27,4 +25,3 @@ roar <- substring(roar, 2, nchar(roar))
 return(roar)
 
 }
-
