@@ -7,7 +7,7 @@
 crocodile(iterations)
 }
 \arguments{
-\item{numeric}{value}
+\item{iterations}{integer numeric value}
 }
 \value{
 a string with crocodile's roar

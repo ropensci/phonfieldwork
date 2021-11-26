@@ -4,7 +4,7 @@
 #'
 #' @author Kudrjashov Sergej 
 #'
-#' @param numeric value
+#' @param iterations integer numeric value
 #'
 #' @return a string with crocodile's roar
 #'
