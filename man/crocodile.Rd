@@ -2,7 +2,7 @@
 % Please edit documentation in R/crocodile.R
 \name{crocodile}
 \alias{crocodile}
-\title{creates crocodile's roar}
+\title{create crocodile's roar}
 \usage{
 crocodile(iterations)
 }
@@ -10,7 +10,7 @@ crocodile(iterations)
 \item{iterations}{integer numeric value}
 }
 \value{
-a string with crocodile's roar
+a string with terrifying crocodile's roar
 }
 \description{
 Creates a crocodile's roar for a given number of times.

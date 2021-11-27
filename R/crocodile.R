@@ -1,26 +1,23 @@
-#' creates crocodile's roar
+#' create crocodile's roar
 #'
-#' Creates a crocodile's roar for a given number of times.
+#' @description Creates a crocodile's roar for a given number of times.
 #'
 #' @author Kudrjashov Sergej 
 #'
-#' @param iterations integer numeric value
+#' @param  iterations integer numeric value
 #'
-#' @return a string with crocodile's roar
+#' @return a string with terrifying crocodile's roar
 #'
-
+#' @example 
+#' #' basic usage of crocodile
+#' crocodile(iterations = 3)
+#' 
+#' 
 crocodile <- function(iterations) {
   
-  if (iterations == 1) {
-    return('arrr')
-  }
-  
-  roar <- ''
-  for (i in c(1:iterations)) {
-    roar <- paste(roar, 'arrr', sep = '-')
-  }
-  
-roar <- substring(roar, 2, nchar(roar))
+roar <- rep('arrr', iterations)
+
+roar <- paste(roar, collapse = '-')
 
 return(roar)
 
