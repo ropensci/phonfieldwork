@@ -10,11 +10,11 @@ crocodile(iterations)
 \item{iterations}{integer numeric value}
 }
 \value{
-a string with terrifying crocodile's roar
+a string with cute crocodile's roar
 }
 \description{
 Creates a crocodile's roar for a given number of times.
 }
 \author{
-Kudrjashov Sergej
+Kudrjashov Sergej <xenomirant@gmail.com>
 }
