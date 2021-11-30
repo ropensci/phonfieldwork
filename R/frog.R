@@ -4,7 +4,7 @@
 #'
 #' @author Valeria Buntiakova <valleriabun@gmail.com>
 #'
-#' @param length of string
+#' @param n length of string
 #'
 #' @return a string of 'kva'
 #'
@@ -17,4 +17,5 @@
 frog <- function(n){
   paste(rep('kva', n), collapse='-')
 }
+
 

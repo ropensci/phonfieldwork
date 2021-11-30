@@ -7,7 +7,7 @@
 frog(n)
 }
 \arguments{
-\item{length}{of string}
+\item{n}{length of string}
 }
 \value{
 a string of 'kva'

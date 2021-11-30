@@ -32,6 +32,13 @@ Authors@R: c(
     role = c("rev"),
     email = "nikotapiopartanen@gmail.com",
     comment = c(ORCID = "0000-0001-8584-3880"))
+  )  
+  person(
+    given = "Valeria", 
+    family = "Buntiakova",
+    role = c("ctb"),
+    email = "valleriabun@gmail.com",
+    comment = c(ORCID = "0000-0003-2409-2651"))
   )
 Description: There are a lot of different typical tasks that have to be solved during phonetic research and experiments. This includes creating a presentation that will contain all stimuli, renaming and concatenating multiple sound files recorded during a session, automatic annotation in 'Praat' TextGrids (this is one of the sound annotation standards provided by 'Praat' software, see Boersma & Weenink 2020 <https://www.fon.hum.uva.nl/praat/>), creating an html table with annotations and spectrograms, and converting multiple formats ('Praat' TextGrid, 'ELAN', 'EXMARaLDA', 'Audacity', subtitles '.srt', and 'FLEx' flextext). All of these tasks can be solved by a mixture of different tools (any programming language has programs for automatic renaming, and Praat contains scripts for concatenating and renaming files, etc.). 'phonfieldwork' provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other packages: 'rPraat' <https://CRAN.R-project.org/package=rPraat>, 'textgRid' <https://CRAN.R-project.org/package=textgRid>.
 License: GPL (>= 2)
@@ -40,7 +47,7 @@ URL: https://CRAN.R-project.org/package=phonfieldwork, https://docs.ropensci.org
 BugReports: https://github.com/ropensci/phonfieldwork/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 Suggests: 
     knitr,
