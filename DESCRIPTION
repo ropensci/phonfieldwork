@@ -31,8 +31,7 @@ Authors@R: c(
     family = "Partanen",
     role = c("rev"),
     email = "nikotapiopartanen@gmail.com",
-    comment = c(ORCID = "0000-0001-8584-3880"))
-  )  
+    comment = c(ORCID = "0000-0001-8584-3880")),
   person(
     given = "Valeria", 
     family = "Buntiakova",
