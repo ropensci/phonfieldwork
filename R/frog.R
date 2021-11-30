@@ -14,8 +14,8 @@
 #' @export
 #'
 
-frog <- function(length){
-  paste(rep('kva', length), collapse='-')
+frog <- function(n){
+  paste(rep('kva', n), collapse='-')
 }
 
 
