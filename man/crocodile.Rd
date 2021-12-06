@@ -15,6 +15,10 @@ a string with cute crocodile's roar
 \description{
 Creates a crocodile's roar for a given number of times.
 }
+\examples{
+crocodile(3)
+
+}
 \author{
 Kudrjashov Sergej <xenomirant@gmail.com>
 }

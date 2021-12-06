@@ -8,17 +8,18 @@
 #'
 #' @return a string with cute crocodile's roar
 #'
-#' @example
+#' @examples 
 #' crocodile(3)
 #' 
 #' @export
-#' 
+#'
+ 
 crocodile <- function(iterations) {
   
 roar <- rep('arrr', iterations)
 
 roar <- paste(roar, collapse = '-')
 
-return(roar)
+roar
 
 }
