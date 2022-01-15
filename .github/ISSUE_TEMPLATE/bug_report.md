@@ -4,7 +4,6 @@ about: Create a report to help us improve
 title: ''
 labels: bug
 assignees: ''
-
 ---
 
 Please, put the results of these functions below, if your issue is related to the technical bugs. Thank you!

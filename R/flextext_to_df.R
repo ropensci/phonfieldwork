@@ -19,6 +19,7 @@
 #' @importFrom xml2 xml_child
 
 flextext_to_df <- function(file_name) {
+  message("It can take some time for big files...")
   l <- xml2::read_xml(file_name)
   l <- xml2::xml_find_all(l, "interlinear-text")
   text_df <- lapply(seq_along(l), function(i) {

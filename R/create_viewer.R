@@ -23,7 +23,7 @@
 #' @importFrom utils write.csv
 
 create_viewer <- function(audio_dir,
-                          picture_dir,
+                          picture_dir = NULL,
                           table,
                           captions = NULL,
                           sorting_columns = NULL,
@@ -60,12 +60,15 @@ create_viewer <- function(audio_dir,
   message('Since the result .html file possibly containes some vulnerable data, researcher(s) bear the whole responsibility for the publishing of the result. Run vignette("ethical_research_with_phonfieldwork") for more details.')
 
   audio <- list.files(normalizePath(audio_dir), "(\\.wav$)|(\\.wave$)|(\\.WAV$)|(\\.WAVE$)")
-  pictures <- list.files(normalizePath(picture_dir), "(\\.png$)|(\\.PNG$)")
-  if (length(audio) > length(pictures)) {
-    stop("The number of audio files is greater then number of pictures.")
-  }
-  if (length(audio) < length(pictures)) {
-    stop("The number of audio files is less then number of pictures.")
+
+  if(length(picture_dir) > 0){
+    pictures <- list.files(normalizePath(picture_dir), "(\\.png$)|(\\.PNG$)")
+    if (length(audio) > length(pictures)) {
+      stop("The number of audio files is greater then number of pictures.")
+    }
+    if (length(audio) < length(pictures)) {
+      stop("The number of audio files is less then number of pictures.")
+    }
   }
 
   # create correct relative paths -------------------------------------------
@@ -76,12 +79,14 @@ create_viewer <- function(audio_dir,
   audio_dir <- substr(audio_dir, 2, nchar(audio_dir))
   table$audio <- paste0(audio_dir, "/", audio)
 
-  picture_dir <- strsplit(
-    normalizePath(picture_dir),
-    normalizePath(output_dir)
-  )[[1]][2]
-  picture_dir <- substr(picture_dir, 2, nchar(picture_dir))
-  table$pictures <- paste0(picture_dir, "/", pictures)
+  if(length(picture_dir) > 0){
+    picture_dir <- strsplit(
+      normalizePath(picture_dir),
+      normalizePath(output_dir)
+    )[[1]][2]
+    picture_dir <- substr(picture_dir, 2, nchar(picture_dir))
+    table$pictures <- paste0(picture_dir, "/", pictures)
+  }
 
   # sort rows according to sorting_columns
   if (!is.null(sorting_columns)) {

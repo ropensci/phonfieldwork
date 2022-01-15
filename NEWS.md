@@ -3,6 +3,7 @@
 - add a `separate_duration` argument to the `concatenate_soundfiles()` function that makes it possible to use some silent separator during the file concatenation.
 - make `rename_soundfiles()` function to work with mp3 files.
 - fix the bug with `"` sign in textgrids.
+- make pictures optional in the `create_viewer()` function
 
 # phonfieldwork 0.0.11
 
