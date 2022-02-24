@@ -26,3 +26,6 @@ phonfieldwork.Rproj
 rsconnect
 doc
 Meta
+phonfieldwork.Rcheck/
+phonfieldwork*.tar.gz
+phonfieldwork*.tgz

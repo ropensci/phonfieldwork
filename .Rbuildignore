@@ -32,3 +32,6 @@ codemeta.json
 ^codemeta\.json$
 ^\.github$
 sound_backup/*
+^phonfieldwork\.Rcheck$
+^phonfieldwork.*\.tar\.gz$
+^phonfieldwork.*\.tgz$
