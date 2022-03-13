@@ -1,3 +1,39 @@
+#' Dataframe to .exb
+#'
+#' Convert a dataframe to Exmaralda .exb
+#'
+#' @author Valeria Buntiakova <valleriabun@gmail.com>
+#'
+#' @param df an R dataframe object that contains columns named 'tier', 'tier_name', 'content', 'time_start', 'time_end' and 'id'
+#' @param name transcription name
+#' @param outputPath filepath
+#' @param referenced_file a filepath for .wav
+#' @param ud_meta a vector ('key':'value') of meta information
+#' @param speaker_table a table with speaker information; must include columns 'id', 'abbreviation', 'sex'
+#' @return .xml file
+#' @examples
+#' meta <- c('Type of communication' = 'Fernsehinterview', 
+#'          'Source' = 'Parkinson Talkshow auf BBC', 
+#'          'Background information' = 'Interview mit den Beckhams in der TV Talkshow Parkinson auf BBC', 
+#'          'Code' = 'Beckhams') 
+#'
+#' speaker_data <- data.frame('id' = c('SPK0', 'SPK1', 'SPK2'), 
+#'                           'abbreviation' = c('PAR', 'VIC', 'DAV'), 
+#'                           'sex' = c('m', 'f', 'm'), 
+#'                           'Family: Marital status' = c('Verheiratet', 'Verheiratet', 'Verheiratet'), 
+#'                           'Birth' = c('28. März 1935 in Cudworth', '14. April 1974 in Hertfordshire', '2. Mail 1975 in London'), 
+#'                           'Occupation' = c('Fernsehmoderator, Journalist, Autor', 'Sängerin', 'Professioneller Fußballspieler'),
+#'                           'Family: Children' = c(3, '3 Söhn, 1 Tochter', '3 Söhne, 1 Tochter'), 
+#'                           'Name' = c('Michael Parkinson', 'Victoria Beckham', 'David Beckham'))
+#'
+#' df <- exb_to_df('tests/demo_Beckhams.exb')
+#' 
+#' df_to_exb(df = df, name = 'Beckhams', outputPath = 'beck.xml', referenced_file = 'beck.wav', ud_meta = meta, speaker_table = speaker_data)
+#' 
+#' @export
+#'
+
+
 df_to_exb <- function(df, name, outputPath, referenced_file='', ud_meta=NULL, speaker_table=NULL){
   
   #--- stencils
@@ -209,13 +245,13 @@ df_to_exb <- function(df, name, outputPath, referenced_file='', ud_meta=NULL, sp
   
   #--- fill speakertable
   if (length(speaker_table)) {
-    features <- colnames(speakerdata)
+    features <- colnames(speaker_table)
     remove <- c('id', 'abbreviation', 'sex')
     features <- setdiff(features, remove)
     
     l <- list()
-    for (sp in speakerdata$id) {
-      spd <- speakerdata[which(grepl(sp, speakerdata$id)),]
+    for (sp in speaker_table$id) {
+      spd <- speaker_table[which(grepl(sp, speaker_table$id)),]
       
       if (length(features)) {
         feature_block <- sprintf(sp_line, features, spd[features])
