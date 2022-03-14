@@ -26,7 +26,7 @@
 #'                           'Family: Children' = c(3, '3 Söhn, 1 Tochter', '3 Söhne, 1 Tochter'), 
 #'                           'Name' = c('Michael Parkinson', 'Victoria Beckham', 'David Beckham'))
 #'
-#' df <- exb_to_df('tests/demo_Beckhams.exb')
+#' df <- exb_to_df(system.file("extdata", "demo_Beckhams.exb", package = "phonfieldwork"))
 #' 
 #' df_to_exb(df = df, name = 'Beckhams', outputPath = 'beck.xml', referenced_file = 'beck.wav', ud_meta = meta, speaker_table = speaker_data)
 #' 
@@ -165,7 +165,7 @@ df_to_exb <- function(df, name, outputPath, referenced_file='', ud_meta=NULL, sp
   
   t_category <- FALSE
   t_type <- FALSE
-  sp_names <- FALSE # not doing anythong with this yet
+  sp_names <- FALSE
   
   columns <- colnames(df)
   if ('tier_speaker' %in% columns) {
