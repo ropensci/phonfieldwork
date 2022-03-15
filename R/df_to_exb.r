@@ -213,9 +213,9 @@ df_to_exb <- function(df, name, outputPath, referenced_file='', ud_meta=NULL, sp
   
   #--- merge table and times
   table <- merge(table, alltimes, by.x = 'time_start', by.y='value')
-  table <- rename(table, 'ts_start'='ts')
+  colnames(table)[which(names(table) == "ts")] <- "ts_start"
   table <- merge(table, alltimes, by.x = 'time_end', by.y='value')
-  table <- rename(table, 'ts_end'='ts')
+  colnames(table)[which(names(table) == "ts")] <- "ts_end"
   
   
   #--- fill files
