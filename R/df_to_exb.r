@@ -296,7 +296,6 @@ df_to_exb <- function(df, name, outputPath, referenced_file='', ud_meta=NULL, sp
   #--- fill timeline
   tli <- sprintf(tli, alltimes$ts, alltimes$value)
   tli <- paste(tli, collapse="\n")
-  tli <- stringr::str_replace(tli, 'time="0"', 'time="0.0"')
   timeline <- sprintf(timeline, tli)
   timeline <- paste(timeline, collapse="\n")
   
