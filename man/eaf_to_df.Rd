@@ -11,8 +11,8 @@ eaf_to_df(file_name)
 }
 \value{
 a dataframe with columns:  \code{tier}, \code{id}, \code{content},
-\code{tier_name}, \code{tier_type}, \code{time_start}, \code{time_end},
-\code{source}).
+\code{tier_name}, \code{tier_type}, \code{tier_ref}, \code{dependent_on}, 
+\code{time_start}, \code{time_end}, \code{source}).
 }
 \description{
 Convert .eaf file from ELAN to a dataframe.
@@ -22,4 +22,6 @@ eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 }
 \author{
 George Moroz <agricolamz@gmail.com>
+
+Kudrjashov Sergej <xenomirant@gmail.com>
 }
