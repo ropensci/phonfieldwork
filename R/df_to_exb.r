@@ -15,15 +15,21 @@
 #' @examples
 #' meta <- c('Type of communication' = 'Fernsehinterview', 
 #'          'Source' = 'Parkinson Talkshow auf BBC', 
-#'          'Background information' = 'Interview mit den Beckhams in der TV Talkshow Parkinson auf BBC', 
+#'          'Background information' = 'Interview mit den Beckhams', 
 #'          'Code' = 'Beckhams') 
 #'
 #' speaker_data <- data.frame('id' = c('SPK0', 'SPK1', 'SPK2'), 
 #'                           'abbreviation' = c('PAR', 'VIC', 'DAV'), 
 #'                           'sex' = c('m', 'f', 'm'), 
-#'                           'Family: Marital status' = c('Verheiratet', 'Verheiratet', 'Verheiratet'), 
-#'                           'Birth' = c('28. März 1935 in Cudworth', '14. April 1974 in Hertfordshire', '2. Mail 1975 in London'), 
-#'                           'Occupation' = c('Fernsehmoderator, Journalist, Autor', 'Sängerin', 'Professioneller Fußballspieler'),
+#'                           'Family: Marital status' = c('Verheiratet', 
+#'                                                        'Verheiratet', 
+#'                                                        'Verheiratet'), 
+#'                           'Birth' = c('28. März 1935 in Cudworth', 
+#'                                       '14. April 1974 in Hertfordshire', 
+#'                                       '2. Mail 1975 in London'), 
+#'                           'Occupation' = c('Fernsehmoderator, Journalist, Autor', 
+#'                                            'Sängerin', 
+#'                                            'Professioneller Fußballspieler'),
 #'                           'Family: Children' = c(3, '3 Söhn, 1 Tochter', '3 Söhne, 1 Tochter'), 
 #'                           'Name' = c('Michael Parkinson', 'Victoria Beckham', 'David Beckham'))
 #'
