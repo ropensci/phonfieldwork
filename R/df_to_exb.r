@@ -6,10 +6,11 @@
 #'
 #' @param df an R dataframe object that contains columns named 'tier', 'tier_name', 'content', 'time_start', 'time_end' and 'id'
 #' @param name transcription name
-#' @param outputPath filepath
+#' @param output_file the name of the result .html file
+#' @param output_dir the output directory for the rendered file
 #' @param referenced_file a filepath for .wav
-#' @param ud_meta a vector ('key':'value') of meta information
-#' @param speaker_table a table with speaker information; must include columns 'id', 'abbreviation', 'sex'
+#' @param ud_meta a vector ('key':'value') of meta information (not obligatory)
+#' @param speaker_table a table with speaker information; must include columns 'id', 'abbreviation', 'sex' (not obligatory)
 #' @return .xml file
 #' @examples
 #' meta <- c('Type of communication' = 'Fernsehinterview', 
@@ -28,13 +29,18 @@
 #'
 #' df <- exb_to_df(system.file("extdata", "demo_Beckhams.exb", package = "phonfieldwork"))
 #' 
-#' df_to_exb(df = df, name = 'Beckhams', outputPath = 'beck.xml', referenced_file = 'beck.wav', ud_meta = meta, speaker_table = speaker_data)
+#' df_to_exb(df = df, 
+#'           name = 'Beckhams', 
+#'           output_file = 'beck.xml',
+#'           referenced_file = 'beck.wav', 
+#'           ud_meta = meta, 
+#'           speaker_table = speaker_data)
 #' 
 #' @export
 #'
 
 
-df_to_exb <- function(df, name, outputPath, referenced_file='', ud_meta=NULL, speaker_table=NULL){
+df_to_exb <- function(df, name, output_file, output_dir = '', referenced_file='', ud_meta=NULL, speaker_table=NULL){
   
   #--- stencils
   
@@ -334,7 +340,14 @@ df_to_exb <- function(df, name, outputPath, referenced_file='', ud_meta=NULL, sp
   #--- fill exb
   myEXB <- sprintf(myEXB, head, basic_body)
   
-  fileConn <- file(outputPath, open="wb")
+  if (output_dir != '') {
+    path <- normalizePath(paste(output_dir, output_file, sep = '/'))
+  } else {
+    output_dir <- getwd()
+    path <- normalizePath(paste(output_dir, output_file, sep = '/'))
+  }
+  
+  fileConn <- file(path, open="wb")
   writeBin(charToRaw(myEXB), fileConn, endian="little")
   close(fileConn)		
 }

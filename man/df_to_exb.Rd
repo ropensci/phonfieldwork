@@ -7,7 +7,8 @@
 df_to_exb(
   df,
   name,
-  outputPath,
+  output_file,
+  output_dir = "",
   referenced_file = "",
   ud_meta = NULL,
   speaker_table = NULL
@@ -18,13 +19,15 @@ df_to_exb(
 
 \item{name}{transcription name}
 
-\item{outputPath}{filepath}
+\item{output_file}{the name of the result .html file}
+
+\item{output_dir}{the output directory for the rendered file}
 
 \item{referenced_file}{a filepath for .wav}
 
-\item{ud_meta}{a vector ('key':'value') of meta information}
+\item{ud_meta}{a vector ('key':'value') of meta information (not obligatory)}
 
-\item{speaker_table}{a table with speaker information; must include columns 'id', 'abbreviation', 'sex'}
+\item{speaker_table}{a table with speaker information; must include columns 'id', 'abbreviation', 'sex' (not obligatory)}
 }
 \value{
 .xml file
@@ -49,7 +52,12 @@ speaker_data <- data.frame('id' = c('SPK0', 'SPK1', 'SPK2'),
 
 df <- exb_to_df(system.file("extdata", "demo_Beckhams.exb", package = "phonfieldwork"))
 
-df_to_exb(df = df, name = 'Beckhams', outputPath = 'beck.xml', referenced_file = 'beck.wav', ud_meta = meta, speaker_table = speaker_data)
+df_to_exb(df = df, 
+          name = 'Beckhams', 
+          output_file = 'beck.xml',
+          referenced_file = 'beck.wav', 
+          ud_meta = meta, 
+          speaker_table = speaker_data)
 
 }
 \author{
