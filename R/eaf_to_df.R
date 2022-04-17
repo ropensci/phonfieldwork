@@ -158,6 +158,40 @@ eaf_to_df <- function(file_name) {
     
     r[row.names(r) %in% row.names(r_sub), ] <- r_sub
     
+    #fix issues with Time Subdivision stereotype
+    
+    r_sub <- r[which(r$stereotype == 'Time_Subdivision'), ]
+    r_sub <- r_sub[order(r_sub$tier_name, decreasing = FALSE), ]
+    if (sum(is.na(r_sub$time_start)) + sum(is.na(r_sub$time_end)) != 0) {
+      
+      r_loc_sub <- r_sub[which(is.na(r_sub$time_start) | is.na(r_sub$time_end)), ]
+      na_end <- r_loc_sub[which(!is.na(r_loc_sub$time_end)), ]
+      na_start <- r_loc_sub[which(!is.na(r_loc_sub$time_start)), ]
+      loc_res <- lapply(seq(length.out = nrow(na_start)), function(i) {
+        
+        id_start <- na_start[i, 5]
+        id_end <- na_end[i, 5]
+        time_start <- na_start[i, 12]
+        time_end <- na_end[i, 13]
+        round(seq(from = time_start, to = time_end, length.out = id_end-id_start+2), digits = 3)
+        
+      })
+      
+      loc <- list()
+      r_loc_sub[, 12] <- unlist(lapply(loc_res, function(i){
+        loc <- append(loc, i[1:length(i)-1])
+      }))
+      
+      r_loc_sub[, 13] <- unlist(lapply(loc_res, function(i){
+        loc <- append(loc, i[2:length(i)])
+      }))
+      
+      r_sub[row.names(r_sub) %in% row.names(r_loc_sub), ] <- r_loc_sub
+      
+      r[row.names(r) %in% row.names(r_sub), ] <- r_sub
+      
+      } 
+    
     # make sorting and remove some columns
     r <- r[order(r$time_start, r$tier), -c(1:2)]
     names(r)[names(r) == 'ar'] <- 'dependent_on'
