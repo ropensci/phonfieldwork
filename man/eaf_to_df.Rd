@@ -12,7 +12,8 @@ eaf_to_df(file_name)
 \value{
 a dataframe with columns:  \code{tier}, \code{id}, \code{content},
 \code{tier_name}, \code{tier_type}, \code{tier_ref}, \code{dependent_on}, 
-\code{time_start}, \code{time_end}, \code{source}).
+\code{time_start}, \code{time_end}, \code{source},
+and attributes: \code{MEDIA_URL}, \code{MIME_TYPE}, \code{RELATIVE_MEDIA_URL}.
 }
 \description{
 Convert .eaf file from ELAN to a dataframe.
