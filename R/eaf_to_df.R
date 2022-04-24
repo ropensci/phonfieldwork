@@ -7,8 +7,8 @@
 #'
 #' @param file_name string with a filename or path to the .eaf file
 #' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content},
-#' \code{tier_name}, \code{tier_type}, \code{tier_ref}, \code{dependent_on}, 
-#' \code{time_start}, \code{time_end}, \code{source},
+#' \code{tier_name}, \code{tier_type}, \code{tier_ref}, \code{event_local_id},
+#'  \code{dependent_on}, \code{time_start}, \code{time_end}, \code{source}, \code{media_url}
 #' and attributes: \code{MEDIA_URL}, \code{MIME_TYPE}, \code{RELATIVE_MEDIA_URL}.
 #'
 #' @examples
@@ -196,7 +196,7 @@ eaf_to_df <- function(file_name) {
     # make sorting and remove some columns
     r <- r[order(r$time_start, r$tier), -c(1:2)]
     names(r)[names(r) == 'ar'] <- 'dependent_on'
-    names(r)[names(r) == 'a_id'] <- 'tier_local_id'
+    names(r)[names(r) == 'a_id'] <- 'event_local_id'
     r <- r[, c(2,3,4,5,6,7,8,1,9,10,11)]
     
     #connected file
