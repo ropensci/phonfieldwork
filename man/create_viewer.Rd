@@ -6,7 +6,7 @@
 \usage{
 create_viewer(
   audio_dir,
-  picture_dir,
+  picture_dir = NULL,
   table,
   captions = NULL,
   sorting_columns = NULL,
