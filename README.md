@@ -51,6 +51,28 @@ library(phonfieldwork)
 
 In order to work with some `rmarkdown` functions you will need to install `pandoc`, see `vignette("pandoc")` for the details.
 
+## Cite the package
+
+You can get the latest information about how to cite the package using the `citation()` function:
+
+```
+citation("phonfieldwork")
+>
+> To cite package ‘phonfieldwork’ in publications use:
+>   
+>   Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork package_.
+> <https://CRAN.R-project.org/package=phonfieldwork>.
+> 
+> A BibTeX entry for LaTeX users is
+> 
+> @Manual{,
+>   title = {Phonetic fieldwork and experiments with phonfieldwork package},
+>   author = {George Moroz},
+>   year = {2020},
+>   url = {https://CRAN.R-project.org/package=phonfieldwork},
+> }
+```
+
 ## To do:
 
 * export to ELAN and EXMARALDA files
