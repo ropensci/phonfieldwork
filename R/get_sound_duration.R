@@ -17,7 +17,7 @@
 #' @importFrom tools file_ext
 
 get_sound_duration <- function(file_name) {
-  if (class(file_name) == "Wave") {
+  if (isa(file_name, "Wave")) {
     s <- file_name
     source <- "custom_file"
     duration <- length(s@left) / s@samp.rate

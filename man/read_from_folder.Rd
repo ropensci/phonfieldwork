@@ -4,7 +4,7 @@
 \alias{read_from_folder}
 \title{Read multiple files from the folder}
 \usage{
-read_from_folder(path, type)
+read_from_folder(path, type = "textgrid")
 }
 \arguments{
 \item{path}{to a folder with multiple sound files.}

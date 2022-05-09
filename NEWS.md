@@ -4,6 +4,7 @@
 - make `rename_soundfiles()` function to work with mp3 files.
 - fix the bug with `"` sign in textgrids.
 - make pictures optional in the `create_viewer()` function
+- add the `df_to_exb()` function; thanks to Valeria Buntiakova #43
 
 # phonfieldwork 0.0.11
 

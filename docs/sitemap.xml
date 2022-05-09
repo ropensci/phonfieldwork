@@ -1,108 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//index.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/404.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/add_leading_symbols.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/CONTRIBUTING.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/annotate_textgrid.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/audacity_to_df.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/additional/first_example.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/concatenate_soundfiles.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/additional/glossed_document.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/concatenate_textgrids.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/additional/second_example.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/create_empty_textgrid.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/additional/stimuli_viewer.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/create_glossed_document.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/additional/stimuli_viewer2.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/create_image_look_up.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/articles/data_manipulation_with_tidyverse.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/create_presentation.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/articles/ethical_research_with_phonfieldwork.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/create_sound_play.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/create_subannotation.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/articles/phonfieldwork.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/create_viewer.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/authors.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/df_to_tier.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/index.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/draw_sound.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/news/index.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/draw_spectrogram.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/add_leading_symbols.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/eaf_to_df.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/annotate_textgrid.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/exb_to_df.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/audacity_to_df.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/extract_intervals.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/concatenate_soundfiles.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/flextext_to_df.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/concatenate_textgrids.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/formant_to_df.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/create_empty_textgrid.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/get_sound_duration.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/create_glossed_document.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/get_textgrid_names.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/create_image_look_up.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/intensity_to_df.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/create_presentation.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/pitch_to_df.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/create_sound_play.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/read_from_folder.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/create_subannotation.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/remove_textgrid_tier.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/create_viewer.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/rename_soundfiles.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/df_to_exb.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/set_textgrid_names.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/df_to_tier.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/srt_to_df.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/draw_sound.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/textgrid_to_df.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/draw_spectrogram.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//reference/tier_to_df.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/eaf_to_df.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//articles/data_manipulation_with_tidyverse.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/exb_to_df.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//articles/ethical_research_with_phonfieldwork.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/extract_intervals.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/phonfieldwork//articles/phonfieldwork.html</loc>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/flextext_to_df.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/formant_to_df.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/get_sound_duration.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/get_textgrid_names.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/intensity_to_df.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/pitch_to_df.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/read_from_folder.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/remove_textgrid_tier.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/rename_soundfiles.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/set_textgrid_names.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/srt_to_df.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/textgrid_to_df.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/phonfieldwork/reference/tier_to_df.html</loc>
   </url>
 </urlset>

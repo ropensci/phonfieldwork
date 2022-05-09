@@ -2,7 +2,7 @@
 % Please edit documentation in R/df_to_exb.r
 \name{df_to_exb}
 \alias{df_to_exb}
-\title{Dataframe to .exb}
+\title{Dataframe to EXMARaLDA's .exb}
 \usage{
 df_to_exb(
   df,
@@ -33,36 +33,36 @@ df_to_exb(
 .xml file
 }
 \description{
-Convert a dataframe to Exmaralda .exb
+Convert a dataframe to EXMARaLDA's .exb
 }
 \examples{
-meta <- c('Type of communication' = 'Fernsehinterview', 
-         'Source' = 'Parkinson Talkshow auf BBC', 
-         'Background information' = 'Interview mit den Beckhams', 
-         'Code' = 'Beckhams') 
+meta <- c('Type of communication' = 'Fernsehinterview',
+          'Source' = 'Parkinson Talkshow auf BBC',
+          'Background information' = 'Interview mit den Beckhams',
+          'Code' = 'Beckhams')
 
-speaker_data <- data.frame('id' = c('SPK0', 'SPK1', 'SPK2'), 
-                          'abbreviation' = c('PAR', 'VIC', 'DAV'), 
-                          'sex' = c('m', 'f', 'm'), 
-                          'Family: Marital status' = c('Verheiratet', 
-                                                       'Verheiratet', 
-                                                       'Verheiratet'), 
-                          'Birth' = c('28. März 1935 in Cudworth', 
-                                      '14. April 1974 in Hertfordshire', 
-                                      '2. Mail 1975 in London'), 
-                          'Occupation' = c('Fernsehmoderator, Journalist, Autor', 
-                                           'Sängerin', 
-                                           'Professioneller Fußballspieler'),
-                          'Family: Children' = c(3, '3 Söhn, 1 Tochter', '3 Söhne, 1 Tochter'), 
-                          'Name' = c('Michael Parkinson', 'Victoria Beckham', 'David Beckham'))
+speaker_data <- data.frame('id' = c('SPK0', 'SPK1', 'SPK2'),
+                           'abbreviation' = c('PAR', 'VIC', 'DAV'),
+                           'sex' = c('m', 'f', 'm'),
+                           'Family: Marital status' = c('Verheiratet',
+                                                        'Verheiratet',
+                                                        'Verheiratet'),
+                           'Birth' = c('28. März 1935 in Cudworth',
+                                       '14. April 1974 in Hertfordshire',
+                                       '2. Mail 1975 in London'),
+                           'Occupation' = c('Fernsehmoderator, Journalist, Autor',
+                                            'Sängerin',
+                                            'Professioneller Fußballspieler'),
+                           'Family: Children' = c(3, '3 Söhn, 1 Tochter', '3 Söhne, 1 Tochter'),
+                           'Name' = c('Michael Parkinson', 'Victoria Beckham', 'David Beckham'))
 
 df <- exb_to_df(system.file("extdata", "demo_Beckhams.exb", package = "phonfieldwork"))
 
-df_to_exb(df = df, 
-          name = 'Beckhams', 
+df_to_exb(df = df,
+          name = 'Beckhams',
           output_file = 'beck.xml',
-          referenced_file = 'beck.wav', 
-          ud_meta = meta, 
+          referenced_file = 'beck.wav',
+          ud_meta = meta,
           speaker_table = speaker_data)
 
 }

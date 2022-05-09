@@ -1,14 +1,11 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "phonfieldwork",
   "description": "There are a lot of different typical tasks that have to be solved during phonetic research and experiments. This includes creating a presentation that will contain all stimuli, renaming and concatenating multiple sound files recorded during a session, automatic annotation in 'Praat' TextGrids (this is one of the sound annotation standards provided by 'Praat' software, see Boersma & Weenink 2020 <https://www.fon.hum.uva.nl/praat/>), creating an html table with annotations and spectrograms, and converting multiple formats ('Praat' TextGrid, 'ELAN', 'EXMARaLDA', 'Audacity', subtitles '.srt', and 'FLEx' flextext). All of these tasks can be solved by a mixture of different tools (any programming language has programs for automatic renaming, and Praat contains scripts for concatenating and renaming files, etc.). 'phonfieldwork' provides a functionality that will make it easier to solve those tasks independently of any additional tools. You can also compare the functionality with other packages: 'rPraat' <https://CRAN.R-project.org/package=rPraat>, 'textgRid' <https://CRAN.R-project.org/package=textgRid>.",
   "name": "phonfieldwork: Linguistic Phonetic Fieldwork Tools",
-  "codeRepository": "https://github.com/ropensci/phonfieldwork",
   "relatedLink": "https://CRAN.R-project.org/package=phonfieldwork",
+  "codeRepository": "https://github.com/ropensci/phonfieldwork",
   "issueTracker": "https://github.com/ropensci/phonfieldwork/issues",
   "license": "https://spdx.org/licenses/GPL-2.0",
   "version": "0.0.12",
@@ -17,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.4 (2021-02-15)",
+  "runtimePlatform": "R version 4.2.0 (2022-04-22)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -33,9 +30,15 @@
       "@id": "https://orcid.org/0000-0003-1990-6083"
     }
   ],
-  "contributor": {},
-  "copyrightHolder": {},
-  "funder": {},
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Valeria",
+      "familyName": "Buntiakova",
+      "email": "valleriabun@gmail.com",
+      "@id": "https://orcid.org/0000-0003-2409-2651"
+    }
+  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -143,14 +146,14 @@
       "sameAs": "https://CRAN.R-project.org/package=readxl"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.5.0"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "tuneR",
       "name": "tuneR",
@@ -162,7 +165,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tuneR"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "phonTools",
       "name": "phonTools",
@@ -174,22 +177,22 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=phonTools"
     },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "grDevices",
       "name": "grDevices"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
-    {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "graphics",
       "name": "graphics"
     },
-    {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "rmarkdown",
       "name": "rmarkdown",
@@ -201,7 +204,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
     },
-    {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "xml2",
       "name": "xml2",
@@ -213,7 +216,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=xml2"
     },
-    {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "uchardet",
       "name": "uchardet",
@@ -225,20 +228,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=uchardet"
     },
-    {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "tools",
       "name": "tools"
     },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "https://sysreqs.r-hub.io/get/pandoc"
-    }
-  ],
-  "releaseNotes": "https://github.com/ropensci/phonfieldwork/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/phonfieldwork/blob/master/README.md",
-  "contIntegration": "https://codecov.io/github/ropensci/phonfieldwork?branch=master",
-  "developmentStatus": "http://www.repostatus.org/#active",
+    "SystemRequirements": "pandoc (>= 1.14) - http://pandoc.org"
+  },
+  "fileSize": "4227.246KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -254,25 +251,14 @@
       "url": "https://CRAN.R-project.org/package=phonfieldwork"
     }
   ],
-  "fileSize": "65210.739KB",
+  "releaseNotes": "https://github.com/ropensci/phonfieldwork/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/phonfieldwork/blob/master/README.md",
+  "contIntegration": ["https://github.com/ropensci/phonfieldwork/actions", "https://codecov.io/github/ropensci/phonfieldwork?branch=master"],
+  "developmentStatus": "http://www.repostatus.org/#active",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/software-review/issues/385",
     "provider": "https://ropensci.org"
   },
-  "keywords": [
-    "r",
-    "phonetics",
-    "phonology",
-    "fieldwork",
-    "praat",
-    "textgrid",
-    "elan",
-    "eaf",
-    "exmaralda",
-    "exb",
-    "flextext",
-    "audacity",
-    "srt-subtitles"
-  ]
+  "keywords": ["r", "phonetics", "phonology", "fieldwork", "praat", "textgrid", "elan", "eaf", "exmaralda", "exb", "flextext", "audacity", "srt-subtitles"]
 }

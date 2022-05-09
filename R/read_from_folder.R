@@ -13,7 +13,7 @@
 #'
 #' @export
 
-read_from_folder <- function(path, type) {
+read_from_folder <- function(path, type = "textgrid") {
   # check for correct type --------------------------------------------------
   possible_types <-
     c(

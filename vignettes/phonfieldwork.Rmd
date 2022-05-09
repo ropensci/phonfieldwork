@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2021-03-24"
+date: "2022-05-09"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -62,8 +62,10 @@ citation("phonfieldwork")
 
 ```
 ## 
-## Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork package_. <URL:
-## https://CRAN.R-project.org/package=phonfieldwork>.
+## To cite package 'phonfieldwork' in publications use:
+## 
+##   Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork package_.
+##   <https://CRAN.R-project.org/package=phonfieldwork>.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -142,7 +144,7 @@ my_stimuli_df
 ```
 
 ```
-## # A tibble: 3 x 2
+## # A tibble: 3 × 2
 ##   stimuli vowel
 ##   <chr>   <chr>
 ## 1 tip     ı    
@@ -178,7 +180,7 @@ my_image
 ```
 
 ```
-## [1] "/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.0/phonfieldwork/extdata/r-logo.png"
+## [1] "/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.2/phonfieldwork/extdata/r-logo.png"
 ```
 
 ```r
@@ -300,7 +302,7 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4821542
+## 1 2_s1_tap.wav 0.4299093
 ```
 
 It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: "audacity", "duration", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"):
@@ -535,8 +537,7 @@ draw_sound("s1/s1_all.wav",
 ```
 
 ```
-## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object
-## length
+## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object length
 ```
 
 ![](unnamed-chunk-41-1.png)
@@ -551,8 +552,7 @@ draw_sound("s1/s1_all.wav",
 ```
 
 ```
-## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object
-## length
+## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object length
 ```
 
 ![](unnamed-chunk-42-1.png)
@@ -768,6 +768,10 @@ head(flextext_to_df("files/zilo_test.flextext"))
 ```
 
 ```
+## It can take some time for big files...
+```
+
+```
 ##   p_id s_id w_id    txt     cf hn     gls                   msa                free_trans
 ## 1    1    1    1     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
 ## 2    1    1    1    ик1    ик1  1    быть                    гл Жил-был (у Гъули?) петух.
@@ -804,6 +808,10 @@ There is also an additional function for working with the `.flextext` format tha
 ```r
 create_glossed_document(flextext = "files/zilo_test.flextext",
                         output_dir = ".") # you need to specify the path to the output folder
+```
+
+```
+## It can take some time for big files...
 ```
 
 ```

@@ -157,7 +157,7 @@ draw_sound <- function(file_name,
       oldpar <- graphics::par(no.readonly = TRUE)
       on.exit(graphics::par(oldpar))
       # read file and convert to phonTools format -------------------------------
-      if (class(file_name) == "Wave") {
+      if (isa(file_name, "Wave")) {
         s <- file_name
       } else {
         ext <- tolower(tools::file_ext(file_name))

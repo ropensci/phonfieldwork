@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phonfieldwork</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.12</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/phonfieldwork.html">Get started</a>
 </li>
@@ -50,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -70,7 +66,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ropensci/phonfieldwork/">
+  <a href="https://github.com/ropensci/phonfieldwork/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,38 +81,50 @@
 
       
 
-      </header><script src="data_manipulation_with_tidyverse_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Manipulating <code>phonfieldwork</code> data with <code>tidyverse</code>
+      <h1 data-toc-skip>Manipulating <code>phonfieldwork</code> data
+with <code>tidyverse</code>
 </h1>
-                        <h4 class="author">George Moroz, <a href="https://ilcl.hse.ru/en/">NRU HSE Linguistic Convergence Laboratory</a>
+                        <h4 data-toc-skip class="author">George Moroz,
+<a href="https://ilcl.hse.ru/en/" class="external-link">NRU HSE Linguistic Convergence
+Laboratory</a>
 </h4>
             
-            <h4 class="date">2021-03-24</h4>
+            <h4 data-toc-skip class="date">2022-05-09</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/ropensci/phonfieldwork/blob/master/vignettes/data_manipulation_with_tidyverse.Rmd"><code>vignettes/data_manipulation_with_tidyverse.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropensci/phonfieldwork/blob/HEAD/vignettes/data_manipulation_with_tidyverse.Rmd" class="external-link"><code>vignettes/data_manipulation_with_tidyverse.Rmd</code></a></small>
       <div class="hidden name"><code>data_manipulation_with_tidyverse.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>The output tables from the <code>phonfieldwork</code>’s functions (e. g. <code><a href="../reference/textgrid_to_df.html">textgrid_to_df()</a></code>, <code><a href="../reference/eaf_to_df.html">eaf_to_df()</a></code>, <code><a href="../reference/exb_to_df.html">exb_to_df()</a></code>, <code><a href="../reference/flextext_to_df.html">flextext_to_df()</a></code> etc.) is hard to interpret since each row is a separate morpheme/observation or aother unit. In order to merge it to a more common representation we will use <code>tidyverse</code> functions (mainly <code>dplyr</code> and <code>tidyr</code> packages). This text will help you to achieve some results, but it is better to spend some times learning data manipulation with <code>dplyr</code> and <code>tidyr</code>.</p>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>The output tables from the <code>phonfieldwork</code>’s functions (e.
+g. <code><a href="../reference/textgrid_to_df.html">textgrid_to_df()</a></code>, <code><a href="../reference/eaf_to_df.html">eaf_to_df()</a></code>,
+<code><a href="../reference/exb_to_df.html">exb_to_df()</a></code>, <code><a href="../reference/flextext_to_df.html">flextext_to_df()</a></code> etc.) is hard to
+interpret since each row is a separate morpheme/observation or aother
+unit. In order to merge it to a more common representation we will use
+<code>tidyverse</code> functions (mainly <code>dplyr</code> and
+<code>tidyr</code> packages). This text will help you to achieve some
+results, but it is better to spend some times learning data manipulation
+with <code>dplyr</code> and <code>tidyr</code>.</p>
 <p>If you do not have <code>tidyverse</code> installed run:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
 <p>Let’s load the package:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org" class="external-link">"tidyverse"</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="textgrid--eaf--exb-formats" class="section level2">
-<h2 class="hasAnchor">
-<a href="#textgrid--eaf--exb-formats" class="anchor"></a>.TextGrid, .eaf, .exb formats</h2>
-<p>The standard sound annotation formats consisnt of tiers with parallel annotation:</p>
+<div class="section level2">
+<h2 id="textgrid--eaf--exb-formats">.TextGrid, .eaf, .exb formats<a class="anchor" aria-label="anchor" href="#textgrid--eaf--exb-formats"></a>
+</h2>
+<p>The standard sound annotation formats consisnt of tiers with parallel
+annotation:</p>
 <p><img src="unnamed-chunk-31-1.png"></p>
 <p>If we convert this file to R we will achieve something like this:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -137,26 +145,32 @@
 <span class="co">#&gt; 13  7  0.9120635 1.0364661                 3               s1_all.TextGrid</span>
 <span class="co">#&gt; 14  8  1.0364661 1.1066780            ɒ    3               s1_all.TextGrid</span>
 <span class="co">#&gt; 15  9  1.1066780 1.3942177                 3               s1_all.TextGrid</span></code></pre></div>
-<p>As we see this table has a long format structure: each observation has its own row. We can select the first two rows with the <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> function, remove all unnecessary columns with the <code>select()</code> function and spread everything in a table with the <code>pivot_wider()</code> function:</p>
+<p>As we see this table has a long format structure: each observation
+has its own row. We can select the first two rows with the
+<code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter()</a></code> function, remove all unnecessary columns with the
+<code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> function and spread everything in a table with the
+<code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider()</a></code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/textgrid_to_df.html">textgrid_to_df</a></span><span class="op">(</span><span class="st">"s1/s1_all.TextGrid"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">tier</span> <span class="op">%in%</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">time_start</span>, <span class="op">-</span><span class="va">time_end</span>, <span class="op">-</span><span class="va">tier_name</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">tier</span>, values_from <span class="op">=</span> <span class="va">content</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 x 4</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/textgrid_to_df.html">textgrid_to_df</a></span><span class="op">(</span><span class="st">"s1/s1_all.TextGrid"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">tier</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">time_start</span>, <span class="op">-</span><span class="va">time_end</span>, <span class="op">-</span><span class="va">tier_name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">tier</span>, values_from <span class="op">=</span> <span class="va">content</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 3 × 4</span>
 <span class="co">#&gt;      id source          `1`   `2`         </span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;       </span>
 <span class="co">#&gt; 1     1 s1_all.TextGrid tip   1_s1_tip.wav</span>
 <span class="co">#&gt; 2     2 s1_all.TextGrid tap   2_s1_tap.wav</span>
 <span class="co">#&gt; 3     3 s1_all.TextGrid top   3_s1_top.wav</span></code></pre></div>
 </div>
-<div id="flextext-format" class="section level2">
-<h2 class="hasAnchor">
-<a href="#flextext-format" class="anchor"></a>.flextext format</h2>
-<p>Imagine that we obtained the first result from <code><a href="../reference/flextext_to_df.html">flextext_to_df()</a></code>:</p>
+<div class="section level2">
+<h2 id="flextext-format">.flextext format<a class="anchor" aria-label="anchor" href="#flextext-format"></a>
+</h2>
+<p>Imagine that we obtained the first result from
+<code><a href="../reference/flextext_to_df.html">flextext_to_df()</a></code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flextext_to_df.html">flextext_to_df</a></span><span class="op">(</span><span class="st">"files/zilo_test.flextext"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
+<span class="co">#&gt; It can take some time for big files...</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
 <span class="co">#&gt;   p_id s_id w_id    txt     cf hn     gls                   msa                free_trans</span>
 <span class="co">#&gt; 1    1    1    1     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.</span>
 <span class="co">#&gt; 2    1    1    1    ик1    ик1  1    быть                    гл Жил-был (у Гъули?) петух.</span>
@@ -185,16 +199,19 @@
 <span class="co">#&gt; 4 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7</span>
 <span class="co">#&gt; 5 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7</span>
 <span class="co">#&gt; 6 0c9ffe63-b4bf-4af3-a1da-f68567e03513 f08dd466-fca6-4597-925c-c46309387ef7</span></code></pre></div>
-<p>As we can see from <code>df</code> print there are three indices in the dataset: <code>p_id</code> – paragraph id, <code>s_id</code> – sentence id and <code>w_id</code> – word id.</p>
+<p>As we can see from <code>df</code> print there are three indices in
+the dataset: <code>p_id</code> – paragraph id, <code>s_id</code> –
+sentence id and <code>w_id</code> – word id.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">free_trans</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">select</span><span class="op">(</span><span class="va">p_id</span>, <span class="va">s_id</span>, <span class="va">w_id</span>, <span class="va">txt</span>, <span class="va">gls</span>, <span class="va">free_trans</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">p_id</span>, <span class="va">s_id</span>, <span class="va">free_trans</span>, <span class="va">w_id</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>txt <span class="op">=</span> <span class="fu">str_c</span><span class="op">(</span><span class="va">txt</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span>,
-         gls <span class="op">=</span> <span class="fu">str_c</span><span class="op">(</span><span class="va">gls</span>, collapse <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'p_id', 's_id', 'free_trans'. You can override using the `.groups` argument.</span>
-<span class="co">#&gt; # A tibble: 136 x 6</span>
+<code class="sourceCode R"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">free_trans</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">p_id</span>, <span class="va">s_id</span>, <span class="va">w_id</span>, <span class="va">txt</span>, <span class="va">gls</span>, <span class="va">free_trans</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">p_id</span>, <span class="va">s_id</span>, <span class="va">free_trans</span>, <span class="va">w_id</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>txt <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html" class="external-link">str_c</a></span><span class="op">(</span><span class="va">txt</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span>,
+         gls <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html" class="external-link">str_c</a></span><span class="op">(</span><span class="va">gls</span>, collapse <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; `summarise()` has grouped output by 'p_id', 's_id', 'free_trans'. You can override using the `.groups`</span>
+<span class="co">#&gt; argument.</span>
+<span class="co">#&gt; # A tibble: 136 × 6</span>
 <span class="co">#&gt; # Groups:   p_id, s_id, free_trans [19]</span>
 <span class="co">#&gt;     p_id  s_id free_trans                        w_id txt              gls                       </span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                     </span>
@@ -209,49 +226,57 @@
 <span class="co">#&gt;  9     2     2 Он грелся на улице(?).               9 .                ""                        </span>
 <span class="co">#&gt; 10     2     3 [Ему в ногу] воткнулась колючка.    10 къинни-й=гъоди   "втыкаться-cvb(pf)-=rep"  </span>
 <span class="co">#&gt; # … with 126 more rows</span></code></pre></div>
-<p>The first <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> removes some garbage rows that are present in our example flextext. The <code>select()</code> function selects only six important columns from 15 presented in the dataset. The <code>group_by()</code> and <code>summarise()</code> merge all text from <code>txt</code> variable and all glosses from <code>gls</code> variable together. Pipe operater <code>%&gt;%</code> make it possible to pass the result from the previous funstion as an input to the following one.</p>
-<p>So now we can use the same code in order to merge everything into sentences:</p>
+<p>The first <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter()</a></code> removes some garbage rows that are
+present in our example flextext. The <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> function
+selects only six important columns from 15 presented in the dataset. The
+<code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise()</a></code> merge all text from
+<code>txt</code> variable and all glosses from <code>gls</code> variable
+together. Pipe operater <code>%&gt;%</code> make it possible to pass the
+result from the previous funstion as an input to the following one.</p>
+<p>So now we can use the same code in order to merge everything into
+sentences:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">free_trans</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">select</span><span class="op">(</span><span class="va">p_id</span>, <span class="va">s_id</span>, <span class="va">w_id</span>, <span class="va">txt</span>, <span class="va">gls</span>, <span class="va">free_trans</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">p_id</span>, <span class="va">s_id</span>, <span class="va">free_trans</span>, <span class="va">w_id</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>txt <span class="op">=</span> <span class="fu">str_c</span><span class="op">(</span><span class="va">txt</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span>,
-         gls <span class="op">=</span> <span class="fu">str_c</span><span class="op">(</span><span class="va">gls</span>, collapse <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">p_id</span>, <span class="va">s_id</span>, <span class="va">free_trans</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>txt <span class="op">=</span> <span class="fu">str_c</span><span class="op">(</span><span class="va">txt</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>,
-         gls <span class="op">=</span> <span class="fu">str_c</span><span class="op">(</span><span class="va">gls</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'p_id', 's_id', 'free_trans'. You can override using the `.groups` argument.</span>
+<code class="sourceCode R"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">free_trans</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">p_id</span>, <span class="va">s_id</span>, <span class="va">w_id</span>, <span class="va">txt</span>, <span class="va">gls</span>, <span class="va">free_trans</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">p_id</span>, <span class="va">s_id</span>, <span class="va">free_trans</span>, <span class="va">w_id</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>txt <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html" class="external-link">str_c</a></span><span class="op">(</span><span class="va">txt</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span>,
+         gls <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html" class="external-link">str_c</a></span><span class="op">(</span><span class="va">gls</span>, collapse <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">p_id</span>, <span class="va">s_id</span>, <span class="va">free_trans</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>txt <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html" class="external-link">str_c</a></span><span class="op">(</span><span class="va">txt</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>,
+         gls <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html" class="external-link">str_c</a></span><span class="op">(</span><span class="va">gls</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; `summarise()` has grouped output by 'p_id', 's_id', 'free_trans'. You can override using the `.groups`</span>
+<span class="co">#&gt; argument.</span>
 <span class="co">#&gt; `summarise()` has grouped output by 'p_id', 's_id'. You can override using the `.groups` argument.</span>
-<span class="co">#&gt; # A tibble: 19 x 5</span>
+<span class="co">#&gt; # A tibble: 19 × 5</span>
 <span class="co">#&gt; # Groups:   p_id, s_id [19]</span>
-<span class="co">#&gt;     p_id  s_id free_trans                     txt                        gls                       </span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                          &lt;chr&gt;                      &lt;chr&gt;                     </span>
-<span class="co">#&gt;  1     1     1 "Жил-был (у Гъули?) петух."    б-ик1-о-й=гъоди б--о-ч1иг… "an-быть-pst-cvb(pf)-=rep…</span>
-<span class="co">#&gt;  2     2     2 "Он грелся на улице(?)."       къват1и-ла=гъоди б-ик1-о-… "улица-in-=rep an-быть-ps…</span>
-<span class="co">#&gt;  3     2     3 "[Ему в ногу] воткнулась колю… къинни-й=гъоди ццана .     "втыкаться-cvb(pf)-=rep к…</span>
-<span class="co">#&gt;  4     3     4 "Когда колючка воткнулась, [о… ццана къинни-рбигьи б-uʔ-… "колючка втыкаться-pst.pt…</span>
-<span class="co">#&gt;  5     4     5 "Гъули не обнаружил дома Бихт… бихьтай=ло ишуишу й-ис-он… "Бихтай-=add дома-дома f-…</span>
-<span class="co">#&gt;  6     5     6 "Оттуда пошел к Умалаю, "      б-uʔ-oн-ни=гъоди гьербади… "an-идти-pst-pst(aor)-=re…</span>
-<span class="co">#&gt;  7     6     7 "Оттуда петух пошел к Патимат… х1елеко гье-лъу-кку б-ел1… "петух dem-dat-el an-go-p…</span>
-<span class="co">#&gt;  8     8    10 "Оттуда [петух] пошел к Ханич… гье-лъу-кку б--и-й б-uʔ-o… "dem-dat-el an--pst(aor)-…</span>
-<span class="co">#&gt;  9     9    11 "Иди к Хурмат, ..."            хъаничай-ди=ло ен-л1и беж… "Ханичай-erg-=add rfl-gen…</span>
-<span class="co">#&gt; 10    10    12 "Когда дошёл до двора Хурмат,… рул1-и-й Х1урмати-л1и рей… "говорить--cvb(pf) Хурмат…</span>
-<span class="co">#&gt; 11    11    13 "Три дня не ели, мы с ней не … рул1-и-й лъоб-гу зубу в-у… "говорить--cvb(pf) три-nu…</span>
-<span class="co">#&gt; 12    12    14 "Оттуда он ушёл и дошёл до Ай… гье-лъу-кку б--и-йб--и-й … "dem-dat-el an--pst(aor)-…</span>
-<span class="co">#&gt; 13    13    15 "Захраил …?"                   й--и-й Загьраъил-ди=ло б-… "f--pst(aor)-cvb(pf) Захр…</span>
-<span class="co">#&gt; 14    14    16 "И он пошел в село. Захраил с… б-укъ-и-й гьеге-б=ло гьон… "an-гнать-pst-pf dem-an-=…</span>
-<span class="co">#&gt; 15    15    17 "Оттуда снизу вверх к Исрапил… гьегелъу-кку гьикьу=ло лъ… "там-el внизу-=add вверх …</span>
-<span class="co">#&gt; 16    16    18 "Шли-шли и пришли к Гаджи."    гье-лъу-кку б--и-йб--и-й … "dem-dat-el an--pst(aor)-…</span>
-<span class="co">#&gt; 17    17    19 "Они поссорились (?) и прогна… й-ейхъ-у й-ах-о-й дунял б… "f-ругать-pst f-драться-p…</span>
-<span class="co">#&gt; 18    18    20 "Когда закончили ссориться, [… джид-ия сабаб=ло б-ул1-и-… "делать-fut причина-=add …</span>
-<span class="co">#&gt; 19    19    21 "На воротах Забита петух обна… х1елеко б--и-й забити-б к… "петух an--pst(aor)-cvb(p…</span></code></pre></div>
+<span class="co">#&gt;     p_id  s_id free_trans                                                                   txt   gls  </span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                                                                        &lt;chr&gt; &lt;chr&gt;</span>
+<span class="co">#&gt;  1     1     1 "Жил-был (у Гъули?) петух."                                                  б-ик… "an-…</span>
+<span class="co">#&gt;  2     2     2 "Он грелся на улице(?)."                                                     къва… "ули…</span>
+<span class="co">#&gt;  3     2     3 "[Ему в ногу] воткнулась колючка."                                           къин… "вты…</span>
+<span class="co">#&gt;  4     3     4 "Когда колючка воткнулась, [он] ушел к Бихтаю."                              ццан… "кол…</span>
+<span class="co">#&gt;  5     4     5 "Гъули не обнаружил дома Бихтай, дома ее нет, из себя не вынул и пошел даль… бихь… "Бих…</span>
+<span class="co">#&gt;  6     5     6 "Оттуда пошел к Умалаю, "                                                    б-uʔ… "an-…</span>
+<span class="co">#&gt;  7     6     7 "Оттуда петух пошел к Патимат."                                              х1ел… "пет…</span>
+<span class="co">#&gt;  8     8    10 "Оттуда [петух] пошел к Ханичай."                                            гье-… "dem…</span>
+<span class="co">#&gt;  9     9    11 "Иди к Хурмат, ..."                                                          хъан… "Хан…</span>
+<span class="co">#&gt; 10    10    12 "Когда дошёл до двора Хурмат, из окна появился мальчик, сказал:"             рул1… "гов…</span>
+<span class="co">#&gt; 11    11    13 "Три дня не ели, мы с ней не зная, сказал он."                               рул1… "гов…</span>
+<span class="co">#&gt; 12    12    14 "Оттуда он ушёл и дошёл до Айшат Исмаиловой и её не обнаружив, он ушёл и до… гье-… "dem…</span>
+<span class="co">#&gt; 13    13    15 "Захраил …?"                                                                 й--и… "f--…</span>
+<span class="co">#&gt; 14    14    16 "И он пошел в село. Захраил сказала, что колючка воткнулась в петуха."       б-ук… "an-…</span>
+<span class="co">#&gt; 15    15    17 "Оттуда снизу вверх к Исрапилу ..."                                          гьег… "там…</span>
+<span class="co">#&gt; 16    16    18 "Шли-шли и пришли к Гаджи."                                                  гье-… "dem…</span>
+<span class="co">#&gt; 17    17    19 "Они поссорились (?) и прогнали (?) петуха."                                 й-ей… "f-р…</span>
+<span class="co">#&gt; 18    18    20 "Когда закончили ссориться, [пошли?] к Забиту."                              джид… "дел…</span>
+<span class="co">#&gt; 19    19    21 "На воротах Забита петух обнаружил замок и пошел к Зумайрат."                х1ел… "пет…</span></code></pre></div>
 <p>It is also very easy to get some simple statistics from the data:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">gls</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">count</span><span class="op">(</span><span class="va">gls</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">top_n</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gls</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">gls</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html" class="external-link">top_n</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span>
 <span class="co">#&gt; Selecting by n</span>
 <span class="co">#&gt;        gls  n</span>
 <span class="co">#&gt; 1     =add 46</span>
@@ -260,15 +285,18 @@
 <span class="co">#&gt; 4  cvb(pf) 63</span>
 <span class="co">#&gt; 5      pst 28</span>
 <span class="co">#&gt; 6 pst(aor) 74</span></code></pre></div>
-<p>Here with the <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> function we remove all empty glosses, then we calculate and sort them according to frequency, and in the end we take top six glosses with the <code>top_n()</code> function. We can even visualis it with the <code>ggplot2</code> package:</p>
+<p>Here with the <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter()</a></code> function we remove all empty
+glosses, then we calculate and sort them according to frequency, and in
+the end we take top six glosses with the <code><a href="https://dplyr.tidyverse.org/reference/top_n.html" class="external-link">top_n()</a></code> function.
+We can even visualis it with the <code>ggplot2</code> package:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">gls</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">count</span><span class="op">(</span><span class="va">gls</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">top_n</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">n</span>, <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">gls</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"count"</span>, y <span class="op">=</span> <span class="st">"gloss"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gls</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">gls</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html" class="external-link">top_n</a></span><span class="op">(</span><span class="fl">11</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">n</span>, <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="external-link">fct_reorder</a></span><span class="op">(</span><span class="va">gls</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"count"</span>, y <span class="op">=</span> <span class="st">"gloss"</span><span class="op">)</span>
 <span class="co">#&gt; Selecting by n</span></code></pre></div>
 <p><img src="unnamed-chunk-10-1.png"></p>
 </div>
@@ -285,11 +313,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by George Moroz.</p>
+  <p></p>
+<p>Developed by George Moroz.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -297,6 +327,8 @@
 
   
 
+
+  
 
   </body>
 </html>
