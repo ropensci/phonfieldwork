@@ -59,6 +59,13 @@ df_to_eaf <- function(df, output_file, output_dir = '', ref_file = '', mime_type
       '\t</HEADER>',
   sep = '\n')
   
+  header_v2 <- paste(
+    '\t<HEADER MEDIA_FILE=\"\" TIME_UNITS=\"milliseconds\">',
+    '\t\t<PROPERTY NAME=\"URN\">urn:nl-mpi-tools-elan-eaf:e7d15769-9e52-4663-aa66-5033ddad8142</PROPERTY>',
+    '\t\t<PROPERTY NAME=\"lastUsedAnnotationId\"></PROPERTY>',
+    '\t</HEADER>',
+    sep = '\n')
+  
   #--- time order
   time_slots <- paste(
     '\t<TIME_ORDER>',
@@ -122,6 +129,10 @@ df_to_eaf <- function(df, output_file, output_dir = '', ref_file = '', mime_type
         '\t\tGRAPHIC_REFERENCES=\"false\" LINGUISTIC_TYPE_ID="%s" TIME_ALIGNABLE="%s"/>',
   sep = '\n')
   
+  if (is.na(ref_file)) {
+    ref_file = ''
+  }
+  
   #--- get columns
   wanted_columns <- c('tier', 'id', 'content', 'tier_name', 'time_start', 'time_end')
   
@@ -170,18 +181,18 @@ df_to_eaf <- function(df, output_file, output_dir = '', ref_file = '', mime_type
     wanted_columns <- c(wanted_columns, 'event_local_id')
     
     if ('dependent_on' %in% columns) {
-      if (!FALSE %in% unique(na.omit(df$dependent_on)) %in% df$tier_local_id) {
+      if (!FALSE %in% unique(na.omit(df$dependent_on)) %in% df$event_local_id) {
         bool_dependent_on <- TRUE
         wanted_columns <- c(wanted_columns, 'dependent_on')
       } else {
         stop(paste('Some dependent events match none of local ids: ',
-                   paste(na.omit(df$dependent_on)[!na.omit(df$dependent_on) %in% df$tier_local_id], collapse = ', ')))
+                   paste(na.omit(df$dependent_on)[!na.omit(df$dependent_on) %in% df$event_local_id], collapse = ', ')))
       }
     }
   }
   
   if (ref_file == '') {
-    if (is.null(attributes(df)$MEDIA_URL)) {
+    if (is.na(attributes(df)$MEDIA_URL)) {
       warning(paste('MEDIA_URL not specialized. Writing with no file connected'))
       relative_ref_file <- ''
     } else {
@@ -279,10 +290,15 @@ df_to_eaf <- function(df, output_file, output_dir = '', ref_file = '', mime_type
   
   
   #--- fill head
-  header <- sprintf(header, ref_file, mime_type, relative_ref_file)
+  if (ref_file == '') {
+    header <- sprintf(header_v2)
+  } else {
+    header <- sprintf(header, ref_file, mime_type, relative_ref_file)
+  }
+  
   
   #--- fill timecodes
-  slot <- sprintf(slot, allTimes$ts, allTimes$value)
+  slot <- sprintf(slot, allTimes$ts, format(as.numeric(allTimes$value)*1000, scientific = FALSE, trim = TRUE))
   slot <- paste(slot, collapse="\n")
   time_slots <- sprintf(time_slots, slot)
   time_slots <- paste(time_slots, collapse="\n")
@@ -395,16 +411,26 @@ df_to_eaf <- function(df, output_file, output_dir = '', ref_file = '', mime_type
     #--- Symb. Subdivision Stereotype
     if (cur_tier[1, ]$stereotype %in% c('Symbolic_Subdivision')) {
       
+      cur.env$cur_dep = ''
+      
       tier <- sapply(order(cur_tier$id), function(j) {
         cur <- cur_tier[which(cur_tier$id == j), ]
         
         if (j == 1) {
           loc <- sprintf(ref_annotation, cur$event_local_id, cur$dependent_on, cur$content)
           cur.env$prev_symb_value <- cur$event_local_id
+          cur.env$cur_dep <- cur$dependent_on
         } else {
+          if (cur.env$cur_dep != cur$dependent_on) {
+            loc <- sprintf(ref_annotation, cur$event_local_id, cur$dependent_on, cur$content)
+            cur.env$prev_symb_value <- cur$event_local_id
+            cur.env$cur_dep <- cur$dependent_on
+          } else {
           loc <- sprintf(spec_ref_annotation, cur$event_local_id, cur$dependent_on, 
                   cur.env$prev_symb_value, cur$content)
           cur.env$prev_symb_value <- cur$event_local_id
+          cur.env$cur_dep <- cur$dependent_on
+          }
         }
         loc
       })
