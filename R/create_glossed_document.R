@@ -49,7 +49,7 @@ create_glossed_document <- function(flextext = NULL,
 
   match.arg(output_format, c("docx", "html"))
 
-  if (class(flextext) != "data.frame") {
+  if (!inherits(flextext, "data.frame")) {
     flextext <- flextext_to_df(flextext)
   }
   tmp1 <- tempfile(fileext = ".csv")

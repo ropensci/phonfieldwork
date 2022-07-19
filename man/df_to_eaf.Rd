@@ -7,8 +7,8 @@
 df_to_eaf(df, output_file, output_dir = "", ref_file = "", mime_type = "")
 }
 \arguments{
-\item{df}{an R dataframe object that contains columns named 'tier', 'id', 'tier_name', 
-'content', 'time_start', 'time_end' and preferably also 'tier_type', 'stereotype', 
+\item{df}{an R dataframe object that contains columns named 'tier', 'id', 'tier_name',
+'content', 'time_start', 'time_end' and preferably also 'tier_type', 'stereotype',
 'tier_ref', 'event_local_id', 'dependent_on' that are specific for eaf file}
 
 \item{output_file}{the name of the result .xml file}
@@ -29,10 +29,10 @@ Convert a dataframe to Elan file .exb
 
 df <- eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 
-df_to_eaf(df = df, 
+df_to_eaf(df = df,
           output_file = 'test.eaf',
           ref_file = 'test.wav')
-          
+
 }
 \author{
 Sergej Kudrjashov <xenomirant@gmail.com>

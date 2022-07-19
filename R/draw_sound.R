@@ -294,7 +294,7 @@ draw_sound <- function(file_name,
 
       if (!is.null(pitch)) {
         graphics::par(fig = c(0, 0.97, low_boundary, upper_boundary), new = TRUE)
-        if (class(pitch) != "data.frame") {
+        if (!inherits(pitch, "data.frame")) {
           pitch <- phonfieldwork::pitch_to_df(pitch)
         }
 

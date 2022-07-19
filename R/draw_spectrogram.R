@@ -87,7 +87,7 @@ draw_spectrogram <- function(sound,
   # This function is slightly modification of phonTools::spectrogram()
   # by Santiago Barreda <sbarreda@ucdavis.edu>
 
-  if (class(sound) != "integer" & class(sound) != "numeric") {
+  if (!inherits(sound, "integer") & !inherits(sound,  "numeric")) {
     ext <- tolower(tools::file_ext(sound))
 
     if (ext == "wave" | ext == "wav") {
