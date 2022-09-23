@@ -41,9 +41,16 @@ reference:
   - pitch_to_df
   - intensity_to_df
   - formant_to_df
+  - df_to_eaf
+  - df_to_exb
+  - remove_textgrid_tier
   - read_from_folder
 - title:  Create an interactive viewer
   desc: Extracct sound and spectrograms from your data and merge them into the interactive table
 - contents:
   - extract_intervals
   - create_glossed_document
+  - add_leading_symbols
+  - create_image_look_up
+  - create_sound_play
+  - create_viewer

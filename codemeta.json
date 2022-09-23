@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.0 (2022-04-22)",
+  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -233,9 +233,21 @@
       "identifier": "tools",
       "name": "tools"
     },
+    "11": {
+      "@type": "SoftwareApplication",
+      "identifier": "mime",
+      "name": "mime",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=mime"
+    },
     "SystemRequirements": "pandoc (>= 1.14) - http://pandoc.org"
   },
-  "fileSize": "4227.246KB",
+  "fileSize": "4224.739KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

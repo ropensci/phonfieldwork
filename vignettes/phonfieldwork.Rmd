@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2022-05-09"
+date: "2022-09-23"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -51,7 +51,7 @@ packageVersion("phonfieldwork")
 ```
 
 ```
-## [1] '0.0.12'
+## [1] '0.0.11'
 ```
 
 This tutorial can be cited as follows:
@@ -302,7 +302,7 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4299093
+## 1 2_s1_tap.wav 0.4821542
 ```
 
 It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: "audacity", "duration", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"):
@@ -768,10 +768,6 @@ head(flextext_to_df("files/zilo_test.flextext"))
 ```
 
 ```
-## It can take some time for big files...
-```
-
-```
 ##   p_id s_id w_id    txt     cf hn     gls                   msa                free_trans
 ## 1    1    1    1     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
 ## 2    1    1    1    ик1    ик1  1    быть                    гл Жил-был (у Гъули?) петух.
@@ -808,10 +804,6 @@ There is also an additional function for working with the `.flextext` format tha
 ```r
 create_glossed_document(flextext = "files/zilo_test.flextext",
                         output_dir = ".") # you need to specify the path to the output folder
-```
-
-```
-## It can take some time for big files...
 ```
 
 ```
