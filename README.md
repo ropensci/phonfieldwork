@@ -8,27 +8,27 @@
 [![Coverage Status](https://img.shields.io/codecov/c/github/ropensci/phonfieldwork/master.svg)](https://codecov.io/github/ropensci/phonfieldwork?branch=master)
 [![DOI](https://zenodo.org/badge/194053227.svg)](https://zenodo.org/badge/latestdoi/194053227)
 
-`phonfieldwork` is a package for phonetic fieldwork research and experiments. This package make it easier:
+`phonfieldwork` is a package for phonetic fieldwork research and experiments. This package makes it easier to:
 
-- creating a html/pptx presentation from stimuli-translation list, 
-- renaming soundfiles according to the list of stimuli, 
-- concatenating multiple soundfiles and create a Praat TextGrid whose interval labels are the original names of the sound
-- extracting sounds according to annotation
-- extracting annotation from multiple linguistic formats (Praat `.TextGrid`, ELAN `.eaf`, EXMARaLDA `.exb`, Audacity `.txt` and subtitles `.srt`)
-- visualising an oscilogram, a spectrogram and an annotation
-- creating an html viewer [like this](https://ropensci.github.io/phonfieldwork/s1/stimuli_viewer.html), ethical problems of this kind of viewer in linguistic research are covered in the vignette `vignette("ethical_research_with_phonfieldwork")`.
+- create a html/pptx presentation from stimuli-translation list, 
+- rename soundfiles according to the list of stimuli, 
+- concatenate multiple soundfiles and create a Praat TextGrid which interval labels are the original names of the sound
+- extract sounds according to annotation
+- extract annotation from multiple linguistic formats (Praat `.TextGrid`, ELAN `.eaf`, EXMARaLDA `.exb`, Audacity `.txt` and subtitles `.srt`)
+- visualise oscilograms, spectrograms and annotations
+- create an html viewer [like this](https://ropensci.github.io/phonfieldwork/s1/stimuli_viewer.html), ethical problems of this kind of viewer in linguistic research are covered in the vignette `vignette("ethical_research_with_phonfieldwork")`.
 
-For more ditails see [tutorial](https://docs.ropensci.org/phonfieldwork/).
+For more details see [tutorial](https://docs.ropensci.org/phonfieldwork/).
 
-The main goal of the `phonfieldwork` package is to make a full research workflow from data collection to data extraction and data representation easier for people that are not familiar with programming. Hovewer most of the `phonfieldwork` funnctionality can be found in other software and packages:
+The main goal of the `phonfieldwork` package is to make the full research workflow, from data collection to data extraction and data representation, easier for people that are not familiar with programming. However, most of the `phonfieldwork` functionality can be found in other software and packages:
 
 * stimuli presentation creation could be done with any programming language and probably without them
-* automatic file renaming and automatic merge could be done with any programming language
-* Praat `.TextGrid` manipulation could be done with Praat, R packages [`rPraat`](https://cran.r-project.org/package=rPraat) and [`textgRid`](https://cran.r-project.org/package=textgRid), the Python package ['pympi'](https://dopefishh.github.io/pympi/index.html))
-* ELAN `.eaf` manipulationcould be done with ELAN, the R package [`FRelan`](https://github.com/langdoc/FRelan) and the Python package [`pympi`](https://dopefishh.github.io/pympi/index.html)
-* Praat `.TextGrid`, ELAN `.eaf`, and 'EXMARaLDA .exb import and export could be done with the R package [`act`](https://cran.r-project.org/package=act)
-* cut sounds according to annotation could be done with Praat and the R package`tuneR`
-* spectrogram visualisation could be done with multiple R packages [`signal`](https://cran.r-project.org/package=signal), [`tuneR`](https://cran.r-project.org/package=tuneR), [`seewave`](https://cran.r-project.org/package=seewave), [`phonTools`](https://cran.r-project.org/package=phonTools), [`monitor`](https://cran.r-project.org/package=monitor), [`warbleR`](https://cran.r-project.org/package=warbleR), [`soundgen`](https://cran.r-project.org/package=soundgen) and many others
+* automatic file renaming and automatic merging could be done with any programming language
+* Praat `.TextGrid` manipulation is possible with Praat, R packages [`rPraat`](https://cran.r-project.org/package=rPraat) and [`textgRid`](https://cran.r-project.org/package=textgRid), Python package ['pympi'](https://dopefishh.github.io/pympi/index.html)
+* ELAN `.eaf` manipulation is possible with ELAN, R package [`FRelan`](https://github.com/langdoc/FRelan) and Python package [`pympi`](https://dopefishh.github.io/pympi/index.html)
+* import and export between Praat `.TextGrid`, ELAN `.eaf`, and 'EXMARaLDA .exb is possible with R package [`act`](https://cran.r-project.org/package=act)
+* cutting sounds according to annotation is possible with Praat and the R package`tuneR`
+* spectrogram visualisation is possible with multiple R packages [`signal`](https://cran.r-project.org/package=signal), [`tuneR`](https://cran.r-project.org/package=tuneR), [`seewave`](https://cran.r-project.org/package=seewave), [`phonTools`](https://cran.r-project.org/package=phonTools), [`monitor`](https://cran.r-project.org/package=monitor), [`warbleR`](https://cran.r-project.org/package=warbleR), [`soundgen`](https://cran.r-project.org/package=soundgen) and many others
 
 ## Installation
 
@@ -44,7 +44,7 @@ Get the development version from GitHub:
 install.packages("remotes")
 remotes::install_github("ropensci/phonfieldwork")
 ```
-Load a library:
+Load the library:
 ```
 library(phonfieldwork)
 ```
@@ -54,8 +54,8 @@ In order to work with some `rmarkdown` functions you will need to install `pando
 ## To do:
 
 * export to ELAN and EXMARALDA files
-* use ELAN and EXMARALDA files in the whole pipline discribed in docs
-* use the same pipline with video (for Sign Languages)
+* use ELAN and EXMARALDA files in the whole pipeline described in docs
+* use the same pipeline with video (for Sign Languages)
 * make [TECkit](https://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=BeyondUTR22_pdf&filename=BeyondUTR22_pdf.pdf) to df and back
 
 [![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
