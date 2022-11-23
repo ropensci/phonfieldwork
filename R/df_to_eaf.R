@@ -7,10 +7,10 @@
 #' @param df an R dataframe object that contains columns named 'tier', 'id', 'tier_name', 
 #' 'content', 'time_start', 'time_end' and preferably also 'tier_type', 'stereotype', 
 #' 'tier_ref', 'event_local_id', 'dependent_on' that are specific for eaf file
-#' @param output_file the name of the result .xml file
+#' @param output_file the name of the result .eaf file
 #' @param output_dir the output directory for the rendered file (defalut is used if not spectified)
-#' @param ref_file a filepath for connected media file (not obligatory)
-#' @param mime_type a MIME type of connected media file (not obligatory)
+#' @param ref_file a filepath for connected media file (not obligatory) - if specified, overwrites existing parameters
+#' @param mime_type a MIME type of connected media file (not obligatory) - if specified, overwrites existing parameters
 #' @return .xml file
 #' @examples
 #'
@@ -192,11 +192,11 @@ df_to_eaf <- function(df, output_file, output_dir = '', ref_file = '', mime_type
   }
   
   if (ref_file == '') {
-    if (is.na(attributes(df)$MEDIA_URL)) {
+    if (sum(!is.na(df$MEDIA_URL)) == 0) {
       warning(paste('MEDIA_URL not specialized. Writing with no file connected'))
       relative_ref_file <- ''
     } else {
-      ref_file <- attributes(df)$MEDIA_URL
+      ref_file <- unique(df$MEDIA_URL, drop.na = T)[1]
       relative_ref_file <- paste0('./',gsub(".+/", "", ref_file))
     }
   } else {
@@ -206,14 +206,16 @@ df_to_eaf <- function(df, output_file, output_dir = '', ref_file = '', mime_type
   
   #--- external package function used
   if (mime_type == '') {
-    if (is.null(attributes(df)$MIME_TYPE)) {
+    if (sum(!is.na(df$MIME_TYPE)) == 0) {
       warning(paste('MIME_TYPE not specialized. This may cause some problems connecting mediafile'))
       if (ref_file != '') {
         paste('Guessing MIME TYPE based on provided media file...')
         mime_type <- mime::guess_type(ref_file)
+      } else {
+        mime_type = ''
       }
     } else {
-      mime_type <- attributes(df)$MIME_TYPE
+      mime_type <- unique(df$MIME_TYPE, drop.na = T)[1]
     }
   }
   

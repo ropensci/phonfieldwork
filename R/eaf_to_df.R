@@ -8,8 +8,8 @@
 #' @param file_name string with a filename or path to the .eaf file
 #' @return a dataframe with columns:  \code{tier}, \code{id}, \code{content},
 #' \code{tier_name}, \code{tier_type}, \code{tier_ref}, \code{event_local_id},
-#'  \code{dependent_on}, \code{time_start}, \code{time_end}, \code{source}, \code{media_url}
-#' and attributes: \code{MEDIA_URL}, \code{MIME_TYPE}, \code{RELATIVE_MEDIA_URL}.
+#'  \code{dependent_on}, \code{time_start}, \code{time_end}, \code{source}, 
+#'  \code{MEDIA_URL}, \code{MIME_TYPE}, \code{RELATIVE_MEDIA_URL}.
 #'
 #' @examples
 #' eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
@@ -22,6 +22,12 @@
 #' 
 
 eaf_to_df <- function(file_name) {
+  
+  #extension check
+  if (sub(pattern = "^(.*\\.|[^.]+)(?=[^.]*)", replacement = "", file_name, perl = TRUE) != "eaf") {
+    stop("Wrong file extension. Assumed: .eaf; Got: " + sub(pattern = "^(.*\\.|[^.]+)(?=[^.]*)", replacement = ".", file_name, perl = TRUE))
+  } 
+  
   # read file
   l <- xml2::read_xml(file_name)
   # extract tiers
@@ -200,12 +206,11 @@ eaf_to_df <- function(file_name) {
     r <- r[, c(2,3,4,5,6,7,8,1,9,10,11)]
     
     #connected file
-    attr(r, 'MEDIA_URL') <- xml2::xml_attr(xml2::xml_children(xml2::xml_find_all(l, 'HEADER'))[1], 'MEDIA_URL')
-    attr(r, 'MIME_TYPE') <- xml2::xml_attr(xml2::xml_children(xml2::xml_find_all(l, 'HEADER'))[1], 'MIME_TYPE')
-    attr(r, 'RELATIVE_MEDIA_URL') <- xml2::xml_attr(xml2::xml_children(xml2::xml_find_all(l, 'HEADER'))[1], 'RELATIVE_MEDIA_URL')
+    r$MEDIA_URL <- xml2::xml_attr(xml2::xml_children(xml2::xml_find_all(l, 'HEADER'))[1], 'MEDIA_URL')
+    r$MIME_TYPE <- xml2::xml_attr(xml2::xml_children(xml2::xml_find_all(l, 'HEADER'))[1], 'MIME_TYPE')
+    r$RELATIVE_MEDIA_URL <- xml2::xml_attr(xml2::xml_children(xml2::xml_find_all(l, 'HEADER'))[1], 'RELATIVE_MEDIA_URL')
     
     r$source <- basename(file_name)
-    r$media_url <- attr(r, 'MEDIA_URL')
     return(r)
   }
 }

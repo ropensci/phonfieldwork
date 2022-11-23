@@ -11,13 +11,13 @@ df_to_eaf(df, output_file, output_dir = "", ref_file = "", mime_type = "")
 'content', 'time_start', 'time_end' and preferably also 'tier_type', 'stereotype', 
 'tier_ref', 'event_local_id', 'dependent_on' that are specific for eaf file}
 
-\item{output_file}{the name of the result .xml file}
+\item{output_file}{the name of the result .eaf file}
 
 \item{output_dir}{the output directory for the rendered file (defalut is used if not spectified)}
 
-\item{ref_file}{a filepath for connected media file (not obligatory)}
+\item{ref_file}{a filepath for connected media file (not obligatory) - if specified, overwrites existing parameters}
 
-\item{mime_type}{a MIME type of connected media file (not obligatory)}
+\item{mime_type}{a MIME type of connected media file (not obligatory) - if specified, overwrites existing parameters}
 }
 \value{
 .xml file
