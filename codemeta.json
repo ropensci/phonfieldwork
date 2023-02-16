@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
+  "runtimePlatform": "R version 4.2.2 Patched (2022-11-10 r83330)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -60,18 +60,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=knitr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "tidyverse",
-      "name": "tidyverse",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=tidyverse"
     },
     {
       "@type": "SoftwareApplication",
@@ -247,8 +235,19 @@
     },
     "SystemRequirements": "pandoc (>= 1.14) - http://pandoc.org"
   },
-  "fileSize": "4224.739KB",
+  "fileSize": "4371.17KB",
   "citation": [
+    {
+      "datePublished": "2023",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "George",
+          "familyName": "Moroz"
+        }
+      ],
+      "name": "Phonetic fieldwork research and experiments with the R package phonfieldwork"
+    },
     {
       "@type": "SoftwareSourceCode",
       "datePublished": "2020",

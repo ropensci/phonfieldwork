@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2022-09-23"
+date: "2023-02-16"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -51,7 +51,7 @@ packageVersion("phonfieldwork")
 ```
 
 ```
-## [1] '0.0.11'
+## [1] '0.0.12'
 ```
 
 This tutorial can be cited as follows:
@@ -61,20 +61,7 @@ citation("phonfieldwork")
 ```
 
 ```
-## 
-## To cite package 'phonfieldwork' in publications use:
-## 
-##   Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork package_.
-##   <https://CRAN.R-project.org/package=phonfieldwork>.
-## 
-## A BibTeX entry for LaTeX users is
-## 
-##   @Manual{,
-##     title = {Phonetic fieldwork and experiments with phonfieldwork package},
-##     author = {George Moroz},
-##     year = {2020},
-##     url = {https://CRAN.R-project.org/package=phonfieldwork},
-##   }
+## Error in person$family: $ operator is invalid for atomic vectors
 ```
 
 If you have any trouble using the package, do not hesitate to create [an issue on Github](https://github.com/ropensci/phonfieldwork/issues/new).
@@ -302,7 +289,7 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4821542
+## 1 2_s1_tap.wav 0.4299093
 ```
 
 It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: "audacity", "duration", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"):
@@ -537,7 +524,8 @@ draw_sound("s1/s1_all.wav",
 ```
 
 ```
-## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object length
+## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter
+## object length
 ```
 
 ![](unnamed-chunk-41-1.png)
@@ -552,7 +540,8 @@ draw_sound("s1/s1_all.wav",
 ```
 
 ```
-## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter object length
+## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter
+## object length
 ```
 
 ![](unnamed-chunk-42-1.png)
@@ -698,19 +687,36 @@ eaf_to_df(system.file("extdata", "test.eaf", package = "phonfieldwork"))
 ```
 
 ```
-##    tier id content       tier_name tier_type time_start time_end   source
-## 9     1  1               intervals     praat      0.000    0.012 test.eaf
-## 10    2  1         empty_intervals     praat      0.000    0.012 test.eaf
-## 11    1  2       t       intervals     praat      0.012    0.248 test.eaf
-## 12    2  2       C empty_intervals     praat      0.012    0.248 test.eaf
-## 1     1  3       e       intervals     praat      0.248    0.396 test.eaf
-## 2     2  3       V empty_intervals     praat      0.248    0.396 test.eaf
-## 3     1  4       s       intervals     praat      0.396    0.512 test.eaf
-## 4     2  4       C empty_intervals     praat      0.396    0.512 test.eaf
-## 5     1  5       t       intervals     praat      0.512    0.652 test.eaf
-## 6     2  5       C empty_intervals     praat      0.512    0.652 test.eaf
-## 7     1  6               intervals     praat      0.652  300.000 test.eaf
-## 8     2  6         empty_intervals     praat      0.652  300.000 test.eaf
+##    tier id                                       content       tier_name tier_type id_
+## 12    1  1                                                     intervals     praat   1
+## 13    2  1                                               empty_intervals     praat   7
+## 14    1  2                                             t       intervals     praat   2
+## 1     2  2                                             C empty_intervals     praat   8
+## 8     3  1 this is just a basic sentence nothing special        sentence     praat  13
+## 2     1  3                                             e       intervals     praat   3
+## 3     2  3                                             V empty_intervals     praat   9
+## 4     1  4                                             s       intervals     praat   4
+## 5     2  4                                             C empty_intervals     praat  10
+## 6     1  5                                             t       intervals     praat   5
+## 7     2  5                                             C empty_intervals     praat  11
+## 10    1  6                                                     intervals     praat   6
+## 11    2  6                                               empty_intervals     praat  12
+## 9     3  2                             one more sentence        sentence     praat  14
+##    tier_ref event_local_id dependent_on time_start time_end   source media_url
+## 12     <NA>             a1         <NA>      0.000    0.012 test.eaf      <NA>
+## 13     <NA>             a7         <NA>      0.000    0.012 test.eaf      <NA>
+## 14     <NA>             a2         <NA>      0.012    0.248 test.eaf      <NA>
+## 1      <NA>             a8         <NA>      0.012    0.248 test.eaf      <NA>
+## 8      <NA>            a13         <NA>      0.017    9.376 test.eaf      <NA>
+## 2      <NA>             a3         <NA>      0.248    0.396 test.eaf      <NA>
+## 3      <NA>             a9         <NA>      0.248    0.396 test.eaf      <NA>
+## 4      <NA>             a4         <NA>      0.396    0.512 test.eaf      <NA>
+## 5      <NA>            a10         <NA>      0.396    0.512 test.eaf      <NA>
+## 6      <NA>             a5         <NA>      0.512    0.652 test.eaf      <NA>
+## 7      <NA>            a11         <NA>      0.512    0.652 test.eaf      <NA>
+## 10     <NA>             a6         <NA>      0.652  300.000 test.eaf      <NA>
+## 11     <NA>            a12         <NA>      0.652  300.000 test.eaf      <NA>
+## 9      <NA>            a14         <NA>     11.690   26.461 test.eaf      <NA>
 ```
 
 * file `.exb` from EXMARaLDA  (just change the `system.file()` function to path to the file)
@@ -720,15 +726,24 @@ exb_to_df(system.file("extdata", "test.exb", package = "phonfieldwork"))
 ```
 
 ```
-##   tier id content tier_name tier_type tier_category tier_speaker time_start  time_end   source
-## 3    1  1       t     X [v]         t             v         SPK0 0.06908955 0.2498984 test.exb
-## 1    1  2       e     X [v]         t             v         SPK0 0.24989836 0.3807275 test.exb
-## 5    1  3       s     X [v]         t             v         SPK0 0.38072750 0.4042473 test.exb
-## 7    1  4       t     X [v]         t             v         SPK0 0.40424735 0.6526757 test.exb
-## 4    2  1       C     X [v]         a             v         SPK0 0.06908955 0.2498984 test.exb
-## 2    2  2       V     X [v]         a             v         SPK0 0.24989836 0.3807275 test.exb
-## 6    2  3       C     X [v]         a             v         SPK0 0.38072750 0.4042473 test.exb
-## 8    2  4       C     X [v]         a             v         SPK0 0.40424735 0.6526757 test.exb
+##   tier id content tier_name tier_type tier_category tier_speaker time_start  time_end
+## 3    1  1       t     X [v]         t             v         SPK0 0.06908955 0.2498984
+## 1    1  2       e     X [v]         t             v         SPK0 0.24989836 0.3807275
+## 5    1  3       s     X [v]         t             v         SPK0 0.38072750 0.4042473
+## 7    1  4       t     X [v]         t             v         SPK0 0.40424735 0.6526757
+## 4    2  1       C     X [v]         a             v         SPK0 0.06908955 0.2498984
+## 2    2  2       V     X [v]         a             v         SPK0 0.24989836 0.3807275
+## 6    2  3       C     X [v]         a             v         SPK0 0.38072750 0.4042473
+## 8    2  4       C     X [v]         a             v         SPK0 0.40424735 0.6526757
+##     source
+## 3 test.exb
+## 1 test.exb
+## 5 test.exb
+## 7 test.exb
+## 4 test.exb
+## 2 test.exb
+## 6 test.exb
+## 8 test.exb
 ```
 
 * subtitles file `.srt` (just change the `system.file()` function to path to the file)
@@ -768,6 +783,10 @@ head(flextext_to_df("files/zilo_test.flextext"))
 ```
 
 ```
+## It can take some time for big files...
+```
+
+```
 ##   p_id s_id w_id    txt     cf hn     gls                   msa                free_trans
 ## 1    1    1    1     б-     б-  1      an Inflects any category Жил-был (у Гъули?) петух.
 ## 2    1    1    1    ик1    ик1  1    быть                    гл Жил-был (у Гъули?) петух.
@@ -804,6 +823,10 @@ There is also an additional function for working with the `.flextext` format tha
 ```r
 create_glossed_document(flextext = "files/zilo_test.flextext",
                         output_dir = ".") # you need to specify the path to the output folder
+```
+
+```
+## It can take some time for big files...
 ```
 
 ```

@@ -1,3 +1,16 @@
+bibentry(bibtype = "incollection",
+         title = 'Phonetic fieldwork research and experiments with the R package phonfieldwork',
+         author = person("George", "Moroz"),
+         year = 2023,
+         booktitle = "«…Vperyod i vverkh po lestnitse zvuchashey». Sbornik statye k 80-letiyu Olgi Fyodorovny Krivnovoy [Festschrift in memoriam to Olga Fyodorovna Krivnova]",
+         editor = c(person("I. M.", "Kobozeva"),
+                     person("K. P.", "Semyonova"),
+                     person("A. E.", "Kostyuk"),
+                     person("L. M.", "Zakharov"),
+                     person("N. D.", "Svetozarova")),
+          publisher="Buki Vedi",
+          address = "Moscow")
+
 bibentry(bibtype = "Manual",
          title = 'Phonetic fieldwork and experiments with phonfieldwork package',
          author = person("George", "Moroz"),
