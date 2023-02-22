@@ -16,7 +16,7 @@
 - extract sounds according to annotation
 - extract annotation from multiple linguistic formats (Praat `.TextGrid`, ELAN `.eaf`, EXMARaLDA `.exb`, Audacity `.txt` and subtitles `.srt`)
 - visualise oscilograms, spectrograms and annotations
-- create an html viewer [like this](https://ropensci.github.io/phonfieldwork/s1/stimuli_viewer.html), ethical problems of this kind of viewer in linguistic research are covered in the vignette `vignette("ethical_research_with_phonfieldwork")`.
+- create an html viewer [like this](https://ropensci.github.io/phonfieldwork/additional/stimuli_viewer.html), ethical problems of this kind of viewer in linguistic research are covered in the vignette `vignette("ethical_research_with_phonfieldwork")`.
 
 For more details see [tutorial](https://docs.ropensci.org/phonfieldwork/).
 
