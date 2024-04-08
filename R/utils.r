@@ -3,7 +3,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #' @param file_name string with a filename or path to the TextGrid
 #' @noRd
-#' @importFrom uchardet detect_file_enc
+#' @importFrom readr guess_encoding
 #'
 
 read_textgrid <- function(file_name) {
@@ -11,7 +11,8 @@ read_textgrid <- function(file_name) {
     tg <- file_name
   } else {
     # thanks to Artem Klevtsov for this code
-    con <- file(file_name, encoding = uchardet::detect_file_enc(file_name))
+    con <- file(file_name,
+                encoding = readr::guess_encoding(file_name)$encoding)
     tg <- readLines(con)
     close(con)
   }

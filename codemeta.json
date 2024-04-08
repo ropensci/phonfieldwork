@@ -8,19 +8,13 @@
   "codeRepository": "https://github.com/ropensci/phonfieldwork",
   "issueTracker": "https://github.com/ropensci/phonfieldwork/issues",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.2 Patched (2022-11-10 r83330)",
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
+  "runtimePlatform": "R version 4.3.3 (2024-02-29)",
   "author": [
     {
       "@type": "Person",
@@ -206,15 +200,15 @@
     },
     "9": {
       "@type": "SoftwareApplication",
-      "identifier": "uchardet",
-      "name": "uchardet",
+      "identifier": "readr",
+      "name": "readr",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=uchardet"
+      "sameAs": "https://CRAN.R-project.org/package=readr"
     },
     "10": {
       "@type": "SoftwareApplication",
@@ -235,7 +229,7 @@
     },
     "SystemRequirements": "pandoc (>= 1.14) - http://pandoc.org"
   },
-  "fileSize": "4371.17KB",
+  "fileSize": "4059.603KB",
   "citation": [
     {
       "datePublished": "2023",

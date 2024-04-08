@@ -13,13 +13,14 @@
 #' srt_to_df(system.file("extdata", "test.srt", package = "phonfieldwork"))
 #' @export
 #'
-#' @importFrom uchardet detect_file_enc
+#' @importFrom readr guess_encoding
 #'
 
 srt_to_df <- function(file_name) {
 
   # thanks to Artem Klevtsov for this code
-  con <- file(file_name, encoding = uchardet::detect_file_enc(file_name))
+  con <- file(file_name,
+              encoding = readr::guess_encoding(file_name)$encoding)
   srt <- readLines(con)
   close(con)
 

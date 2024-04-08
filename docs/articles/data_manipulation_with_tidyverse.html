@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phonfieldwork</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.13</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@ with <code>tidyverse</code>
 Laboratory</a>
 </h4>
             
-            <h4 data-toc-skip class="date">2023-02-16</h4>
+            <h4 data-toc-skip class="date">2024-04-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/phonfieldwork/blob/HEAD/vignettes/data_manipulation_with_tidyverse.Rmd" class="external-link"><code>vignettes/data_manipulation_with_tidyverse.Rmd</code></a></small>
       <div class="hidden name"><code>data_manipulation_with_tidyverse.Rmd</code></div>
@@ -129,22 +129,7 @@ annotation:</p>
 <p>If we convert this file to R we will achieve something like this:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/textgrid_to_df.html">textgrid_to_df</a></span><span class="op">(</span><span class="st">"s1/s1_all.TextGrid"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    id time_start  time_end      content tier     tier_name          source</span></span>
-<span><span class="co">#&gt; 1   1  0.0000000 0.4821542          tip    1        labels s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 4   1  0.0000000 0.4821542 1_s1_tip.wav    2 backup labels s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 7   1  0.0000000 0.1072426                 3               s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 8   2  0.1072426 0.1887230            ı    3               s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 9   3  0.1887230 0.4821542                 3               s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 2   2  0.4821542 0.9120635          tap    1        labels s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 5   2  0.4821542 0.9120635 2_s1_tap.wav    2 backup labels s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 10  4  0.4821542 0.5770552                 3               s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 11  5  0.5770552 0.6793392            æ    3               s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 12  6  0.6793392 0.9120635                 3               s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 3   3  0.9120635 1.3942177          top    1        labels s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 6   3  0.9120635 1.3942177 3_s1_top.wav    2 backup labels s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 13  7  0.9120635 1.0364661                 3               s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 14  8  1.0364661 1.1066780            ɒ    3               s1_all.TextGrid</span></span>
-<span><span class="co">#&gt; 15  9  1.1066780 1.3942177                 3               s1_all.TextGrid</span></span></code></pre></div>
+<span><span class="co">#&gt; Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument</span></span></code></pre></div>
 <p>As we see this table has a long format structure: each observation
 has its own row. We can select the first two rows with the
 <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter()</a></code> function, remove all unnecessary columns with the
@@ -155,12 +140,7 @@ has its own row. We can select the first two rows with the
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">tier</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">time_start</span>, <span class="op">-</span><span class="va">time_end</span>, <span class="op">-</span><span class="va">tier_name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">tier</span>, values_from <span class="op">=</span> <span class="va">content</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 3 × 4</span></span>
-<span><span class="co">#&gt;      id source          `1`   `2`         </span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;       </span></span>
-<span><span class="co">#&gt; 1     1 s1_all.TextGrid tip   1_s1_tip.wav</span></span>
-<span><span class="co">#&gt; 2     2 s1_all.TextGrid tap   2_s1_tap.wav</span></span>
-<span><span class="co">#&gt; 3     3 s1_all.TextGrid top   3_s1_top.wav</span></span></code></pre></div>
+<span><span class="co">#&gt; Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="flextext-format">.flextext format<a class="anchor" aria-label="anchor" href="#flextext-format"></a>
@@ -213,19 +193,19 @@ sentence id and <code>w_id</code> – word id.</p>
 <span><span class="co">#&gt; the `.groups` argument.</span></span>
 <span><span class="co">#&gt; # A tibble: 136 × 6</span></span>
 <span><span class="co">#&gt; # Groups:   p_id, s_id, free_trans [19]</span></span>
-<span><span class="co">#&gt;     p_id  s_id free_trans                        w_id txt              gls                  </span></span>
-<span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                </span></span>
-<span><span class="co">#&gt;  1     1     1 Жил-был (у Гъули?) петух.            1 б-ик1-о-й=гъоди  "an-быть-pst-cvb(pf)…</span></span>
-<span><span class="co">#&gt;  2     1     1 Жил-был (у Гъули?) петух.            2 б--о-ч1игу=гъоди "an--pst-neg.cvb-=re…</span></span>
-<span><span class="co">#&gt;  3     1     1 Жил-был (у Гъули?) петух.            3 Гъули-б          "Гъули-an(gen)"      </span></span>
-<span><span class="co">#&gt;  4     1     1 Жил-был (у Гъули?) петух.            4 х1елеко          "петух"              </span></span>
-<span><span class="co">#&gt;  5     1     1 Жил-был (у Гъули?) петух.            5 .                ""                   </span></span>
-<span><span class="co">#&gt;  6     2     2 Он грелся на улице(?).               6 къват1и-ла=гъоди "улица-in-=rep"      </span></span>
-<span><span class="co">#&gt;  7     2     2 Он грелся на улице(?).               7 б-ик1-о-j        "an-быть-pst-cvb(pf)"</span></span>
-<span><span class="co">#&gt;  8     2     2 Он грелся на улице(?).               8 букьир-ъа        "Букир-sup"          </span></span>
-<span><span class="co">#&gt;  9     2     2 Он грелся на улице(?).               9 .                ""                   </span></span>
-<span><span class="co">#&gt; 10     2     3 [Ему в ногу] воткнулась колючка.    10 къинни-й=гъоди   "втыкаться-cvb(pf)-=…</span></span>
-<span><span class="co">#&gt; # … with 126 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt;     p_id  s_id free_trans                        w_id txt              gls                </span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              </span></span>
+<span><span class="co">#&gt;  1     1     1 Жил-был (у Гъули?) петух.            1 б-ик1-о-й=гъоди  "an-быть-pst-cvb(p…</span></span>
+<span><span class="co">#&gt;  2     1     1 Жил-был (у Гъули?) петух.            2 б--о-ч1игу=гъоди "an--pst-neg.cvb-=…</span></span>
+<span><span class="co">#&gt;  3     1     1 Жил-был (у Гъули?) петух.            3 Гъули-б          "Гъули-an(gen)"    </span></span>
+<span><span class="co">#&gt;  4     1     1 Жил-был (у Гъули?) петух.            4 х1елеко          "петух"            </span></span>
+<span><span class="co">#&gt;  5     1     1 Жил-был (у Гъули?) петух.            5 .                ""                 </span></span>
+<span><span class="co">#&gt;  6     2     2 Он грелся на улице(?).               6 къват1и-ла=гъоди "улица-in-=rep"    </span></span>
+<span><span class="co">#&gt;  7     2     2 Он грелся на улице(?).               7 б-ик1-о-j        "an-быть-pst-cvb(p…</span></span>
+<span><span class="co">#&gt;  8     2     2 Он грелся на улице(?).               8 букьир-ъа        "Букир-sup"        </span></span>
+<span><span class="co">#&gt;  9     2     2 Он грелся на улице(?).               9 .                ""                 </span></span>
+<span><span class="co">#&gt; 10     2     3 [Ему в ногу] воткнулась колючка.    10 къинни-й=гъоди   "втыкаться-cvb(pf)…</span></span>
+<span><span class="co">#&gt; # ℹ 126 more rows</span></span></code></pre></div>
 <p>The first <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter()</a></code> removes some garbage rows that are
 present in our example flextext. The <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> function
 selects only six important columns from 15 presented in the dataset. The
@@ -251,27 +231,27 @@ sentences:</p>
 <span><span class="co">#&gt; argument.</span></span>
 <span><span class="co">#&gt; # A tibble: 19 × 5</span></span>
 <span><span class="co">#&gt; # Groups:   p_id, s_id [19]</span></span>
-<span><span class="co">#&gt;     p_id  s_id free_trans                                                        txt   gls  </span></span>
-<span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                                                             &lt;chr&gt; &lt;chr&gt;</span></span>
-<span><span class="co">#&gt;  1     1     1 "Жил-был (у Гъули?) петух."                                       б-ик… "an-…</span></span>
-<span><span class="co">#&gt;  2     2     2 "Он грелся на улице(?)."                                          къва… "ули…</span></span>
-<span><span class="co">#&gt;  3     2     3 "[Ему в ногу] воткнулась колючка."                                къин… "вты…</span></span>
-<span><span class="co">#&gt;  4     3     4 "Когда колючка воткнулась, [он] ушел к Бихтаю."                   ццан… "кол…</span></span>
-<span><span class="co">#&gt;  5     4     5 "Гъули не обнаружил дома Бихтай, дома ее нет, из себя не вынул и… бихь… "Бих…</span></span>
-<span><span class="co">#&gt;  6     5     6 "Оттуда пошел к Умалаю, "                                         б-uʔ… "an-…</span></span>
-<span><span class="co">#&gt;  7     6     7 "Оттуда петух пошел к Патимат."                                   х1ел… "пет…</span></span>
-<span><span class="co">#&gt;  8     8    10 "Оттуда [петух] пошел к Ханичай."                                 гье-… "dem…</span></span>
-<span><span class="co">#&gt;  9     9    11 "Иди к Хурмат, ..."                                               хъан… "Хан…</span></span>
-<span><span class="co">#&gt; 10    10    12 "Когда дошёл до двора Хурмат, из окна появился мальчик, сказал:"  рул1… "гов…</span></span>
-<span><span class="co">#&gt; 11    11    13 "Три дня не ели, мы с ней не зная, сказал он."                    рул1… "гов…</span></span>
-<span><span class="co">#&gt; 12    12    14 "Оттуда он ушёл и дошёл до Айшат Исмаиловой и её не обнаружив, о… гье-… "dem…</span></span>
-<span><span class="co">#&gt; 13    13    15 "Захраил …?"                                                      й--и… "f--…</span></span>
-<span><span class="co">#&gt; 14    14    16 "И он пошел в село. Захраил сказала, что колючка воткнулась в пе… б-ук… "an-…</span></span>
-<span><span class="co">#&gt; 15    15    17 "Оттуда снизу вверх к Исрапилу ..."                               гьег… "там…</span></span>
-<span><span class="co">#&gt; 16    16    18 "Шли-шли и пришли к Гаджи."                                       гье-… "dem…</span></span>
-<span><span class="co">#&gt; 17    17    19 "Они поссорились (?) и прогнали (?) петуха."                      й-ей… "f-р…</span></span>
-<span><span class="co">#&gt; 18    18    20 "Когда закончили ссориться, [пошли?] к Забиту."                   джид… "дел…</span></span>
-<span><span class="co">#&gt; 19    19    21 "На воротах Забита петух обнаружил замок и пошел к Зумайрат."     х1ел… "пет…</span></span></code></pre></div>
+<span><span class="co">#&gt;     p_id  s_id free_trans                                                      txt   gls  </span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                                                           &lt;chr&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt;  1     1     1 "Жил-был (у Гъули?) петух."                                     б-ик… "an-…</span></span>
+<span><span class="co">#&gt;  2     2     2 "Он грелся на улице(?)."                                        къва… "ули…</span></span>
+<span><span class="co">#&gt;  3     2     3 "[Ему в ногу] воткнулась колючка."                              къин… "вты…</span></span>
+<span><span class="co">#&gt;  4     3     4 "Когда колючка воткнулась, [он] ушел к Бихтаю."                 ццан… "кол…</span></span>
+<span><span class="co">#&gt;  5     4     5 "Гъули не обнаружил дома Бихтай, дома ее нет, из себя не вынул… бихь… "Бих…</span></span>
+<span><span class="co">#&gt;  6     5     6 "Оттуда пошел к Умалаю, "                                       б-uʔ… "an-…</span></span>
+<span><span class="co">#&gt;  7     6     7 "Оттуда петух пошел к Патимат."                                 х1ел… "пет…</span></span>
+<span><span class="co">#&gt;  8     8    10 "Оттуда [петух] пошел к Ханичай."                               гье-… "dem…</span></span>
+<span><span class="co">#&gt;  9     9    11 "Иди к Хурмат, ..."                                             хъан… "Хан…</span></span>
+<span><span class="co">#&gt; 10    10    12 "Когда дошёл до двора Хурмат, из окна появился мальчик, сказал… рул1… "гов…</span></span>
+<span><span class="co">#&gt; 11    11    13 "Три дня не ели, мы с ней не зная, сказал он."                  рул1… "гов…</span></span>
+<span><span class="co">#&gt; 12    12    14 "Оттуда он ушёл и дошёл до Айшат Исмаиловой и её не обнаружив,… гье-… "dem…</span></span>
+<span><span class="co">#&gt; 13    13    15 "Захраил …?"                                                    й--и… "f--…</span></span>
+<span><span class="co">#&gt; 14    14    16 "И он пошел в село. Захраил сказала, что колючка воткнулась в … б-ук… "an-…</span></span>
+<span><span class="co">#&gt; 15    15    17 "Оттуда снизу вверх к Исрапилу ..."                             гьег… "там…</span></span>
+<span><span class="co">#&gt; 16    16    18 "Шли-шли и пришли к Гаджи."                                     гье-… "dem…</span></span>
+<span><span class="co">#&gt; 17    17    19 "Они поссорились (?) и прогнали (?) петуха."                    й-ей… "f-р…</span></span>
+<span><span class="co">#&gt; 18    18    20 "Когда закончили ссориться, [пошли?] к Забиту."                 джид… "дел…</span></span>
+<span><span class="co">#&gt; 19    19    21 "На воротах Забита петух обнаружил замок и пошел к Зумайрат."   х1ел… "пет…</span></span></code></pre></div>
 <p>It is also very easy to get some simple statistics from the data:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>

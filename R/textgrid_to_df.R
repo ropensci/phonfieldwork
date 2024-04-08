@@ -21,7 +21,6 @@
 #' ))
 #' @export
 #'
-#' @importFrom uchardet detect_file_enc
 #'
 
 textgrid_to_df <- function(file_name) {

@@ -13,7 +13,7 @@
 #' intensity_to_df(system.file("extdata", "test.Intensity", package = "phonfieldwork"))
 #' @export
 #'
-#' @importFrom uchardet detect_file_enc
+#' @importFrom readr guess_encoding
 #'
 
 intensity_to_df <- function(file_name) {
@@ -23,7 +23,8 @@ intensity_to_df <- function(file_name) {
     intensity <- file_name
   } else {
     # thanks to Artem Klevtsov for this code
-    con <- file(file_name, encoding = uchardet::detect_file_enc(file_name))
+    con <- file(file_name,
+                encoding = readr::guess_encoding(file_name)$encoding)
     intensity <- readLines(con)
     close(con)
   }

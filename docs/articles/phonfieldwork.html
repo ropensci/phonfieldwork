@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">phonfieldwork</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.13</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@
 Laboratory</a>
 </h4>
             
-            <h4 data-toc-skip class="date">2023-02-16</h4>
+            <h4 data-toc-skip class="date">2024-04-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/phonfieldwork/blob/HEAD/vignettes/phonfieldwork.Rmd" class="external-link"><code>vignettes/phonfieldwork.Rmd</code></a></small>
       <div class="hidden name"><code>phonfieldwork.Rmd</code></div>
@@ -166,7 +166,19 @@ for the details.</p>
 <p>This tutorial can be cited as follows:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"phonfieldwork"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Error in person$family: $ operator is invalid for atomic vectors</span></span></code></pre>
+<pre><code><span><span class="co">## To cite package 'phonfieldwork' in publications use:</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##   Moroz G (2023). "Phonetic fieldwork research and experiments with the R</span></span>
+<span><span class="co">##   package phonfieldwork." In Kobozeva I, Semyonova K, Kostyuk A, Zakharov L,</span></span>
+<span><span class="co">##   Svetozarova N (eds.), _«…Vperyod i vverkh po lestnitse zvuchashey». Sbornik</span></span>
+<span><span class="co">##   statye k 80-letiyu Olgi Fyodorovny Krivnovoy [Festschrift in memoriam to Olga</span></span>
+<span><span class="co">##   Fyodorovna Krivnova]_. Buki Vedi, Moscow.</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##   Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork</span></span>
+<span><span class="co">##   package_. &lt;https://CRAN.R-project.org/package=phonfieldwork&gt;.</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## To see these entries in BibTeX format, use 'print(&lt;citation&gt;, bibtex=TRUE)',</span></span>
+<span><span class="co">## 'toBibtex(.)', or set 'options(citation.bibtex.max=999)'.</span></span></code></pre>
 <p>If you have any trouble using the package, do not hesitate to create
 <a href="https://github.com/ropensci/phonfieldwork/issues/new" class="external-link">an issue
 on Github</a>.</p>
@@ -320,7 +332,7 @@ external:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_image</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"r-logo.png"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span></span>
 <span><span class="va">my_image</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.2/phonfieldwork/extdata/r-logo.png"</span></span></code></pre>
+<pre><code><span><span class="co">## [1] "/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/phonfieldwork/extdata/r-logo.png"</span></span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/create_presentation.html">create_presentation</a></span><span class="op">(</span>stimuli <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rzeka"</span>, <span class="st">"drzewo"</span>, <span class="va">my_image</span><span class="op">)</span>,</span>
 <span>                    external <span class="op">=</span> <span class="fl">3</span>,</span>
@@ -426,7 +438,7 @@ of stimuli that are not present in audiofiles:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_sound_duration.html">get_sound_duration</a></span><span class="op">(</span><span class="st">"s1/2_s1_tap.wav"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##           file  duration</span></span>
-<span><span class="co">## 1 2_s1_tap.wav 0.4299093</span></span></code></pre>
+<span><span class="co">## 1 2_s1_tap.wav 0.4821542</span></span></code></pre>
 <p>It is also possible to analyze the whole folder using the
 <code><a href="../reference/read_from_folder.html">read_from_folder()</a></code> function. The first argument is the path
 to the folder. The second argument is the type of information or file
@@ -516,10 +528,12 @@ tier:</p>
 <span>                  textgrid <span class="op">=</span> <span class="st">"s1/s1_all.TextGrid"</span>,</span>
 <span>                  tier <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>                  backup <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument</span></span></code></pre>
 <p><img src="unnamed-chunk-29-1.png"></p>
 <p>You can see that we created a third tier with annotation. The only
 thing left is to move annotation boundaries in Praat (this can not be
 automated):</p>
+<pre><code><span><span class="co">## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument</span></span></code></pre>
 <p><img src="unnamed-chunk-31-1.png"></p>
 <p>You can see from the last figure that no backup tier was created
 (<code>backup = FALSE</code>), that the third tier was annotated
@@ -527,7 +541,7 @@ automated):</p>
 <p>In case you want to create an empty TextGrid it is possible to use a
 <code><a href="../reference/create_empty_textgrid.html">create_empty_textgrid()</a></code> function that takes a duration as
 an argument:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/create_empty_textgrid.html">create_empty_textgrid</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_sound_duration.html">get_sound_duration</a></span><span class="op">(</span><span class="st">"s2/s2_tip_1.wav"</span><span class="op">)</span><span class="op">$</span><span class="va">duration</span>,</span>
 <span>                      tier_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>,</span>
 <span>                      path <span class="op">=</span> <span class="st">"s2"</span>,</span>
@@ -551,7 +565,7 @@ an argument:</p>
 <span><span class="co">## │   └── s2_top_3.wav</span></span></code></pre>
 <p>It is also possible to remove some tier from textgrid. For instance,
 we can remove one tier from the previously created file:</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/remove_textgrid_tier.html">remove_textgrid_tier</a></span><span class="op">(</span>textgrid <span class="op">=</span> <span class="st">"s2/s2_tip_1.TextGrid"</span>, tier <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="unnamed-chunk-36-1.png"></p>
 </div>
@@ -560,17 +574,21 @@ we can remove one tier from the previously created file:</p>
 </h3>
 <p>First, it is important to create a folder where all of the extracted
 files will be stored:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"s1/s1_sounds"</span><span class="op">)</span></span></code></pre></div>
 <p>It is possible to extract all annotated files based on an annotation
 tier:</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/extract_intervals.html">extract_intervals</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="st">"s1/s1_all.wav"</span>,</span>
 <span>                  textgrid <span class="op">=</span> <span class="st">"s1/s1_all.TextGrid"</span>,</span>
 <span>                  tier <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>                  path <span class="op">=</span> <span class="st">"s1/s1_sounds/"</span>,</span>
 <span>                  prefix <span class="op">=</span> <span class="st">"s1_"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ├── s1</span></span>
+<pre><code><span><span class="co">## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument</span></span></code></pre>
+<pre><code><span><span class="co">## ├── my_stimuli_df.csv</span></span>
+<span><span class="co">## ├── my_stimuli_df.xlsx</span></span>
+<span><span class="co">## ├── phonfieldwork.Rmd</span></span>
+<span><span class="co">## ├── s1</span></span>
 <span><span class="co">## │   ├── 1_s1_tip.wav</span></span>
 <span><span class="co">## │   ├── 2_s1_tap.wav</span></span>
 <span><span class="co">## │   ├── 3_s1_top.wav</span></span>
@@ -582,9 +600,6 @@ tier:</p>
 <span><span class="co">## │   ├── s1_all.TextGrid</span></span>
 <span><span class="co">## │   ├── s1_all.wav</span></span>
 <span><span class="co">## │   └── s1_sounds</span></span>
-<span><span class="co">## │       ├── 1_s1_ı.wav</span></span>
-<span><span class="co">## │       ├── 2_s1_æ.wav</span></span>
-<span><span class="co">## │       └── 3_s1_ɒ.wav</span></span>
 <span><span class="co">## ├── s2</span></span>
 <span><span class="co">## │   ├── s2_tap_2.wav</span></span>
 <span><span class="co">## │   ├── s2_tip_1.TextGrid</span></span>
@@ -596,9 +611,9 @@ tier:</p>
 </h3>
 <p>It is possible to view an oscilogram and spetrogram of any
 soundfile:</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="st">"s1/s1_sounds/1_s1_ı.wav"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="unnamed-chunk-40-1.png"></p>
+<pre><code><span><span class="co">## Error in tuneR::readWave(file_name): File 's1/s1_sounds/1_s1_ı.wav' does not exist.</span></span></code></pre>
 <p>There are additional parameters:</p>
 <ul>
 <li>
@@ -653,30 +668,33 @@ given. This can be “px” (pixels, which is the default value), “in”
 whole file, since it won’t fit into the RAM of your computer. So you can
 use <code>from</code> and <code>to</code> arguments in order to plot the
 fragment of the sound and annotation:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span><span class="st">"s1/s1_all.wav"</span>,</span>
 <span>           <span class="st">"s1/s1_all.TextGrid"</span>,</span>
 <span>           from <span class="op">=</span> <span class="fl">0.4</span>,</span>
 <span>           to <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter</span></span>
-<span><span class="co">## object length</span></span></code></pre>
+<pre><code><span><span class="co">## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument</span></span></code></pre>
 <p><img src="unnamed-chunk-41-1.png"></p>
 <p>It is also possible using the <code>zoom</code> argument to show the
 part of the spectrogram keeping the broader oscilogram context:</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span><span class="st">"s1/s1_all.wav"</span>,</span>
 <span>           <span class="st">"s1/s1_all.TextGrid"</span>,</span>
 <span>           zoom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter</span></span>
-<span><span class="co">## object length</span></span></code></pre>
+<pre><code><span><span class="co">## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument</span></span></code></pre>
 <p><img src="unnamed-chunk-42-1.png"></p>
 <p>If the <code>output_file</code> argument is provided, R will save the
 plot in your directory instead of displaying it.</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="st">"s1/s1_sounds/1_s1_ı.wav"</span>,</span>
 <span>           output_file <span class="op">=</span> <span class="st">"s1/s1_tip"</span>,</span>
 <span>           title <span class="op">=</span> <span class="st">"s1 tip"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ├── s1</span></span>
+<pre><code><span><span class="co">## Error in tuneR::readWave(file_name): File 's1/s1_sounds/1_s1_ı.wav' does not exist.</span></span></code></pre>
+<pre><code><span><span class="co">## ├── introduction_to_phonfieldwork.Rmd.orig</span></span>
+<span><span class="co">## ├── my_stimuli_df.csv</span></span>
+<span><span class="co">## ├── my_stimuli_df.xlsx</span></span>
+<span><span class="co">## ├── phonfieldwork.Rmd</span></span>
+<span><span class="co">## ├── s1</span></span>
 <span><span class="co">## │   ├── 1_s1_tip.wav</span></span>
 <span><span class="co">## │   ├── 2_s1_tap.wav</span></span>
 <span><span class="co">## │   ├── 3_s1_top.wav</span></span>
@@ -687,11 +705,7 @@ plot in your directory instead of displaying it.</p>
 <span><span class="co">## │   │   └── logging.csv</span></span>
 <span><span class="co">## │   ├── s1_all.TextGrid</span></span>
 <span><span class="co">## │   ├── s1_all.wav</span></span>
-<span><span class="co">## │   ├── s1_sounds</span></span>
-<span><span class="co">## │   │   ├── 1_s1_ı.wav</span></span>
-<span><span class="co">## │   │   ├── 2_s1_æ.wav</span></span>
-<span><span class="co">## │   │   └── 3_s1_ɒ.wav</span></span>
-<span><span class="co">## │   └── s1_tip.png</span></span>
+<span><span class="co">## │   └── s1_sounds</span></span>
 <span><span class="co">## ├── s2</span></span>
 <span><span class="co">## │   ├── s2_tap_2.wav</span></span>
 <span><span class="co">## │   ├── s2_tip_1.TextGrid</span></span>
@@ -704,10 +718,19 @@ images (<code>pic_folder_name</code>). The new image folder is
 automatically created in the upper level folder, so that sound and image
 folders are on the same level in the tree structure of your
 directory.</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span>sounds_from_folder <span class="op">=</span> <span class="st">"s1/s1_sounds/"</span>,</span>
 <span>           pic_folder_name <span class="op">=</span> <span class="st">"s1_pics"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ├── s1</span></span>
+<pre><code><span><span class="co">## Error in draw_sound(file_name = file_name, annotation = annotation, from = from, : The draw_sound() functions works only with .wav(e) or</span></span>
+<span><span class="co">##                .mp3 formats</span></span></code></pre>
+<pre><code><span><span class="co">## │   ├── s1_all.TextGrid</span></span>
+<span><span class="co">## │   └── zilo_test.flextext</span></span>
+<span><span class="co">## ├── first_example.html</span></span>
+<span><span class="co">## ├── introduction_to_phonfieldwork.Rmd.orig</span></span>
+<span><span class="co">## ├── my_stimuli_df.csv</span></span>
+<span><span class="co">## ├── my_stimuli_df.xlsx</span></span>
+<span><span class="co">## ├── phonfieldwork.Rmd</span></span>
+<span><span class="co">## ├── s1</span></span>
 <span><span class="co">## │   ├── 1_s1_tip.wav</span></span>
 <span><span class="co">## │   ├── 2_s1_tap.wav</span></span>
 <span><span class="co">## │   ├── 3_s1_top.wav</span></span>
@@ -719,14 +742,7 @@ directory.</p>
 <span><span class="co">## │   ├── s1_all.TextGrid</span></span>
 <span><span class="co">## │   ├── s1_all.wav</span></span>
 <span><span class="co">## │   ├── s1_pics</span></span>
-<span><span class="co">## │   │   ├── 1_s1_ı.png</span></span>
-<span><span class="co">## │   │   ├── 2_s1_æ.png</span></span>
-<span><span class="co">## │   │   └── 3_s1_ɒ.png</span></span>
-<span><span class="co">## │   ├── s1_sounds</span></span>
-<span><span class="co">## │   │   ├── 1_s1_ı.wav</span></span>
-<span><span class="co">## │   │   ├── 2_s1_æ.wav</span></span>
-<span><span class="co">## │   │   └── 3_s1_ɒ.wav</span></span>
-<span><span class="co">## │   └── s1_tip.png</span></span>
+<span><span class="co">## │   └── s1_sounds</span></span>
 <span><span class="co">## ├── s2</span></span>
 <span><span class="co">## │   ├── s2_tap_2.wav</span></span>
 <span><span class="co">## │   ├── s2_tip_1.TextGrid</span></span>
@@ -744,7 +760,7 @@ probably miss an ability to annotate not only time, but also a frequency
 range. In order to do it you need to create a dataframe with the columns
 <code>time_start</code>, <code>time_end</code>, <code>freq_low</code>
 and <code>freq_high</code>:</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">raven_an</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>time_start <span class="op">=</span> <span class="fl">450</span>,</span>
 <span>                       time_end  <span class="op">=</span> <span class="fl">520</span>,</span>
 <span>                       freq_low <span class="op">=</span> <span class="fl">3</span>,</span>
@@ -756,7 +772,7 @@ and <code>freq_high</code>:</p>
 <p>It is also possible to use multiple values, colors (adding
 <code>colors</code> column) and annotation (adding <code>content</code>
 column):</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">raven_an</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>time_start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">250</span>, <span class="fl">450</span><span class="op">)</span>,</span>
 <span>                       time_end  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">400</span>, <span class="fl">520</span><span class="op">)</span>,</span>
 <span>                       freq_low <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>,</span>
@@ -787,7 +803,7 @@ possible to visualise all kind of sound annotation systems.</p>
 and <a href="https://github.com/patrickreidy/textgRid" class="external-link"><code>textgRid</code></a>
 packages</li>
 </ul>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/textgrid_to_df.html">textgrid_to_df</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test.TextGrid"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##    id time_start   time_end content tier       tier_name        source</span></span>
 <span><span class="co">## 1   1 0.00000000 0.01246583            1       intervals test.TextGrid</span></span>
@@ -810,7 +826,7 @@ packages</li>
 <a href="https://github.com/langdoc/FRelan" class="external-link">FRelan</a> package by Niko
 Partanen</li>
 </ul>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eaf_to_df.html">eaf_to_df</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test.eaf"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##    tier id                                       content       tier_name tier_type id_</span></span>
 <span><span class="co">## 12    1  1                                                     intervals     praat   1</span></span>
@@ -846,7 +862,7 @@ Partanen</li>
 <li>file <code>.exb</code> from EXMARaLDA (just change the
 <code><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file()</a></code> function to path to the file)</li>
 </ul>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/exb_to_df.html">exb_to_df</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test.exb"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##   tier id content tier_name tier_type tier_category tier_speaker time_start  time_end</span></span>
 <span><span class="co">## 3    1  1       t     X [v]         t             v         SPK0 0.06908955 0.2498984</span></span>
@@ -870,7 +886,7 @@ Partanen</li>
 <li>subtitles file <code>.srt</code> (just change the
 <code><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file()</a></code> function to path to the file)</li>
 </ul>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/srt_to_df.html">srt_to_df</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test.srt"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##   id content time_start time_end   source</span></span>
 <span><span class="co">## 0  1       t      0.013    0.248 test.srt</span></span>
@@ -880,7 +896,7 @@ Partanen</li>
 <ul>
 <li>file <code>.txt</code> from Audacity</li>
 </ul>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/audacity_to_df.html">audacity_to_df</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test_audacity.txt"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##   time_start  time_end content            source</span></span>
 <span><span class="co">## 1  0.2319977 0.3953891    sssw test_audacity.txt</span></span></code></pre>
@@ -889,7 +905,7 @@ Partanen</li>
 connected with the main functionality of <code>phonfieldwork</code>, but
 I’d like to have it):</li>
 </ul>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/flextext_to_df.html">flextext_to_df</a></span><span class="op">(</span><span class="st">"files/zilo_test.flextext"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## It can take some time for big files...</span></span></code></pre>
 <pre><code><span><span class="co">##   p_id s_id w_id    txt     cf hn     gls                   msa                free_trans</span></span>
@@ -924,7 +940,7 @@ I’d like to have it):</li>
 <code>.flextext</code> format that convert it to a glossed document in a
 <code>docx</code> or <code>.html</code> format (see examples: <a href="https://github.com/ropensci/phonfieldwork/raw/master/docs/additional/glossed_document.docx" class="external-link"><code>.docx</code></a>,
 <a href="https://ropensci.github.io/phonfieldwork/additional/glossed_document.html"><code>.html</code></a>):</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/create_glossed_document.html">create_glossed_document</a></span><span class="op">(</span>flextext <span class="op">=</span> <span class="st">"files/zilo_test.flextext"</span>,</span>
 <span>                        output_dir <span class="op">=</span> <span class="st">"."</span><span class="op">)</span> <span class="co"># you need to specify the path to the output folder</span></span></code></pre></div>
 <pre><code><span><span class="co">## It can take some time for big files...</span></span></code></pre>
@@ -939,7 +955,7 @@ about manipulation with <code><a href="../reference/flextext_to_df.html">flextex
 <code><a href="../reference/exb_to_df.html">exb_to_df()</a></code>, <code><a href="../reference/audacity_to_df.html">audacity_to_df()</a></code>,
 <code><a href="../reference/srt_to_df.html">srt_to_df()</a></code>) except <code><a href="../reference/flextext_to_df.html">flextext_to_df()</a></code> can be
 used in order to visualise sound annotation:</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/draw_sound.html">draw_sound</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test.wav"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span>,</span>
 <span>           annotation <span class="op">=</span> <span class="fu"><a href="../reference/eaf_to_df.html">eaf_to_df</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test.eaf"</span>, package <span class="op">=</span> <span class="st">"phonfieldwork"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="unnamed-chunk-57-1.png"></p>
@@ -963,7 +979,14 @@ availible for anyone in the world.</p>
 etc.)</li>
 </ul>
 <p>We will start with the previous folder structure:</p>
-<pre><code><span><span class="co">## ├── s1</span></span>
+<pre><code><span><span class="co">## │   └── zilo_test.flextext</span></span>
+<span><span class="co">## ├── first_example.html</span></span>
+<span><span class="co">## ├── glossed_document.html</span></span>
+<span><span class="co">## ├── introduction_to_phonfieldwork.Rmd.orig</span></span>
+<span><span class="co">## ├── my_stimuli_df.csv</span></span>
+<span><span class="co">## ├── my_stimuli_df.xlsx</span></span>
+<span><span class="co">## ├── phonfieldwork.Rmd</span></span>
+<span><span class="co">## ├── s1</span></span>
 <span><span class="co">## │   ├── 1_s1_tip.wav</span></span>
 <span><span class="co">## │   ├── 2_s1_tap.wav</span></span>
 <span><span class="co">## │   ├── 3_s1_top.wav</span></span>
@@ -975,29 +998,22 @@ etc.)</li>
 <span><span class="co">## │   ├── s1_all.TextGrid</span></span>
 <span><span class="co">## │   ├── s1_all.wav</span></span>
 <span><span class="co">## │   ├── s1_pics</span></span>
-<span><span class="co">## │   │   ├── 1_s1_ı.png</span></span>
-<span><span class="co">## │   │   ├── 2_s1_æ.png</span></span>
-<span><span class="co">## │   │   └── 3_s1_ɒ.png</span></span>
-<span><span class="co">## │   ├── s1_sounds</span></span>
-<span><span class="co">## │   │   ├── 1_s1_ı.wav</span></span>
-<span><span class="co">## │   │   ├── 2_s1_æ.wav</span></span>
-<span><span class="co">## │   │   └── 3_s1_ɒ.wav</span></span>
-<span><span class="co">## │   └── s1_tip.png</span></span>
+<span><span class="co">## │   └── s1_sounds</span></span>
 <span><span class="co">## ├── s2</span></span>
 <span><span class="co">## │   ├── s2_tap_2.wav</span></span>
 <span><span class="co">## │   ├── s2_tip_1.TextGrid</span></span>
 <span><span class="co">## │   ├── s2_tip_1.wav</span></span>
 <span><span class="co">## │   └── s2_top_3.wav</span></span></code></pre>
 <p>We have all folders:</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"s1/s1_sounds/"</span><span class="op">)</span> <span class="co"># sounds</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "1_s1_ı.wav" "2_s1_æ.wav" "3_s1_ɒ.wav"</span></span></code></pre>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<pre><code><span><span class="co">## character(0)</span></span></code></pre>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"s1/s1_pics/"</span><span class="op">)</span> <span class="co"># pictures</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "1_s1_ı.png" "2_s1_æ.png" "3_s1_ɒ.png"</span></span></code></pre>
+<pre><code><span><span class="co">## character(0)</span></span></code></pre>
 <p>So what is left is the table. It is possible to create manually (or
 upload it form .csv or .xlsx files, see section 4.1):</p>
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>word  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tap"</span>, <span class="st">"tip"</span>, <span class="st">"top"</span><span class="op">)</span>,</span>
 <span>                 sounds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"æ"</span>, <span class="st">"ı"</span>, <span class="st">"ɒ"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">df</span></span></code></pre></div>
@@ -1006,7 +1022,7 @@ upload it form .csv or .xlsx files, see section 4.1):</p>
 <span><span class="co">## 2  tip      ı</span></span>
 <span><span class="co">## 3  top      ɒ</span></span></code></pre>
 <p>This table could be used in order to create an annotation viewer:</p>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/create_viewer.html">create_viewer</a></span><span class="op">(</span>audio_dir <span class="op">=</span> <span class="st">"s1/s1_sounds/"</span>,</span>
 <span>              picture_dir <span class="op">=</span> <span class="st">"s1/s1_pics/"</span>,</span>
 <span>              table <span class="op">=</span> <span class="va">df</span>,</span>
@@ -1016,7 +1032,14 @@ upload it form .csv or .xlsx files, see section 4.1):</p>
 <pre><code><span><span class="co">## Output created: s1/stimuli_viewer.html</span></span></code></pre>
 <p>As a result, a <code>stimuli_viewer.html</code> was created in the
 <code>s1</code> folder.</p>
-<pre><code><span><span class="co">## ├── s1</span></span>
+<pre><code><span><span class="co">## │   └── zilo_test.flextext</span></span>
+<span><span class="co">## ├── first_example.html</span></span>
+<span><span class="co">## ├── glossed_document.html</span></span>
+<span><span class="co">## ├── introduction_to_phonfieldwork.Rmd.orig</span></span>
+<span><span class="co">## ├── my_stimuli_df.csv</span></span>
+<span><span class="co">## ├── my_stimuli_df.xlsx</span></span>
+<span><span class="co">## ├── phonfieldwork.Rmd</span></span>
+<span><span class="co">## ├── s1</span></span>
 <span><span class="co">## │   ├── 1_s1_tip.wav</span></span>
 <span><span class="co">## │   ├── 2_s1_tap.wav</span></span>
 <span><span class="co">## │   ├── 3_s1_top.wav</span></span>
@@ -1028,14 +1051,7 @@ upload it form .csv or .xlsx files, see section 4.1):</p>
 <span><span class="co">## │   ├── s1_all.TextGrid</span></span>
 <span><span class="co">## │   ├── s1_all.wav</span></span>
 <span><span class="co">## │   ├── s1_pics</span></span>
-<span><span class="co">## │   │   ├── 1_s1_ı.png</span></span>
-<span><span class="co">## │   │   ├── 2_s1_æ.png</span></span>
-<span><span class="co">## │   │   └── 3_s1_ɒ.png</span></span>
 <span><span class="co">## │   ├── s1_sounds</span></span>
-<span><span class="co">## │   │   ├── 1_s1_ı.wav</span></span>
-<span><span class="co">## │   │   ├── 2_s1_æ.wav</span></span>
-<span><span class="co">## │   │   └── 3_s1_ɒ.wav</span></span>
-<span><span class="co">## │   ├── s1_tip.png</span></span>
 <span><span class="co">## │   └── stimuli_viewer.html</span></span>
 <span><span class="co">## ├── s2</span></span>
 <span><span class="co">## │   ├── s2_tap_2.wav</span></span>
@@ -1047,75 +1063,50 @@ upload it form .csv or .xlsx files, see section 4.1):</p>
 presented in this section is not a good solution for the huge amount of
 sounds. It is possible to derive such a table from annotation TextGrid,
 that we have created earlier. Here is a TextGrid:</p>
-<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/textgrid_to_df.html">textgrid_to_df</a></span><span class="op">(</span><span class="st">"s1/s1_all.TextGrid"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##    id time_start  time_end      content tier     tier_name          source</span></span>
-<span><span class="co">## 1   1  0.0000000 0.4821542          tip    1        labels s1_all.TextGrid</span></span>
-<span><span class="co">## 4   1  0.0000000 0.4821542 1_s1_tip.wav    2 backup labels s1_all.TextGrid</span></span>
-<span><span class="co">## 7   1  0.0000000 0.1072426                 3               s1_all.TextGrid</span></span>
-<span><span class="co">## 8   2  0.1072426 0.1887230            ı    3               s1_all.TextGrid</span></span>
-<span><span class="co">## 9   3  0.1887230 0.4821542                 3               s1_all.TextGrid</span></span>
-<span><span class="co">## 2   2  0.4821542 0.9120635          tap    1        labels s1_all.TextGrid</span></span>
-<span><span class="co">## 5   2  0.4821542 0.9120635 2_s1_tap.wav    2 backup labels s1_all.TextGrid</span></span>
-<span><span class="co">## 10  4  0.4821542 0.5770552                 3               s1_all.TextGrid</span></span>
-<span><span class="co">## 11  5  0.5770552 0.6793392            æ    3               s1_all.TextGrid</span></span>
-<span><span class="co">## 12  6  0.6793392 0.9120635                 3               s1_all.TextGrid</span></span>
-<span><span class="co">## 3   3  0.9120635 1.3942177          top    1        labels s1_all.TextGrid</span></span>
-<span><span class="co">## 6   3  0.9120635 1.3942177 3_s1_top.wav    2 backup labels s1_all.TextGrid</span></span>
-<span><span class="co">## 13  7  0.9120635 1.0364661                 3               s1_all.TextGrid</span></span>
-<span><span class="co">## 14  8  1.0364661 1.1066780            ɒ    3               s1_all.TextGrid</span></span>
-<span><span class="co">## 15  9  1.1066780 1.3942177                 3               s1_all.TextGrid</span></span></code></pre>
+<pre><code><span><span class="co">## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument</span></span></code></pre>
 <p>So in order to create desired table we can use
 <code><a href="../reference/tier_to_df.html">tier_to_df()</a></code> function:</p>
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tier_to_df.html">tier_to_df</a></span><span class="op">(</span><span class="st">"s1/s1_all.TextGrid"</span>, tier <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">t1</span></span></code></pre></div>
-<pre><code><span><span class="co">##   id time_start  time_end content tier tier_name          source</span></span>
-<span><span class="co">## 1  1  0.0000000 0.4821542     tip    1    labels s1_all.TextGrid</span></span>
-<span><span class="co">## 2  2  0.4821542 0.9120635     tap    1    labels s1_all.TextGrid</span></span>
-<span><span class="co">## 3  3  0.9120635 1.3942177     top    1    labels s1_all.TextGrid</span></span></code></pre>
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tier_to_df.html">tier_to_df</a></span><span class="op">(</span><span class="st">"s1/s1_all.TextGrid"</span>, tier <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span><span class="va">t3</span></span></code></pre></div>
-<pre><code><span><span class="co">##    id time_start  time_end content tier tier_name          source</span></span>
-<span><span class="co">## 7   1  0.0000000 0.1072426            3           s1_all.TextGrid</span></span>
-<span><span class="co">## 8   2  0.1072426 0.1887230       ı    3           s1_all.TextGrid</span></span>
-<span><span class="co">## 9   3  0.1887230 0.4821542            3           s1_all.TextGrid</span></span>
-<span><span class="co">## 10  4  0.4821542 0.5770552            3           s1_all.TextGrid</span></span>
-<span><span class="co">## 11  5  0.5770552 0.6793392       æ    3           s1_all.TextGrid</span></span>
-<span><span class="co">## 12  6  0.6793392 0.9120635            3           s1_all.TextGrid</span></span>
-<span><span class="co">## 13  7  0.9120635 1.0364661            3           s1_all.TextGrid</span></span>
-<span><span class="co">## 14  8  1.0364661 1.1066780       ɒ    3           s1_all.TextGrid</span></span>
-<span><span class="co">## 15  9  1.1066780 1.3942177            3           s1_all.TextGrid</span></span></code></pre>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tier_to_df.html">tier_to_df</a></span><span class="op">(</span><span class="st">"s1/s1_all.TextGrid"</span>, tier <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument</span></span></code></pre>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t1</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in eval(expr, envir, enclos): object 't1' not found</span></span></code></pre>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tier_to_df.html">tier_to_df</a></span><span class="op">(</span><span class="st">"s1/s1_all.TextGrid"</span>, tier <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument</span></span></code></pre>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t3</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in eval(expr, envir, enclos): object 't3' not found</span></span></code></pre>
 <p>As we see the first tier is ready, but the third tier contains empty
 annotations. Let’s remove them:</p>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t3</span> <span class="op">&lt;-</span> <span class="va">t3</span><span class="op">[</span><span class="va">t3</span><span class="op">$</span><span class="va">content</span> <span class="op">!=</span> <span class="st">""</span>,<span class="op">]</span></span>
-<span><span class="va">t3</span></span></code></pre></div>
-<pre><code><span><span class="co">##    id time_start  time_end content tier tier_name          source</span></span>
-<span><span class="co">## 8   2  0.1072426 0.1887230       ı    3           s1_all.TextGrid</span></span>
-<span><span class="co">## 11  5  0.5770552 0.6793392       æ    3           s1_all.TextGrid</span></span>
-<span><span class="co">## 14  8  1.0364661 1.1066780       ɒ    3           s1_all.TextGrid</span></span></code></pre>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t3</span> <span class="op">&lt;-</span> <span class="va">t3</span><span class="op">[</span><span class="va">t3</span><span class="op">$</span><span class="va">content</span> <span class="op">!=</span> <span class="st">""</span>,<span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in eval(expr, envir, enclos): object 't3' not found</span></span></code></pre>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t3</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in eval(expr, envir, enclos): object 't3' not found</span></span></code></pre>
 <p>So from this point it is possible to create the table that we
 wanted:</p>
-<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">new_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>words <span class="op">=</span> <span class="va">t1</span><span class="op">$</span><span class="va">content</span>,</span>
-<span>                     sounds <span class="op">=</span> <span class="va">t3</span><span class="op">$</span><span class="va">content</span><span class="op">)</span></span>
-<span><span class="va">new_df</span></span></code></pre></div>
-<pre><code><span><span class="co">##   words sounds</span></span>
-<span><span class="co">## 1   tip      ı</span></span>
-<span><span class="co">## 2   tap      æ</span></span>
-<span><span class="co">## 3   top      ɒ</span></span></code></pre>
+<span>                     sounds <span class="op">=</span> <span class="va">t3</span><span class="op">$</span><span class="va">content</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in eval(expr, envir, enclos): object 't1' not found</span></span></code></pre>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">new_df</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in eval(expr, envir, enclos): object 'new_df' not found</span></span></code></pre>
 <p>So now we are ready to run our code for creating an annotation
 viewer:</p>
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/create_viewer.html">create_viewer</a></span><span class="op">(</span>audio_dir <span class="op">=</span> <span class="st">"s1/s1_sounds/"</span>,</span>
 <span>              picture_dir <span class="op">=</span> <span class="st">"s1/s1_pics/"</span>,</span>
 <span>              table <span class="op">=</span> <span class="va">new_df</span>,</span>
 <span>              output_dir <span class="op">=</span> <span class="st">"s1/"</span>,</span>
 <span>              output_file <span class="op">=</span> <span class="st">"stimuli_viewer"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Since the result .html file possibly containes some vulnerable data, researcher(s) bear the whole responsibility for the publishing of the result. Run vignette("ethical_research_with_phonfieldwork") for more details.</span></span></code></pre>
-<pre><code><span><span class="co">## Output created: s1/stimuli_viewer.html</span></span></code></pre>
+<pre><code><span><span class="co">## Error in eval(expr, envir, enclos): object 'new_df' not found</span></span></code></pre>
 <p>By default sorting in the result annotation viewer will be according
 file names in the system, so if you want to have another default sorting
 you can specify column names that the result table should be sorted by
@@ -1139,16 +1130,17 @@ function.</li>
 <p>I will add some glottocodes for Russian, Polish and Czech to the
 dataframe that we have already worked with (for those data it doesn’t
 make any sense, I just giving an example of usage):</p>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">new_df</span><span class="op">$</span><span class="va">glottocode</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"russ1263"</span>, <span class="st">"poli1260"</span>, <span class="st">"czec1258"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/create_viewer.html">create_viewer</a></span><span class="op">(</span>audio_dir <span class="op">=</span> <span class="st">"s1/s1_sounds/"</span>,</span>
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">new_df</span><span class="op">$</span><span class="va">glottocode</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"russ1263"</span>, <span class="st">"poli1260"</span>, <span class="st">"czec1258"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error: object 'new_df' not found</span></span></code></pre>
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/create_viewer.html">create_viewer</a></span><span class="op">(</span>audio_dir <span class="op">=</span> <span class="st">"s1/s1_sounds/"</span>,</span>
 <span>              picture_dir <span class="op">=</span> <span class="st">"s1/s1_pics/"</span>,</span>
 <span>              table <span class="op">=</span> <span class="va">new_df</span>,</span>
 <span>              output_dir <span class="op">=</span> <span class="st">"s1/"</span>,</span>
 <span>              output_file <span class="op">=</span> <span class="st">"stimuli_viewer2"</span>,</span>
 <span>              map <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Since the result .html file possibly containes some vulnerable data, researcher(s) bear the whole responsibility for the publishing of the result. Run vignette("ethical_research_with_phonfieldwork") for more details.</span></span></code></pre>
-<pre><code><span><span class="co">## Output created: s1/stimuli_viewer2.html</span></span></code></pre>
+<pre><code><span><span class="co">## Error in eval(expr, envir, enclos): object 'new_df' not found</span></span></code></pre>
 <p><a href="https://ropensci.github.io/phonfieldwork/additional/stimuli_viewer2.html">Here</a>
 is the result file.</p>
 <p>It is also possible to provide your own coordinates with

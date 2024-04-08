@@ -2,7 +2,7 @@
 title: "Phonetic fieldwork and experiments with `phonfieldwork` package"
 author: "G. Moroz, [NRU HSE Linguistic Convergence Laboratory](https://ilcl.hse.ru/en/)"
 bibliography: bibliography.bib
-date: "2023-02-16"
+date: "2024-04-08"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Phonetic fieldwork and experiments with `phonfieldwork` package}
@@ -61,7 +61,19 @@ citation("phonfieldwork")
 ```
 
 ```
-## Error in person$family: $ operator is invalid for atomic vectors
+## To cite package 'phonfieldwork' in publications use:
+## 
+##   Moroz G (2023). "Phonetic fieldwork research and experiments with the R
+##   package phonfieldwork." In Kobozeva I, Semyonova K, Kostyuk A, Zakharov L,
+##   Svetozarova N (eds.), _«…Vperyod i vverkh po lestnitse zvuchashey». Sbornik
+##   statye k 80-letiyu Olgi Fyodorovny Krivnovoy [Festschrift in memoriam to Olga
+##   Fyodorovna Krivnova]_. Buki Vedi, Moscow.
+## 
+##   Moroz G (2020). _Phonetic fieldwork and experiments with phonfieldwork
+##   package_. <https://CRAN.R-project.org/package=phonfieldwork>.
+## 
+## To see these entries in BibTeX format, use 'print(<citation>, bibtex=TRUE)',
+## 'toBibtex(.)', or set 'options(citation.bibtex.max=999)'.
 ```
 
 If you have any trouble using the package, do not hesitate to create [an issue on Github](https://github.com/ropensci/phonfieldwork/issues/new).
@@ -167,7 +179,7 @@ my_image
 ```
 
 ```
-## [1] "/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.2/phonfieldwork/extdata/r-logo.png"
+## [1] "/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/phonfieldwork/extdata/r-logo.png"
 ```
 
 ```r
@@ -289,7 +301,7 @@ get_sound_duration("s1/2_s1_tap.wav")
 
 ```
 ##           file  duration
-## 1 2_s1_tap.wav 0.4299093
+## 1 2_s1_tap.wav 0.4821542
 ```
 
 It is also possible to analyze the whole folder using the `read_from_folder()` function. The first argument is the path to the folder. The second argument is the type of information or file type (possible values: "audacity", "duration", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"):
@@ -392,11 +404,21 @@ annotate_textgrid(annotation = c("", "ı", "", "", "æ", "", "", "ɒ", ""),
                   backup = FALSE)
 ```
 
+
+```
+## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument
+```
+
 ![](unnamed-chunk-29-1.png)
 
 You can see that we created a third tier with annotation. The only thing left is to move annotation boundaries in Praat (this can not be automated):
 
 
+
+
+```
+## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument
+```
 
 ![](unnamed-chunk-31-1.png)
 
@@ -459,8 +481,15 @@ extract_intervals(file_name = "s1/s1_all.wav",
                   prefix = "s1_")
 ```
 
+```
+## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument
+```
+
 
 ```
+## ├── my_stimuli_df.csv
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
 ## │   ├── 1_s1_tip.wav
 ## │   ├── 2_s1_tap.wav
@@ -473,9 +502,6 @@ extract_intervals(file_name = "s1/s1_all.wav",
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   └── s1_sounds
-## │       ├── 1_s1_ı.wav
-## │       ├── 2_s1_æ.wav
-## │       └── 3_s1_ɒ.wav
 ## ├── s2
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.TextGrid
@@ -491,7 +517,9 @@ It is possible to view an oscilogram and spetrogram of any soundfile:
 draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav")
 ```
 
-![](unnamed-chunk-40-1.png)
+```
+## Error in tuneR::readWave(file_name): File 's1/s1_sounds/1_s1_ı.wav' does not exist.
+```
 
 There are additional parameters:
 
@@ -524,8 +552,7 @@ draw_sound("s1/s1_all.wav",
 ```
 
 ```
-## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter
-## object length
+## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument
 ```
 
 ![](unnamed-chunk-41-1.png)
@@ -540,8 +567,7 @@ draw_sound("s1/s1_all.wav",
 ```
 
 ```
-## Warning in df$tier == unique(df$tier): longer object length is not a multiple of shorter
-## object length
+## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument
 ```
 
 ![](unnamed-chunk-42-1.png)
@@ -555,8 +581,16 @@ draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav",
            title = "s1 tip")
 ```
 
+```
+## Error in tuneR::readWave(file_name): File 's1/s1_sounds/1_s1_ı.wav' does not exist.
+```
+
 
 ```
+## ├── introduction_to_phonfieldwork.Rmd.orig
+## ├── my_stimuli_df.csv
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
 ## │   ├── 1_s1_tip.wav
 ## │   ├── 2_s1_tap.wav
@@ -568,11 +602,7 @@ draw_sound(file_name = "s1/s1_sounds/1_s1_ı.wav",
 ## │   │   └── logging.csv
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
-## │   ├── s1_sounds
-## │   │   ├── 1_s1_ı.wav
-## │   │   ├── 2_s1_æ.wav
-## │   │   └── 3_s1_ɒ.wav
-## │   └── s1_tip.png
+## │   └── s1_sounds
 ## ├── s2
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.TextGrid
@@ -588,8 +618,20 @@ draw_sound(sounds_from_folder = "s1/s1_sounds/",
            pic_folder_name = "s1_pics")
 ```
 
+```
+## Error in draw_sound(file_name = file_name, annotation = annotation, from = from, : The draw_sound() functions works only with .wav(e) or
+##                .mp3 formats
+```
+
 
 ```
+## │   ├── s1_all.TextGrid
+## │   └── zilo_test.flextext
+## ├── first_example.html
+## ├── introduction_to_phonfieldwork.Rmd.orig
+## ├── my_stimuli_df.csv
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
 ## │   ├── 1_s1_tip.wav
 ## │   ├── 2_s1_tap.wav
@@ -602,14 +644,7 @@ draw_sound(sounds_from_folder = "s1/s1_sounds/",
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_pics
-## │   │   ├── 1_s1_ı.png
-## │   │   ├── 2_s1_æ.png
-## │   │   └── 3_s1_ɒ.png
-## │   ├── s1_sounds
-## │   │   ├── 1_s1_ı.wav
-## │   │   ├── 2_s1_æ.wav
-## │   │   └── 3_s1_ɒ.wav
-## │   └── s1_tip.png
+## │   └── s1_sounds
 ## ├── s2
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.TextGrid
@@ -863,6 +898,13 @@ We will start with the previous folder structure:
 
 
 ```
+## │   └── zilo_test.flextext
+## ├── first_example.html
+## ├── glossed_document.html
+## ├── introduction_to_phonfieldwork.Rmd.orig
+## ├── my_stimuli_df.csv
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
 ## │   ├── 1_s1_tip.wav
 ## │   ├── 2_s1_tap.wav
@@ -875,14 +917,7 @@ We will start with the previous folder structure:
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_pics
-## │   │   ├── 1_s1_ı.png
-## │   │   ├── 2_s1_æ.png
-## │   │   └── 3_s1_ɒ.png
-## │   ├── s1_sounds
-## │   │   ├── 1_s1_ı.wav
-## │   │   ├── 2_s1_æ.wav
-## │   │   └── 3_s1_ɒ.wav
-## │   └── s1_tip.png
+## │   └── s1_sounds
 ## ├── s2
 ## │   ├── s2_tap_2.wav
 ## │   ├── s2_tip_1.TextGrid
@@ -898,7 +933,7 @@ list.files("s1/s1_sounds/") # sounds
 ```
 
 ```
-## [1] "1_s1_ı.wav" "2_s1_æ.wav" "3_s1_ɒ.wav"
+## character(0)
 ```
 
 ```r
@@ -906,7 +941,7 @@ list.files("s1/s1_pics/") # pictures
 ```
 
 ```
-## [1] "1_s1_ı.png" "2_s1_æ.png" "3_s1_ɒ.png"
+## character(0)
 ```
 
 So what is left is the table. It is possible to create manually (or upload it form .csv or .xlsx files, see section 4.1):
@@ -948,6 +983,13 @@ As a result, a `stimuli_viewer.html` was created in the `s1` folder.
 
 
 ```
+## │   └── zilo_test.flextext
+## ├── first_example.html
+## ├── glossed_document.html
+## ├── introduction_to_phonfieldwork.Rmd.orig
+## ├── my_stimuli_df.csv
+## ├── my_stimuli_df.xlsx
+## ├── phonfieldwork.Rmd
 ## ├── s1
 ## │   ├── 1_s1_tip.wav
 ## │   ├── 2_s1_tap.wav
@@ -960,14 +1002,7 @@ As a result, a `stimuli_viewer.html` was created in the `s1` folder.
 ## │   ├── s1_all.TextGrid
 ## │   ├── s1_all.wav
 ## │   ├── s1_pics
-## │   │   ├── 1_s1_ı.png
-## │   │   ├── 2_s1_æ.png
-## │   │   └── 3_s1_ɒ.png
 ## │   ├── s1_sounds
-## │   │   ├── 1_s1_ı.wav
-## │   │   ├── 2_s1_æ.wav
-## │   │   └── 3_s1_ɒ.wav
-## │   ├── s1_tip.png
 ## │   └── stimuli_viewer.html
 ## ├── s2
 ## │   ├── s2_tap_2.wav
@@ -986,22 +1021,7 @@ textgrid_to_df("s1/s1_all.TextGrid")
 ```
 
 ```
-##    id time_start  time_end      content tier     tier_name          source
-## 1   1  0.0000000 0.4821542          tip    1        labels s1_all.TextGrid
-## 4   1  0.0000000 0.4821542 1_s1_tip.wav    2 backup labels s1_all.TextGrid
-## 7   1  0.0000000 0.1072426                 3               s1_all.TextGrid
-## 8   2  0.1072426 0.1887230            ı    3               s1_all.TextGrid
-## 9   3  0.1887230 0.4821542                 3               s1_all.TextGrid
-## 2   2  0.4821542 0.9120635          tap    1        labels s1_all.TextGrid
-## 5   2  0.4821542 0.9120635 2_s1_tap.wav    2 backup labels s1_all.TextGrid
-## 10  4  0.4821542 0.5770552                 3               s1_all.TextGrid
-## 11  5  0.5770552 0.6793392            æ    3               s1_all.TextGrid
-## 12  6  0.6793392 0.9120635                 3               s1_all.TextGrid
-## 3   3  0.9120635 1.3942177          top    1        labels s1_all.TextGrid
-## 6   3  0.9120635 1.3942177 3_s1_top.wav    2 backup labels s1_all.TextGrid
-## 13  7  0.9120635 1.0364661                 3               s1_all.TextGrid
-## 14  8  1.0364661 1.1066780            ɒ    3               s1_all.TextGrid
-## 15  9  1.1066780 1.3942177                 3               s1_all.TextGrid
+## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument
 ```
 
 So in order to create desired table we can use `tier_to_df()` function:
@@ -1009,32 +1029,34 @@ So in order to create desired table we can use `tier_to_df()` function:
 
 ```r
 t1 <- tier_to_df("s1/s1_all.TextGrid", tier = 1)
+```
+
+```
+## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument
+```
+
+```r
 t1
 ```
 
 ```
-##   id time_start  time_end content tier tier_name          source
-## 1  1  0.0000000 0.4821542     tip    1    labels s1_all.TextGrid
-## 2  2  0.4821542 0.9120635     tap    1    labels s1_all.TextGrid
-## 3  3  0.9120635 1.3942177     top    1    labels s1_all.TextGrid
+## Error in eval(expr, envir, enclos): object 't1' not found
 ```
 
 ```r
 t3 <- tier_to_df("s1/s1_all.TextGrid", tier = 3)
+```
+
+```
+## Error in file(file_name, encoding = readr::guess_encoding(file_name)$encoding): invalid 'encoding' argument
+```
+
+```r
 t3
 ```
 
 ```
-##    id time_start  time_end content tier tier_name          source
-## 7   1  0.0000000 0.1072426            3           s1_all.TextGrid
-## 8   2  0.1072426 0.1887230       ı    3           s1_all.TextGrid
-## 9   3  0.1887230 0.4821542            3           s1_all.TextGrid
-## 10  4  0.4821542 0.5770552            3           s1_all.TextGrid
-## 11  5  0.5770552 0.6793392       æ    3           s1_all.TextGrid
-## 12  6  0.6793392 0.9120635            3           s1_all.TextGrid
-## 13  7  0.9120635 1.0364661            3           s1_all.TextGrid
-## 14  8  1.0364661 1.1066780       ɒ    3           s1_all.TextGrid
-## 15  9  1.1066780 1.3942177            3           s1_all.TextGrid
+## Error in eval(expr, envir, enclos): object 't3' not found
 ```
 
 As we see the first tier is ready, but the third tier contains empty annotations. Let's remove them:
@@ -1042,14 +1064,18 @@ As we see the first tier is ready, but the third tier contains empty annotations
 
 ```r
 t3 <- t3[t3$content != "",]
+```
+
+```
+## Error in eval(expr, envir, enclos): object 't3' not found
+```
+
+```r
 t3
 ```
 
 ```
-##    id time_start  time_end content tier tier_name          source
-## 8   2  0.1072426 0.1887230       ı    3           s1_all.TextGrid
-## 11  5  0.5770552 0.6793392       æ    3           s1_all.TextGrid
-## 14  8  1.0364661 1.1066780       ɒ    3           s1_all.TextGrid
+## Error in eval(expr, envir, enclos): object 't3' not found
 ```
 
 So from this point it is possible to create the table that we wanted:
@@ -1058,14 +1084,18 @@ So from this point it is possible to create the table that we wanted:
 ```r
 new_df <- data.frame(words = t1$content,
                      sounds = t3$content)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 't1' not found
+```
+
+```r
 new_df
 ```
 
 ```
-##   words sounds
-## 1   tip      ı
-## 2   tap      æ
-## 3   top      ɒ
+## Error in eval(expr, envir, enclos): object 'new_df' not found
 ```
 
 So now we are ready to run our code for creating an annotation viewer:
@@ -1084,7 +1114,7 @@ create_viewer(audio_dir = "s1/s1_sounds/",
 ```
 
 ```
-## Output created: s1/stimuli_viewer.html
+## Error in eval(expr, envir, enclos): object 'new_df' not found
 ```
 
 By default sorting in the result annotation viewer will be according file names in the system, so if you want to have another default sorting you can specify column names that the result table should be sorted by using the `sorting_columns` argument.
@@ -1100,6 +1130,13 @@ I will add some glottocodes for Russian, Polish and Czech to the dataframe that 
 
 ```r
 new_df$glottocode <- c("russ1263", "poli1260", "czec1258")
+```
+
+```
+## Error: object 'new_df' not found
+```
+
+```r
 create_viewer(audio_dir = "s1/s1_sounds/",
               picture_dir = "s1/s1_pics/",
               table = new_df,
@@ -1109,11 +1146,7 @@ create_viewer(audio_dir = "s1/s1_sounds/",
 ```
 
 ```
-## Since the result .html file possibly containes some vulnerable data, researcher(s) bear the whole responsibility for the publishing of the result. Run vignette("ethical_research_with_phonfieldwork") for more details.
-```
-
-```
-## Output created: s1/stimuli_viewer2.html
+## Error in eval(expr, envir, enclos): object 'new_df' not found
 ```
 
 [Here](https://ropensci.github.io/phonfieldwork/additional/stimuli_viewer2.html) is the result file.

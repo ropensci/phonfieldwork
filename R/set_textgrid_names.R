@@ -19,7 +19,6 @@
 #' )
 #' @export
 #'
-#' @importFrom uchardet detect_file_enc
 #'
 
 set_textgrid_names <- function(textgrid,
