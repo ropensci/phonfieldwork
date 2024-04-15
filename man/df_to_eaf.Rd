@@ -33,6 +33,10 @@ df_to_eaf(df = df,
           output_file = 'test.eaf',
           ref_file = 'test.wav')
 
+# Remove file in order to pass checks
+
+file.remove("test.eaf")
+
 }
 \author{
 Sergej Kudrjashov <xenomirant@gmail.com>

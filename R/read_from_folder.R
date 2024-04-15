@@ -7,6 +7,8 @@
 #' @param path to a folder with multiple sound files.
 #' @param type should be one of the following: "duration", "audacity", "eaf", "exb", "flextext", "formant", "intensity", "picth", "srt", "textgrid"
 #'
+#' @return dataframe with contents of all files of a selected type
+#'
 #' @examples
 #'
 #' read_from_folder(system.file("extdata", package = "phonfieldwork"), "eaf")

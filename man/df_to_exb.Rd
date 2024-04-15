@@ -65,6 +65,10 @@ df_to_exb(df = df,
           ud_meta = meta,
           speaker_table = speaker_data)
 
+# Remove file in order to pass checks
+
+file.remove("beck.xml")
+
 }
 \author{
 Valeria Buntiakova <valleriabun@gmail.com>

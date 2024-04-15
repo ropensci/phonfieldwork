@@ -6,6 +6,8 @@
 #'
 #' @param file_name a sound file
 #'
+#' @return Dataframe with two columns: file name and duration
+#'
 #' @examples
 #' get_sound_duration(
 #'   system.file("extdata", "test.wav", package = "phonfieldwork")

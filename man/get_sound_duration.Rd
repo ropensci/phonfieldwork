@@ -9,6 +9,9 @@ get_sound_duration(file_name)
 \arguments{
 \item{file_name}{a sound file}
 }
+\value{
+Dataframe with two columns: file name and duration
+}
 \description{
 Calculate sound(s) duration.
 }

@@ -20,6 +20,10 @@
 #'           output_file = 'test.eaf',
 #'           ref_file = 'test.wav')
 #'
+#' # Remove file in order to pass checks
+#'
+#' file.remove("test.eaf")
+#'
 #' @importFrom mime guess_type
 #' @importFrom stats na.omit
 #' @export

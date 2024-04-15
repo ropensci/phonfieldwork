@@ -69,7 +69,7 @@
 #' @return Oscilogram and spectrogram plot (and possibly TextGrid annotation).
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' draw_sound(system.file("extdata", "test.wav", package = "phonfieldwork"))
 #'
 #' draw_sound(

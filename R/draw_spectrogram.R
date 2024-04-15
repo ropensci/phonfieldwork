@@ -47,8 +47,10 @@
 #' columns. Optional columns are \code{colors} and \code{content}.
 #' @param formant_df dataframe with formants from \code{formant_to_df()} function
 #'
+#' @return Plot the comptued spectrogram
+#'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' draw_spectrogram(system.file("extdata", "test.wav",
 #'   package = "phonfieldwork"
 #' ))
