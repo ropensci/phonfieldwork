@@ -1,7 +1,10 @@
+# phonfieldwork 0.0.16
+
+- small fix
+
 # phonfieldwork 0.0.15
 
 - small fix in `df_to_tier` of cases with non-equal time_end and time_start values in the dataframe
-
 
 # phonfieldwork 0.0.14
 
