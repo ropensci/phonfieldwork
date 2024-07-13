@@ -58,11 +58,20 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE) {
     })
   }
 
-  if(df$time_end[nrow(df)] != textgrid_duration){
-    df <- rbind(df,
-                data.frame(time_start = df$time_end[nrow(df)],
-                           time_end = textgrid_duration,
-                           content = ""))
+
+  if("time_end" %in% names(df)){
+    if(df$time_end[nrow(df)] != textgrid_duration){
+      df <- rbind(df,
+                  data.frame(time_start = df$time_end[nrow(df)],
+                             time_end = textgrid_duration,
+                             content = ""))
+    }
+  } else {
+    if(df$time_start[nrow(df)] != textgrid_duration){
+      df <- rbind(df,
+                  data.frame(time_start = df$time_start[nrow(df)],
+                             content = ""))
+    }
   }
 
   tier_class <- ifelse("time_end" %in% names(df),

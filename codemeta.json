@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/ropensci/phonfieldwork",
   "issueTracker": "https://github.com/ropensci/phonfieldwork/issues",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -235,7 +235,7 @@
     },
     "SystemRequirements": "pandoc (>= 1.14) - http://pandoc.org"
   },
-  "fileSize": "2085.848KB",
+  "fileSize": "2086.182KB",
   "citation": [
     {
       "datePublished": "2023",

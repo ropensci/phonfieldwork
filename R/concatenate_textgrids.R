@@ -1,6 +1,6 @@
-#' Concatenate sounds
+#' Concatenate TextGrids
 #'
-#' Creates a merged sound file from old sound files in a folder. If the annotation argument is not equal to \code{NULL}, it creates an annotation file (Praat .TextGrid, ELAN .eaf or EXMARaLDA .exb) with original sound names annotation.
+#' Creates a merged TextGrids from TextGrids files in a folder.
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #'
@@ -33,11 +33,7 @@ concatenate_textgrids <- function(path,
 
   # get list of files -------------------------------------------------------
   path <- normalizePath(path)
-  files <- paste0(
-    path,
-    "/",
-    list.files(path, "\\.TextGrid$")
-  )
+  files <- list.files(path, "\\.TextGrid$", full.names = TRUE)
 
   # read all textgrids and converge them into one df ------------------------
   start <- 0
@@ -59,14 +55,9 @@ concatenate_textgrids <- function(path,
     tier_names <- unique(results$tier)
   }
 
-  writeLines(
-    paste0(
-      'File type = "ooTextFile"\nObject class = "TextGrid"\n\nxmin = 0\nxmax = ',
-      max(results$time_end),
-      "\ntiers? <exists>\nsize = 0\nitem []:"
-    ),
-    paste0(path, "/", result_file_name, ".TextGrid")
-  )
+  create_empty_textgrid(duration = max(results$time_end),
+                        path = path,
+                        result_file_name = result_file_name)
 
   s <- split(results[, c("time_start", "time_end", "content")], results$tier)
 
