@@ -12,7 +12,7 @@ read_textgrid <- function(file_name) {
   } else {
     # thanks to Artem Klevtsov for this code
     con <- file(file_name,
-                encoding = readr::guess_encoding(file_name)$encoding)
+                encoding = readr::guess_encoding(file_name)$encoding[1])
     tg <- readLines(con)
     close(con)
   }

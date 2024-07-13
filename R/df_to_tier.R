@@ -46,6 +46,18 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE) {
     df <- df[, -which(names(df) %in% "time_end")]
   }
 
+  if (TRUE %in% (df$time_end[-nrow(df)] != df$time_start[-1])){
+    wrong_time_end <- which(df$time_end[-nrow(df)] != df$time_start[-1])
+    silence <- lapply(wrong_time_end, function(i){
+      df <<- rbind(df[c(1:i),],
+                   data.frame(time_start = df$time_end[i],
+                              time_end = df$time_start[i+1],
+                              content = ""),
+                   df[-c(1:i),]
+            )
+    })
+  }
+
   tier_class <- ifelse("time_end" %in% names(df),
                        '        class = "IntervalTier" ',
                        '        class = "TextTier" '
