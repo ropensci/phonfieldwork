@@ -2,7 +2,7 @@
 % Please edit documentation in R/concatenate_textgrids.R
 \name{concatenate_textgrids}
 \alias{concatenate_textgrids}
-\title{Concatenate sounds}
+\title{Concatenate TextGrids}
 \usage{
 concatenate_textgrids(path, result_file_name = "concatenated")
 }
@@ -15,7 +15,7 @@ concatenate_textgrids(path, result_file_name = "concatenated")
 no output
 }
 \description{
-Creates a merged sound file from old sound files in a folder. If the annotation argument is not equal to \code{NULL}, it creates an annotation file (Praat .TextGrid, ELAN .eaf or EXMARaLDA .exb) with original sound names annotation.
+Creates a merged TextGrids from TextGrids files in a folder.
 }
 \examples{
 # create two files in a temprary folder "test_folder"

@@ -15,9 +15,9 @@
 #' no output.
 #' @examples
 #' time_start <- c(0.00000000, 0.01246583, 0.24781914, 0.39552363, 0.51157715)
-#' time_end <- c(0.01246583, 0.24781914, 0.39552363, 0.51157715, 0.6526757369614512)
+#' time_end <- c(0.01246583, 0.24781914, 0.39552363, 0.51157715, 0.65267574)
 #' content <- c("", "T", "E", "S", "T")
-#' df_to_tier(my_df <- data.frame(id = 1:5, time_start, time_end, content),
+#' df_to_tier(data.frame(id = 1:5, time_start, time_end, content),
 #'   system.file("extdata", "test.TextGrid",
 #'     package = "phonfieldwork"
 #'   ),
@@ -36,6 +36,8 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE) {
       '"time_start" and "time_end"'
     ))
   }
+
+  df <- df[which(names(df) %in% c("time_start", "time_end", "content"))]
 
   tg <- read_textgrid(textgrid)
 
@@ -57,7 +59,6 @@ df_to_tier <- function(df, textgrid, tier_name = "", overwrite = TRUE) {
                    df[-c(1:i),])
     })
   }
-
 
   if("time_end" %in% names(df)){
     if(df$time_end[nrow(df)] != textgrid_duration){
