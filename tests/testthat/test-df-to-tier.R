@@ -8,6 +8,8 @@ test_that("df_to_tier", {
                    overwrite = FALSE
   )
 
+  cat(tg, sep = "\n")
+
   readLines(system.file("extdata", "test.TextGrid", package = "phonfieldwork"))
 
   expect_error(
